@@ -6,3 +6,9 @@ t
 
 node_modules
 
+build
+
+_site
+
+lib
+
