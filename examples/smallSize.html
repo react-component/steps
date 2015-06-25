@@ -180,7 +180,7 @@
 <body>
 <div id="__react-content"></div>
 <script src="common.js?nowrap"></script>
-<script src="simple.js?nowrap"></script>
+<script src="smallSize.js?nowrap"></script>
 <div class="highlight">
 <pre>
 <span class="hljs-pi">'use strict'</span>;
@@ -197,31 +197,27 @@
 
 <span class="hljs-keyword">var</span> steps = [{
   status: <span class="hljs-string">'finish'</span>,
-  title: <span class="hljs-string">'已完成'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
+  title: <span class="hljs-string">'已完成'</span>
 }, {
   status: <span class="hljs-string">'process'</span>,
-  title: <span class="hljs-string">'进行中'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
+  title: <span class="hljs-string">'进行中'</span>
 }, {
   status: <span class="hljs-string">'wait'</span>,
-  title: <span class="hljs-string">'待运行'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
+  title: <span class="hljs-string">'待运行'</span>
 }, {
   status: <span class="hljs-string">'wait'</span>,
-  title: <span class="hljs-string">'待运行'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
+  title: <span class="hljs-string">'待运行'</span>
 }].map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s, i</span>) </span>{
     <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span>
         <span class="hljs-attribute">key</span>=<span class="hljs-value">{i}</span>
         <span class="hljs-attribute">status</span>=<span class="hljs-value">{s.status}</span>
         <span class="hljs-attribute">title</span>=<span class="hljs-value">{s.title}</span>
-        <span class="hljs-attribute">description</span>=<span class="hljs-value">{s.description}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
+        &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
     )</span>;
   });
 
 React.render(
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span>&gt;</span>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"small"</span>&gt;</span>
     {steps}
   <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>, container);</span>
 </pre>

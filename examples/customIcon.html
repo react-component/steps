@@ -180,50 +180,30 @@
 <body>
 <div id="__react-content"></div>
 <script src="common.js?nowrap"></script>
-<script src="simple.js?nowrap"></script>
+<script src="customIcon.js?nowrap"></script>
 <div class="highlight">
 <pre>
-<span class="hljs-pi">'use strict'</span>;
+'use strict';
 
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'assets/index.css'</span>);
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'assets/iconfont.css'</span>);
+require('assets/index.css');
+require('assets/iconfont.css');
+require('./customIcon.css');
 
-<span class="hljs-keyword">var</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
-<span class="hljs-keyword">var</span> Steps = <span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps'</span>);
-
-
-<span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'__react-content'</span>);
+var React = require('react');
+var Steps = require('rc-steps');
 
 
-<span class="hljs-keyword">var</span> steps = [{
-  status: <span class="hljs-string">'finish'</span>,
-  title: <span class="hljs-string">'已完成'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
-}, {
-  status: <span class="hljs-string">'process'</span>,
-  title: <span class="hljs-string">'进行中'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
-}, {
-  status: <span class="hljs-string">'wait'</span>,
-  title: <span class="hljs-string">'待运行'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
-}, {
-  status: <span class="hljs-string">'wait'</span>,
-  title: <span class="hljs-string">'待运行'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
-}].map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s, i</span>) </span>{
-    <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span>
-        <span class="hljs-attribute">key</span>=<span class="hljs-value">{i}</span>
-        <span class="hljs-attribute">status</span>=<span class="hljs-value">{s.status}</span>
-        <span class="hljs-attribute">title</span>=<span class="hljs-value">{s.title}</span>
-        <span class="hljs-attribute">description</span>=<span class="hljs-value">{s.description}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
-    )</span>;
-  });
+var container = document.getElementById('__react-content');
+
+var imgIcon = <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'my-step-icon'</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">'https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg'</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
 
 React.render(
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span>&gt;</span>
-    {steps}
-  <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>, container);</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">Steps</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">'finish'</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">'步骤1'</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">{&lt;div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'my-step-icon'</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'anticon anticon-cloud'</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>}&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">'process'</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">'步骤2'</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">{imgIcon}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">'wait'</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">'步骤3'</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">{&lt;div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'my-step-icon'</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'anticon anticon-github'</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>}&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>, container);
 </pre>
 </div>
 </body>
