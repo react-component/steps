@@ -36,6 +36,6 @@ var steps = [{
   });
 
 React.render(
-  <Steps>
+  <Steps size="small">
     {steps}
   </Steps>, container);

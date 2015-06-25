@@ -3,18 +3,13 @@
 var React = require('react');
 
 var Step = React.createClass({
-  getInitialState() {
-    return {
-      status: this.props.status ? this.props.status : 'waiting'
-    };
-  },
   render() {
-    console.log('step render');
     var props = this.props;
-    return (<div className={'rc-steps-item rc-steps-status-' + this.state.status }>
-
+    var icon = props.icon ? <span className={props.icon}></span>
+        : (props.status !== 'finish' ? <span>{props.stepNumber}</span> : <span className='anticon anticon-check'></span>);
+    return (<div className={'rc-steps-item rc-steps-status-' + props.status }>
       <div className='rc-steps-head'>
-        <i className='anticon anticon-check'></i>
+        {icon}
       </div>
       <div className='rc-steps-main'>
         <div className='rc-steps-title'>{props.title}</div>
