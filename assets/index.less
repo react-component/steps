@@ -18,7 +18,11 @@
       .rc-steps-head {
         border-color: @wait-color;
         background-color: #fff;
-        > span {
+        &.rc-steps-custom {
+          background: none;
+          border: 0;
+        }
+        > .rc-steps-icon {
           color: @wait-color;
         }
       }
@@ -27,7 +31,11 @@
       .rc-steps-head {
         border-color: @active-color;
         background-color: @active-color;
-        > span {
+        &.rc-steps-custom {
+          background: none;
+          border: 0;
+        }
+        > .rc-steps-icon {
           color: #fff;
         }
       }
@@ -36,7 +44,11 @@
       .rc-steps-head {
         border-color: @active-color;
         background-color: #fff;
-        > span {
+        &.rc-steps-custom {
+          background: none;
+          border: 0;
+        }
+        > .rc-steps-icon {
           color: @active-color;
         }
       }
@@ -61,12 +73,12 @@
     line-height: 24px;
     text-align: center;
     border-radius: 24px;
-    font-size: 15px;
+    font-size: 13px;
     margin-right: 12px;
     .transition(background-color 0.1s ease);
     .transition(border-color 0.1s ease);
 
-    > span {
+    > .rc-steps-icon {
       display: inline-block;
       vertical-align: inherit;
       color: #3fc7fa;
@@ -75,7 +87,7 @@
   }
   .rc-steps-main {
     max-width: 75px;
-    margin-top: 4px;
+    margin-top: 3px;
   }
   .rc-steps-title {
     font-size: 14px;
@@ -90,7 +102,7 @@
   .rc-steps-tail {
     width: 0;
     position: relative;
-    top: 10px;
+    top: 13px;
     padding:0 10px;
     > i {
       display: inline-block;
@@ -102,7 +114,7 @@
   }
 
 
-  &.rc-steps-size-small {
+  &.rc-steps-small {
     .rc-steps-head {
       border:1px solid @wait-color;
       width: 18px;
@@ -113,13 +125,13 @@
       font-size: 10px;
       margin-right: 10px;
 
-      > span {
+      > .rc-steps-icon {
         top: 0;
       }
     }
     .rc-steps-main {
       max-width: 75px;
-      margin-top: 2px;
+      margin-top: 0;
     }
     .rc-steps-title {
       font-size: 12px;
@@ -132,16 +144,22 @@
       color: #999;
     }
     .rc-steps-tail {
-      top: 8px;
+      top: 9px;
       padding:0 8px;
       > i {
-        display: inline-block;
-        background: @wait-color;
-        height: 2px;
+        height: 1px;
         border-radius: 1px;
         width: 100%;
       }
     }
   }
 
+  &.rc-steps-small .rc-steps-head.rc-steps-custom, .rc-steps-head.rc-steps-custom {
+    width: inherit;
+    height: inherit;
+    line-height: inherit;
+    border-radius: 0;
+    border: 0;
+    background: none;
+  }
 }

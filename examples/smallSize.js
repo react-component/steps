@@ -12,26 +12,22 @@ var container = document.getElementById('__react-content');
 
 var steps = [{
   status: 'finish',
-  title: '已完成',
-  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'
+  title: '已完成'
 }, {
   status: 'process',
-  title: '进行中',
-  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'
+  title: '进行中'
 }, {
   status: 'wait',
-  title: '待运行',
-  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'
+  title: '待运行'
 }, {
   status: 'wait',
-  title: '待运行',
-  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'
+  title: '待运行'
 }].map(function(s, i) {
     return (<Steps.Step
         key={i}
         status={s.status}
         title={s.title}
-        description={s.description}></Steps.Step>
+        ></Steps.Step>
     );
   });
 

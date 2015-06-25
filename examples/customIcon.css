@@ -1,0 +1,13 @@
+.my-step-icon {
+  width: 35px;
+  height: 35px;
+  font-size: 35px;
+  line-height: 1;
+  position: relative;
+  top: -7px;
+}
+
+.my-step-icon > img {
+  width: 45px;
+  height: 45px;
+}
