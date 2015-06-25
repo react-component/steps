@@ -185,24 +185,44 @@
 <pre>
 <span class="hljs-pi">'use strict'</span>;
 
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'assets/index.css'</span>);
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'assets/iconfont.css'</span>);
+
 <span class="hljs-keyword">var</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
 <span class="hljs-keyword">var</span> Steps = <span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps'</span>);
 
 
 <span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'__react-content'</span>);
-<span class="hljs-comment">//var eles = [];</span>
-<span class="hljs-comment">//for (var i=0;i&lt;10;i++) {</span>
-<span class="hljs-comment">//  eles.push(document.createElement('div'));</span>
-<span class="hljs-comment">//  container.appendChild(eles[i]);</span>
-<span class="hljs-comment">//}</span>
+
+<span class="hljs-keyword">var</span> steps = [{
+  status: <span class="hljs-string">'finish'</span>,
+  title: <span class="hljs-string">'已完成'</span>,
+  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
+}, {
+  status: <span class="hljs-string">'progress'</span>,
+  title: <span class="hljs-string">'进行中'</span>,
+  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
+}, {
+  status: <span class="hljs-string">'wait'</span>,
+  title: <span class="hljs-string">'待运行'</span>,
+  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
+}, {
+  status: <span class="hljs-string">'wait'</span>,
+  title: <span class="hljs-string">'待运行'</span>,
+  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
+}].map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s, i</span>) </span>{
+    <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span>
+        <span class="hljs-attribute">key</span>=<span class="hljs-value">{i}</span>
+        <span class="hljs-attribute">status</span>=<span class="hljs-value">{s.status}</span>
+        <span class="hljs-attribute">title</span>=<span class="hljs-value">{s.title}</span>
+        <span class="hljs-attribute">description</span>=<span class="hljs-value">{s.description}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
+    )</span>;
+  });
 
 React.render(
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"finish"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"己完成"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"process"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"正在进行"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"waiting"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"待完成"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"waiting"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"待完成"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>, container);</span>
+    {steps}
+  <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>, container);</span>
 </pre>
 </div>
 </body>
