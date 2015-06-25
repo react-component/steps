@@ -7,8 +7,8 @@ var Step = React.createClass({
     var props = this.props;
     var icon = props.icon ? props.icon
         : (props.status !== 'finish' ? <span className='rc-steps-icon'>{props.stepNumber}</span> : <span className='rc-steps-icon anticon anticon-check'></span>);
-    return (<div className={'rc-steps-item rc-steps-status-' + props.status }>
-      <div className={'rc-steps-head' + (props.icon ? ' rc-steps-custom' : '')}>
+    return (<div className={'rc-steps-item rc-steps-status-' + props.status + (props.icon ? ' rc-steps-custom' : '') }>
+      <div className={'rc-steps-head'}>
         {icon}
       </div>
       <div className='rc-steps-main'>

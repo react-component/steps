@@ -8,6 +8,7 @@ var Steps = React.createClass({
   _totalItemsWidth: 0,
   getInitialState() {
     return {
+      init: false,
       tailWidth: 0
     };
   },
@@ -46,11 +47,12 @@ var Steps = React.createClass({
   },
   _update() {
     var len = this.props.children.length - 1;
-    var dw = Math.floor((this._previousStepsWidth - this._totalItemsWidth) / len);
+    var dw = Math.round((this._previousStepsWidth - this._totalItemsWidth) / len) - 1;
     if (dw <= 0) {
       return;
     }
     this.setState({
+      init: true,
       tailWidth: dw
     });
   },
@@ -59,7 +61,7 @@ var Steps = React.createClass({
     var children = props.children;
     var len = children.length - 1;
     return (
-      <div className={'rc-steps' + (props.size === 'small' ? ' rc-steps-small' : '')}>
+      <div className={'rc-steps' + (this.state.init ? '' : ' rc-steps-init') + (props.size === 'small' ? ' rc-steps-small' : '')}>
         {React.Children.map(children, function(ele, idx) {
           var np = {
             stepNumber: (idx + 1).toString(),
