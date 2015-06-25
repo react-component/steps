@@ -59,7 +59,7 @@ var Steps = React.createClass({
     var children = props.children;
     var len = children.length - 1;
     return (
-      <div className={'rc-steps row-flex' + (props.size === 'small' ? ' rc-steps-small' : '')}>
+      <div className={'rc-steps' + (props.size === 'small' ? ' rc-steps-small' : '')}>
         {React.Children.map(children, function(ele, idx) {
           var np = {
             stepNumber: (idx + 1).toString(),
