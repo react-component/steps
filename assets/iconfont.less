@@ -1,0 +1,203 @@
+@icon-url               : "//at.alicdn.com/t/font_1434092639_4910953";
+.ie-rotate(@rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=@rotation);
+}
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+  -ms-transform: rotate(@degrees); // IE9 only
+  -o-transform: rotate(@degrees);
+  transform: rotate(@degrees);
+}
+.animation(@animation) {
+  -webkit-animation: @animation;
+  -o-animation: @animation;
+  animation: @animation;
+}
+// font-face
+// @icon-url： 字体源文件的地址
+@font-face {
+  font-family: 'anticon';
+  src: url('@{icon-url}.eot'); /* IE9*/
+  src: url('@{icon-url}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('@{icon-url}.woff') format('woff'), /* chrome、firefox */
+  url('@{icon-url}.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('@{icon-url}.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.anticon {
+  position: relative;
+  display: inline-block;
+  font-style: normal;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
+  // 更好地渲染字体
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0px;
+  -moz-osx-font-smoothing: grayscale;
+
+  &:before {
+    display: block;
+    font-family: "anticon" !important;
+  }
+}
+// 方向性图标
+.anticon-step-backward:before          {content:"\e662";}
+.anticon-step-forward                  {.ie-rotate(2);}
+.anticon-step-forward:before           {content:"\e662";.rotate(180deg);}
+.anticon-fast-backward:before          {content:"\e62a";}
+.anticon-fast-forward                  {.ie-rotate(2);}
+.anticon-fast-forward:before           {content:"\e62a";.rotate(180deg);}
+.anticon-shrink:before                 {content:"\e65f";}
+.anticon-arrow-salt:before             {content:"\e608";}
+.anticon-caret-down:before             {content:"\e60f";}
+.anticon-caret-left                    {.ie-rotate(1);}
+.anticon-caret-left:before             {content:"\e60f";.rotate(90deg);}
+.anticon-caret-up                      {.ie-rotate(2);}
+.anticon-caret-up:before               {content:"\e60f";.rotate(180deg);}
+.anticon-caret-right                   {.ie-rotate(3);}
+.anticon-caret-right:before            {content:"\e60f";.rotate(270deg);}
+.anticon-caret-circle-right:before     {content:"\e60d";}
+.anticon-caret-circle-left             {.ie-rotate(2);}
+.anticon-caret-circle-left:before      {content:"\e60d";.rotate(180deg);}
+.anticon-caret-circle-o-right:before   {content:"\e60e";}
+.anticon-caret-circle-o-left           {.ie-rotate(2);}
+.anticon-caret-circle-o-left:before    {content:"\e60e";.rotate(180deg);}
+.anticon-circle-right:before           {content:"\e602";}
+.anticon-circle-left                   {.ie-rotate(2);}
+.anticon-circle-left:before            {content:"\e602";.rotate(180deg);}
+.anticon-circle-o-right:before         {content:"\e603";}
+.anticon-circle-o-left                 {.ie-rotate(2);}
+.anticon-circle-o-left:before          {content:"\e603";.rotate(180deg);}
+.anticon-double-right:before           {content:"\e604";}
+.anticon-double-left                   {.ie-rotate(2);}
+.anticon-double-left:before            {content:"\e604";.rotate(180deg);}
+.anticon-verticle-right:before         {content:"\e605";}
+.anticon-verticle-left                 {.ie-rotate(2);}
+.anticon-verticle-left:before          {content:"\e605";.rotate(180deg);}
+.anticon-forward:before                {content:"\e630";}
+.anticon-backward                      {.ie-rotate(2);}
+.anticon-backward:before               {content:"\e630";.rotate(180deg);}
+.anticon-rollback:before               {content:"\e65a";}
+.anticon-retweet:before                {content:"\e659";}
+
+.anticon-right:before                  {content:"\e611";}
+.anticon-down                          {.ie-rotate(1);}
+.anticon-down:before                   {content:"\e611";.rotate(90deg);}
+.anticon-left                          {.ie-rotate(2);}
+.anticon-left:before                   {content:"\e611";.rotate(180deg);}
+.anticon-up                            {.ie-rotate(3);}
+.anticon-up:before                     {content:"\e611";.rotate(270deg);}
+
+// 提示性图标
+.anticon-question:before               {content:"\e655";}
+.anticon-question-circle:before        {content:"\e656";}
+.anticon-question-circle-o:before      {content:"\e657";}
+.anticon-plus:before                   {content:"\e651";}
+.anticon-plus-circle:before            {content:"\e652";}
+.anticon-plus-circle-o:before          {content:"\e653";}
+.anticon-pause:before                  {content:"\e64c";}
+.anticon-pause-circle:before           {content:"\e64d";}
+.anticon-pause-circle-o:before         {content:"\e64e";}
+.anticon-minus:before                  {content:"\e646";}
+.anticon-minus-circle:before           {content:"\e647";}
+.anticon-minus-circle-o:before         {content:"\e648";}
+.anticon-info-circle:before            {content:"\e637";}
+.anticon-info-circle-o:before          {content:"\e638";}
+.anticon-info:before                   {content:"\e63a";}
+.anticon-exclamation:before            {content:"\e627";}
+.anticon-exclamation-circle:before     {content:"\e628";}
+.anticon-exclamation-circle-o:before   {content:"\e629";}
+.anticon-cross:before                  {content:"\e61e";}
+.anticon-cross-circle:before           {content:"\e61f";}
+.anticon-cross-circle-o:before         {content:"\e620";}
+.anticon-check:before                  {content:"\e613";}
+.anticon-check-circle:before           {content:"\e614";}
+.anticon-check-circle-o:before         {content:"\e615";}
+.anticon-clock-circle:before           {content:"\e616";}
+.anticon-clock-circle-o:before         {content:"\e617";}
+
+// 网站通用图标
+.anticon-lock:before                   {content:"\e641";}
+.anticon-android:before                {content:"\e601";}
+.anticon-apple:before                  {content:"\e606";}
+.anticon-area-chart:before             {content:"\e607";}
+.anticon-bar-chart:before              {content:"\e609";}
+.anticon-bars:before                   {content:"\e60a";}
+.anticon-book:before                   {content:"\e60b";}
+.anticon-calendar:before               {content:"\e60c";}
+.anticon-cloud:before                  {content:"\e618";}
+.anticon-cloud-download:before         {content:"\e619";}
+.anticon-code:before                   {content:"\e61a";}
+.anticon-copy:before                   {content:"\e61c";}
+.anticon-credit-card:before            {content:"\e61d";}
+.anticon-delete:before                 {content:"\e621";}
+.anticon-desktop:before                {content:"\e622";}
+.anticon-download-line:before          {content:"\e623";}
+.anticon-edit:before                   {content:"\e624";}
+.anticon-ellipsis:before               {content:"\e625";}
+.anticon-environment:before            {content:"\e626";}
+.anticon-file:before                   {content:"\e62c";}
+.anticon-file-text:before              {content:"\e62d";}
+.anticon-folder:before                 {content:"\e62e";}
+.anticon-folder-open:before            {content:"\e62f";}
+.anticon-github:before                 {content:"\e631";}
+.anticon-hdd:before                    {content:"\e632";}
+.anticon-frown:before                  {content:"\e633";}
+.anticon-meh:before                    {content:"\e634";}
+.anticon-inbox:before                  {content:"\e635";}
+.anticon-laptop:before                 {content:"\e63d";}
+.anticon-large:before                  {content:"\e63e";}
+.anticon-line-chart:before             {content:"\e63f";}
+.anticon-link:before                   {content:"\e640";}
+.anticon-logout:before                 {content:"\e642";}
+.anticon-mail:before                   {content:"\e643";}
+.anticon-menu-fold:before              {content:"\e644";}
+.anticon-menu-unfold:before            {content:"\e645";}
+.anticon-mobile:before                 {content:"\e649";}
+.anticon-notification:before           {content:"\e64a";}
+.anticon-paper-clip:before             {content:"\e64b";}
+.anticon-picture:before                {content:"\e64f";}
+.anticon-pie-chart:before              {content:"\e650";}
+.anticon-poweroff:before               {content:"\e654";}
+.anticon-reload:before                 {content:"\e658";}
+.anticon-search:before                 {content:"\e65b";}
+.anticon-setting:before                {content:"\e65c";}
+.anticon-share-alt:before              {content:"\e65d";}
+.anticon-shopping-cart:before          {content:"\e65e";}
+.anticon-smile:before                  {content:"\e661";}
+.anticon-tablet:before                 {content:"\e664";}
+.anticon-tag:before                    {content:"\e665";}
+.anticon-tags:before                   {content:"\e666";}
+.anticon-to-top:before                  {content:"\e667";}
+.anticon-unlock:before                 {content:"\e668";}
+.anticon-upload:before                 {content:"\e669";}
+.anticon-user:before                   {content:"\e66a";}
+.anticon-video-camera:before           {content:"\e66b";}
+.anticon-windows:before                {content:"\e66c";}
+.anticon-loading:before {
+  display: inline-block;
+  .animation(loadingCircle 1.0s infinite linear);
+  content:"\e610";
+}
+
+:root {
+  .anticon-step-forward,
+  .anticon-fast-forward,
+  .anticon-left,
+  .anticon-up,
+  .anticon-down,
+  .anticon-caret-left,
+  .anticon-caret-up,
+  .anticon-caret-right,
+  .anticon-caret-circle-left,
+  .anticon-caret-circle-o-left,
+  .anticon-circle-left,
+  .anticon-circle-o-left,
+  .anticon-double-left,
+  .anticon-verticle-left,
+  .anticon-backward {
+    filter: none;
+  }
+}
