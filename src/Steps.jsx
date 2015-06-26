@@ -58,15 +58,17 @@ var Steps = React.createClass({
   },
   render() {
     var props = this.props;
+    var prefixCls = props.prefixCls ? props.prefixCls : 'rc';
     var children = props.children;
     var len = children.length - 1;
     return (
-      <div className={'rc-steps' + (this.state.init ? '' : ' rc-steps-init') + (props.size === 'small' ? ' rc-steps-small' : '')}>
+      <div className={prefixCls + '-steps' + (this.state.init ? '' : ' ' + prefixCls + '-steps-init') + (props.size === 'small' ? ' ' + prefixCls + '-steps-small' : '')}>
         {React.Children.map(children, function(ele, idx) {
           var np = {
             stepNumber: (idx + 1).toString(),
             stepLast: idx === len,
-            tailWidth: this.state.tailWidth
+            tailWidth: this.state.tailWidth,
+            prefixCls: prefixCls
           };
           return React.cloneElement(ele, np);
         }, this)}
