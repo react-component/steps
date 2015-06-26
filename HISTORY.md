@@ -1,6 +1,6 @@
 # History
 ----
 
-## 1.0.3
+## 1.1.0
 
-* support `prefixCls` property
+* support `prefixCls` property, default is `rc-steps`

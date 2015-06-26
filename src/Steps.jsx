@@ -12,6 +12,11 @@ var Steps = React.createClass({
       tailWidth: 0
     };
   },
+  getDefaultProps() {
+    return {
+      prefixCls: 'rc-steps'
+    };
+  },
   componentDidMount() {
     var $dom = React.findDOMNode(this);
     var tw = 0;
@@ -58,11 +63,11 @@ var Steps = React.createClass({
   },
   render() {
     var props = this.props;
-    var prefixCls = props.prefixCls ? props.prefixCls : 'rc';
+    var prefixCls = props.prefixCls;
     var children = props.children;
     var len = children.length - 1;
     return (
-      <div className={prefixCls + '-steps' + (this.state.init ? '' : ' ' + prefixCls + '-steps-init') + (props.size === 'small' ? ' ' + prefixCls + '-steps-small' : '')}>
+      <div className={prefixCls + (this.state.init ? '' : ' ' + prefixCls + '-init') + (props.size === 'small' ? ' ' + prefixCls + '-small' : '')}>
         {React.Children.map(children, function(ele, idx) {
           var np = {
             stepNumber: (idx + 1).toString(),

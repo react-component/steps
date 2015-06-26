@@ -7,18 +7,18 @@ var Step = React.createClass({
     var props = this.props;
     var prefixCls = props.prefixCls;
     var icon = props.icon ? props.icon
-        : (props.status !== 'finish' ? <span className={prefixCls + '-steps-icon'}>{props.stepNumber}</span> : <span className={prefixCls + '-steps-icon ' + prefixCls + 'icon ' + prefixCls + 'icon-check'}></span>);
-    return (<div className={prefixCls + '-steps-item ' + prefixCls + '-steps-status-' + props.status + (props.icon ? ' ' + prefixCls + '-steps-custom' : '') }>
-      <div className={prefixCls + '-steps-head'}>
+        : (props.status !== 'finish' ? <span className={prefixCls + '-icon'}>{props.stepNumber}</span> : <span className={prefixCls + '-icon ' + ' anticon anticon-check'}></span>);
+    return (<div className={prefixCls + '-item ' + prefixCls + '-status-' + props.status + (props.icon ? ' ' + prefixCls + '-custom' : '') }>
+      <div className={prefixCls + '-head'}>
         {icon}
       </div>
-      <div className={prefixCls + '-steps-main'}>
-        <div className={prefixCls + '-steps-title'}>{props.title}</div>
-        <div className={prefixCls + '-steps-description'}>
+      <div className={prefixCls + '-main'}>
+        <div className={prefixCls + '-title'}>{props.title}</div>
+        <div className={prefixCls + '-description'}>
           {props.description}
         </div>
       </div>
-      {!props.stepLast ? <div className={prefixCls + '-steps-tail'} style={{width: props.tailWidth}}>
+      {!props.stepLast ? <div className={prefixCls + '-tail'} style={{width: props.tailWidth}}>
         <i></i>
       </div> : ''}
     </div>);
