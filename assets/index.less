@@ -1,5 +1,15 @@
+@css-prefix             : rc-;
+@stepsPrefixClass: ~"@{css-prefix}steps";
+
 @active-color: #3fc7fa;
 @wait-color: #e9e9e9;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.5;
+}
 
 .transition(@transition) {
   -webkit-transition: @transition;
@@ -7,52 +17,55 @@
   transition: @transition;
 }
 
-.rc-steps {
+.@{stepsPrefixClass} {
   font-size: 0;
   width: 100%;
   line-height: 1.5;
 
-  .rc-steps-item {
+  .@{stepsPrefixClass}-item {
     position: relative;
     display: inline-block;
 
-    &.rc-steps-status-wait {
-      .rc-steps-head {
+    &.@{stepsPrefixClass}-status-wait {
+      .@{stepsPrefixClass}-head-inner {
         border-color: @wait-color;
         background-color: #fff;
 
-        > .rc-steps-icon {
+        > .@{stepsPrefixClass}-icon {
           color: @wait-color;
         }
       }
     }
-    &.rc-steps-status-process {
-      .rc-steps-head {
+    &.@{stepsPrefixClass}-status-process {
+      .@{stepsPrefixClass}-head-inner {
         border-color: @active-color;
         background-color: @active-color;
 
-        > .rc-steps-icon {
+        > .@{stepsPrefixClass}-icon {
           color: #fff;
         }
       }
     }
-    &.rc-steps-status-finish {
-      .rc-steps-head {
+    &.@{stepsPrefixClass}-status-finish {
+      .@{stepsPrefixClass}-head-inner {
         border-color: @active-color;
         background-color: #fff;
-        > .rc-steps-icon {
+        > .@{stepsPrefixClass}-icon {
           color: @active-color;
         }
       }
+      .@{stepsPrefixClass}-tail > i {
+        background-color: @active-color;
+      }
     }
 
-    &.rc-steps-custom {
-      .rc-steps-head {
+    &.@{stepsPrefixClass}-custom {
+      .@{stepsPrefixClass}-head-inner {
         background: none;
         border: 0;
       }
-      &.rc-steps-status-process {
-        .rc-steps-title {
+      &.@{stepsPrefixClass}-status-process {
+        .@{stepsPrefixClass}-title {
           color: @active-color;
         }
       }
@@ -60,24 +73,28 @@
 
   }
 
-  .rc-steps-head, .rc-steps-main, .rc-steps-tail {
+  .@{stepsPrefixClass}-head, .@{stepsPrefixClass}-main {
     display: inline-block;
     vertical-align: top;
-
   }
-  .rc-steps-head {
+  .@{stepsPrefixClass}-head {
+    background: #fff;
+  }
+
+  .@{stepsPrefixClass}-head-inner {
+    display: block;
     border:2px solid @wait-color;
     width: 24px;
     height: 24px;
-    line-height: 24px;
+    line-height: 22px;
     text-align: center;
     border-radius: 24px;
-    font-size: 13px;
+    font-size: 14px;
     margin-right: 12px;
     .transition(background-color 0.1s ease);
     .transition(border-color 0.1s ease);
 
-    > .rc-steps-icon {
+    > .@{stepsPrefixClass}-icon {
       line-height: 1;
       display: inline-block;
       vertical-align: text-top;
@@ -85,25 +102,35 @@
       position: relative;
     }
   }
-  .rc-steps-main {
+  .@{stepsPrefixClass}-main {
     max-width: 75px;
     margin-top: 3px;
   }
-  .rc-steps-title {
+  .@{stepsPrefixClass}-title {
     font-size: 14px;
     margin-bottom: 4px;
     color: #666;
     font-weight: bold;
+    background: #fff;
+    display: inline-block;
+    padding-right: 10px;
   }
-  .rc-steps-description {
+  .@{stepsPrefixClass}-item-last {
+    .@{stepsPrefixClass}-title {
+      padding-right: 0;
+    }
+  }
+  .@{stepsPrefixClass}-description {
     font-size: 12px;
     color: #999;
   }
-  .rc-steps-tail {
-    width: 0;
-    position: relative;
+  .@{stepsPrefixClass}-tail {
+    position: absolute;
+    left: 0;
+    width: 100%;
     top: 12px;
     padding:0 10px;
+    z-index: -1;
     > i {
       display: inline-block;
       background: @wait-color;
@@ -113,33 +140,31 @@
     }
   }
 
-  &.rc-steps-small {
-    .rc-steps-head {
+  &.@{stepsPrefixClass}-small {
+    .@{stepsPrefixClass}-head-inner {
       border:1px solid @wait-color;
       width: 18px;
       height: 18px;
       line-height: 18px;
       text-align: center;
       border-radius: 18px;
-      font-size: 10px;
+      font-size: 12px;
       margin-right: 10px;
-
     }
-    .rc-steps-main {
-      max-width: 75px;
+    .@{stepsPrefixClass}-main {
       margin-top: 0;
     }
-    .rc-steps-title {
+    .@{stepsPrefixClass}-title {
       font-size: 12px;
       margin-bottom: 4px;
       color: #666;
       font-weight: bold;
     }
-    .rc-steps-description {
+    .@{stepsPrefixClass}-description {
       font-size: 10px;
       color: #999;
     }
-    .rc-steps-tail {
+    .@{stepsPrefixClass}-tail {
       top: 8px;
       padding:0 8px;
       > i {
@@ -150,13 +175,7 @@
     }
   }
 
-  &.rc-steps-init, &.rc-steps-init.rc-steps-small {
-    .rc-steps-tail {
-      padding: 0;
-    }
-  }
-
-  &.rc-steps-small .rc-steps-item.rc-steps-custom .rc-steps-head, .rc-steps-item.rc-steps-custom .rc-steps-head {
+  &.@{stepsPrefixClass}-small .@{stepsPrefixClass}-item.@{stepsPrefixClass}-custom .@{stepsPrefixClass}-head-inner, .@{stepsPrefixClass}-item.@{stepsPrefixClass}-custom .@{stepsPrefixClass}-head-inner {
     width: inherit;
     height: inherit;
     line-height: inherit;

@@ -5,7 +5,7 @@ var React = require('react');
 
 var Steps = React.createClass({
   _previousStepsWidth: 0,
-  _totalItemsWidth: 0,
+  _itemsWidth: [],
   getInitialState() {
     return {
       init: false,
@@ -14,21 +14,34 @@ var Steps = React.createClass({
   },
   getDefaultProps() {
     return {
-      prefixCls: 'rc-steps'
+      prefixCls: 'rc-steps',
+      maxDescriptionWidth: 120
     };
   },
   componentDidMount() {
     var $dom = React.findDOMNode(this);
-    var tw = 0;
     var len = $dom.children.length - 1;
     var i;
-    for (i = 0; i <= len; i++) {
-      tw += $dom.children[i].offsetWidth;
-    }
+    this._itemsWidth = new Array(len + 1);
 
-    this._totalItemsWidth = tw;
+    for (i = 0; i <= len - 1; i++) {
+      var $item = $dom.children[i].children;
+      this._itemsWidth[i] = $item[0].offsetWidth + $item[1].children[0].offsetWidth;
+    }
+    this._itemsWidth[i] = $dom.children[len].offsetWidth;
     this._previousStepsWidth = React.findDOMNode(this).offsetWidth;
     this._update();
+
+    /*
+     * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
+     * componentDidMount时滚动条还不一定出现了，这时候获取的宽度可能不是最终宽度。
+     * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，_resize里面会判断要不要更新。
+     */
+    var me = this;
+    setTimeout(function() {
+      me._resize();
+    });
+
     if (window.attachEvent) {
       window.attachEvent('onresize', this._resize);
     } else {
@@ -52,7 +65,11 @@ var Steps = React.createClass({
   },
   _update() {
     var len = this.props.children.length - 1;
-    var dw = Math.round((this._previousStepsWidth - this._totalItemsWidth) / len) - 1;
+    var tw = 0;
+    this._itemsWidth.forEach(function(w) {
+      tw += w;
+    });
+    var dw = Math.round((this._previousStepsWidth - tw) / len) - 1;
     if (dw <= 0) {
       return;
     }
@@ -65,15 +82,18 @@ var Steps = React.createClass({
     var props = this.props;
     var prefixCls = props.prefixCls;
     var children = props.children;
+    var maxDescriptionWidth = props.maxDescriptionWidth;
     var len = children.length - 1;
+    var iws = this._itemsWidth;
     return (
-      <div className={prefixCls + (this.state.init ? '' : ' ' + prefixCls + '-init') + (props.size === 'small' ? ' ' + prefixCls + '-small' : '')}>
+      <div className={prefixCls + (props.size === 'small' ? ' ' + prefixCls + '-small' : '')}>
         {React.Children.map(children, function(ele, idx) {
           var np = {
             stepNumber: (idx + 1).toString(),
             stepLast: idx === len,
-            tailWidth: this.state.tailWidth,
-            prefixCls: prefixCls
+            tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
+            prefixCls: prefixCls,
+            maxDescriptionWidth: maxDescriptionWidth
           };
           return React.cloneElement(ele, np);
         }, this)}

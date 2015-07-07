@@ -6,21 +6,25 @@ var Step = React.createClass({
   render() {
     var props = this.props;
     var prefixCls = props.prefixCls;
+    var maxWidth = props.maxDescriptionWidth;
     var icon = props.icon ? props.icon
         : (props.status !== 'finish' ? <span className={prefixCls + '-icon'}>{props.stepNumber}</span> : <span className={prefixCls + '-icon ' + ' anticon anticon-check'}></span>);
-    return (<div className={prefixCls + '-item ' + prefixCls + '-status-' + props.status + (props.icon ? ' ' + prefixCls + '-custom' : '') }>
-      <div className={prefixCls + '-head'}>
-        {icon}
-      </div>
-      <div className={prefixCls + '-main'}>
-        <div className={prefixCls + '-title'}>{props.title}</div>
-        <div className={prefixCls + '-description'}>
-          {props.description}
-        </div>
-      </div>
-      {!props.stepLast ? <div className={prefixCls + '-tail'} style={{width: props.tailWidth}}>
+    return (<div className={prefixCls + '-item ' + (props.stepLast ? prefixCls + '-item-last ' : '') + prefixCls + '-status-' + props.status + (props.icon ? ' ' + prefixCls + '-custom' : '')} style={{width: props.tailWidth}}>
+
+      {!props.stepLast ? <div className={prefixCls + '-tail'}>
         <i></i>
       </div> : ''}
+
+      <div className={prefixCls + '-head'}>
+        <div className={prefixCls + '-head-inner'}>{icon}</div>
+      </div>
+      <div className={prefixCls + '-main'} style={{maxWidth: maxWidth}}>
+        <div className={prefixCls + '-title'}>{props.title}</div>
+        {props.description ? <div className={prefixCls + '-description'}>
+          {props.description}
+        </div> : ''}
+      </div>
+
     </div>);
   }
 });
