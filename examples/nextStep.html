@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>rc-steps-simple</title>
+  <title>rc-steps-nextStep</title>
   <meta http-equiv=Content-Type content="text/html;charset=utf-8">
   <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" type="text/css" rel="stylesheet"/>
   <style>
@@ -183,50 +183,69 @@
 <h1>rc-steps@1.1.3</h1>
 <div id="__react-content"></div>
 <script src="common.js?nowrap"></script>
-<script src="simple.js?nowrap"></script>
+<script src="nextStep.js?nowrap"></script>
 <div class="highlight">
 <pre>
 <span class="hljs-pi">'use strict'</span>;
 
 <span class="hljs-built_in">require</span>(<span class="hljs-string">'assets/index.css'</span>);
 <span class="hljs-built_in">require</span>(<span class="hljs-string">'assets/iconfont.css'</span>);
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'./nextStep.css'</span>);
 
 <span class="hljs-keyword">var</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
 <span class="hljs-keyword">var</span> Steps = <span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps'</span>);
 
 
 <span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'__react-content'</span>);
+<span class="hljs-keyword">var</span> steps = (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateRandomSteps</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> n = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3</span>) + <span class="hljs-number">3</span>;
+  <span class="hljs-keyword">var</span> arr = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; n; i++ ) {
+    arr.push({
+      title: <span class="hljs-string">'步骤'</span> + (i+<span class="hljs-number">1</span>)
+    });
+  }
+  <span class="hljs-keyword">return</span> arr;
+})();
 
+<span class="hljs-keyword">var</span> MyForm = React.createClass({
+  getInitialState() {
+    <span class="hljs-keyword">return</span> {
+      currentStep: <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * steps.length)
+    }
+  },
+  nextStep() {
+    <span class="hljs-keyword">var</span> s = <span class="hljs-keyword">this</span>.state.currentStep + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span> (s === steps.length) {
+      s = <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-keyword">this</span>.setState({
+      currentStep: s
+    });
+  },
+  render() {
+    <span class="hljs-keyword">var</span> cs = <span class="hljs-keyword">this</span>.state.currentStep;
+    <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'my-step-form'</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>这个demo随机生成3~6个步骤，初始随机进行到其中一个步骤<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>当前正在执行第{cs + 1}步<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'my-step-container'</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span>&gt;</span>
+        {steps.map(function(s, i) {
+          return <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span>
+            <span class="hljs-attribute">key</span>=<span class="hljs-value">{i}</span>
+            <span class="hljs-attribute">status</span>=<span class="hljs-value">{cs</span> =<span class="hljs-value">==</span> <span class="hljs-attribute">i</span> ? '<span class="hljs-attribute">process</span>' <span class="hljs-attribute">:</span> (<span class="hljs-attribute">cs</span> &gt;</span> i ? 'finish' : 'wait')}
+            title={s.title}
+            &gt;<span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
+        })}
+      <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>表单输入A：<span class="hljs-tag">&lt;<span class="hljs-title">input</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>表单输入B：<span class="hljs-tag">&lt;<span class="hljs-title">input</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>表单输入C：<span class="hljs-tag">&lt;<span class="hljs-title">input</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'ant-btn'</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.nextStep}</span>&gt;</span>下一步<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>)</span>
+  }
+});
 
-<span class="hljs-keyword">var</span> steps = [{
-  status: <span class="hljs-string">'finish'</span>,
-  title: <span class="hljs-string">'已完成'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
-}, {
-  status: <span class="hljs-string">'process'</span>,
-  title: <span class="hljs-string">'进行中'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
-}, {
-  status: <span class="hljs-string">'wait'</span>,
-  title: <span class="hljs-string">'待运行'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
-}, {
-  status: <span class="hljs-string">'wait'</span>,
-  title: <span class="hljs-string">'待运行'</span>,
-  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>
-}].map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s, i</span>) </span>{
-    <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span>
-        <span class="hljs-attribute">key</span>=<span class="hljs-value">{i}</span>
-        <span class="hljs-attribute">status</span>=<span class="hljs-value">{s.status}</span>
-        <span class="hljs-attribute">title</span>=<span class="hljs-value">{s.title}</span>
-        <span class="hljs-attribute">description</span>=<span class="hljs-value">{s.description}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
-    )</span>;
-  });
-
-React.render(
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span>&gt;</span>
-    {steps}
-  <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>, container);</span>
+React.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">MyForm</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">MyForm</span>&gt;</span>, container);</span>
 </pre>
 </div>
 </body>

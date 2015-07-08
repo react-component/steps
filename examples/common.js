@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		3:0
+/******/ 		4:0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 /******/
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"customIcon","1":"simple","2":"smallSize"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"customIcon","1":"nextStep","2":"simple","3":"smallSize"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -107,8 +107,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/Users/xiaoge-ali/.nvm/versions/node/v0.12.0/lib/node_modules/rc-tools/node_modules/css-loader/index.js!/Users/xiaoge-ali/alipay/rc-steps/assets/index.css", function() {
-			var newContent = require("!!/Users/xiaoge-ali/.nvm/versions/node/v0.12.0/lib/node_modules/rc-tools/node_modules/css-loader/index.js!/Users/xiaoge-ali/alipay/rc-steps/assets/index.css");
+		module.hot.accept("!!/Users/abraham/.nvm/versions/node/v0.12.0/lib/node_modules/rc-tools/node_modules/css-loader/index.js!/Users/abraham/alipay/steps/assets/index.css", function() {
+			var newContent = require("!!/Users/abraham/.nvm/versions/node/v0.12.0/lib/node_modules/rc-tools/node_modules/css-loader/index.js!/Users/abraham/alipay/steps/assets/index.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -121,7 +121,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
-	exports.push([module.id, ".rc-steps {\n  font-size: 0;\n  width: 100%;\n  line-height: 1.5;\n}\n.rc-steps .rc-steps-item {\n  position: relative;\n  display: inline-block;\n}\n.rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-head {\n  border-color: #e9e9e9;\n  background-color: #fff;\n}\n.rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-head.rc-steps-custom {\n  background: none;\n  border: 0;\n}\n.rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-head > .rc-steps-icon {\n  color: #e9e9e9;\n}\n.rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-head {\n  border-color: #3fc7fa;\n  background-color: #3fc7fa;\n}\n.rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-head.rc-steps-custom {\n  background: none;\n  border: 0;\n}\n.rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-head > .rc-steps-icon {\n  color: #fff;\n}\n.rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-head {\n  border-color: #3fc7fa;\n  background-color: #fff;\n}\n.rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-head.rc-steps-custom {\n  background: none;\n  border: 0;\n}\n.rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-head > .rc-steps-icon {\n  color: #3fc7fa;\n}\n.rc-steps .rc-steps-head,\n.rc-steps .rc-steps-main,\n.rc-steps .rc-steps-tail {\n  display: inline-block;\n  vertical-align: top;\n}\n.rc-steps .rc-steps-head {\n  border: 2px solid #e9e9e9;\n  width: 24px;\n  height: 24px;\n  line-height: 24px;\n  text-align: center;\n  border-radius: 24px;\n  font-size: 13px;\n  margin-right: 12px;\n  transition: background-color 0.1s ease;\n  transition: border-color 0.1s ease;\n}\n.rc-steps .rc-steps-head > .rc-steps-icon {\n  display: inline-block;\n  vertical-align: inherit;\n  color: #3fc7fa;\n  position: relative;\n}\n.rc-steps .rc-steps-main {\n  max-width: 75px;\n  margin-top: 3px;\n}\n.rc-steps .rc-steps-title {\n  font-size: 14px;\n  margin-bottom: 4px;\n  color: #666;\n  font-weight: bold;\n}\n.rc-steps .rc-steps-description {\n  font-size: 12px;\n  color: #999;\n}\n.rc-steps .rc-steps-tail {\n  width: 0;\n  position: relative;\n  top: 13px;\n  padding: 0 10px;\n}\n.rc-steps .rc-steps-tail > i {\n  display: inline-block;\n  background: #e9e9e9;\n  height: 2px;\n  border-radius: 1px;\n  width: 100%;\n}\n.rc-steps.rc-steps-small .rc-steps-head {\n  border: 1px solid #e9e9e9;\n  width: 18px;\n  height: 18px;\n  line-height: 18px;\n  text-align: center;\n  border-radius: 18px;\n  font-size: 10px;\n  margin-right: 10px;\n}\n.rc-steps.rc-steps-small .rc-steps-head > .rc-steps-icon {\n  top: 0;\n}\n.rc-steps.rc-steps-small .rc-steps-main {\n  max-width: 75px;\n  margin-top: 0;\n}\n.rc-steps.rc-steps-small .rc-steps-title {\n  font-size: 12px;\n  margin-bottom: 4px;\n  color: #666;\n  font-weight: bold;\n}\n.rc-steps.rc-steps-small .rc-steps-description {\n  font-size: 10px;\n  color: #999;\n}\n.rc-steps.rc-steps-small .rc-steps-tail {\n  top: 9px;\n  padding: 0 8px;\n}\n.rc-steps.rc-steps-small .rc-steps-tail > i {\n  height: 1px;\n  border-radius: 1px;\n  width: 100%;\n}\n.rc-steps.rc-steps-small .rc-steps-head.rc-steps-custom,\n.rc-steps .rc-steps-head.rc-steps-custom {\n  width: inherit;\n  height: inherit;\n  line-height: inherit;\n  border-radius: 0;\n  border: 0;\n  background: none;\n}\n", ""]);
+	exports.push([module.id, "* {\n  box-sizing: border-box;\n}\nbody {\n  line-height: 1.5;\n}\n.rc-steps {\n  font-size: 0;\n  width: 100%;\n  line-height: 1.5;\n}\n.rc-steps .rc-steps-item {\n  position: relative;\n  display: inline-block;\n}\n.rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-head-inner {\n  border-color: #bcbcbc;\n  background-color: #fff;\n}\n.rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-head-inner > .rc-steps-icon {\n  color: #bcbcbc;\n}\n.rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-title {\n  color: #999999;\n}\n.rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-description {\n  color: #999999;\n}\n.rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-tail > i {\n  background-color: #bcbcbc;\n}\n.rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-head-inner {\n  border-color: #3fc7fa;\n  background-color: #3fc7fa;\n}\n.rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-head-inner > .rc-steps-icon {\n  color: #fff;\n}\n.rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-title {\n  color: #666666;\n}\n.rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-description {\n  color: #666666;\n}\n.rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-tail > i {\n  background-color: #bcbcbc;\n}\n.rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-head-inner {\n  border-color: #3fc7fa;\n  background-color: #fff;\n}\n.rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-head-inner > .rc-steps-icon {\n  color: #3fc7fa;\n}\n.rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-tail > i {\n  background-color: #3fc7fa;\n}\n.rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-title {\n  color: #999999;\n}\n.rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-description {\n  color: #999999;\n}\n.rc-steps .rc-steps-item.rc-steps-custom .rc-steps-head-inner {\n  background: none;\n  border: 0;\n  font-size: 20px;\n  width: auto;\n  height: auto;\n}\n.rc-steps .rc-steps-item.rc-steps-custom.rc-steps-status-process .rc-steps-head-inner > .rc-steps-icon {\n  color: #3fc7fa;\n}\n.rc-steps .rc-steps-head,\n.rc-steps .rc-steps-main {\n  position: relative;\n  display: inline-block;\n  vertical-align: top;\n}\n.rc-steps .rc-steps-head {\n  background: #fff;\n}\n.rc-steps .rc-steps-head-inner {\n  display: block;\n  border: 2px solid #bcbcbc;\n  width: 24px;\n  height: 24px;\n  line-height: 22px;\n  text-align: center;\n  border-radius: 24px;\n  font-size: 14px;\n  margin-right: 8px;\n  transition: background-color 0.1s ease;\n  transition: border-color 0.1s ease;\n  -webkit-transition: border-color 0.1s ease;\n  -moz-transition: border-color 0.1s ease;\n}\n.rc-steps .rc-steps-head-inner > .rc-steps-icon {\n  line-height: 1;\n  display: inline-block;\n  vertical-align: text-top;\n  color: #3fc7fa;\n  position: relative;\n}\n.rc-steps .rc-steps-main {\n  margin-top: 3px;\n}\n.rc-steps .rc-steps-title {\n  font-size: 14px;\n  margin-bottom: 4px;\n  color: #666;\n  font-weight: bold;\n  background: #fff;\n  display: inline-block;\n  padding-right: 10px;\n}\n.rc-steps .rc-steps-item-last .rc-steps-title {\n  padding-right: 0;\n}\n.rc-steps .rc-steps-description {\n  font-size: 12px;\n  color: #999;\n}\n.rc-steps .rc-steps-tail {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  top: 12px;\n  padding: 0 10px;\n}\n.rc-steps .rc-steps-tail > i {\n  display: inline-block;\n  background: #bcbcbc;\n  height: 2px;\n  border-radius: 1px;\n  width: 100%;\n}\n.rc-steps.rc-steps-small .rc-steps-head-inner {\n  border: 1px solid #bcbcbc;\n  width: 18px;\n  height: 18px;\n  line-height: 18px;\n  text-align: center;\n  border-radius: 18px;\n  font-size: 12px;\n  margin-right: 10px;\n}\n.rc-steps.rc-steps-small .rc-steps-main {\n  margin-top: 0;\n}\n.rc-steps.rc-steps-small .rc-steps-title {\n  font-size: 12px;\n  margin-bottom: 4px;\n  color: #666;\n  font-weight: bold;\n}\n.rc-steps.rc-steps-small .rc-steps-description {\n  font-size: 10px;\n  color: #999;\n}\n.rc-steps.rc-steps-small .rc-steps-tail {\n  top: 8px;\n  padding: 0 8px;\n}\n.rc-steps.rc-steps-small .rc-steps-tail > i {\n  height: 1px;\n  border-radius: 1px;\n  width: 100%;\n}\n.rc-steps.rc-steps-small .rc-steps-item.rc-steps-custom .rc-steps-head-inner,\n.rc-steps .rc-steps-item.rc-steps-custom .rc-steps-head-inner {\n  width: inherit;\n  height: inherit;\n  line-height: inherit;\n  border-radius: 0;\n  border: 0;\n  background: none;\n}\n", ""]);
 
 /***/ },
 /* 4 */
@@ -354,8 +354,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/Users/xiaoge-ali/.nvm/versions/node/v0.12.0/lib/node_modules/rc-tools/node_modules/css-loader/index.js!/Users/xiaoge-ali/alipay/rc-steps/assets/iconfont.css", function() {
-			var newContent = require("!!/Users/xiaoge-ali/.nvm/versions/node/v0.12.0/lib/node_modules/rc-tools/node_modules/css-loader/index.js!/Users/xiaoge-ali/alipay/rc-steps/assets/iconfont.css");
+		module.hot.accept("!!/Users/abraham/.nvm/versions/node/v0.12.0/lib/node_modules/rc-tools/node_modules/css-loader/index.js!/Users/abraham/alipay/steps/assets/iconfont.css", function() {
+			var newContent = require("!!/Users/abraham/.nvm/versions/node/v0.12.0/lib/node_modules/rc-tools/node_modules/css-loader/index.js!/Users/abraham/alipay/steps/assets/iconfont.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -368,57 +368,75 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
-	exports.push([module.id, "@font-face {\n  font-family: 'anticon';\n  src: url('//at.alicdn.com/t/font_1434092639_4910953.eot');\n  /* IE9*/\n  src: url('//at.alicdn.com/t/font_1434092639_4910953.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('//at.alicdn.com/t/font_1434092639_4910953.woff') format('woff'), /* chrome、firefox */ url('//at.alicdn.com/t/font_1434092639_4910953.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('//at.alicdn.com/t/font_1434092639_4910953.svg#iconfont') format('svg');\n  /* iOS 4.1- */\n}\n.anticon {\n  position: relative;\n  display: inline-block;\n  font-style: normal;\n  vertical-align: baseline;\n  text-align: center;\n  text-transform: none;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -webkit-text-stroke-width: 0px;\n  -moz-osx-font-smoothing: grayscale;\n}\n.anticon:before {\n  display: block;\n  font-family: \"anticon\" !important;\n}\n.anticon-step-backward:before {\n  content: \"\\e662\";\n}\n.anticon-step-forward {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-step-forward:before {\n  content: \"\\e662\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-fast-backward:before {\n  content: \"\\e62a\";\n}\n.anticon-fast-forward {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-fast-forward:before {\n  content: \"\\e62a\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-shrink:before {\n  content: \"\\e65f\";\n}\n.anticon-arrow-salt:before {\n  content: \"\\e608\";\n}\n.anticon-caret-down:before {\n  content: \"\\e60f\";\n}\n.anticon-caret-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);\n}\n.anticon-caret-left:before {\n  content: \"\\e60f\";\n  -webkit-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  transform: rotate(90deg);\n}\n.anticon-caret-up {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-caret-up:before {\n  content: \"\\e60f\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-caret-right {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);\n}\n.anticon-caret-right:before {\n  content: \"\\e60f\";\n  -webkit-transform: rotate(270deg);\n  -ms-transform: rotate(270deg);\n  transform: rotate(270deg);\n}\n.anticon-caret-circle-right:before {\n  content: \"\\e60d\";\n}\n.anticon-caret-circle-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-caret-circle-left:before {\n  content: \"\\e60d\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-caret-circle-o-right:before {\n  content: \"\\e60e\";\n}\n.anticon-caret-circle-o-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-caret-circle-o-left:before {\n  content: \"\\e60e\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-circle-right:before {\n  content: \"\\e602\";\n}\n.anticon-circle-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-circle-left:before {\n  content: \"\\e602\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-circle-o-right:before {\n  content: \"\\e603\";\n}\n.anticon-circle-o-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-circle-o-left:before {\n  content: \"\\e603\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-double-right:before {\n  content: \"\\e604\";\n}\n.anticon-double-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-double-left:before {\n  content: \"\\e604\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-verticle-right:before {\n  content: \"\\e605\";\n}\n.anticon-verticle-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-verticle-left:before {\n  content: \"\\e605\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-forward:before {\n  content: \"\\e630\";\n}\n.anticon-backward {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-backward:before {\n  content: \"\\e630\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-rollback:before {\n  content: \"\\e65a\";\n}\n.anticon-retweet:before {\n  content: \"\\e659\";\n}\n.anticon-right:before {\n  content: \"\\e611\";\n}\n.anticon-down {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);\n}\n.anticon-down:before {\n  content: \"\\e611\";\n  -webkit-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  transform: rotate(90deg);\n}\n.anticon-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.anticon-left:before {\n  content: \"\\e611\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.anticon-up {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);\n}\n.anticon-up:before {\n  content: \"\\e611\";\n  -webkit-transform: rotate(270deg);\n  -ms-transform: rotate(270deg);\n  transform: rotate(270deg);\n}\n.anticon-question:before {\n  content: \"\\e655\";\n}\n.anticon-question-circle:before {\n  content: \"\\e656\";\n}\n.anticon-question-circle-o:before {\n  content: \"\\e657\";\n}\n.anticon-plus:before {\n  content: \"\\e651\";\n}\n.anticon-plus-circle:before {\n  content: \"\\e652\";\n}\n.anticon-plus-circle-o:before {\n  content: \"\\e653\";\n}\n.anticon-pause:before {\n  content: \"\\e64c\";\n}\n.anticon-pause-circle:before {\n  content: \"\\e64d\";\n}\n.anticon-pause-circle-o:before {\n  content: \"\\e64e\";\n}\n.anticon-minus:before {\n  content: \"\\e646\";\n}\n.anticon-minus-circle:before {\n  content: \"\\e647\";\n}\n.anticon-minus-circle-o:before {\n  content: \"\\e648\";\n}\n.anticon-info-circle:before {\n  content: \"\\e637\";\n}\n.anticon-info-circle-o:before {\n  content: \"\\e638\";\n}\n.anticon-info:before {\n  content: \"\\e63a\";\n}\n.anticon-exclamation:before {\n  content: \"\\e627\";\n}\n.anticon-exclamation-circle:before {\n  content: \"\\e628\";\n}\n.anticon-exclamation-circle-o:before {\n  content: \"\\e629\";\n}\n.anticon-cross:before {\n  content: \"\\e61e\";\n}\n.anticon-cross-circle:before {\n  content: \"\\e61f\";\n}\n.anticon-cross-circle-o:before {\n  content: \"\\e620\";\n}\n.anticon-check:before {\n  content: \"\\e613\";\n}\n.anticon-check-circle:before {\n  content: \"\\e614\";\n}\n.anticon-check-circle-o:before {\n  content: \"\\e615\";\n}\n.anticon-clock-circle:before {\n  content: \"\\e616\";\n}\n.anticon-clock-circle-o:before {\n  content: \"\\e617\";\n}\n.anticon-lock:before {\n  content: \"\\e641\";\n}\n.anticon-android:before {\n  content: \"\\e601\";\n}\n.anticon-apple:before {\n  content: \"\\e606\";\n}\n.anticon-area-chart:before {\n  content: \"\\e607\";\n}\n.anticon-bar-chart:before {\n  content: \"\\e609\";\n}\n.anticon-bars:before {\n  content: \"\\e60a\";\n}\n.anticon-book:before {\n  content: \"\\e60b\";\n}\n.anticon-calendar:before {\n  content: \"\\e60c\";\n}\n.anticon-cloud:before {\n  content: \"\\e618\";\n}\n.anticon-cloud-download:before {\n  content: \"\\e619\";\n}\n.anticon-code:before {\n  content: \"\\e61a\";\n}\n.anticon-copy:before {\n  content: \"\\e61c\";\n}\n.anticon-credit-card:before {\n  content: \"\\e61d\";\n}\n.anticon-delete:before {\n  content: \"\\e621\";\n}\n.anticon-desktop:before {\n  content: \"\\e622\";\n}\n.anticon-download-line:before {\n  content: \"\\e623\";\n}\n.anticon-edit:before {\n  content: \"\\e624\";\n}\n.anticon-ellipsis:before {\n  content: \"\\e625\";\n}\n.anticon-environment:before {\n  content: \"\\e626\";\n}\n.anticon-file:before {\n  content: \"\\e62c\";\n}\n.anticon-file-text:before {\n  content: \"\\e62d\";\n}\n.anticon-folder:before {\n  content: \"\\e62e\";\n}\n.anticon-folder-open:before {\n  content: \"\\e62f\";\n}\n.anticon-github:before {\n  content: \"\\e631\";\n}\n.anticon-hdd:before {\n  content: \"\\e632\";\n}\n.anticon-frown:before {\n  content: \"\\e633\";\n}\n.anticon-meh:before {\n  content: \"\\e634\";\n}\n.anticon-inbox:before {\n  content: \"\\e635\";\n}\n.anticon-laptop:before {\n  content: \"\\e63d\";\n}\n.anticon-large:before {\n  content: \"\\e63e\";\n}\n.anticon-line-chart:before {\n  content: \"\\e63f\";\n}\n.anticon-link:before {\n  content: \"\\e640\";\n}\n.anticon-logout:before {\n  content: \"\\e642\";\n}\n.anticon-mail:before {\n  content: \"\\e643\";\n}\n.anticon-menu-fold:before {\n  content: \"\\e644\";\n}\n.anticon-menu-unfold:before {\n  content: \"\\e645\";\n}\n.anticon-mobile:before {\n  content: \"\\e649\";\n}\n.anticon-notification:before {\n  content: \"\\e64a\";\n}\n.anticon-paper-clip:before {\n  content: \"\\e64b\";\n}\n.anticon-picture:before {\n  content: \"\\e64f\";\n}\n.anticon-pie-chart:before {\n  content: \"\\e650\";\n}\n.anticon-poweroff:before {\n  content: \"\\e654\";\n}\n.anticon-reload:before {\n  content: \"\\e658\";\n}\n.anticon-search:before {\n  content: \"\\e65b\";\n}\n.anticon-setting:before {\n  content: \"\\e65c\";\n}\n.anticon-share-alt:before {\n  content: \"\\e65d\";\n}\n.anticon-shopping-cart:before {\n  content: \"\\e65e\";\n}\n.anticon-smile:before {\n  content: \"\\e661\";\n}\n.anticon-tablet:before {\n  content: \"\\e664\";\n}\n.anticon-tag:before {\n  content: \"\\e665\";\n}\n.anticon-tags:before {\n  content: \"\\e666\";\n}\n.anticon-to-top:before {\n  content: \"\\e667\";\n}\n.anticon-unlock:before {\n  content: \"\\e668\";\n}\n.anticon-upload:before {\n  content: \"\\e669\";\n}\n.anticon-user:before {\n  content: \"\\e66a\";\n}\n.anticon-video-camera:before {\n  content: \"\\e66b\";\n}\n.anticon-windows:before {\n  content: \"\\e66c\";\n}\n.anticon-loading:before {\n  display: inline-block;\n  -webkit-animation: loadingCircle 1s infinite linear;\n  animation: loadingCircle 1s infinite linear;\n  content: \"\\e610\";\n}\n:root .anticon-step-forward,\n:root .anticon-fast-forward,\n:root .anticon-left,\n:root .anticon-up,\n:root .anticon-down,\n:root .anticon-caret-left,\n:root .anticon-caret-up,\n:root .anticon-caret-right,\n:root .anticon-caret-circle-left,\n:root .anticon-caret-circle-o-left,\n:root .anticon-circle-left,\n:root .anticon-circle-o-left,\n:root .anticon-double-left,\n:root .anticon-verticle-left,\n:root .anticon-backward {\n  -webkit-filter: none;\n          filter: none;\n}\n", ""]);
+	exports.push([module.id, "@font-face {\n  font-family: 'anticon';\n  src: url('//at.alicdn.com/t/font_1434092639_4910953.eot');\n  /* IE9*/\n  src: url('//at.alicdn.com/t/font_1434092639_4910953.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('//at.alicdn.com/t/font_1434092639_4910953.woff') format('woff'), /* chrome、firefox */ url('//at.alicdn.com/t/font_1434092639_4910953.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('//at.alicdn.com/t/font_1434092639_4910953.svg#iconfont') format('svg');\n  /* iOS 4.1- */\n}\n.rcicon {\n  position: relative;\n  display: inline-block;\n  font-style: normal;\n  vertical-align: baseline;\n  text-align: center;\n  text-transform: none;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -webkit-text-stroke-width: 0px;\n  -moz-osx-font-smoothing: grayscale;\n}\n.rcicon:before {\n  display: block;\n  font-family: \"anticon\" !important;\n}\n.rcicon-step-backward:before {\n  content: \"\\e662\";\n}\n.rcicon-step-forward {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-step-forward:before {\n  content: \"\\e662\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-fast-backward:before {\n  content: \"\\e62a\";\n}\n.rcicon-fast-forward {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-fast-forward:before {\n  content: \"\\e62a\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-shrink:before {\n  content: \"\\e65f\";\n}\n.rcicon-arrow-salt:before {\n  content: \"\\e608\";\n}\n.rcicon-caret-down:before {\n  content: \"\\e60f\";\n}\n.rcicon-caret-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);\n}\n.rcicon-caret-left:before {\n  content: \"\\e60f\";\n  -webkit-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  transform: rotate(90deg);\n}\n.rcicon-caret-up {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-caret-up:before {\n  content: \"\\e60f\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-caret-right {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);\n}\n.rcicon-caret-right:before {\n  content: \"\\e60f\";\n  -webkit-transform: rotate(270deg);\n  -ms-transform: rotate(270deg);\n  transform: rotate(270deg);\n}\n.rcicon-caret-circle-right:before {\n  content: \"\\e60d\";\n}\n.rcicon-caret-circle-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-caret-circle-left:before {\n  content: \"\\e60d\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-caret-circle-o-right:before {\n  content: \"\\e60e\";\n}\n.rcicon-caret-circle-o-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-caret-circle-o-left:before {\n  content: \"\\e60e\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-circle-right:before {\n  content: \"\\e602\";\n}\n.rcicon-circle-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-circle-left:before {\n  content: \"\\e602\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-circle-o-right:before {\n  content: \"\\e603\";\n}\n.rcicon-circle-o-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-circle-o-left:before {\n  content: \"\\e603\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-double-right:before {\n  content: \"\\e604\";\n}\n.rcicon-double-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-double-left:before {\n  content: \"\\e604\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-verticle-right:before {\n  content: \"\\e605\";\n}\n.rcicon-verticle-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-verticle-left:before {\n  content: \"\\e605\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-forward:before {\n  content: \"\\e630\";\n}\n.rcicon-backward {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-backward:before {\n  content: \"\\e630\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-rollback:before {\n  content: \"\\e65a\";\n}\n.rcicon-retweet:before {\n  content: \"\\e659\";\n}\n.rcicon-right:before {\n  content: \"\\e611\";\n}\n.rcicon-down {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);\n}\n.rcicon-down:before {\n  content: \"\\e611\";\n  -webkit-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  transform: rotate(90deg);\n}\n.rcicon-left {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n}\n.rcicon-left:before {\n  content: \"\\e611\";\n  -webkit-transform: rotate(180deg);\n  -ms-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n.rcicon-up {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);\n}\n.rcicon-up:before {\n  content: \"\\e611\";\n  -webkit-transform: rotate(270deg);\n  -ms-transform: rotate(270deg);\n  transform: rotate(270deg);\n}\n.rcicon-question:before {\n  content: \"\\e655\";\n}\n.rcicon-question-circle:before {\n  content: \"\\e656\";\n}\n.rcicon-question-circle-o:before {\n  content: \"\\e657\";\n}\n.rcicon-plus:before {\n  content: \"\\e651\";\n}\n.rcicon-plus-circle:before {\n  content: \"\\e652\";\n}\n.rcicon-plus-circle-o:before {\n  content: \"\\e653\";\n}\n.rcicon-pause:before {\n  content: \"\\e64c\";\n}\n.rcicon-pause-circle:before {\n  content: \"\\e64d\";\n}\n.rcicon-pause-circle-o:before {\n  content: \"\\e64e\";\n}\n.rcicon-minus:before {\n  content: \"\\e646\";\n}\n.rcicon-minus-circle:before {\n  content: \"\\e647\";\n}\n.rcicon-minus-circle-o:before {\n  content: \"\\e648\";\n}\n.rcicon-info-circle:before {\n  content: \"\\e637\";\n}\n.rcicon-info-circle-o:before {\n  content: \"\\e638\";\n}\n.rcicon-info:before {\n  content: \"\\e63a\";\n}\n.rcicon-exclamation:before {\n  content: \"\\e627\";\n}\n.rcicon-exclamation-circle:before {\n  content: \"\\e628\";\n}\n.rcicon-exclamation-circle-o:before {\n  content: \"\\e629\";\n}\n.rcicon-cross:before {\n  content: \"\\e61e\";\n}\n.rcicon-cross-circle:before {\n  content: \"\\e61f\";\n}\n.rcicon-cross-circle-o:before {\n  content: \"\\e620\";\n}\n.rcicon-check:before {\n  content: \"\\e613\";\n}\n.rcicon-check-circle:before {\n  content: \"\\e614\";\n}\n.rcicon-check-circle-o:before {\n  content: \"\\e615\";\n}\n.rcicon-clock-circle:before {\n  content: \"\\e616\";\n}\n.rcicon-clock-circle-o:before {\n  content: \"\\e617\";\n}\n.rcicon-lock:before {\n  content: \"\\e641\";\n}\n.rcicon-android:before {\n  content: \"\\e601\";\n}\n.rcicon-apple:before {\n  content: \"\\e606\";\n}\n.rcicon-area-chart:before {\n  content: \"\\e607\";\n}\n.rcicon-bar-chart:before {\n  content: \"\\e609\";\n}\n.rcicon-bars:before {\n  content: \"\\e60a\";\n}\n.rcicon-book:before {\n  content: \"\\e60b\";\n}\n.rcicon-calendar:before {\n  content: \"\\e60c\";\n}\n.rcicon-cloud:before {\n  content: \"\\e618\";\n}\n.rcicon-cloud-download:before {\n  content: \"\\e619\";\n}\n.rcicon-code:before {\n  content: \"\\e61a\";\n}\n.rcicon-copy:before {\n  content: \"\\e61c\";\n}\n.rcicon-credit-card:before {\n  content: \"\\e61d\";\n}\n.rcicon-delete:before {\n  content: \"\\e621\";\n}\n.rcicon-desktop:before {\n  content: \"\\e622\";\n}\n.rcicon-download-line:before {\n  content: \"\\e623\";\n}\n.rcicon-edit:before {\n  content: \"\\e624\";\n}\n.rcicon-ellipsis:before {\n  content: \"\\e625\";\n}\n.rcicon-environment:before {\n  content: \"\\e626\";\n}\n.rcicon-file:before {\n  content: \"\\e62c\";\n}\n.rcicon-file-text:before {\n  content: \"\\e62d\";\n}\n.rcicon-folder:before {\n  content: \"\\e62e\";\n}\n.rcicon-folder-open:before {\n  content: \"\\e62f\";\n}\n.rcicon-github:before {\n  content: \"\\e631\";\n}\n.rcicon-hdd:before {\n  content: \"\\e632\";\n}\n.rcicon-frown:before {\n  content: \"\\e633\";\n}\n.rcicon-meh:before {\n  content: \"\\e634\";\n}\n.rcicon-inbox:before {\n  content: \"\\e635\";\n}\n.rcicon-laptop:before {\n  content: \"\\e63d\";\n}\n.rcicon-large:before {\n  content: \"\\e63e\";\n}\n.rcicon-line-chart:before {\n  content: \"\\e63f\";\n}\n.rcicon-link:before {\n  content: \"\\e640\";\n}\n.rcicon-logout:before {\n  content: \"\\e642\";\n}\n.rcicon-mail:before {\n  content: \"\\e643\";\n}\n.rcicon-menu-fold:before {\n  content: \"\\e644\";\n}\n.rcicon-menu-unfold:before {\n  content: \"\\e645\";\n}\n.rcicon-mobile:before {\n  content: \"\\e649\";\n}\n.rcicon-notification:before {\n  content: \"\\e64a\";\n}\n.rcicon-paper-clip:before {\n  content: \"\\e64b\";\n}\n.rcicon-picture:before {\n  content: \"\\e64f\";\n}\n.rcicon-pie-chart:before {\n  content: \"\\e650\";\n}\n.rcicon-poweroff:before {\n  content: \"\\e654\";\n}\n.rcicon-reload:before {\n  content: \"\\e658\";\n}\n.rcicon-search:before {\n  content: \"\\e65b\";\n}\n.rcicon-setting:before {\n  content: \"\\e65c\";\n}\n.rcicon-share-alt:before {\n  content: \"\\e65d\";\n}\n.rcicon-shopping-cart:before {\n  content: \"\\e65e\";\n}\n.rcicon-smile:before {\n  content: \"\\e661\";\n}\n.rcicon-tablet:before {\n  content: \"\\e664\";\n}\n.rcicon-tag:before {\n  content: \"\\e665\";\n}\n.rcicon-tags:before {\n  content: \"\\e666\";\n}\n.rcicon-to-top:before {\n  content: \"\\e667\";\n}\n.rcicon-unlock:before {\n  content: \"\\e668\";\n}\n.rcicon-upload:before {\n  content: \"\\e669\";\n}\n.rcicon-user:before {\n  content: \"\\e66a\";\n}\n.rcicon-video-camera:before {\n  content: \"\\e66b\";\n}\n.rcicon-windows:before {\n  content: \"\\e66c\";\n}\n.rcicon-loading:before {\n  display: inline-block;\n  -webkit-animation: loadingCircle 1s infinite linear;\n  animation: loadingCircle 1s infinite linear;\n  content: \"\\e610\";\n}\n:root .rcicon-step-forward,\n:root .rcicon-fast-forward,\n:root .rcicon-left,\n:root .rcicon-up,\n:root .rcicon-down,\n:root .rcicon-caret-left,\n:root .rcicon-caret-up,\n:root .rcicon-caret-right,\n:root .rcicon-caret-circle-left,\n:root .rcicon-caret-circle-o-left,\n:root .rcicon-circle-left,\n:root .rcicon-circle-o-left,\n:root .rcicon-double-left,\n:root .rcicon-verticle-left,\n:root .rcicon-backward {\n  -webkit-filter: none;\n          filter: none;\n}\n", ""]);
 
 /***/ },
-/* 8 */,
-/* 9 */,
-/* 10 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = React;
 
 /***/ },
-/* 11 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var Steps = __webpack_require__(12);
-	Steps.Step = __webpack_require__(13);
+	var Steps = __webpack_require__(10);
+	Steps.Step = __webpack_require__(11);
 	
 	module.exports = Steps;
 
 /***/ },
-/* 12 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var React = __webpack_require__(10);
+	var React = __webpack_require__(8);
 	
 	var Steps = React.createClass({
 	  displayName: 'Steps',
 	
 	  _previousStepsWidth: 0,
-	  _totalItemsWidth: 0,
+	  _itemsWidth: [],
 	  getInitialState: function getInitialState() {
 	    return {
+	      init: false,
 	      tailWidth: 0
+	    };
+	  },
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      prefixCls: 'rc-steps',
+	      iconPrefix: 'rc',
+	      maxDescriptionWidth: 120
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
 	    var $dom = React.findDOMNode(this);
-	    var tw = 0;
 	    var len = $dom.children.length - 1;
 	    var i;
-	    for (i = 0; i <= len; i++) {
-	      tw += $dom.children[i].offsetWidth;
-	    }
+	    this._itemsWidth = new Array(len + 1);
 	
-	    this._totalItemsWidth = tw;
+	    for (i = 0; i <= len - 1; i++) {
+	      var $item = $dom.children[i].children;
+	      this._itemsWidth[i] = $item[0].offsetWidth + $item[1].children[0].offsetWidth;
+	    }
+	    this._itemsWidth[i] = $dom.children[len].offsetWidth;
 	    this._previousStepsWidth = React.findDOMNode(this).offsetWidth;
 	    this._update();
+	
+	    /*
+	     * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
+	     * componentDidMount时滚动条还不一定出现了，这时候获取的宽度可能不是最终宽度。
+	     * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，_resize里面会判断要不要更新。
+	     */
+	    var me = this;
+	    setTimeout(function () {
+	      me._resize();
+	    });
+	
 	    if (window.attachEvent) {
 	      window.attachEvent('onresize', this._resize);
 	    } else {
@@ -442,23 +460,35 @@
 	  },
 	  _update: function _update() {
 	    var len = this.props.children.length - 1;
-	    var dw = Math.floor((this._previousStepsWidth - this._totalItemsWidth) / len);
+	    var tw = 0;
+	    this._itemsWidth.forEach(function (w) {
+	      tw += w;
+	    });
+	    var dw = Math.round((this._previousStepsWidth - tw) / len) - 1;
 	    if (dw <= 0) {
 	      return;
 	    }
 	    this.setState({
+	      init: true,
 	      tailWidth: dw
 	    });
 	  },
 	  render: function render() {
 	    var props = this.props;
+	    var prefixCls = props.prefixCls;
 	    var children = props.children;
+	    var maxDescriptionWidth = props.maxDescriptionWidth;
+	    var iconPrefix = props.iconPrefix;
 	    var len = children.length - 1;
-	    return React.createElement('div', { className: 'rc-steps' + (props.size === 'small' ? ' rc-steps-small' : '') }, React.Children.map(children, function (ele, idx) {
+	    var iws = this._itemsWidth;
+	    return React.createElement('div', { className: prefixCls + (props.size === 'small' ? ' ' + prefixCls + '-small' : '') }, React.Children.map(children, function (ele, idx) {
 	      var np = {
 	        stepNumber: (idx + 1).toString(),
 	        stepLast: idx === len,
-	        tailWidth: this.state.tailWidth
+	        tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
+	        prefixCls: prefixCls,
+	        iconPrefix: iconPrefix,
+	        maxDescriptionWidth: maxDescriptionWidth
 	      };
 	      return React.cloneElement(ele, np);
 	    }, this));
@@ -468,20 +498,24 @@
 	module.exports = Steps;
 
 /***/ },
-/* 13 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var React = __webpack_require__(10);
+	var React = __webpack_require__(8);
 	
 	var Step = React.createClass({
 	  displayName: 'Step',
 	
 	  render: function render() {
 	    var props = this.props;
-	    var icon = props.icon ? props.icon : props.status !== 'finish' ? React.createElement('span', { className: 'rc-steps-icon' }, props.stepNumber) : React.createElement('span', { className: 'rc-steps-icon anticon anticon-check' });
-	    return React.createElement('div', { className: 'rc-steps-item rc-steps-status-' + props.status }, React.createElement('div', { className: 'rc-steps-head' + (props.icon ? ' rc-steps-custom' : '') }, icon), React.createElement('div', { className: 'rc-steps-main' }, React.createElement('div', { className: 'rc-steps-title' }, props.title), React.createElement('div', { className: 'rc-steps-description' }, props.description)), !props.stepLast ? React.createElement('div', { className: 'rc-steps-tail', style: { width: props.tailWidth } }, React.createElement('i', null)) : '');
+	    var prefixCls = props.prefixCls;
+	    var iconPrefix = props.iconPrefix;
+	    var maxWidth = props.maxDescriptionWidth;
+	    var iconName = props.icon ? props.icon : 'check';
+	    var icon = !props.icon && props.status !== 'finish' ? React.createElement('span', { className: prefixCls + '-icon' }, props.stepNumber) : React.createElement('span', { className: prefixCls + '-icon ' + iconPrefix + 'icon ' + iconPrefix + 'icon-' + iconName });
+	    return React.createElement('div', { className: prefixCls + '-item ' + (props.stepLast ? prefixCls + '-item-last ' : '') + prefixCls + '-status-' + props.status + (props.icon ? ' ' + prefixCls + '-custom' : ''), style: { width: props.tailWidth } }, !props.stepLast ? React.createElement('div', { className: prefixCls + '-tail' }, React.createElement('i', null)) : '', React.createElement('div', { className: prefixCls + '-head' }, React.createElement('div', { className: prefixCls + '-head-inner' }, icon)), React.createElement('div', { className: prefixCls + '-main', style: { maxWidth: maxWidth } }, React.createElement('div', { className: prefixCls + '-title' }, props.title), props.description ? React.createElement('div', { className: prefixCls + '-description' }, props.description) : ''));
 	  }
 	});
 	
