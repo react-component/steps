@@ -1,6 +1,10 @@
 # History
 ----
 
+## 1.1.2
+
+* support `iconPrefix` property, default is `rc`
+
 ## 1.1.1
 
 * support `maxDescriptionWidth` property, default is 120

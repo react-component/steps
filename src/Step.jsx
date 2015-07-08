@@ -6,9 +6,10 @@ var Step = React.createClass({
   render() {
     var props = this.props;
     var prefixCls = props.prefixCls;
+    var iconPrefix = props.iconPrefix;
     var maxWidth = props.maxDescriptionWidth;
-    var icon = props.icon ? props.icon
-        : (props.status !== 'finish' ? <span className={prefixCls + '-icon'}>{props.stepNumber}</span> : <span className={prefixCls + '-icon ' + ' anticon anticon-check'}></span>);
+    var iconName = props.icon ? props.icon : 'check';
+    var icon = !props.icon && props.status !== 'finish' ? <span className={prefixCls + '-icon'}>{props.stepNumber}</span> : <span className={prefixCls + '-icon ' + iconPrefix + 'icon ' + iconPrefix + 'icon-' + iconName}></span>;
     return (<div className={prefixCls + '-item ' + (props.stepLast ? prefixCls + '-item-last ' : '') + prefixCls + '-status-' + props.status + (props.icon ? ' ' + prefixCls + '-custom' : '')} style={{width: props.tailWidth}}>
 
       {!props.stepLast ? <div className={prefixCls + '-tail'}>

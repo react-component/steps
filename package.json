@@ -5,7 +5,7 @@
   "keywords": [
     "react",
     "react-component",
-    "react-tabs"
+    "react-steps"
   ],
   "main": "./lib/index",
   "homepage": "http://github.com/react-component/steps",

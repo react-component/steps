@@ -15,6 +15,7 @@ var Steps = React.createClass({
   getDefaultProps() {
     return {
       prefixCls: 'rc-steps',
+      iconPrefix: 'rc',
       maxDescriptionWidth: 120
     };
   },
@@ -83,6 +84,7 @@ var Steps = React.createClass({
     var prefixCls = props.prefixCls;
     var children = props.children;
     var maxDescriptionWidth = props.maxDescriptionWidth;
+    var iconPrefix = props.iconPrefix;
     var len = children.length - 1;
     var iws = this._itemsWidth;
     return (
@@ -93,6 +95,7 @@ var Steps = React.createClass({
             stepLast: idx === len,
             tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
             prefixCls: prefixCls,
+            iconPrefix: iconPrefix,
             maxDescriptionWidth: maxDescriptionWidth
           };
           return React.cloneElement(ele, np);
