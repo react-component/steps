@@ -1,9 +1,13 @@
 # History
 ----
 
-## 1.1.2
+## 1.1.3
 
 * support `iconPrefix` property, default is `rc`
+
+## 1.1.2
+
+* fix bugs
 
 ## 1.1.1
 
