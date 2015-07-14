@@ -1,6 +1,10 @@
 # History
 ----
 
+## 1.1.4
+
+* fix layout algorithm
+
 ## 1.1.3
 
 * support `iconPrefix` property, default is `rc`
