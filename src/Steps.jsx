@@ -27,10 +27,10 @@ var Steps = React.createClass({
 
     for (i = 0; i <= len - 1; i++) {
       var $item = $dom.children[i].children;
-      this._itemsWidth[i] = $item[0].offsetWidth + $item[1].children[0].offsetWidth;
+      this._itemsWidth[i] = Math.ceil($item[0].offsetWidth + $item[1].children[0].offsetWidth);
     }
-    this._itemsWidth[i] = $dom.children[len].offsetWidth;
-    this._previousStepsWidth = React.findDOMNode(this).offsetWidth;
+    this._itemsWidth[i] = Math.ceil($dom.children[len].offsetWidth);
+    this._previousStepsWidth = Math.floor(React.findDOMNode(this).offsetWidth);
     this._update();
 
     /*
@@ -57,7 +57,7 @@ var Steps = React.createClass({
     }
   },
   _resize() {
-    var w = React.findDOMNode(this).offsetWidth;
+    var w = Math.floor(React.findDOMNode(this).offsetWidth);
     if (this._previousStepsWidth === w) {
       return;
     }
@@ -70,7 +70,7 @@ var Steps = React.createClass({
     this._itemsWidth.forEach(function(w) {
       tw += w;
     });
-    var dw = Math.round((this._previousStepsWidth - tw) / len) - 1;
+    var dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
     if (dw <= 0) {
       return;
     }
@@ -89,6 +89,7 @@ var Steps = React.createClass({
     var iws = this._itemsWidth;
     return (
       <div className={prefixCls + (props.size === 'small' ? ' ' + prefixCls + '-small' : '')}>
+
         {React.Children.map(children, function(ele, idx) {
           var np = {
             stepNumber: (idx + 1).toString(),
