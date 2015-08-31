@@ -87,8 +87,12 @@ var Steps = React.createClass({
     var iconPrefix = props.iconPrefix;
     var len = children.length - 1;
     var iws = this._itemsWidth;
+    var clsName = prefixCls;
+    clsName += props.size === 'small' ? ' ' + prefixCls + '-small' : '';
+    clsName += props.direction === 'vertical' ? ' ' + prefixCls + '-vertical' : '';
+
     return (
-      <div className={prefixCls + (props.size === 'small' ? ' ' + prefixCls + '-small' : '')}>
+      <div className={clsName}>
 
         {React.Children.map(children, function(ele, idx) {
           var np = {

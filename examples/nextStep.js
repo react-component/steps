@@ -1,7 +1,7 @@
 'use strict';
 
-require('assets/index.css');
-require('assets/iconfont.css');
+require('rc-steps/assets/index.css');
+require('rc-steps/assets/iconfont.css');
 require('./nextStep.css');
 
 var React = require('react');

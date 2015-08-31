@@ -1,6 +1,10 @@
 # History
 ----
 
+## 1.2.0
+
+* add vertical steps
+
 ## 1.1.4
 
 * fix layout algorithm
