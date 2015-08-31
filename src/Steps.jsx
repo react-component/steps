@@ -39,7 +39,7 @@ var Steps = React.createClass({
      * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，_resize里面会判断要不要更新。
      */
     var me = this;
-    setTimeout(function() {
+    setTimeout(function () {
       me._resize();
     });
 
@@ -67,7 +67,7 @@ var Steps = React.createClass({
   _update() {
     var len = this.props.children.length - 1;
     var tw = 0;
-    this._itemsWidth.forEach(function(w) {
+    this._itemsWidth.forEach(function (w) {
       tw += w;
     });
     var dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
@@ -83,7 +83,7 @@ var Steps = React.createClass({
     var props = this.props;
     var prefixCls = props.prefixCls;
     var children = props.children;
-    var maxDescriptionWidth = props.maxDescriptionWidth;
+    var maxDescriptionWidth = props.direction === 'vertical' ? 'auto' : props.maxDescriptionWidth;
     var iconPrefix = props.iconPrefix;
     var len = children.length - 1;
     var iws = this._itemsWidth;
@@ -94,7 +94,7 @@ var Steps = React.createClass({
     return (
       <div className={clsName}>
 
-        {React.Children.map(children, function(ele, idx) {
+        {React.Children.map(children, function (ele, idx) {
           var np = {
             stepNumber: (idx + 1).toString(),
             stepLast: idx === len,
