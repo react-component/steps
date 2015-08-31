@@ -1,6 +1,10 @@
 # History
 ----
 
+## 1.2.1
+
+* fix vertical `maxDescriptionWidth`
+
 ## 1.2.0
 
 * add vertical steps

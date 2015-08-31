@@ -33,6 +33,6 @@ var steps = [{
   });
 
 React.render(
-  <Steps direction="vertical" size="small" maxDescriptionWidth="100%">
+  <Steps direction="vertical" size="small">
     {steps}
   </Steps>, container);
