@@ -221,7 +221,7 @@ body {
       font-weight: bold;
     }
     .@{stepsPrefixClass}-description {
-      font-size: 10px;
+      font-size: 12px;
       color: #999;
     }
     .@{stepsPrefixClass}-tail {
@@ -249,7 +249,7 @@ body {
   .@{stepsPrefixClass}-item {
     display: block;
   }
-
+  
   .@{stepsPrefixClass}-tail {
     position: absolute;
     left: 13px;
@@ -262,16 +262,15 @@ body {
       width: 1px;
     }
   }
-
+  
   .@{stepsPrefixClass}-head {
     float: left;
     &-inner {
       margin-right: 16px;
     }
   }
-
+  
   .@{stepsPrefixClass}-main {
-    max-width: 100%;
     min-height: 47px;
     overflow: hidden;
     display: block;
@@ -285,90 +284,17 @@ body {
 }
 
 .@{stepsPrefixClass}-vertical.@{stepsPrefixClass}-small {
-  .@{stepsPrefixClass}-item {
-    display: block;
-  }
-
   .@{stepsPrefixClass}-tail {
     position: absolute;
-    left: 6px;
+    left: 9px;
     top: 0;
-    height: 100%;
-    width: 2px;
-    padding: 0;
+    padding: 22px 0 4px 0;
     > i {
       height: 100%;
-      width: 0px;
     }
   }
-
-  .@{stepsPrefixClass}-status-wait {
-    .@{stepsPrefixClass}-tail {
-      > i {
-        background-color: #fff;
-        border-left: 2px dotted @wait-tail-color;
-      }
-    }
-  }
-
-  .@{stepsPrefixClass}-status-process {
-    .@{stepsPrefixClass}-tail {
-      > i {
-        background-color: #fff;
-        border-left: 2px dotted @process-tail-color;
-      }
-    }
-  }
-
-  .@{stepsPrefixClass}-status-finish {
-    .@{stepsPrefixClass}-tail {
-      > i {
-        background-color: #fff;
-        border-left: 2px solid @finish-tail-color;
-      }
-    }
-  }
-
-  .@{stepsPrefixClass}-main {
-    max-width: 100%;
-    min-height: 47px;
-    overflow: hidden;
-    display: block;
-    .@{stepsPrefixClass}-title {
-      line-height: 14px;
-    }
-    .@{stepsPrefixClass}-description {
-      padding-bottom: 12px;
-    }
-  }
-
-  .@{stepsPrefixClass}-status-wait, .@{stepsPrefixClass}-status-process {
-    overflow: hidden;
-    .@{stepsPrefixClass}-head-inner {
-      text-indent: 10000px;
-      display: inline-block;
-      background-color: #fff;
-    }
-  }
-
-  .@{stepsPrefixClass}-head-inner {
-    width: 14px;
-    height: 14px;
-    margin-right: 8px;
-    background-color: #2db7f5;
-    border-width: 2px;
-  }
-
-  .@{stepsPrefixClass}-status-finish {
-    .@{stepsPrefixClass}-head-inner {
-      background-color: @finish-tail-color;
-      .@{stepsPrefixClass}-icon:before {
-        color: #fff;
-        font-weight: 700;
-        position: absolute;
-        top: -15px;
-        left: -6px;
-      }
-    }
+  
+  .@{stepsPrefixClass}-title {
+    line-height: 18px;
   }
 }

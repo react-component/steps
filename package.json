@@ -1,6 +1,6 @@
 {
   "name": "rc-steps",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "steps ui component for react",
   "keywords": [
     "react",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/react-component/steps.git"
+    "url": " git+ssh://git@github.com/react-component/steps.git"
   },
   "bugs": {
     "url": "http://github.com/react-component/steps/issues"
@@ -41,8 +41,8 @@
     "browser-test-cover": "node --harmony node_modules/.bin/rc-tools run browser-test-cover"
   },
   "devDependencies": {
-    "expect.js": "~0.3.1",
-    "precommit-hook": "^1.0.7",
+    "expect.js": "~0.3.x",
+    "precommit-hook": "1.x",
     "rc-server": "3.x",
     "rc-tools": "3.x",
     "react": "0.13.x"
