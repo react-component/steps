@@ -1,6 +1,10 @@
 # History
 ----
 
+## 1.2.2
+
+* remove vertical `maxDescriptionWidth`
+
 ## 1.2.1
 
 * fix vertical `maxDescriptionWidth`

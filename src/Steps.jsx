@@ -83,7 +83,7 @@ var Steps = React.createClass({
     var props = this.props;
     var prefixCls = props.prefixCls;
     var children = props.children;
-    var maxDescriptionWidth = props.direction === 'vertical' ? 'auto' : props.maxDescriptionWidth;
+    var maxDescriptionWidth = props.maxDescriptionWidth;
     var iconPrefix = props.iconPrefix;
     var len = children.length - 1;
     var iws = this._itemsWidth;
