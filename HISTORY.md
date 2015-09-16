@@ -1,6 +1,10 @@
 # History
 ----
 
+## 1.3
+
+* add `current` property of `Steps`
+
 ## 1.2.3
 
 * fix publish
