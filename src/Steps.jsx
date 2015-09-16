@@ -17,7 +17,8 @@ var Steps = React.createClass({
       prefixCls: 'rc-steps',
       iconPrefix: 'rc',
       maxDescriptionWidth: 120,
-      direction: ''
+      direction: '',
+      current: 0
     };
   },
   componentDidMount() {
@@ -113,6 +114,9 @@ var Steps = React.createClass({
             iconPrefix: iconPrefix,
             maxDescriptionWidth: maxDescriptionWidth
           };
+          if (!ele.props.status) {
+            np.status = idx === props.current ? 'process' : (idx < props.current ? 'finish' : 'wait');
+          }
           return React.cloneElement(ele, np);
         }, this)}
       </div>
