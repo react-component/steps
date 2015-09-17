@@ -2,7 +2,6 @@
 
 var React = require('react');
 
-
 var Steps = React.createClass({
   _previousStepsWidth: 0,
   _itemsWidth: [],
@@ -27,11 +26,11 @@ var Steps = React.createClass({
     }
     var $dom = React.findDOMNode(this);
     var len = $dom.children.length - 1;
+    var $frame =  $dom.children[0];
     var i;
-    this._itemsWidth = new Array(len + 1);
-
-    for (i = 0; i <= len - 1; i++) {
-      var $item = $dom.children[i].children;
+    this._itemsWidth = new Array(len);
+    for (i = 0; i < len - 1; i++) {
+      var $item = $dom.children[i + 1].children;
       this._itemsWidth[i] = Math.ceil($item[0].offsetWidth + $item[1].children[0].offsetWidth);
     }
     this._itemsWidth[i] = Math.ceil($dom.children[len].offsetWidth);
@@ -40,18 +39,18 @@ var Steps = React.createClass({
 
     /*
      * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
-     * componentDidMount时滚动条还不一定出现了，这时候获取的宽度可能不是最终宽度。
-     * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，_resize里面会判断要不要更新。
      */
     var me = this;
-    setTimeout(function () {
-      me._resize();
-    });
-
-    if (window.attachEvent) {
-      window.attachEvent('onresize', this._resize);
+    var eventMethod = window.attachEvent ? 'attachEvent' : 'addEventListener';
+    if ($frame.contentWindow) {
+      addResize();
     } else {
-      window.addEventListener('resize', this._resize);
+      $frame[eventMethod]('load', addResize);
+    }
+    function addResize() {
+      $frame.contentWindow.onresize = function() {
+        me._resize();
+      };
     }
   },
   componentWillUnmount() {
@@ -104,8 +103,8 @@ var Steps = React.createClass({
 
     return (
       <div className={clsName}>
-
-        {React.Children.map(children, function (ele, idx) {
+        {props.direction !== 'vertical' ? <iframe refs='resizeFrame' className={prefixCls + '-resize-frame'}></iframe> : ''}
+        {children.map(function (ele, idx) {
           var np = {
             stepNumber: (idx + 1).toString(),
             stepLast: idx === len,
