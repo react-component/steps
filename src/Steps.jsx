@@ -38,8 +38,11 @@ var Steps = React.createClass({
     this._previousStepsWidth = Math.floor(React.findDOMNode(this).offsetWidth);
     this._update();
 
+    /*
+     * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
+     * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
+     */
     $dom.children[len].style.position = 'absolute';
-    $dom.children[len].style.right = 0;
 
     /*
      * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
