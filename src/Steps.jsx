@@ -1,16 +1,11 @@
-'use strict';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-var React = require('react');
 
-
-var Steps = React.createClass({
-  _previousStepsWidth: 0,
-  _itemsWidth: [],
-  getInitialState() {
-    return {
-      init: false,
-      tailWidth: 0
-    };
+const Steps = React.createClass({
+  propTypes: {
+    direction: React.PropTypes.string,
+    children: React.PropTypes.any,
   },
   getDefaultProps() {
     return {
@@ -18,24 +13,30 @@ var Steps = React.createClass({
       iconPrefix: 'rc',
       maxDescriptionWidth: 120,
       direction: '',
-      current: 0
+      current: 0,
+    };
+  },
+  getInitialState() {
+    return {
+      init: false,
+      tailWidth: 0,
     };
   },
   componentDidMount() {
     if (this.props.direction === 'vertical') {
       return;
     }
-    var $dom = React.findDOMNode(this);
-    var len = $dom.children.length - 1;
-    var i;
+    const $dom = ReactDOM.findDOMNode(this);
+    const len = $dom.children.length - 1;
     this._itemsWidth = new Array(len + 1);
 
+    let i;
     for (i = 0; i <= len - 1; i++) {
-      var $item = $dom.children[i].children;
+      const $item = $dom.children[i].children;
       this._itemsWidth[i] = Math.ceil($item[0].offsetWidth + $item[1].children[0].offsetWidth);
     }
     this._itemsWidth[i] = Math.ceil($dom.children[len].offsetWidth);
-    this._previousStepsWidth = Math.floor(React.findDOMNode(this).offsetWidth);
+    this._previousStepsWidth = Math.floor(ReactDOM.findDOMNode(this).offsetWidth);
     this._update();
 
     /*
@@ -49,8 +50,8 @@ var Steps = React.createClass({
      * componentDidMount时滚动条还不一定出现了，这时候获取的宽度可能不是最终宽度。
      * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，_resize里面会判断要不要更新。
      */
-    var me = this;
-    setTimeout(function () {
+    const me = this;
+    setTimeout(function() {
       me._resize();
     });
 
@@ -59,6 +60,9 @@ var Steps = React.createClass({
     } else {
       window.addEventListener('resize', this._resize);
     }
+  },
+  componentDidUpdate() {
+    this._resize();
   },
   componentWillUnmount() {
     if (this.props.direction === 'vertical') {
@@ -70,11 +74,10 @@ var Steps = React.createClass({
       window.removeEventListener('resize', this._resize);
     }
   },
-  componentDidUpdate() {
-    this._resize();
-  },
+  _previousStepsWidth: 0,
+  _itemsWidth: [],
   _resize() {
-    var w = Math.floor(React.findDOMNode(this).offsetWidth);
+    const w = Math.floor(ReactDOM.findDOMNode(this).offsetWidth);
     if (this._previousStepsWidth === w) {
       return;
     }
@@ -82,52 +85,58 @@ var Steps = React.createClass({
     this._update();
   },
   _update() {
-    var len = this.props.children.length - 1;
-    var tw = 0;
-    this._itemsWidth.forEach(function (w) {
+    const len = this.props.children.length - 1;
+    let tw = 0;
+    this._itemsWidth.forEach(function(w) {
       tw += w;
     });
-    var dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
+    const dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
     if (dw <= 0) {
       return;
     }
     this.setState({
       init: true,
-      tailWidth: dw
+      tailWidth: dw,
     });
   },
   render() {
-    var props = this.props;
-    var prefixCls = props.prefixCls;
-    var children = props.children;
-    var maxDescriptionWidth = props.maxDescriptionWidth;
-    var iconPrefix = props.iconPrefix;
-    var len = children.length - 1;
-    var iws = this._itemsWidth;
-    var clsName = prefixCls;
+    const props = this.props;
+    const prefixCls = props.prefixCls;
+    const children = props.children;
+    const maxDescriptionWidth = props.maxDescriptionWidth;
+    const iconPrefix = props.iconPrefix;
+    const len = children.length - 1;
+    const iws = this._itemsWidth;
+    let clsName = prefixCls;
     clsName += props.size === 'small' ? ' ' + prefixCls + '-small' : '';
     clsName += props.direction === 'vertical' ? ' ' + prefixCls + '-vertical' : '';
 
     return (
       <div className={clsName}>
 
-        {React.Children.map(children, function (ele, idx) {
-          var np = {
+        {React.Children.map(children, function(ele, idx) {
+          const np = {
             stepNumber: (idx + 1).toString(),
             stepLast: idx === len,
             tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
             prefixCls: prefixCls,
             iconPrefix: iconPrefix,
-            maxDescriptionWidth: maxDescriptionWidth
+            maxDescriptionWidth: maxDescriptionWidth,
           };
           if (!ele.props.status) {
-            np.status = idx === props.current ? 'process' : (idx < props.current ? 'finish' : 'wait');
+            if (idx === props.current) {
+              np.status = 'process';
+            } else if (idx < props.current) {
+              np.status = 'finish';
+            } else {
+              np.status = 'wait';
+            }
           }
           return React.cloneElement(ele, np);
         }, this)}
       </div>
     );
-  }
+  },
 });
 
 module.exports = Steps;

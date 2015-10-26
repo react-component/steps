@@ -5,6 +5,7 @@ require('rc-steps/assets/iconfont.css');
 require('./nextStep.css');
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Steps = require('rc-steps');
 
 
@@ -54,4 +55,4 @@ var MyForm = React.createClass({
   }
 });
 
-React.render(<MyForm></MyForm>, container);
+ReactDOM.render(<MyForm></MyForm>, container);

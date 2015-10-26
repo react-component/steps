@@ -1,16 +1,14 @@
-'use strict';
+import React from 'react';
 
-var React = require('react');
-
-var Step = React.createClass({
+const Step = React.createClass({
   render() {
-    var props = this.props;
-    var status = props.status || 'wait';
-    var prefixCls = props.prefixCls;
-    var iconPrefix = props.iconPrefix;
-    var maxWidth = props.maxDescriptionWidth;
-    var iconName = props.icon ? props.icon : 'check';
-    var icon = !props.icon && status !== 'finish' ? <span className={prefixCls + '-icon'}>{props.stepNumber}</span> : <span className={prefixCls + '-icon ' + iconPrefix + 'icon ' + iconPrefix + 'icon-' + iconName}></span>;
+    const props = this.props;
+    const status = props.status || 'wait';
+    const prefixCls = props.prefixCls;
+    const iconPrefix = props.iconPrefix;
+    const maxWidth = props.maxDescriptionWidth;
+    const iconName = props.icon ? props.icon : 'check';
+    const icon = !props.icon && status !== 'finish' ? <span className={prefixCls + '-icon'}>{props.stepNumber}</span> : <span className={prefixCls + '-icon ' + iconPrefix + 'icon ' + iconPrefix + 'icon-' + iconName}></span>;
     return (<div className={prefixCls + '-item ' + (props.stepLast ? prefixCls + '-item-last ' : '') + prefixCls + '-status-' + status + (props.icon ? ' ' + prefixCls + '-custom' : '')} style={{width: props.tailWidth}}>
 
       {!props.stepLast ? <div className={prefixCls + '-tail'}>
@@ -28,7 +26,7 @@ var Step = React.createClass({
       </div>
 
     </div>);
-  }
+  },
 });
 
 module.exports = Step;
