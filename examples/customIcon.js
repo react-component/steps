@@ -4,13 +4,14 @@ require('rc-steps/assets/index.css');
 require('rc-steps/assets/iconfont.css');
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Steps = require('rc-steps');
 
 
 var container = document.getElementById('__react-content');
 
 
-React.render(
+ReactDOM.render(
   <Steps>
     <Steps.Step status='finish' title='步骤1' icon='cloud'></Steps.Step>
     <Steps.Step status='process' title='步骤2' icon='apple'></Steps.Step>

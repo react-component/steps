@@ -28,7 +28,6 @@
   },
   "scripts": {
     "build": "rc-tools run build",
-    "precommit": "rc-tools run precommit",
     "less": "rc-tools run less",
     "gh-pages": "rc-tools run gh-pages",
     "history": "rc-tools run history",
@@ -44,10 +43,11 @@
     "expect.js": "~0.3.x",
     "precommit-hook": "1.x",
     "rc-server": "3.x",
-    "rc-tools": "3.x",
-    "react": "0.13.x"
+    "rc-tools": "~4.2.6",
+    "react": "~0.14.0",
+    "react-dom": "~0.14.0"
   },
   "precommit": [
-    "precommit"
+    "lint"
   ]
 }

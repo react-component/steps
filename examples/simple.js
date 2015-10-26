@@ -4,6 +4,7 @@ require('rc-steps/assets/index.css');
 require('rc-steps/assets/iconfont.css');
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Steps = require('rc-steps');
 
 
@@ -31,7 +32,7 @@ var steps = [{
     );
   });
 
-React.render(
+ReactDOM.render(
   <Steps current={1}>
     {steps}
   </Steps>, container);
