@@ -1,6 +1,10 @@
 # History
 ----
 
+## 1.4
+
+* update react to 0.14
+
 ## 1.3
 
 * add `current` property of `Steps`
