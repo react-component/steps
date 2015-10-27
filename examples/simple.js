@@ -3,38 +3,35 @@ webpackJsonp([2],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(16);
+	module.exports = __webpack_require__(167);
 
 
 /***/ },
 
-/***/ 16:
+/***/ 167:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	__webpack_require__(2);
-	__webpack_require__(6);
+	__webpack_require__(3);
 	
-	var React = __webpack_require__(8);
-	var Steps = __webpack_require__(9);
+	var React = __webpack_require__(4);
+	var ReactDOM = __webpack_require__(160);
+	var Steps = __webpack_require__(161);
 	
 	var container = document.getElementById('__react-content');
 	
 	var steps = [{
-	  status: 'finish',
 	  title: '已完成',
 	  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'
 	}, {
-	  status: 'process',
 	  title: '进行中',
 	  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'
 	}, {
-	  status: 'wait',
 	  title: '待运行',
 	  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'
 	}, {
-	  status: 'wait',
 	  title: '待运行',
 	  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'
 	}].map(function (s, i) {
@@ -45,9 +42,9 @@ webpackJsonp([2],{
 	    description: s.description });
 	});
 	
-	React.render(React.createElement(
+	ReactDOM.render(React.createElement(
 	  Steps,
-	  null,
+	  { current: 1 },
 	  steps
 	), container);
 

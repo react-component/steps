@@ -3,21 +3,22 @@ webpackJsonp([5],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(19);
+	module.exports = __webpack_require__(170);
 
 
 /***/ },
 
-/***/ 19:
+/***/ 170:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	__webpack_require__(2);
-	__webpack_require__(6);
+	__webpack_require__(3);
 	
-	var React = __webpack_require__(8);
-	var Steps = __webpack_require__(9);
+	var React = __webpack_require__(4);
+	var ReactDOM = __webpack_require__(160);
+	var Steps = __webpack_require__(161);
 	
 	var container = document.getElementById('__react-content');
 	
@@ -42,7 +43,7 @@ webpackJsonp([5],{
 	  });
 	});
 	
-	React.render(React.createElement(
+	ReactDOM.render(React.createElement(
 	  Steps,
 	  { direction: 'vertical', size: 'small' },
 	  steps
