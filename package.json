@@ -1,6 +1,6 @@
 {
   "name": "rc-steps",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "steps ui component for react",
   "keywords": [
     "react",
@@ -8,6 +8,10 @@
     "react-steps"
   ],
   "main": "./lib/index",
+  "files": [
+    "lib",
+    "assets/*.css"
+  ],
   "homepage": "http://github.com/react-component/steps",
   "maintainers": [
     {
@@ -41,13 +45,13 @@
   },
   "devDependencies": {
     "expect.js": "~0.3.x",
-    "precommit-hook": "1.x",
+    "pre-commit": "1.x",
     "rc-server": "3.x",
     "rc-tools": "~4.2.6",
     "react": "~0.14.0",
     "react-dom": "~0.14.0"
   },
-  "precommit": [
+  "pre-commit": [
     "lint"
   ]
 }

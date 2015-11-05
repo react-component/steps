@@ -1,7 +1,7 @@
 'use strict';
 
-require('rc-steps/assets/index.css');
-require('rc-steps/assets/iconfont.css');
+require('rc-steps/assets/index.less');
+require('rc-steps/assets/iconfont.less');
 
 var React = require('react');
 var ReactDOM = require('react-dom');

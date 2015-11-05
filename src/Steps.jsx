@@ -50,9 +50,8 @@ const Steps = React.createClass({
      * componentDidMount时滚动条还不一定出现了，这时候获取的宽度可能不是最终宽度。
      * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，_resize里面会判断要不要更新。
      */
-    const me = this;
-    setTimeout(function() {
-      me._resize();
+    setTimeout(() => {
+      this._resize();
     });
 
     if (window.attachEvent) {
@@ -87,7 +86,7 @@ const Steps = React.createClass({
   _update() {
     const len = this.props.children.length - 1;
     let tw = 0;
-    this._itemsWidth.forEach(function(w) {
+    this._itemsWidth.forEach((w) => {
       tw += w;
     });
     const dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
@@ -113,8 +112,7 @@ const Steps = React.createClass({
 
     return (
       <div className={clsName}>
-
-        {React.Children.map(children, function(ele, idx) {
+        {React.Children.map(children, (ele, idx) => {
           const np = {
             stepNumber: (idx + 1).toString(),
             stepLast: idx === len,
