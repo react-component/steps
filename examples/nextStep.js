@@ -3,23 +3,23 @@ webpackJsonp([1],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(164);
+	module.exports = __webpack_require__(166);
 
 
 /***/ },
 
-/***/ 164:
+/***/ 166:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"rc-steps/assets/index.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	__webpack_require__(2);
-	__webpack_require__(165);
+	__webpack_require__(3);
+	__webpack_require__(167);
 	
-	var React = __webpack_require__(3);
-	var ReactDOM = __webpack_require__(159);
-	var Steps = __webpack_require__(160);
+	var React = __webpack_require__(4);
+	var ReactDOM = __webpack_require__(161);
+	var Steps = __webpack_require__(162);
 	
 	var container = document.getElementById('__react-content');
 	var steps = (function generateRandomSteps() {
@@ -98,7 +98,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 165:
+/***/ 167:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
