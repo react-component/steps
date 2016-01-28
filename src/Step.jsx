@@ -1,31 +1,57 @@
 import React from 'react';
+import classNames from 'classnames';
 
 const Step = React.createClass({
+  propTypes: {
+    className: React.PropTypes.string,
+    prefixCls: React.PropTypes.string,
+    style: React.PropTypes.object,
+    tailWidth: React.PropTypes.oneOfType([
+      React.PropTypes.number,
+      React.PropTypes.string,
+    ]),
+    status: React.PropTypes.string,
+    iconPrefix: React.PropTypes.string,
+    icon: React.PropTypes.string,
+    maxDescriptionWidth: React.PropTypes.number,
+    stepLast: React.PropTypes.bool,
+    stepNumber: React.PropTypes.string,
+    description: React.PropTypes.any,
+    title: React.PropTypes.any,
+  },
   render() {
-    const props = this.props;
-    const status = props.status || 'wait';
-    const prefixCls = props.prefixCls;
-    const iconPrefix = props.iconPrefix;
-    const maxWidth = props.maxDescriptionWidth;
-    const iconName = props.icon ? props.icon : 'check';
-    const icon = !props.icon && status !== 'finish' ? <span className={prefixCls + '-icon'}>{props.stepNumber}</span> : <span className={prefixCls + '-icon ' + iconPrefix + 'icon ' + iconPrefix + 'icon-' + iconName}></span>;
-    return (<div className={prefixCls + '-item ' + (props.stepLast ? prefixCls + '-item-last ' : '') + prefixCls + '-status-' + status + (props.icon ? ' ' + prefixCls + '-custom' : '')} style={{width: props.tailWidth}}>
-
-      {!props.stepLast ? <div className={prefixCls + '-tail'}>
-        <i></i>
-      </div> : ''}
-
-      <div className={prefixCls + '-head'}>
-        <div className={prefixCls + '-head-inner'}>{icon}</div>
+    const {
+      className, prefixCls, style, tailWidth,
+      status = 'wait', iconPrefix, icon,
+      maxDescriptionWidth, stepLast, stepNumber,
+      description, title, ...restProps } = this.props;
+    const iconClassName = classNames({
+      [prefixCls + '-icon']: true,
+      [iconPrefix + 'icon']: true,
+      [iconPrefix + 'icon-' + (icon || 'check')]: true,
+    });
+    const iconNode = (icon || status === 'finish')
+      ? <span className={iconClassName} />
+      : <span className={prefixCls + '-icon'}>{stepNumber}</span>;
+    const classString = classNames({
+      [className]: !!className,
+      [prefixCls + '-item']: true,
+      [prefixCls + '-item-last']: stepLast,
+      [prefixCls + '-status-' + status]: true,
+      [prefixCls + '-custom']: icon,
+    });
+    return (
+      <div {...restProps} className={classString} style={{width: tailWidth}}>
+        {stepLast ? '' : <div className={prefixCls + '-tail'}><i /></div>}
+        <div className={prefixCls + '-head'}>
+          <div className={prefixCls + '-head-inner'}>{iconNode}</div>
+        </div>
+        <div className={prefixCls + '-main'} style={{maxWidth: maxDescriptionWidth}}>
+          <div className={prefixCls + '-title'}>{title}</div>
+          {description ? <div className={prefixCls + '-description'}>{description}</div> : ''}
+        </div>
       </div>
-      <div className={prefixCls + '-main'} style={{maxWidth: maxWidth}}>
-        <div className={prefixCls + '-title'}>{props.title}</div>
-        {props.description ? <div className={prefixCls + '-description'}>
-          {props.description}
-        </div> : ''}
-      </div>
-
-    </div>);
+    );
   },
 });
 
