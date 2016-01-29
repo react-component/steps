@@ -163,7 +163,6 @@ body {
   font-size: 12px;
   font-size: 9px \9;
   -webkit-transform: scale(0.75);
-  -ms-transform: scale(0.75);
   transform: scale(0.75);
   top: -1px;
 }
@@ -274,7 +273,6 @@ body {
 .rcicon-step-forward:before {
   content: "\e662";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-fast-backward:before {
@@ -286,7 +284,6 @@ body {
 .rcicon-fast-forward:before {
   content: "\e62a";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-shrink:before {
@@ -304,7 +301,6 @@ body {
 .rcicon-caret-left:before {
   content: "\e60f";
   -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 .rcicon-caret-up {
@@ -313,7 +309,6 @@ body {
 .rcicon-caret-up:before {
   content: "\e60f";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-caret-right {
@@ -322,7 +317,6 @@ body {
 .rcicon-caret-right:before {
   content: "\e60f";
   -webkit-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 .rcicon-caret-circle-right:before {
@@ -334,7 +328,6 @@ body {
 .rcicon-caret-circle-left:before {
   content: "\e60d";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-caret-circle-o-right:before {
@@ -346,7 +339,6 @@ body {
 .rcicon-caret-circle-o-left:before {
   content: "\e60e";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-circle-right:before {
@@ -358,7 +350,6 @@ body {
 .rcicon-circle-left:before {
   content: "\e602";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-circle-o-right:before {
@@ -370,7 +361,6 @@ body {
 .rcicon-circle-o-left:before {
   content: "\e603";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-double-right:before {
@@ -382,7 +372,6 @@ body {
 .rcicon-double-left:before {
   content: "\e604";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-verticle-right:before {
@@ -394,7 +383,6 @@ body {
 .rcicon-verticle-left:before {
   content: "\e605";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-forward:before {
@@ -406,7 +394,6 @@ body {
 .rcicon-backward:before {
   content: "\e630";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-rollback:before {
@@ -424,7 +411,6 @@ body {
 .rcicon-down:before {
   content: "\e611";
   -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 .rcicon-left {
@@ -433,7 +419,6 @@ body {
 .rcicon-left:before {
   content: "\e611";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-up {
@@ -442,7 +427,6 @@ body {
 .rcicon-up:before {
   content: "\e611";
   -webkit-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 .rcicon-question:before {

@@ -155,6 +155,7 @@
 	});
 	
 	React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOM;
+	React.__SECRET_DOM_SERVER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOMServer;
 	
 	module.exports = React;
 
@@ -1119,7 +1120,7 @@
 	 * will remain to ensure logic does not differ in production.
 	 */
 	
-	var invariant = function (condition, format, a, b, c, d, e, f) {
+	function invariant(condition, format, a, b, c, d, e, f) {
 	  if (process.env.NODE_ENV !== 'production') {
 	    if (format === undefined) {
 	      throw new Error('invariant requires an error message argument');
@@ -1133,15 +1134,16 @@
 	    } else {
 	      var args = [a, b, c, d, e, f];
 	      var argIndex = 0;
-	      error = new Error('Invariant Violation: ' + format.replace(/%s/g, function () {
+	      error = new Error(format.replace(/%s/g, function () {
 	        return args[argIndex++];
 	      }));
+	      error.name = 'Invariant Violation';
 	    }
 	
 	    error.framesToPop = 1; // we don't care about invariant's own frame
 	    throw error;
 	  }
-	};
+	}
 	
 	module.exports = invariant;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
@@ -10505,6 +10507,7 @@
 	    multiple: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
 	    muted: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
 	    name: null,
+	    nonce: MUST_USE_ATTRIBUTE,
 	    noValidate: HAS_BOOLEAN_VALUE,
 	    open: HAS_BOOLEAN_VALUE,
 	    optimum: null,
@@ -10516,6 +10519,7 @@
 	    readOnly: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
 	    rel: null,
 	    required: HAS_BOOLEAN_VALUE,
+	    reversed: HAS_BOOLEAN_VALUE,
 	    role: MUST_USE_ATTRIBUTE,
 	    rows: MUST_USE_ATTRIBUTE | HAS_POSITIVE_NUMERIC_VALUE,
 	    rowSpan: null,
@@ -10566,8 +10570,8 @@
 	     */
 	    // autoCapitalize and autoCorrect are supported in Mobile Safari for
 	    // keyboard hints.
-	    autoCapitalize: null,
-	    autoCorrect: null,
+	    autoCapitalize: MUST_USE_ATTRIBUTE,
+	    autoCorrect: MUST_USE_ATTRIBUTE,
 	    // autoSave allows WebKit/Blink to persist values of input fields on page reloads
 	    autoSave: null,
 	    // color is for Safari mask-icon link
@@ -10598,9 +10602,7 @@
 	    httpEquiv: 'http-equiv'
 	  },
 	  DOMPropertyNames: {
-	    autoCapitalize: 'autocapitalize',
 	    autoComplete: 'autocomplete',
-	    autoCorrect: 'autocorrect',
 	    autoFocus: 'autofocus',
 	    autoPlay: 'autoplay',
 	    autoSave: 'autosave',
@@ -13679,7 +13681,7 @@
 	    var value = LinkedValueUtils.getValue(props);
 	
 	    if (value != null) {
-	      updateOptions(this, props, value);
+	      updateOptions(this, Boolean(props.multiple), value);
 	    }
 	  }
 	}
@@ -16714,11 +16716,14 @@
 	 * @typechecks
 	 */
 	
+	/* eslint-disable fb-www/typeof-undefined */
+	
 	/**
 	 * Same as document.activeElement but wraps in a try-catch block. In IE it is
 	 * not safe to call document.activeElement if there is nothing focused.
 	 *
-	 * The activeElement will be null only if the document or document body is not yet defined.
+	 * The activeElement will be null only if the document or document body is not
+	 * yet defined.
 	 */
 	'use strict';
 	
@@ -16726,7 +16731,6 @@
 	  if (typeof document === 'undefined') {
 	    return null;
 	  }
-	
 	  try {
 	    return document.activeElement || document.body;
 	  } catch (e) {
@@ -18466,7 +18470,9 @@
 	  'setValueForProperty': 'update attribute',
 	  'setValueForAttribute': 'update attribute',
 	  'deleteValueForProperty': 'remove attribute',
-	  'dangerouslyReplaceNodeWithMarkupByID': 'replace'
+	  'setValueForStyles': 'update styles',
+	  'replaceNodeWithMarkup': 'replace',
+	  'updateTextContent': 'set textContent'
 	};
 	
 	function getTotalTime(measurements) {
@@ -18658,18 +18664,23 @@
 	'use strict';
 	
 	var performance = __webpack_require__(148);
-	var curPerformance = performance;
+	
+	var performanceNow;
 	
 	/**
 	 * Detect if we can use `window.performance.now()` and gracefully fallback to
 	 * `Date.now()` if it doesn't exist. We need to support Firefox < 15 for now
 	 * because of Facebook's testing infrastructure.
 	 */
-	if (!curPerformance || !curPerformance.now) {
-	  curPerformance = Date;
+	if (performance.now) {
+	  performanceNow = function () {
+	    return performance.now();
+	  };
+	} else {
+	  performanceNow = function () {
+	    return Date.now();
+	  };
 	}
-	
-	var performanceNow = curPerformance.now.bind(curPerformance);
 	
 	module.exports = performanceNow;
 
@@ -18718,7 +18729,7 @@
 	
 	'use strict';
 	
-	module.exports = '0.14.2';
+	module.exports = '0.14.6';
 
 /***/ },
 /* 150 */
@@ -19873,56 +19884,95 @@
 
 	'use strict';
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	var _react = __webpack_require__(4);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _classnames = __webpack_require__(166);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
 	var Step = _react2['default'].createClass({
 	  displayName: 'Step',
 	
+	  propTypes: {
+	    className: _react2['default'].PropTypes.string,
+	    prefixCls: _react2['default'].PropTypes.string,
+	    style: _react2['default'].PropTypes.object,
+	    tailWidth: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.number, _react2['default'].PropTypes.string]),
+	    status: _react2['default'].PropTypes.string,
+	    iconPrefix: _react2['default'].PropTypes.string,
+	    icon: _react2['default'].PropTypes.string,
+	    maxDescriptionWidth: _react2['default'].PropTypes.number,
+	    stepLast: _react2['default'].PropTypes.bool,
+	    stepNumber: _react2['default'].PropTypes.string,
+	    description: _react2['default'].PropTypes.any,
+	    title: _react2['default'].PropTypes.any
+	  },
 	  render: function render() {
-	    var props = this.props;
-	    var status = props.status || 'wait';
-	    var prefixCls = props.prefixCls;
-	    var iconPrefix = props.iconPrefix;
-	    var maxWidth = props.maxDescriptionWidth;
-	    var iconName = props.icon ? props.icon : 'check';
-	    var icon = !props.icon && status !== 'finish' ? _react2['default'].createElement(
+	    var _classNames, _classNames2;
+	
+	    var _props = this.props;
+	    var className = _props.className;
+	    var prefixCls = _props.prefixCls;
+	    var style = _props.style;
+	    var tailWidth = _props.tailWidth;
+	    var _props$status = _props.status;
+	    var status = _props$status === undefined ? 'wait' : _props$status;
+	    var iconPrefix = _props.iconPrefix;
+	    var icon = _props.icon;
+	    var maxDescriptionWidth = _props.maxDescriptionWidth;
+	    var stepLast = _props.stepLast;
+	    var stepNumber = _props.stepNumber;
+	    var description = _props.description;
+	    var title = _props.title;
+	
+	    var restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'maxDescriptionWidth', 'stepLast', 'stepNumber', 'description', 'title']);
+	
+	    var iconClassName = (0, _classnames2['default'])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + (icon || 'check'), true), _classNames));
+	    var iconNode = icon || status === 'finish' ? _react2['default'].createElement('span', { className: iconClassName }) : _react2['default'].createElement(
 	      'span',
 	      { className: prefixCls + '-icon' },
-	      props.stepNumber
-	    ) : _react2['default'].createElement('span', { className: prefixCls + '-icon ' + iconPrefix + 'icon ' + iconPrefix + 'icon-' + iconName });
+	      stepNumber
+	    );
+	    var classString = (0, _classnames2['default'])((_classNames2 = {}, _defineProperty(_classNames2, className, !!className), _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _classNames2));
 	    return _react2['default'].createElement(
 	      'div',
-	      { className: prefixCls + '-item ' + (props.stepLast ? prefixCls + '-item-last ' : '') + prefixCls + '-status-' + status + (props.icon ? ' ' + prefixCls + '-custom' : ''), style: { width: props.tailWidth } },
-	      !props.stepLast ? _react2['default'].createElement(
+	      _extends({}, restProps, { className: classString, style: { width: tailWidth } }),
+	      stepLast ? '' : _react2['default'].createElement(
 	        'div',
 	        { className: prefixCls + '-tail' },
 	        _react2['default'].createElement('i', null)
-	      ) : '',
+	      ),
 	      _react2['default'].createElement(
 	        'div',
 	        { className: prefixCls + '-head' },
 	        _react2['default'].createElement(
 	          'div',
 	          { className: prefixCls + '-head-inner' },
-	          icon
+	          iconNode
 	        )
 	      ),
 	      _react2['default'].createElement(
 	        'div',
-	        { className: prefixCls + '-main', style: { maxWidth: maxWidth } },
+	        { className: prefixCls + '-main', style: { maxWidth: maxDescriptionWidth } },
 	        _react2['default'].createElement(
 	          'div',
 	          { className: prefixCls + '-title' },
-	          props.title
+	          title
 	        ),
-	        props.description ? _react2['default'].createElement(
+	        description ? _react2['default'].createElement(
 	          'div',
 	          { className: prefixCls + '-description' },
-	          props.description
+	          description
 	        ) : ''
 	      )
 	    );
@@ -19930,6 +19980,60 @@
 	});
 	
 	module.exports = Step;
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+	
+	(function () {
+		'use strict';
+	
+		var hasOwn = {}.hasOwnProperty;
+	
+		function classNames () {
+			var classes = [];
+	
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+	
+				var argType = typeof arg;
+	
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+	
+			return classes.join(' ');
+		}
+	
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
 
 /***/ }
 /******/ ]);
