@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
 const Steps = React.createClass({
   propTypes: {
     direction: React.PropTypes.string,
@@ -117,9 +116,9 @@ const Steps = React.createClass({
             stepNumber: (idx + 1).toString(),
             stepLast: idx === len,
             tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
-            prefixCls: prefixCls,
-            iconPrefix: iconPrefix,
-            maxDescriptionWidth: maxDescriptionWidth,
+            prefixCls,
+            iconPrefix,
+            maxDescriptionWidth,
           };
           if (!ele.props.status) {
             if (idx === props.current) {
