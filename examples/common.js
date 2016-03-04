@@ -9362,6 +9362,7 @@
 	 */
 	var EventInterface = {
 	  type: null,
+	  target: null,
 	  // currentTarget is set when dispatching; no use in copying it here
 	  currentTarget: emptyFunction.thatReturnsNull,
 	  eventPhase: null,
@@ -9395,8 +9396,6 @@
 	  this.dispatchConfig = dispatchConfig;
 	  this.dispatchMarker = dispatchMarker;
 	  this.nativeEvent = nativeEvent;
-	  this.target = nativeEventTarget;
-	  this.currentTarget = nativeEventTarget;
 	
 	  var Interface = this.constructor.Interface;
 	  for (var propName in Interface) {
@@ -9407,7 +9406,11 @@
 	    if (normalize) {
 	      this[propName] = normalize(nativeEvent);
 	    } else {
-	      this[propName] = nativeEvent[propName];
+	      if (propName === 'target') {
+	        this.target = nativeEventTarget;
+	      } else {
+	        this[propName] = nativeEvent[propName];
+	      }
 	    }
 	  }
 	
@@ -13256,7 +13259,10 @@
 	      }
 	    });
 	
-	    nativeProps.children = content;
+	    if (content) {
+	      nativeProps.children = content;
+	    }
+	
 	    return nativeProps;
 	  }
 	
@@ -18729,7 +18735,7 @@
 	
 	'use strict';
 	
-	module.exports = '0.14.6';
+	module.exports = '0.14.7';
 
 /***/ },
 /* 150 */
@@ -19764,6 +19770,9 @@
 	      return;
 	    }
 	    var $dom = _reactDom2['default'].findDOMNode(this);
+	    if ($dom.children.length === 0) {
+	      return;
+	    }
 	    var len = $dom.children.length - 1;
 	    this._itemsWidth = new Array(len + 1);
 	
@@ -19911,7 +19920,7 @@
 	    status: _react2['default'].PropTypes.string,
 	    iconPrefix: _react2['default'].PropTypes.string,
 	    icon: _react2['default'].PropTypes.string,
-	    maxDescriptionWidth: _react2['default'].PropTypes.number,
+	    maxDescriptionWidth: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.number, _react2['default'].PropTypes.string]),
 	    stepLast: _react2['default'].PropTypes.bool,
 	    stepNumber: _react2['default'].PropTypes.string,
 	    description: _react2['default'].PropTypes.any,
