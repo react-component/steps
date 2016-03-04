@@ -26,6 +26,9 @@ const Steps = React.createClass({
       return;
     }
     const $dom = ReactDOM.findDOMNode(this);
+    if ($dom.children.length === 0) {
+      return;
+    }
     const len = $dom.children.length - 1;
     this._itemsWidth = new Array(len + 1);
 
