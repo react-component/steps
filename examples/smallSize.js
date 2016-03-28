@@ -1,38 +1,36 @@
-'use strict';
-
 require('rc-steps/assets/index.less');
 require('rc-steps/assets/iconfont.less');
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Steps = require('rc-steps');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const Steps = require('rc-steps');
 
+const container = document.getElementById('__react-content');
 
-var container = document.getElementById('__react-content');
-
-
-var steps = [{
+const steps = [{
   status: 'finish',
-  title: '已完成'
+  title: '已完成',
 }, {
   status: 'process',
-  title: '进行中'
+  title: '进行中',
 }, {
   status: 'wait',
-  title: '待运行'
+  title: '待运行',
 }, {
   status: 'wait',
-  title: '待运行'
-}].map(function(s, i) {
-    return (<Steps.Step
-        key={i}
-        status={s.status}
-        title={s.title}
-        ></Steps.Step>
-    );
-  });
+  title: '待运行',
+}].map((s, i) => {
+  return (
+    <Steps.Step
+      key={i}
+      status={s.status}
+      title={s.title}
+    />
+  );
+});
 
 ReactDOM.render(
   <Steps size="small">
     {steps}
-  </Steps>, container);
+  </Steps>
+, container);

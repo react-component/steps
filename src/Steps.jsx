@@ -109,31 +109,34 @@ const Steps = React.createClass({
     const len = children.length - 1;
     const iws = this._itemsWidth;
     let clsName = prefixCls;
-    clsName += props.size === 'small' ? ' ' + prefixCls + '-small' : '';
-    clsName += props.direction === 'vertical' ? ' ' + prefixCls + '-vertical' : '';
+    clsName += props.size === 'small' ? ` ${prefixCls}-small` : '';
+    clsName += props.direction === 'vertical' ? ` ${prefixCls}-vertical` : '';
 
     return (
       <div className={clsName}>
-        {React.Children.map(children, (ele, idx) => {
-          const np = {
-            stepNumber: (idx + 1).toString(),
-            stepLast: idx === len,
-            tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
-            prefixCls,
-            iconPrefix,
-            maxDescriptionWidth,
-          };
-          if (!ele.props.status) {
-            if (idx === props.current) {
-              np.status = 'process';
-            } else if (idx < props.current) {
-              np.status = 'finish';
-            } else {
-              np.status = 'wait';
+
+        {
+          React.Children.map(children, (ele, idx) => {
+            const np = {
+              stepNumber: (idx + 1).toString(),
+              stepLast: idx === len,
+              tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
+              prefixCls,
+              iconPrefix,
+              maxDescriptionWidth,
+            };
+            if (!ele.props.status) {
+              if (idx === props.current) {
+                np.status = 'process';
+              } else if (idx < props.current) {
+                np.status = 'finish';
+              } else {
+                np.status = 'wait';
+              }
             }
-          }
-          return React.cloneElement(ele, np);
-        }, this)}
+            return React.cloneElement(ele, np);
+          }, this)
+        }
       </div>
     );
   },
