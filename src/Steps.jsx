@@ -1,26 +1,20 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 
-const Steps = React.createClass({
-  propTypes: {
-    direction: React.PropTypes.string,
-    children: React.PropTypes.any,
-  },
-  getDefaultProps() {
-    return {
-      prefixCls: 'rc-steps',
-      iconPrefix: 'rc',
-      maxDescriptionWidth: 120,
-      direction: '',
-      current: 0,
-    };
-  },
-  getInitialState() {
-    return {
+export default class Steps extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this._previousStepsWidth = 0;
+    this._itemsWidth = [];
+
+    this.state = {
       init: false,
       tailWidth: 0,
     };
-  },
+  }
+
   componentDidMount() {
     if (this.props.direction === 'vertical') {
       return;
@@ -61,10 +55,12 @@ const Steps = React.createClass({
     } else {
       window.addEventListener('resize', this._resize);
     }
-  },
+  }
+
   componentDidUpdate() {
     this._resize();
-  },
+  }
+
   componentWillUnmount() {
     if (this.props.direction === 'vertical') {
       return;
@@ -74,9 +70,8 @@ const Steps = React.createClass({
     } else {
       window.removeEventListener('resize', this._resize);
     }
-  },
-  _previousStepsWidth: 0,
-  _itemsWidth: [],
+  }
+
   _resize() {
     const w = Math.floor(ReactDOM.findDOMNode(this).offsetWidth);
     if (this._previousStepsWidth === w) {
@@ -84,7 +79,8 @@ const Steps = React.createClass({
     }
     this._previousStepsWidth = w;
     this._update();
-  },
+  }
+
   _update() {
     const len = this.props.children.length - 1;
     let tw = 0;
@@ -99,21 +95,21 @@ const Steps = React.createClass({
       init: true,
       tailWidth: dw,
     });
-  },
+  }
+
   render() {
     const props = this.props;
-    const prefixCls = props.prefixCls;
-    const children = props.children;
-    const maxDescriptionWidth = props.maxDescriptionWidth;
-    const iconPrefix = props.iconPrefix;
+    const { prefixCls, children, maxDescriptionWidth, iconPrefix } = this.props;
     const len = children.length - 1;
     const iws = this._itemsWidth;
-    let clsName = prefixCls;
-    clsName += props.size === 'small' ? ` ${prefixCls}-small` : '';
-    clsName += props.direction === 'vertical' ? ` ${prefixCls}-vertical` : '';
+    const className = classNames({
+      [prefixCls]: prefixCls,
+      [`${prefixCls}-small`]: props.size === 'small',
+      [`${prefixCls}-vertical`]: props.direction === 'vertical',
+    });
 
     return (
-      <div className={clsName}>
+      <div className={className}>
 
         {
           React.Children.map(children, (ele, idx) => {
@@ -139,7 +135,21 @@ const Steps = React.createClass({
         }
       </div>
     );
-  },
-});
+  }
+}
 
-module.exports = Steps;
+Steps.propTypes = {
+  prefixCls: PropTypes.string,
+  iconPrefix: PropTypes.string,
+  direction: PropTypes.string,
+  maxDescriptionWidth: PropTypes.number,
+  children: PropTypes.any,
+};
+
+Steps.defaultProps = {
+  prefixCls: 'rc-steps',
+  iconPrefix: 'rc',
+  direction: '',
+  maxDescriptionWidth: 120,
+  current: 0,
+};
