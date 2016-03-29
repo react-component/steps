@@ -32,21 +32,19 @@
   },
   "scripts": {
     "build": "rc-tools run build",
-    "less": "rc-tools run less",
     "gh-pages": "rc-tools run gh-pages",
-    "history": "rc-tools run history",
-    "start": "rc-server",
-    "publish": "rc-tools run tag",
+    "start": "rc-tools run server",
     "pub": "rc-tools run pub",
     "lint": "rc-tools run lint",
-    "saucelabs": "node --harmony node_modules/.bin/rc-tools run saucelabs",
-    "browser-test": "node --harmony node_modules/.bin/rc-tools run browser-test",
-    "browser-test-cover": "node --harmony node_modules/.bin/rc-tools run browser-test-cover"
+    "karma": "rc-tools run karma",
+    "saucelabs": "rc-tools run saucelabs",
+    "test": "rc-tools run test",
+    "chrome-test": "rc-tools run chrome-test",
+    "coverage": "rc-tools run coverage"
   },
   "devDependencies": {
     "expect.js": "~0.3.x",
     "pre-commit": "1.x",
-    "rc-server": "^3.3.5",
     "rc-tools": "^5.3.3",
     "react": "~0.14.0",
     "react-dom": "~0.14.0"
