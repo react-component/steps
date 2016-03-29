@@ -39,7 +39,8 @@ webpackJsonp([2],{
 	    key: i,
 	    status: s.status,
 	    title: s.title,
-	    description: s.description });
+	    description: s.description
+	  });
 	});
 	
 	ReactDOM.render(React.createElement(

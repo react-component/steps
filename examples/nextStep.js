@@ -22,7 +22,8 @@ webpackJsonp([1],{
 	var Steps = __webpack_require__(162);
 	
 	var container = document.getElementById('__react-content');
-	var steps = (function generateRandomSteps() {
+	
+	function generateRandomSteps() {
 	  var n = Math.floor(Math.random() * 3) + 3;
 	  var arr = [];
 	  for (var i = 0; i < n; i++) {
@@ -31,11 +32,11 @@ webpackJsonp([1],{
 	    });
 	  }
 	  return arr;
-	})();
+	}
+	var steps = generateRandomSteps();
 	
 	var MyForm = React.createClass({
 	  displayName: 'MyForm',
-	
 	  getInitialState: function getInitialState() {
 	    return {
 	      currentStep: Math.floor(Math.random() * steps.length)

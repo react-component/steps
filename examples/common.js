@@ -19721,7 +19721,7 @@
 	'use strict';
 	
 	var Steps = __webpack_require__(164);
-	Steps.Step = __webpack_require__(165);
+	Steps.Step = __webpack_require__(166);
 	
 	module.exports = Steps;
 
@@ -19731,7 +19731,11 @@
 
 	'use strict';
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(4);
 	
@@ -19741,257 +19745,196 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var Steps = _react2['default'].createClass({
-	  displayName: 'Steps',
-	
-	  propTypes: {
-	    direction: _react2['default'].PropTypes.string,
-	    children: _react2['default'].PropTypes.any
-	  },
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      prefixCls: 'rc-steps',
-	      iconPrefix: 'rc',
-	      maxDescriptionWidth: 120,
-	      direction: '',
-	      current: 0
-	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      init: false,
-	      tailWidth: 0
-	    };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    var _this = this;
-	
-	    if (this.props.direction === 'vertical') {
-	      return;
-	    }
-	    var $dom = _reactDom2['default'].findDOMNode(this);
-	    if ($dom.children.length === 0) {
-	      return;
-	    }
-	    var len = $dom.children.length - 1;
-	    this._itemsWidth = new Array(len + 1);
-	
-	    var i = undefined;
-	    for (i = 0; i <= len - 1; i++) {
-	      var $item = $dom.children[i].children;
-	      this._itemsWidth[i] = Math.ceil($item[0].offsetWidth + $item[1].children[0].offsetWidth);
-	    }
-	    this._itemsWidth[i] = Math.ceil($dom.children[len].offsetWidth);
-	    this._previousStepsWidth = Math.floor(_reactDom2['default'].findDOMNode(this).offsetWidth);
-	    this._update();
-	
-	    /*
-	     * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
-	     * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
-	     */
-	    $dom.children[len].style.position = 'absolute';
-	
-	    /*
-	     * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
-	     * componentDidMount时滚动条还不一定出现了，这时候获取的宽度可能不是最终宽度。
-	     * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，_resize里面会判断要不要更新。
-	     */
-	    setTimeout(function () {
-	      _this._resize();
-	    });
-	
-	    if (window.attachEvent) {
-	      window.attachEvent('onresize', this._resize);
-	    } else {
-	      window.addEventListener('resize', this._resize);
-	    }
-	  },
-	  componentDidUpdate: function componentDidUpdate() {
-	    this._resize();
-	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    if (this.props.direction === 'vertical') {
-	      return;
-	    }
-	    if (window.attachEvent) {
-	      window.detachEvent('onresize', this._resize);
-	    } else {
-	      window.removeEventListener('resize', this._resize);
-	    }
-	  },
-	  _previousStepsWidth: 0,
-	  _itemsWidth: [],
-	  _resize: function _resize() {
-	    var w = Math.floor(_reactDom2['default'].findDOMNode(this).offsetWidth);
-	    if (this._previousStepsWidth === w) {
-	      return;
-	    }
-	    this._previousStepsWidth = w;
-	    this._update();
-	  },
-	  _update: function _update() {
-	    var len = this.props.children.length - 1;
-	    var tw = 0;
-	    this._itemsWidth.forEach(function (w) {
-	      tw += w;
-	    });
-	    var dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
-	    if (dw <= 0) {
-	      return;
-	    }
-	    this.setState({
-	      init: true,
-	      tailWidth: dw
-	    });
-	  },
-	  render: function render() {
-	    var _this2 = this;
-	
-	    var props = this.props;
-	    var prefixCls = props.prefixCls;
-	    var children = props.children;
-	    var maxDescriptionWidth = props.maxDescriptionWidth;
-	    var iconPrefix = props.iconPrefix;
-	    var len = children.length - 1;
-	    var iws = this._itemsWidth;
-	    var clsName = prefixCls;
-	    clsName += props.size === 'small' ? ' ' + prefixCls + '-small' : '';
-	    clsName += props.direction === 'vertical' ? ' ' + prefixCls + '-vertical' : '';
-	
-	    return _react2['default'].createElement(
-	      'div',
-	      { className: clsName },
-	      _react2['default'].Children.map(children, function (ele, idx) {
-	        var np = {
-	          stepNumber: (idx + 1).toString(),
-	          stepLast: idx === len,
-	          tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + _this2.state.tailWidth,
-	          prefixCls: prefixCls,
-	          iconPrefix: iconPrefix,
-	          maxDescriptionWidth: maxDescriptionWidth
-	        };
-	        if (!ele.props.status) {
-	          if (idx === props.current) {
-	            np.status = 'process';
-	          } else if (idx < props.current) {
-	            np.status = 'finish';
-	          } else {
-	            np.status = 'wait';
-	          }
-	        }
-	        return _react2['default'].cloneElement(ele, np);
-	      }, this)
-	    );
-	  }
-	});
-	
-	module.exports = Steps;
-
-/***/ },
-/* 165 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	var _react = __webpack_require__(4);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _classnames = __webpack_require__(166);
+	var _classnames = __webpack_require__(165);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var Step = _react2['default'].createClass({
-	  displayName: 'Step',
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
-	  propTypes: {
-	    className: _react2['default'].PropTypes.string,
-	    prefixCls: _react2['default'].PropTypes.string,
-	    style: _react2['default'].PropTypes.object,
-	    tailWidth: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.number, _react2['default'].PropTypes.string]),
-	    status: _react2['default'].PropTypes.string,
-	    iconPrefix: _react2['default'].PropTypes.string,
-	    icon: _react2['default'].PropTypes.string,
-	    maxDescriptionWidth: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.number, _react2['default'].PropTypes.string]),
-	    stepLast: _react2['default'].PropTypes.bool,
-	    stepNumber: _react2['default'].PropTypes.string,
-	    description: _react2['default'].PropTypes.any,
-	    title: _react2['default'].PropTypes.any
-	  },
-	  render: function render() {
-	    var _classNames, _classNames2;
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
-	    var _props = this.props;
-	    var className = _props.className;
-	    var prefixCls = _props.prefixCls;
-	    var style = _props.style;
-	    var tailWidth = _props.tailWidth;
-	    var _props$status = _props.status;
-	    var status = _props$status === undefined ? 'wait' : _props$status;
-	    var iconPrefix = _props.iconPrefix;
-	    var icon = _props.icon;
-	    var maxDescriptionWidth = _props.maxDescriptionWidth;
-	    var stepLast = _props.stepLast;
-	    var stepNumber = _props.stepNumber;
-	    var description = _props.description;
-	    var title = _props.title;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	    var restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'maxDescriptionWidth', 'stepLast', 'stepNumber', 'description', 'title']);
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	    var iconClassName = (0, _classnames2['default'])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + (icon || 'check'), true), _classNames));
-	    var iconNode = icon || status === 'finish' ? _react2['default'].createElement('span', { className: iconClassName }) : _react2['default'].createElement(
-	      'span',
-	      { className: prefixCls + '-icon' },
-	      stepNumber
-	    );
-	    var classString = (0, _classnames2['default'])((_classNames2 = {}, _defineProperty(_classNames2, className, !!className), _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _classNames2));
-	    return _react2['default'].createElement(
-	      'div',
-	      _extends({}, restProps, { className: classString, style: { width: tailWidth } }),
-	      stepLast ? '' : _react2['default'].createElement(
-	        'div',
-	        { className: prefixCls + '-tail' },
-	        _react2['default'].createElement('i', null)
-	      ),
-	      _react2['default'].createElement(
-	        'div',
-	        { className: prefixCls + '-head' },
-	        _react2['default'].createElement(
-	          'div',
-	          { className: prefixCls + '-head-inner' },
-	          iconNode
-	        )
-	      ),
-	      _react2['default'].createElement(
-	        'div',
-	        { className: prefixCls + '-main', style: { maxWidth: maxDescriptionWidth } },
-	        _react2['default'].createElement(
-	          'div',
-	          { className: prefixCls + '-title' },
-	          title
-	        ),
-	        description ? _react2['default'].createElement(
-	          'div',
-	          { className: prefixCls + '-description' },
-	          description
-	        ) : ''
-	      )
-	    );
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Steps = function (_React$Component) {
+	  _inherits(Steps, _React$Component);
+	
+	  function Steps(props) {
+	    _classCallCheck(this, Steps);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Steps).call(this, props));
+	
+	    _this._previousStepsWidth = 0;
+	    _this._itemsWidth = [];
+	
+	    _this.state = {
+	      init: false,
+	      tailWidth: 0
+	    };
+	    return _this;
 	  }
-	});
 	
-	module.exports = Step;
+	  _createClass(Steps, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+	
+	      if (this.props.direction === 'vertical') {
+	        return;
+	      }
+	      var $dom = _reactDom2["default"].findDOMNode(this);
+	      if ($dom.children.length === 0) {
+	        return;
+	      }
+	      var len = $dom.children.length - 1;
+	      this._itemsWidth = new Array(len + 1);
+	
+	      var i = void 0;
+	      for (i = 0; i <= len - 1; i++) {
+	        var $item = $dom.children[i].children;
+	        this._itemsWidth[i] = Math.ceil($item[0].offsetWidth + $item[1].children[0].offsetWidth);
+	      }
+	      this._itemsWidth[i] = Math.ceil($dom.children[len].offsetWidth);
+	      this._previousStepsWidth = Math.floor(_reactDom2["default"].findDOMNode(this).offsetWidth);
+	      this._update();
+	
+	      /*
+	       * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
+	       * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
+	       */
+	      $dom.children[len].style.position = 'absolute';
+	
+	      /*
+	       * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
+	       * componentDidMount时滚动条还不一定出现了，这时候获取的宽度可能不是最终宽度。
+	       * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，_resize里面会判断要不要更新。
+	       */
+	      setTimeout(function () {
+	        _this2._resize();
+	      });
+	
+	      if (window.attachEvent) {
+	        window.attachEvent('onresize', this._resize);
+	      } else {
+	        window.addEventListener('resize', this._resize);
+	      }
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      this._resize();
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      if (this.props.direction === 'vertical') {
+	        return;
+	      }
+	      if (window.attachEvent) {
+	        window.detachEvent('onresize', this._resize);
+	      } else {
+	        window.removeEventListener('resize', this._resize);
+	      }
+	    }
+	  }, {
+	    key: '_resize',
+	    value: function _resize() {
+	      var w = Math.floor(_reactDom2["default"].findDOMNode(this).offsetWidth);
+	      if (this._previousStepsWidth === w) {
+	        return;
+	      }
+	      this._previousStepsWidth = w;
+	      this._update();
+	    }
+	  }, {
+	    key: '_update',
+	    value: function _update() {
+	      var len = this.props.children.length - 1;
+	      var tw = 0;
+	      this._itemsWidth.forEach(function (w) {
+	        tw += w;
+	      });
+	      var dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
+	      if (dw <= 0) {
+	        return;
+	      }
+	      this.setState({
+	        init: true,
+	        tailWidth: dw
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _classNames,
+	          _this3 = this;
+	
+	      var props = this.props;
+	      var _props = this.props;
+	      var prefixCls = _props.prefixCls;
+	      var children = _props.children;
+	      var maxDescriptionWidth = _props.maxDescriptionWidth;
+	      var iconPrefix = _props.iconPrefix;
+	
+	      var len = children.length - 1;
+	      var iws = this._itemsWidth;
+	      var className = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls, prefixCls), _defineProperty(_classNames, prefixCls + '-small', props.size === 'small'), _defineProperty(_classNames, prefixCls + '-vertical', props.direction === 'vertical'), _classNames));
+	
+	      return _react2["default"].createElement(
+	        'div',
+	        { className: className },
+	        _react2["default"].Children.map(children, function (ele, idx) {
+	          var np = {
+	            stepNumber: (idx + 1).toString(),
+	            stepLast: idx === len,
+	            tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + _this3.state.tailWidth,
+	            prefixCls: prefixCls,
+	            iconPrefix: iconPrefix,
+	            maxDescriptionWidth: maxDescriptionWidth
+	          };
+	          if (!ele.props.status) {
+	            if (idx === props.current) {
+	              np.status = 'process';
+	            } else if (idx < props.current) {
+	              np.status = 'finish';
+	            } else {
+	              np.status = 'wait';
+	            }
+	          }
+	          return _react2["default"].cloneElement(ele, np);
+	        }, this)
+	      );
+	    }
+	  }]);
+	
+	  return Steps;
+	}(_react2["default"].Component);
+	
+	exports["default"] = Steps;
+	
+	
+	Steps.propTypes = {
+	  prefixCls: _react.PropTypes.string,
+	  iconPrefix: _react.PropTypes.string,
+	  direction: _react.PropTypes.string,
+	  maxDescriptionWidth: _react.PropTypes.number,
+	  children: _react.PropTypes.any
+	};
+	
+	Steps.defaultProps = {
+	  prefixCls: 'rc-steps',
+	  iconPrefix: 'rc',
+	  direction: '',
+	  maxDescriptionWidth: 120,
+	  current: 0
+	};
+	module.exports = exports['default'];
 
 /***/ },
-/* 166 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -20043,6 +19986,105 @@
 		}
 	}());
 
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(165);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function Step(props) {
+	  var _classNames, _classNames2;
+	
+	  var className = props.className;
+	  var prefixCls = props.prefixCls;
+	  var style = props.style;
+	  var tailWidth = props.tailWidth;
+	  var _props$status = props.status;
+	  var status = _props$status === undefined ? 'wait' : _props$status;
+	  var iconPrefix = props.iconPrefix;
+	  var icon = props.icon;
+	  var maxDescriptionWidth = props.maxDescriptionWidth;
+	  var stepLast = props.stepLast;
+	  var stepNumber = props.stepNumber;
+	  var description = props.description;
+	  var title = props.title;
+	
+	  var restProps = _objectWithoutProperties(props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'maxDescriptionWidth', 'stepLast', 'stepNumber', 'description', 'title']);
+	
+	  var iconClassName = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + (icon || 'check'), true), _classNames));
+	  var iconNode = icon || status === 'finish' ? _react2["default"].createElement('span', { className: iconClassName }) : _react2["default"].createElement(
+	    'span',
+	    { className: prefixCls + '-icon' },
+	    stepNumber
+	  );
+	  var classString = (0, _classnames2["default"])((_classNames2 = {}, _defineProperty(_classNames2, className, !!className), _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _classNames2));
+	  return _react2["default"].createElement(
+	    'div',
+	    _extends({}, restProps, { className: classString, style: { width: tailWidth } }),
+	    stepLast ? '' : _react2["default"].createElement(
+	      'div',
+	      { className: prefixCls + '-tail' },
+	      _react2["default"].createElement('i', null)
+	    ),
+	    _react2["default"].createElement(
+	      'div',
+	      { className: prefixCls + '-head' },
+	      _react2["default"].createElement(
+	        'div',
+	        { className: prefixCls + '-head-inner' },
+	        iconNode
+	      )
+	    ),
+	    _react2["default"].createElement(
+	      'div',
+	      { className: prefixCls + '-main', style: { maxWidth: maxDescriptionWidth } },
+	      _react2["default"].createElement(
+	        'div',
+	        { className: prefixCls + '-title' },
+	        title
+	      ),
+	      description ? _react2["default"].createElement(
+	        'div',
+	        { className: prefixCls + '-description' },
+	        description
+	      ) : ''
+	    )
+	  );
+	}
+	
+	Step.propTypes = {
+	  className: _react.PropTypes.string,
+	  prefixCls: _react.PropTypes.string,
+	  style: _react.PropTypes.object,
+	  tailWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+	  status: _react.PropTypes.string,
+	  iconPrefix: _react.PropTypes.string,
+	  icon: _react.PropTypes.string,
+	  maxDescriptionWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+	  stepLast: _react.PropTypes.bool,
+	  stepNumber: _react.PropTypes.string,
+	  description: _react.PropTypes.any,
+	  title: _react.PropTypes.any
+	};
+	
+	module.exports = Step;
 
 /***/ }
 /******/ ]);

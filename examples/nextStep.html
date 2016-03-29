@@ -7,7 +7,7 @@
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" rel="stylesheet"/>
+  <link href="https://a.alipayobjects.com/normalize.css/3.0.1/normalize.css" rel="stylesheet"/>
   <style>
     .highlight pre {
       padding: .8em 1em;
@@ -251,85 +251,95 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   <!--[if lt IE 9]>
   <script src="https://a.alipayobjects.com/??es5-shim/4.0.5/es5-shim.js,es5-shim/4.0.5/es5-sham.js,html5shiv/3.7.2/src/html5shiv.js"></script>
   <![endif]-->
-  <link rel="stylesheet" href="nextStep.css" />
+  
+  <link rel="stylesheet" href="common.css" /><link rel="stylesheet" href="nextStep.css" />
 </head>
 
 <body>
-<div class="container">
-  <div class="header">
-    <h1>rc-steps@1.4.4</h1>
+  <div class="container">
+    <div class="header">
+      <h1>rc-steps@1.4.4</h1>
 
-    <p>steps ui component for react</p>
-  </div>
-  <div class="example" id="__react-content"></div>
-  <script src="common.js?nowrap"></script>
-  <script src="nextStep.js?nowrap"></script>
-  <div class="highlight"><pre><code language="js"><span class="hljs-pi">'use strict'</span>;
+      <p>steps ui component for react</p>
+    </div>
+    <div class="example" id="__react-content"></div>
 
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps/assets/index.css'</span>);
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps/assets/iconfont.css'</span>);
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'./nextStep.css'</span>);
+    <div class="highlight"><pre><code language="undefined">require('rc-steps/assets/index.css');
+require('rc-steps/assets/iconfont.css');
+require('./nextStep.css');
 
-<span class="hljs-keyword">var</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
-<span class="hljs-keyword">var</span> ReactDOM = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react-dom'</span>);
-<span class="hljs-keyword">var</span> Steps = <span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps'</span>);
+const React = require('react');
+const ReactDOM = require('react-dom');
+const Steps = require('rc-steps');
 
+const container = document.getElementById('__react-content');
 
-<span class="hljs-keyword">var</span> container = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'__react-content'</span>);
-<span class="hljs-keyword">var</span> steps = (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateRandomSteps</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-keyword">var</span> n = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3</span>) + <span class="hljs-number">3</span>;
-  <span class="hljs-keyword">var</span> arr = [];
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; n; i++ ) {
+function generateRandomSteps() {
+  const n = Math.floor(Math.random() * 3) + 3;
+  const arr = [];
+  for (let i = 0; i &lt; n; i++) {
     arr.push({
-      title: <span class="hljs-string">'步骤'</span> + (i+<span class="hljs-number">1</span>)
+      title: `步骤${(i + 1)}`,
     });
   }
-  <span class="hljs-keyword">return</span> arr;
-})();
+  return arr;
+}
+const steps = generateRandomSteps();
 
-<span class="hljs-keyword">var</span> MyForm = React.createClass({
+const MyForm = React.createClass({
   getInitialState() {
-    <span class="hljs-keyword">return</span> {
-      currentStep: <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * steps.length)
-    }
+    return {
+      currentStep: Math.floor(Math.random() * steps.length),
+    };
   },
   nextStep() {
-    <span class="hljs-keyword">var</span> s = <span class="hljs-keyword">this</span>.state.currentStep + <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">if</span> (s === steps.length) {
-      s = <span class="hljs-number">0</span>;
+    let s = this.state.currentStep + 1;
+    if (s === steps.length) {
+      s = 0;
     }
-    <span class="hljs-keyword">this</span>.setState({
-      currentStep: s
+    this.setState({
+      currentStep: s,
     });
   },
   render() {
-    <span class="hljs-keyword">var</span> cs = <span class="hljs-keyword">this</span>.state.currentStep;
-    <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'my-step-form'</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>这个demo随机生成3~6个步骤，初始随机进行到其中一个步骤<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>当前正在执行第{cs + 1}步<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'my-step-container'</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span> <span class="hljs-attribute">current</span>=<span class="hljs-value">{cs}</span>&gt;</span>
-        {steps.map(function(s, i) {
-          return <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span>
-            <span class="hljs-attribute">key</span>=<span class="hljs-value">{i}</span>
-            <span class="hljs-attribute">title</span>=<span class="hljs-value">{s.title}</span>
-            &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Steps.Step</span>&gt;</span>
-        })}
-      <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    const cs = this.state.currentStep;
+    return (
+      &lt;form className="my-step-form"&gt;
+        &lt;div&gt;这个demo随机生成3~6个步骤，初始随机进行到其中一个步骤&lt;/div&gt;
+        &lt;div&gt;当前正在执行第{cs + 1}步&lt;/div&gt;
+        &lt;div className="my-step-container"&gt;
+          &lt;Steps current={cs}&gt;
+            {
+              steps.map((s, i) =&gt; {
+                return (
+                  &lt;Steps.Step
+                    key={i}
+                    title={s.title}
+                  /&gt;
+                );
+              })
+            }
+          &lt;/Steps&gt;
+        &lt;/div&gt;
 
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"button"</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.nextStep}</span>&gt;</span>下一步<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>)
-  }
+        &lt;div&gt;&lt;button type="button" onClick={this.nextStep}&gt;下一步&lt;/button&gt;&lt;/div&gt;
+      &lt;/form&gt;
+    );
+  },
 });
 
-ReactDOM.render(<span class="hljs-tag">&lt;<span class="hljs-title">MyForm</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">MyForm</span>&gt;</span>, container);
-</span></code></pre></div>
-</div>
-<a href="http://github.com/react-component/steps">
-  <img style="position: absolute; top: 0; right: 0; border: 0;"
-       src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
-       alt="Fork me on GitHub"
-       data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-</a>
+ReactDOM.render(&lt;MyForm /&gt;, container);
+</code></pre></div>
+  </div>
+  <a href="http://github.com/react-component/steps">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+         src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+         alt="Fork me on GitHub"
+         data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
+  
+  <script src="common.js?nowrap"></script>
+  <script src="nextStep.js?nowrap"></script>
 </body>
 
 </html>
