@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>nextStep.js - example - rc-steps@1.5.0</title>
+  <title>errorStep.js - example - rc-steps@1.5.0</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -252,7 +252,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   <script src="https://a.alipayobjects.com/??es5-shim/4.0.5/es5-shim.js,es5-shim/4.0.5/es5-sham.js,html5shiv/3.7.2/src/html5shiv.js"></script>
   <![endif]-->
   
-  <link rel="stylesheet" href="common.css" /><link rel="stylesheet" href="nextStep.css" />
+  <link rel="stylesheet" href="common.css" />
 </head>
 
 <body>
@@ -264,72 +264,44 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
     </div>
     <div class="example" id="__react-content"></div>
 
-    <div class="highlight"><pre><code language="undefined">require('rc-steps/assets/index.css');
-require('rc-steps/assets/iconfont.css');
-require('./nextStep.css');
+    <div class="highlight"><pre><code language="js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps/assets/index.css'</span>);
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps/assets/iconfont.css'</span>);
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Steps = require('rc-steps');
+<span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
+<span class="hljs-keyword">const</span> ReactDOM = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react-dom'</span>);
+<span class="hljs-keyword">const</span> Steps = <span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps'</span>);
 
-const container = document.getElementById('__react-content');
+<span class="hljs-keyword">const</span> container = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'__react-content'</span>);
 
-function generateRandomSteps() {
-  const n = Math.floor(Math.random() * 3) + 3;
-  const arr = [];
-  for (let i = 0; i &lt; n; i++) {
-    arr.push({
-      title: `步骤${(i + 1)}`,
-    });
-  }
-  return arr;
-}
-const steps = generateRandomSteps();
-
-const MyForm = React.createClass({
-  getInitialState() {
-    return {
-      currentStep: Math.floor(Math.random() * steps.length),
-    };
-  },
-  nextStep() {
-    let s = this.state.currentStep + 1;
-    if (s === steps.length) {
-      s = 0;
-    }
-    this.setState({
-      currentStep: s,
-    });
-  },
-  render() {
-    const cs = this.state.currentStep;
-    return (
-      &lt;form className="my-step-form"&gt;
-        &lt;div&gt;这个demo随机生成3~6个步骤，初始随机进行到其中一个步骤&lt;/div&gt;
-        &lt;div&gt;当前正在执行第{cs + 1}步&lt;/div&gt;
-        &lt;div className="my-step-container"&gt;
-          &lt;Steps current={cs}&gt;
-            {
-              steps.map((s, i) =&gt; {
-                return (
-                  &lt;Steps.Step
-                    key={i}
-                    title={s.title}
-                  /&gt;
-                );
-              })
-            }
-          &lt;/Steps&gt;
-        &lt;/div&gt;
-
-        &lt;div&gt;&lt;button type="button" onClick={this.nextStep}&gt;下一步&lt;/button&gt;&lt;/div&gt;
-      &lt;/form&gt;
-    );
-  },
+<span class="hljs-keyword">const</span> steps = [{
+  title: <span class="hljs-string">'已完成'</span>,
+  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>,
+}, {
+  title: <span class="hljs-string">'进行中'</span>,
+  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>,
+}, {
+  title: <span class="hljs-string">'待运行'</span>,
+  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>,
+}, {
+  title: <span class="hljs-string">'待运行'</span>,
+  description: <span class="hljs-string">'这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'</span>,
+}].map((s, i) =&gt; {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span>
+      <span class="hljs-attribute">key</span>=<span class="hljs-value">{i}</span>
+      <span class="hljs-attribute">status</span>=<span class="hljs-value">{s.status}</span>
+      <span class="hljs-attribute">title</span>=<span class="hljs-value">{s.title}</span>
+      <span class="hljs-attribute">description</span>=<span class="hljs-value">{s.description}</span>
+    /&gt;</span>
+  )</span>;
 });
 
-ReactDOM.render(&lt;MyForm /&gt;, container);
-</code></pre></div>
+ReactDOM.render(
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span> <span class="hljs-attribute">current</span>=<span class="hljs-value">{2}</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"error"</span>&gt;</span>
+    {steps}
+  <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>
+, container);
+</span></code></pre></div>
   </div>
   <a href="http://github.com/react-component/steps">
     <img style="position: absolute; top: 0; right: 0; border: 0;"
@@ -339,7 +311,7 @@ ReactDOM.render(&lt;MyForm /&gt;, container);
   </a>
   
   <script src="common.js?nowrap"></script>
-  <script src="nextStep.js?nowrap"></script>
+  <script src="errorStep.js?nowrap"></script>
 </body>
 
 </html>

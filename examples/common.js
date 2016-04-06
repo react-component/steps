@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		6:0
+/******/ 		7:0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 /******/
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"customIcon","1":"nextStep","2":"simple","3":"smallSize","4":"vertical","5":"verticalSmall"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"customIcon","1":"errorStep","2":"nextStep","3":"simple","4":"smallSize","5":"vertical","6":"verticalSmall"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -8004,6 +8004,10 @@
 	  }
 	};
 	
+	function registerNullComponentID() {
+	  ReactEmptyComponentRegistry.registerNullComponentID(this._rootNodeID);
+	}
+	
 	var ReactEmptyComponent = function (instantiate) {
 	  this._currentElement = null;
 	  this._rootNodeID = null;
@@ -8012,7 +8016,7 @@
 	assign(ReactEmptyComponent.prototype, {
 	  construct: function (element) {},
 	  mountComponent: function (rootID, transaction, context) {
-	    ReactEmptyComponentRegistry.registerNullComponentID(rootID);
+	    transaction.getReactMountReady().enqueue(registerNullComponentID, this);
 	    this._rootNodeID = rootID;
 	    return ReactReconciler.mountComponent(this._renderedComponent, rootID, transaction, context);
 	  },
@@ -18735,7 +18739,7 @@
 	
 	'use strict';
 	
-	module.exports = '0.14.7';
+	module.exports = '0.14.8';
 
 /***/ },
 /* 150 */
@@ -19878,6 +19882,7 @@
 	      var children = _props.children;
 	      var maxDescriptionWidth = _props.maxDescriptionWidth;
 	      var iconPrefix = _props.iconPrefix;
+	      var status = _props.status;
 	
 	      var len = children.length - 1;
 	      var iws = this._itemsWidth;
@@ -19887,17 +19892,23 @@
 	        'div',
 	        { className: className },
 	        _react2["default"].Children.map(children, function (ele, idx) {
+	          // fix tail color
+	          var nextErrorClassName = '';
+	          if (props.status === 'error' && idx === props.current - 1) {
+	            nextErrorClassName = props.prefixCls + '-next-error';
+	          }
 	          var np = {
 	            stepNumber: (idx + 1).toString(),
 	            stepLast: idx === len,
 	            tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + _this3.state.tailWidth,
 	            prefixCls: prefixCls,
 	            iconPrefix: iconPrefix,
-	            maxDescriptionWidth: maxDescriptionWidth
+	            maxDescriptionWidth: maxDescriptionWidth,
+	            className: nextErrorClassName
 	          };
 	          if (!ele.props.status) {
 	            if (idx === props.current) {
-	              np.status = 'process';
+	              np.status = status;
 	            } else if (idx < props.current) {
 	              np.status = 'finish';
 	            } else {
@@ -19921,7 +19932,8 @@
 	  iconPrefix: _react.PropTypes.string,
 	  direction: _react.PropTypes.string,
 	  maxDescriptionWidth: _react.PropTypes.number,
-	  children: _react.PropTypes.any
+	  children: _react.PropTypes.any,
+	  status: _react.PropTypes.string
 	};
 	
 	Steps.defaultProps = {
@@ -19929,7 +19941,8 @@
 	  iconPrefix: 'rc',
 	  direction: '',
 	  maxDescriptionWidth: 120,
-	  current: 0
+	  current: 0,
+	  status: 'process'
 	};
 	module.exports = exports['default'];
 
@@ -20034,7 +20047,7 @@
 	    { className: prefixCls + '-icon' },
 	    stepNumber
 	  );
-	  var classString = (0, _classnames2["default"])((_classNames2 = {}, _defineProperty(_classNames2, className, !!className), _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _classNames2));
+	  var classString = (0, _classnames2["default"])((_classNames2 = {}, _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _defineProperty(_classNames2, className, !!className), _classNames2));
 	  return _react2["default"].createElement(
 	    'div',
 	    _extends({}, restProps, { className: classString, style: { width: tailWidth } }),

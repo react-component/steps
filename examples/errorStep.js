@@ -1,14 +1,14 @@
-webpackJsonp([3],{
+webpackJsonp([1],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(170);
+	module.exports = __webpack_require__(167);
 
 
 /***/ },
 
-/***/ 170:
+/***/ 167:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45,11 +45,11 @@ webpackJsonp([3],{
 	
 	ReactDOM.render(React.createElement(
 	  Steps,
-	  { current: 1 },
+	  { current: 2, status: 'error' },
 	  steps
 	), container);
 
 /***/ }
 
 });
-//# sourceMappingURL=simple.js.map
+//# sourceMappingURL=errorStep.js.map
