@@ -112,11 +112,6 @@ export default class Steps extends React.Component {
       <div className={className}>
         {
           React.Children.map(children, (ele, idx) => {
-            // fix tail color
-            let nextErrorClassName = '';
-            if (props.status === 'error' && idx === props.current - 1) {
-              nextErrorClassName = `${props.prefixCls}-next-error`;
-            }
             const np = {
               stepNumber: (idx + 1).toString(),
               stepLast: idx === len,
@@ -124,8 +119,13 @@ export default class Steps extends React.Component {
               prefixCls,
               iconPrefix,
               maxDescriptionWidth,
-              className: nextErrorClassName,
             };
+
+            // fix tail color
+            if (props.status === 'error' && idx === props.current - 1) {
+              np.className = `${props.prefixCls}-next-error`;
+            }
+
             if (!ele.props.status) {
               if (idx === props.current) {
                 np.status = status;

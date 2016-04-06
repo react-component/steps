@@ -10,9 +10,10 @@ function Step(props) {
   const iconClassName = classNames({
     [`${prefixCls}-icon`]: true,
     [`${iconPrefix}icon`]: true,
-    [`${iconPrefix}icon-${icon || 'check'}`]: true,
+    [`${iconPrefix}icon-check`]: !icon && status === 'finish',
+    [`${iconPrefix}icon-cross`]: !icon && status === 'error',
   });
-  const iconNode = (icon || status === 'finish')
+  const iconNode = (icon || status === 'finish' || status === 'error')
           ? <span className={iconClassName} />
           : <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
   const classString = classNames({
