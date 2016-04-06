@@ -29,6 +29,10 @@ body {
 @finish-title-color: @wait-title-color;
 @finish-description-color: @finish-title-color;
 @finish-tail-color: @process-icon-color;
+@error-icon-color: #f50;
+@error-title-color: #f50;
+@error-description-color: @wait-title-color;
+@error-tail-color: @process-tail-color;
 
 .transition(@transition) {
   transition: @transition;
@@ -98,6 +102,31 @@ body {
       }
       .@{stepsPrefixClass}-description {
         color: @finish-description-color;
+      }
+    }
+
+    &.@{stepsPrefixClass}-status-error {
+      .@{stepsPrefixClass}-head-inner {
+        border-color: @error-icon-color;
+        background-color: @error-icon-color;
+        > .@{stepsPrefixClass}-icon {
+          color: #fff;
+        }
+      }
+      .@{stepsPrefixClass}-tail > i {
+        background-color: @error-tail-color;
+      }
+      .@{stepsPrefixClass}-title {
+        color: @error-title-color;
+      }
+      .@{stepsPrefixClass}-description {
+        color: @error-description-color;
+      }
+    }
+
+    &.@{stepsPrefixClass}-next-error {
+      .@{stepsPrefixClass}-tail > i {
+        background-color: @error-icon-color;
       }
     }
 
@@ -249,7 +278,7 @@ body {
   .@{stepsPrefixClass}-item {
     display: block;
   }
-  
+
   .@{stepsPrefixClass}-tail {
     position: absolute;
     left: 13px;
@@ -262,14 +291,14 @@ body {
       width: 1px;
     }
   }
-  
+
   .@{stepsPrefixClass}-head {
     float: left;
     &-inner {
       margin-right: 16px;
     }
   }
-  
+
   .@{stepsPrefixClass}-main {
     min-height: 47px;
     overflow: hidden;
@@ -293,7 +322,7 @@ body {
       height: 100%;
     }
   }
-  
+
   .@{stepsPrefixClass}-title {
     line-height: 18px;
   }

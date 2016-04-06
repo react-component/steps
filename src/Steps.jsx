@@ -99,7 +99,7 @@ export default class Steps extends React.Component {
 
   render() {
     const props = this.props;
-    const { prefixCls, children, maxDescriptionWidth, iconPrefix } = this.props;
+    const { prefixCls, children, maxDescriptionWidth, iconPrefix, status } = this.props;
     const len = children.length - 1;
     const iws = this._itemsWidth;
     const className = classNames({
@@ -110,9 +110,13 @@ export default class Steps extends React.Component {
 
     return (
       <div className={className}>
-
         {
           React.Children.map(children, (ele, idx) => {
+            // fix tail color
+            let nextErrorClassName = '';
+            if (props.status === 'error' && idx === props.current - 1) {
+              nextErrorClassName = `${props.prefixCls}-next-error`;
+            }
             const np = {
               stepNumber: (idx + 1).toString(),
               stepLast: idx === len,
@@ -120,10 +124,11 @@ export default class Steps extends React.Component {
               prefixCls,
               iconPrefix,
               maxDescriptionWidth,
+              className: nextErrorClassName,
             };
             if (!ele.props.status) {
               if (idx === props.current) {
-                np.status = 'process';
+                np.status = status;
               } else if (idx < props.current) {
                 np.status = 'finish';
               } else {
@@ -144,6 +149,7 @@ Steps.propTypes = {
   direction: PropTypes.string,
   maxDescriptionWidth: PropTypes.number,
   children: PropTypes.any,
+  status: PropTypes.string,
 };
 
 Steps.defaultProps = {
@@ -152,4 +158,5 @@ Steps.defaultProps = {
   direction: '',
   maxDescriptionWidth: 120,
   current: 0,
+  status: 'process',
 };

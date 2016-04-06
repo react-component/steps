@@ -16,11 +16,11 @@ function Step(props) {
           ? <span className={iconClassName} />
           : <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
   const classString = classNames({
-    [className]: !!className,
     [`${prefixCls}-item`]: true,
     [`${prefixCls}-item-last`]: stepLast,
     [`${prefixCls}-status-${status}`]: true,
     [`${prefixCls}-custom`]: icon,
+    [className]: !!className,
   });
   return (
     <div {...restProps} className={classString} style={{ width: tailWidth }}>
