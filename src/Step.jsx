@@ -10,6 +10,7 @@ function Step(props) {
   const iconClassName = classNames({
     [`${prefixCls}-icon`]: true,
     [`${iconPrefix}icon`]: true,
+    [`${iconPrefix}icon-${icon}`]: icon,
     [`${iconPrefix}icon-check`]: !icon && status === 'finish',
     [`${iconPrefix}icon-cross`]: !icon && status === 'error',
   });
