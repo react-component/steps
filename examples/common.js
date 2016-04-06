@@ -19892,20 +19892,20 @@
 	        'div',
 	        { className: className },
 	        _react2["default"].Children.map(children, function (ele, idx) {
-	          // fix tail color
-	          var nextErrorClassName = '';
-	          if (props.status === 'error' && idx === props.current - 1) {
-	            nextErrorClassName = props.prefixCls + '-next-error';
-	          }
 	          var np = {
 	            stepNumber: (idx + 1).toString(),
 	            stepLast: idx === len,
 	            tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + _this3.state.tailWidth,
 	            prefixCls: prefixCls,
 	            iconPrefix: iconPrefix,
-	            maxDescriptionWidth: maxDescriptionWidth,
-	            className: nextErrorClassName
+	            maxDescriptionWidth: maxDescriptionWidth
 	          };
+	
+	          // fix tail color
+	          if (props.status === 'error' && idx === props.current - 1) {
+	            np.className = props.prefixCls + '-next-error';
+	          }
+	
 	          if (!ele.props.status) {
 	            if (idx === props.current) {
 	              np.status = status;
@@ -20041,8 +20041,8 @@
 	
 	  var restProps = _objectWithoutProperties(props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'maxDescriptionWidth', 'stepLast', 'stepNumber', 'description', 'title']);
 	
-	  var iconClassName = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + (icon || 'check'), true), _classNames));
-	  var iconNode = icon || status === 'finish' ? _react2["default"].createElement('span', { className: iconClassName }) : _react2["default"].createElement(
+	  var iconClassName = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish'), _defineProperty(_classNames, iconPrefix + 'icon-cross', !icon && status === 'error'), _classNames));
+	  var iconNode = icon || status === 'finish' || status === 'error' ? _react2["default"].createElement('span', { className: iconClassName }) : _react2["default"].createElement(
 	    'span',
 	    { className: prefixCls + '-icon' },
 	    stepNumber

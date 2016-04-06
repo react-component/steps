@@ -64,10 +64,10 @@ body {
 }
 .rc-steps .rc-steps-item.rc-steps-status-error .rc-steps-head-inner {
   border-color: #f50;
-  background-color: #f50;
+  background-color: #fff;
 }
 .rc-steps .rc-steps-item.rc-steps-status-error .rc-steps-head-inner > .rc-steps-icon {
-  color: #fff;
+  color: #f50;
 }
 .rc-steps .rc-steps-item.rc-steps-status-error .rc-steps-tail > i {
   background-color: #e9e9e9;
