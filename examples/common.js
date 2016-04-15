@@ -19929,7 +19929,7 @@
 	  prefixCls: _react.PropTypes.string,
 	  iconPrefix: _react.PropTypes.string,
 	  direction: _react.PropTypes.string,
-	  maxDescriptionWidth: _react.PropTypes.number,
+	  maxDescriptionWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
 	  children: _react.PropTypes.any,
 	  status: _react.PropTypes.string
 	};
