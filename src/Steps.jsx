@@ -72,7 +72,7 @@ export default class Steps extends React.Component {
     }
   }
 
-  _resize() {
+  _resize = () => {
     const w = Math.floor(ReactDOM.findDOMNode(this).offsetWidth);
     if (this._previousStepsWidth === w) {
       return;
@@ -81,7 +81,7 @@ export default class Steps extends React.Component {
     this._update();
   }
 
-  _update() {
+  _update = () => {
     const len = this.props.children.length - 1;
     let tw = 0;
     this._itemsWidth.forEach((w) => {
