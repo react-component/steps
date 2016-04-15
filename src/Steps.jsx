@@ -147,7 +147,7 @@ Steps.propTypes = {
   prefixCls: PropTypes.string,
   iconPrefix: PropTypes.string,
   direction: PropTypes.string,
-  maxDescriptionWidth: PropTypes.number,
+  maxDescriptionWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   children: PropTypes.any,
   status: PropTypes.string,
 };
