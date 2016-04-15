@@ -19771,6 +19771,31 @@
 	
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Steps).call(this, props));
 	
+	    _this._resize = function () {
+	      var w = Math.floor(_reactDom2["default"].findDOMNode(_this).offsetWidth);
+	      if (_this._previousStepsWidth === w) {
+	        return;
+	      }
+	      _this._previousStepsWidth = w;
+	      _this._update();
+	    };
+	
+	    _this._update = function () {
+	      var len = _this.props.children.length - 1;
+	      var tw = 0;
+	      _this._itemsWidth.forEach(function (w) {
+	        tw += w;
+	      });
+	      var dw = Math.floor((_this._previousStepsWidth - tw) / len) - 1;
+	      if (dw <= 0) {
+	        return;
+	      }
+	      _this.setState({
+	        init: true,
+	        tailWidth: dw
+	      });
+	    };
+	
 	    _this._previousStepsWidth = 0;
 	    _this._itemsWidth = [];
 	
@@ -19842,33 +19867,6 @@
 	      } else {
 	        window.removeEventListener('resize', this._resize);
 	      }
-	    }
-	  }, {
-	    key: '_resize',
-	    value: function _resize() {
-	      var w = Math.floor(_reactDom2["default"].findDOMNode(this).offsetWidth);
-	      if (this._previousStepsWidth === w) {
-	        return;
-	      }
-	      this._previousStepsWidth = w;
-	      this._update();
-	    }
-	  }, {
-	    key: '_update',
-	    value: function _update() {
-	      var len = this.props.children.length - 1;
-	      var tw = 0;
-	      this._itemsWidth.forEach(function (w) {
-	        tw += w;
-	      });
-	      var dw = Math.floor((this._previousStepsWidth - tw) / len) - 1;
-	      if (dw <= 0) {
-	        return;
-	      }
-	      this.setState({
-	        init: true,
-	        tailWidth: dw
-	      });
 	    }
 	  }, {
 	    key: 'render',
