@@ -34,8 +34,9 @@ export default class Steps extends React.Component {
     const lastIndex = children.length - 1;
     const classString = classNames({
       [prefixCls]: true,
-      [`${prefixCls}-${size}`]: true,
+      [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-${direction}`]: true,
+      [`${prefixCls}-hidden`]: this.state.lastStepOffsetWidth === 0,
       [className]: className,
     });
 
@@ -93,5 +94,5 @@ Steps.defaultProps = {
   direction: 'horizontal',
   current: 0,
   status: 'process',
-  size: 'default',
+  size: '',
 };
