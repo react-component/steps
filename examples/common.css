@@ -14,6 +14,9 @@ body {
   display: inline-block;
   vertical-align: top;
 }
+.rc-steps .rc-steps-item .rc-steps-item:last-child {
+  position: absolute;
+}
 .rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-head-inner {
   border-color: #ccc;
   background-color: #fff;
@@ -262,6 +265,17 @@ body {
 }
 .rc-steps-vertical.rc-steps-small .rc-steps-title {
   line-height: 18px;
+}
+.rc-steps-horizontal.rc-steps-hidden {
+  vertical-align: hidden;
+}
+.rc-steps-horizontal .rc-steps-description {
+  max-width: 100px;
+}
+.rc-steps-horizontal .rc-steps-item:not(:first-child) .rc-steps-head {
+  position: relative;
+  margin-left: -10px;
+  padding-left: 10px;
 }
 @font-face {
   font-family: 'anticon';

@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		7:0
+/******/ 		8:0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 /******/
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"customIcon","1":"errorStep","2":"nextStep","3":"simple","4":"smallSize","5":"vertical","6":"verticalSmall"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"customIcon","1":"dynamic","2":"errorStep","3":"nextStep","4":"simple","5":"smallSize","6":"vertical","7":"verticalSmall"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -19739,6 +19739,8 @@
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(4);
@@ -19757,6 +19759,8 @@
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -19771,37 +19775,21 @@
 	
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Steps).call(this, props));
 	
-	    _this._resize = function () {
-	      var w = Math.floor(_reactDom2["default"].findDOMNode(_this).offsetWidth);
-	      if (_this._previousStepsWidth === w) {
-	        return;
+	    _this.culcLastStepOffsetWidth = function () {
+	      var domNode = _reactDom2["default"].findDOMNode(_this);
+	      if (domNode.children.length > 0) {
+	        setTimeout(function () {
+	          var lastStepOffsetWidth = domNode.lastChild.offsetWidth;
+	          if (_this.state.lastStepOffsetWidth === lastStepOffsetWidth) {
+	            return;
+	          }
+	          _this.setState({ lastStepOffsetWidth: lastStepOffsetWidth });
+	        });
 	      }
-	      _this._previousStepsWidth = w;
-	      _this._update();
 	    };
-	
-	    _this._update = function () {
-	      var len = _this.props.children.length - 1;
-	      var tw = 0;
-	      _this._itemsWidth.forEach(function (w) {
-	        tw += w;
-	      });
-	      var dw = Math.floor((_this._previousStepsWidth - tw) / len) - 1;
-	      if (dw <= 0) {
-	        return;
-	      }
-	      _this.setState({
-	        init: true,
-	        tailWidth: dw
-	      });
-	    };
-	
-	    _this._previousStepsWidth = 0;
-	    _this._itemsWidth = [];
 	
 	    _this.state = {
-	      init: false,
-	      tailWidth: 0
+	      lastStepOffsetWidth: 0
 	    };
 	    return _this;
 	  }
@@ -19809,94 +19797,46 @@
 	  _createClass(Steps, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-	
-	      if (this.props.direction === 'vertical') {
-	        return;
-	      }
-	      var $dom = _reactDom2["default"].findDOMNode(this);
-	      if ($dom.children.length === 0) {
-	        return;
-	      }
-	      var len = $dom.children.length - 1;
-	      this._itemsWidth = new Array(len + 1);
-	
-	      var i = void 0;
-	      for (i = 0; i <= len - 1; i++) {
-	        var $item = $dom.children[i].children;
-	        this._itemsWidth[i] = Math.ceil($item[0].offsetWidth + $item[1].children[0].offsetWidth);
-	      }
-	      this._itemsWidth[i] = Math.ceil($dom.children[len].offsetWidth);
-	      this._previousStepsWidth = Math.floor(_reactDom2["default"].findDOMNode(this).offsetWidth);
-	      this._update();
-	
-	      /*
-	       * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
-	       * 未来不考虑ie8一类的浏览器后，会采用纯css来避免各种问题。
-	       */
-	      $dom.children[len].style.position = 'absolute';
-	
-	      /*
-	       * 下面的代码是为了兼容window系统下滚动条出现后会占用宽度的问题。
-	       * componentDidMount时滚动条还不一定出现了，这时候获取的宽度可能不是最终宽度。
-	       * 对于滚动条不占用宽度的浏览器，下面的代码也不二次render，_resize里面会判断要不要更新。
-	       */
-	      setTimeout(function () {
-	        _this2._resize();
-	      });
-	
-	      if (window.attachEvent) {
-	        window.attachEvent('onresize', this._resize);
-	      } else {
-	        window.addEventListener('resize', this._resize);
-	      }
+	      this.culcLastStepOffsetWidth();
 	    }
 	  }, {
 	    key: 'componentDidUpdate',
 	    value: function componentDidUpdate() {
-	      this._resize();
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      if (this.props.direction === 'vertical') {
-	        return;
-	      }
-	      if (window.attachEvent) {
-	        window.detachEvent('onresize', this._resize);
-	      } else {
-	        window.removeEventListener('resize', this._resize);
-	      }
+	      this.culcLastStepOffsetWidth();
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _classNames,
-	          _this3 = this;
+	          _this2 = this;
 	
 	      var props = this.props;
-	      var _props = this.props;
-	      var prefixCls = _props.prefixCls;
-	      var children = _props.children;
-	      var maxDescriptionWidth = _props.maxDescriptionWidth;
-	      var iconPrefix = _props.iconPrefix;
-	      var status = _props.status;
+	      var prefixCls = props.prefixCls;
+	      var className = props.className;
+	      var children = props.children;
+	      var direction = props.direction;
+	      var iconPrefix = props.iconPrefix;
+	      var status = props.status;
+	      var size = props.size;
 	
-	      var len = children.length - 1;
-	      var iws = this._itemsWidth;
-	      var className = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls, prefixCls), _defineProperty(_classNames, prefixCls + '-small', props.size === 'small'), _defineProperty(_classNames, prefixCls + '-vertical', props.direction === 'vertical'), _classNames));
+	      var restProps = _objectWithoutProperties(props, ['prefixCls', 'className', 'children', 'direction', 'iconPrefix', 'status', 'size']);
+	
+	      var lastIndex = children.length - 1;
+	      var classString = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-' + direction, true), _defineProperty(_classNames, prefixCls + '-hidden', this.state.lastStepOffsetWidth === 0), _defineProperty(_classNames, className, className), _classNames));
 	
 	      return _react2["default"].createElement(
 	        'div',
-	        { className: className },
+	        _extends({ className: classString }, restProps),
 	        _react2["default"].Children.map(children, function (ele, idx) {
+	          var tailWidth = props.direction === 'vertical' || idx === lastIndex ? null : 100 / lastIndex + '%';
+	          var adjustMarginRight = props.direction === 'vertical' || idx === lastIndex ? null : -(_this2.state.lastStepOffsetWidth / lastIndex + 1);
 	          var np = {
 	            stepNumber: (idx + 1).toString(),
-	            stepLast: idx === len,
-	            tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + _this3.state.tailWidth,
+	            stepLast: idx === lastIndex,
+	            tailWidth: tailWidth,
+	            adjustMarginRight: adjustMarginRight,
 	            prefixCls: prefixCls,
-	            iconPrefix: iconPrefix,
-	            maxDescriptionWidth: maxDescriptionWidth
+	            iconPrefix: iconPrefix
 	          };
 	
 	          // fix tail color
@@ -19929,18 +19869,18 @@
 	  prefixCls: _react.PropTypes.string,
 	  iconPrefix: _react.PropTypes.string,
 	  direction: _react.PropTypes.string,
-	  maxDescriptionWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
 	  children: _react.PropTypes.any,
-	  status: _react.PropTypes.string
+	  status: _react.PropTypes.string,
+	  size: _react.PropTypes.string
 	};
 	
 	Steps.defaultProps = {
 	  prefixCls: 'rc-steps',
 	  iconPrefix: 'rc',
-	  direction: '',
-	  maxDescriptionWidth: 120,
+	  direction: 'horizontal',
 	  current: 0,
-	  status: 'process'
+	  status: 'process',
+	  size: ''
 	};
 	module.exports = exports['default'];
 
@@ -20031,13 +19971,13 @@
 	  var status = _props$status === undefined ? 'wait' : _props$status;
 	  var iconPrefix = props.iconPrefix;
 	  var icon = props.icon;
-	  var maxDescriptionWidth = props.maxDescriptionWidth;
+	  var adjustMarginRight = props.adjustMarginRight;
 	  var stepLast = props.stepLast;
 	  var stepNumber = props.stepNumber;
 	  var description = props.description;
 	  var title = props.title;
 	
-	  var restProps = _objectWithoutProperties(props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'maxDescriptionWidth', 'stepLast', 'stepNumber', 'description', 'title']);
+	  var restProps = _objectWithoutProperties(props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title']);
 	
 	  var iconClassName = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish'), _defineProperty(_classNames, iconPrefix + 'icon-cross', !icon && status === 'error'), _classNames));
 	  var iconNode = icon || status === 'finish' || status === 'error' ? _react2["default"].createElement('span', { className: iconClassName }) : _react2["default"].createElement(
@@ -20048,7 +19988,10 @@
 	  var classString = (0, _classnames2["default"])((_classNames2 = {}, _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _defineProperty(_classNames2, className, !!className), _classNames2));
 	  return _react2["default"].createElement(
 	    'div',
-	    _extends({}, restProps, { className: classString, style: { width: tailWidth } }),
+	    _extends({}, restProps, {
+	      className: classString,
+	      style: _extends({ width: tailWidth, marginRight: adjustMarginRight }, style)
+	    }),
 	    stepLast ? '' : _react2["default"].createElement(
 	      'div',
 	      { className: prefixCls + '-tail' },
@@ -20065,7 +20008,7 @@
 	    ),
 	    _react2["default"].createElement(
 	      'div',
-	      { className: prefixCls + '-main', style: { maxWidth: maxDescriptionWidth } },
+	      { className: prefixCls + '-main' },
 	      _react2["default"].createElement(
 	        'div',
 	        { className: prefixCls + '-title' },
@@ -20088,7 +20031,7 @@
 	  status: _react.PropTypes.string,
 	  iconPrefix: _react.PropTypes.string,
 	  icon: _react.PropTypes.string,
-	  maxDescriptionWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+	  adjustMarginRight: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
 	  stepLast: _react.PropTypes.bool,
 	  stepNumber: _react.PropTypes.string,
 	  description: _react.PropTypes.any,

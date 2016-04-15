@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>smallSize.js - example - rc-steps@2.0.0</title>
+  <title>dynamic.js - example - rc-steps@2.0.0</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -264,43 +264,52 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
     </div>
     <div class="example" id="__react-content"></div>
 
-    <div class="highlight"><pre><code language="js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps/assets/index.css'</span>);
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps/assets/iconfont.css'</span>);
+    <div class="highlight"><pre><code language="undefined">require('rc-steps/assets/index.css');
+require('rc-steps/assets/iconfont.css');
 
-<span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
-<span class="hljs-keyword">const</span> ReactDOM = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react-dom'</span>);
-<span class="hljs-keyword">const</span> Steps = <span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps'</span>);
+const React = require('react');
+const ReactDOM = require('react-dom');
+const Steps = require('rc-steps');
+const Step = Steps.Step;
 
-<span class="hljs-keyword">const</span> container = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'__react-content'</span>);
-
-<span class="hljs-keyword">const</span> steps = [{
-  status: <span class="hljs-string">'finish'</span>,
-  title: <span class="hljs-string">'已完成'</span>,
-}, {
-  status: <span class="hljs-string">'process'</span>,
-  title: <span class="hljs-string">'进行中'</span>,
-}, {
-  status: <span class="hljs-string">'wait'</span>,
-  title: <span class="hljs-string">'待运行'</span>,
-}, {
-  status: <span class="hljs-string">'wait'</span>,
-  title: <span class="hljs-string">'待运行'</span>,
-}].map((s, i) =&gt; {
-  <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span>
-      <span class="hljs-attribute">key</span>=<span class="hljs-value">{i}</span>
-      <span class="hljs-attribute">status</span>=<span class="hljs-value">{s.status}</span>
-      <span class="hljs-attribute">title</span>=<span class="hljs-value">{s.title}</span>
-    /&gt;</span>
-  )</span>;
+const App = React.createClass({
+  getInitialState() {
+    return {
+      steps: [{
+        title: '已完成',
+        description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶',
+      }, {
+        title: '进行中',
+        description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶',
+      }, {
+        title: '待运行',
+        description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶',
+      }, {
+        title: '待运行',
+        description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶',
+      }],
+    };
+  },
+  addStep() {
+    const steps = this.state.steps;
+    steps.push({
+      title: '待运行',
+      description: '新的节点',
+    });
+    this.setState({ steps });
+  },
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;button onClick={this.addStep}&gt;Add new step&lt;/button&gt;
+        &lt;Steps&gt;{this.state.steps.map((step, i) =&gt; &lt;Step key={i} {...step} /&gt;)}&lt;/Steps&gt;
+      &lt;/div&gt;
+    );
+  },
 });
 
-ReactDOM.render(
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"small"</span>&gt;</span>
-    {steps}
-  <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>
-, container);
-</span></code></pre></div>
+ReactDOM.render(&lt;App /&gt;, document.getElementById('__react-content'));
+</code></pre></div>
   </div>
   <a href="http://github.com/react-component/steps">
     <img style="position: absolute; top: 0; right: 0; border: 0;"
@@ -310,7 +319,7 @@ ReactDOM.render(
   </a>
   
   <script src="common.js?nowrap"></script>
-  <script src="smallSize.js?nowrap"></script>
+  <script src="dynamic.js?nowrap"></script>
 </body>
 
 </html>
