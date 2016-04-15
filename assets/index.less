@@ -50,6 +50,10 @@ body {
     display: inline-block;
     vertical-align: top;
 
+    .@{stepsPrefixClass}-item:last-child {
+      position: absolute;
+    }
+
     &.@{stepsPrefixClass}-status-wait {
       .@{stepsPrefixClass}-head-inner {
         border-color: @wait-icon-color;
@@ -325,5 +329,22 @@ body {
 
   .@{stepsPrefixClass}-title {
     line-height: 18px;
+  }
+}
+
+.@{stepsPrefixClass}-horizontal {
+  .@{stepsPrefixClass}-description {
+    max-width: 100px;
+  }
+  .@{stepsPrefixClass}-item {
+    position: relative;
+  }
+  .@{stepsPrefixClass}-item:not(:first-child):before {
+    content: '';
+    background: #fff;
+    height: 30px;
+    width: 10px;
+    position: absolute;
+    left: -10px;
   }
 }

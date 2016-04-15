@@ -5,7 +5,7 @@ function Step(props) {
   const {
     className, prefixCls, style, tailWidth,
     status = 'wait', iconPrefix, icon,
-    maxDescriptionWidth, stepLast, stepNumber,
+    adjustMarginRight, stepLast, stepNumber,
     description, title, ...restProps } = props;
   const iconClassName = classNames({
     [`${prefixCls}-icon`]: true,
@@ -25,12 +25,15 @@ function Step(props) {
     [className]: !!className,
   });
   return (
-    <div {...restProps} className={classString} style={{ width: tailWidth }}>
+    <div {...restProps}
+      className={classString}
+      style={{ width: tailWidth, marginRight: adjustMarginRight, ...style }}
+    >
       {stepLast ? '' : <div className={`${prefixCls}-tail`}><i /></div>}
       <div className={`${prefixCls}-head`}>
         <div className={`${prefixCls}-head-inner`}>{iconNode}</div>
       </div>
-      <div className={`${prefixCls}-main`} style={{ maxWidth: maxDescriptionWidth }}>
+      <div className={`${prefixCls}-main`}>
         <div className={`${prefixCls}-title`}>{title}</div>
         {description ? <div className={`${prefixCls}-description`}>{description}</div> : ''}
       </div>
@@ -49,7 +52,7 @@ Step.propTypes = {
   status: PropTypes.string,
   iconPrefix: PropTypes.string,
   icon: PropTypes.string,
-  maxDescriptionWidth: PropTypes.oneOfType([
+  adjustMarginRight: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
   ]),
