@@ -339,15 +339,9 @@ body {
   .@{stepsPrefixClass}-description {
     max-width: 100px;
   }
-  .@{stepsPrefixClass}-item {
+  .@{stepsPrefixClass}-item:not(:first-child) .@{stepsPrefixClass}-head {
     position: relative;
-  }
-  .@{stepsPrefixClass}-item:not(:first-child):before {
-    content: '';
-    background: #fff;
-    height: 30px;
-    width: 10px;
-    position: absolute;
-    left: -10px;
+    margin-left: -10px;
+    padding-left: 10px;
   }
 }

@@ -47,7 +47,7 @@ export default class Steps extends React.Component {
             const tailWidth = (props.direction === 'vertical' || idx === lastIndex)
               ? null : `${100 / lastIndex}%`;
             const adjustMarginRight = (props.direction === 'vertical' || idx === lastIndex)
-              ? null : -((this.state.lastStepOffsetWidth + 1) / lastIndex);
+              ? null : -(this.state.lastStepOffsetWidth / lastIndex + 1);
             const np = {
               stepNumber: (idx + 1).toString(),
               stepLast: idx === lastIndex,
