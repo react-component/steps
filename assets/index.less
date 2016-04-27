@@ -345,3 +345,37 @@ body {
     padding-left: 10px;
   }
 }
+
+.@{stepsPrefixClass}-label-vertical {
+  .@{stepsPrefixClass}-tail {
+    padding: 0 32px;
+  }
+  .@{stepsPrefixClass}-item {
+    .@{stepsPrefixClass}-step {
+      display: inline-block;
+      text-align: center;
+    }
+  }
+  .@{stepsPrefixClass}-item:not(:first-child) .@{stepsPrefixClass}-head {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .@{stepsPrefixClass}-head {
+    display: inline-block;
+    padding-right: 10px;
+    &-inner {
+      margin: 0 auto;
+    }
+  }
+  .@{stepsPrefixClass}-main {
+    display: block;
+    margin-top: 10px;
+    .@{stepsPrefixClass}-title {
+      padding-right: 0;
+    }
+    .@{stepsPrefixClass}-description {
+      text-align: left;
+    }
+  }
+
+}

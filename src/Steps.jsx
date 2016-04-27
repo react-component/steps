@@ -29,13 +29,14 @@ export default class Steps extends React.Component {
   }
   render() {
     const props = this.props;
-    const { prefixCls, className, children, direction,
+    const { prefixCls, className, children, direction, labelPlacement,
             iconPrefix, status, size, ...restProps } = props;
     const lastIndex = children.length - 1;
     const classString = classNames({
       [prefixCls]: true,
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-${direction}`]: true,
+      [`${prefixCls}-label-${labelPlacement}`]: direction === 'horizontal',
       [`${prefixCls}-hidden`]: this.state.lastStepOffsetWidth === 0,
       [className]: className,
     });
@@ -44,9 +45,9 @@ export default class Steps extends React.Component {
       <div className={classString} {...restProps}>
         {
           React.Children.map(children, (ele, idx) => {
-            const tailWidth = (props.direction === 'vertical' || idx === lastIndex)
+            const tailWidth = (direction === 'vertical' || idx === lastIndex)
               ? null : `${100 / lastIndex}%`;
-            const adjustMarginRight = (props.direction === 'vertical' || idx === lastIndex)
+            const adjustMarginRight = (direction === 'vertical' || idx === lastIndex)
               ? null : -(this.state.lastStepOffsetWidth / lastIndex + 1);
             const np = {
               stepNumber: (idx + 1).toString(),
@@ -83,6 +84,7 @@ Steps.propTypes = {
   prefixCls: PropTypes.string,
   iconPrefix: PropTypes.string,
   direction: PropTypes.string,
+  labelPlacement: PropTypes.string,
   children: PropTypes.any,
   status: PropTypes.string,
   size: PropTypes.string,
@@ -92,6 +94,7 @@ Steps.defaultProps = {
   prefixCls: 'rc-steps',
   iconPrefix: 'rc',
   direction: 'horizontal',
+  labelPlacement: 'horizontal',
   current: 0,
   status: 'process',
   size: '',

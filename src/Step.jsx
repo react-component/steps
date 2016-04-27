@@ -30,12 +30,14 @@ function Step(props) {
       style={{ width: tailWidth, marginRight: adjustMarginRight, ...style }}
     >
       {stepLast ? '' : <div className={`${prefixCls}-tail`}><i /></div>}
-      <div className={`${prefixCls}-head`}>
-        <div className={`${prefixCls}-head-inner`}>{iconNode}</div>
-      </div>
-      <div className={`${prefixCls}-main`}>
-        <div className={`${prefixCls}-title`}>{title}</div>
-        {description ? <div className={`${prefixCls}-description`}>{description}</div> : ''}
+      <div className={`${prefixCls}-step`}>
+        <div className={`${prefixCls}-head`}>
+          <div className={`${prefixCls}-head-inner`}>{iconNode}</div>
+        </div>
+        <div className={`${prefixCls}-main`}>
+          <div className={`${prefixCls}-title`}>{title}</div>
+          {description ? <div className={`${prefixCls}-description`}>{description}</div> : ''}
+        </div>
       </div>
     </div>
   );
