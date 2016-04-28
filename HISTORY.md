@@ -1,9 +1,17 @@
 # History
 ----
 
+## 2.1.0
+
+* Add `labelPlacement`, support vertial title and description
+
+## 2.0.0
+
+* Refactor for better layout
+
 ## 1.5
 
-* add `status` property of `Steps` 
+* add `status` property of `Steps`
 
 ## 1.4
 
