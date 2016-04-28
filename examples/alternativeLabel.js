@@ -1,14 +1,12 @@
-webpackJsonp([7],{
-
-/***/ 0:
+webpackJsonp([0],[
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(174);
+	module.exports = __webpack_require__(1);
 
 
 /***/ },
-
-/***/ 174:
+/* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45,11 +43,10 @@ webpackJsonp([7],{
 	
 	ReactDOM.render(React.createElement(
 	  Steps,
-	  { direction: 'vertical' },
+	  { labelPlacement: 'vertical' },
 	  steps
 	), container);
 
 /***/ }
-
-});
-//# sourceMappingURL=vertical.js.map
+]);
+//# sourceMappingURL=alternativeLabel.js.map

@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		8:0
+/******/ 		9:0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 /******/
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"customIcon","1":"dynamic","2":"errorStep","3":"nextStep","4":"simple","5":"smallSize","6":"vertical","7":"verticalSmall"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"alternativeLabel","1":"customIcon","2":"dynamic","3":"errorStep","4":"nextStep","5":"simple","6":"smallSize","7":"vertical","8":"verticalSmall"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -19815,21 +19815,22 @@
 	      var className = props.className;
 	      var children = props.children;
 	      var direction = props.direction;
+	      var labelPlacement = props.labelPlacement;
 	      var iconPrefix = props.iconPrefix;
 	      var status = props.status;
 	      var size = props.size;
 	
-	      var restProps = _objectWithoutProperties(props, ['prefixCls', 'className', 'children', 'direction', 'iconPrefix', 'status', 'size']);
+	      var restProps = _objectWithoutProperties(props, ['prefixCls', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size']);
 	
 	      var lastIndex = children.length - 1;
-	      var classString = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-' + direction, true), _defineProperty(_classNames, prefixCls + '-hidden', this.state.lastStepOffsetWidth === 0), _defineProperty(_classNames, className, className), _classNames));
+	      var classString = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-' + direction, true), _defineProperty(_classNames, prefixCls + '-label-' + labelPlacement, direction === 'horizontal'), _defineProperty(_classNames, prefixCls + '-hidden', this.state.lastStepOffsetWidth === 0), _defineProperty(_classNames, className, className), _classNames));
 	
 	      return _react2["default"].createElement(
 	        'div',
 	        _extends({ className: classString }, restProps),
 	        _react2["default"].Children.map(children, function (ele, idx) {
-	          var tailWidth = props.direction === 'vertical' || idx === lastIndex ? null : 100 / lastIndex + '%';
-	          var adjustMarginRight = props.direction === 'vertical' || idx === lastIndex ? null : -(_this2.state.lastStepOffsetWidth / lastIndex + 1);
+	          var tailWidth = direction === 'vertical' || idx === lastIndex ? null : 100 / lastIndex + '%';
+	          var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -(_this2.state.lastStepOffsetWidth / lastIndex + 1);
 	          var np = {
 	            stepNumber: (idx + 1).toString(),
 	            stepLast: idx === lastIndex,
@@ -19869,6 +19870,7 @@
 	  prefixCls: _react.PropTypes.string,
 	  iconPrefix: _react.PropTypes.string,
 	  direction: _react.PropTypes.string,
+	  labelPlacement: _react.PropTypes.string,
 	  children: _react.PropTypes.any,
 	  status: _react.PropTypes.string,
 	  size: _react.PropTypes.string
@@ -19878,6 +19880,7 @@
 	  prefixCls: 'rc-steps',
 	  iconPrefix: 'rc',
 	  direction: 'horizontal',
+	  labelPlacement: 'horizontal',
 	  current: 0,
 	  status: 'process',
 	  size: ''
@@ -19999,26 +20002,30 @@
 	    ),
 	    _react2["default"].createElement(
 	      'div',
-	      { className: prefixCls + '-head' },
+	      { className: prefixCls + '-step' },
 	      _react2["default"].createElement(
 	        'div',
-	        { className: prefixCls + '-head-inner' },
-	        iconNode
-	      )
-	    ),
-	    _react2["default"].createElement(
-	      'div',
-	      { className: prefixCls + '-main' },
-	      _react2["default"].createElement(
-	        'div',
-	        { className: prefixCls + '-title' },
-	        title
+	        { className: prefixCls + '-head' },
+	        _react2["default"].createElement(
+	          'div',
+	          { className: prefixCls + '-head-inner' },
+	          iconNode
+	        )
 	      ),
-	      description ? _react2["default"].createElement(
+	      _react2["default"].createElement(
 	        'div',
-	        { className: prefixCls + '-description' },
-	        description
-	      ) : ''
+	        { className: prefixCls + '-main' },
+	        _react2["default"].createElement(
+	          'div',
+	          { className: prefixCls + '-title' },
+	          title
+	        ),
+	        description ? _react2["default"].createElement(
+	          'div',
+	          { className: prefixCls + '-description' },
+	          description
+	        ) : ''
+	      )
 	    )
 	  );
 	}

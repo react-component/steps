@@ -277,6 +277,34 @@ body {
   margin-left: -10px;
   padding-left: 10px;
 }
+.rc-steps-label-vertical .rc-steps-tail {
+  padding: 0 32px;
+}
+.rc-steps-label-vertical .rc-steps-item .rc-steps-step {
+  display: inline-block;
+  text-align: center;
+}
+.rc-steps-label-vertical .rc-steps-item:not(:first-child) .rc-steps-head {
+  margin-left: 0;
+  padding-left: 0;
+}
+.rc-steps-label-vertical .rc-steps-head {
+  display: inline-block;
+  padding-right: 10px;
+}
+.rc-steps-label-vertical .rc-steps-head-inner {
+  margin: 0 auto;
+}
+.rc-steps-label-vertical .rc-steps-main {
+  display: block;
+  margin-top: 10px;
+}
+.rc-steps-label-vertical .rc-steps-main .rc-steps-title {
+  padding-right: 0;
+}
+.rc-steps-label-vertical .rc-steps-main .rc-steps-description {
+  text-align: left;
+}
 @font-face {
   font-family: 'anticon';
   src: url('//at.alicdn.com/t/font_1434092639_4910953.eot');
