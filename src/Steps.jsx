@@ -32,12 +32,13 @@ export default class Steps extends React.Component {
     const { prefixCls, className, children, direction, labelPlacement,
             iconPrefix, status, size, ...restProps } = props;
     const lastIndex = children.length - 1;
+    const reLayouted = this.state.lastStepOffsetWidth > 0;
     const classString = classNames({
       [prefixCls]: true,
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-${direction}`]: true,
       [`${prefixCls}-label-${labelPlacement}`]: direction === 'horizontal',
-      [`${prefixCls}-hidden`]: this.state.lastStepOffsetWidth === 0,
+      [`${prefixCls}-hidden`]: !reLayouted,
       [className]: className,
     });
 
@@ -45,7 +46,7 @@ export default class Steps extends React.Component {
       <div className={classString} {...restProps}>
         {
           React.Children.map(children, (ele, idx) => {
-            const tailWidth = (direction === 'vertical' || idx === lastIndex)
+            const tailWidth = (direction === 'vertical' || idx === lastIndex || !reLayouted)
               ? null : `${100 / lastIndex}%`;
             const adjustMarginRight = (direction === 'vertical' || idx === lastIndex)
               ? null : -(this.state.lastStepOffsetWidth / lastIndex + 1);
