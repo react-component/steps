@@ -270,6 +270,9 @@
 	var queueIndex = -1;
 	
 	function cleanUpNextTick() {
+	    if (!draining || !currentQueue) {
+	        return;
+	    }
 	    draining = false;
 	    if (currentQueue.length) {
 	        queue = currentQueue.concat(queue);
@@ -19741,8 +19744,6 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _react = __webpack_require__(4);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -19757,6 +19758,8 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -19765,7 +19768,7 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 	
 	var Steps = function (_React$Component) {
 	  _inherits(Steps, _React$Component);
@@ -19773,7 +19776,7 @@
 	  function Steps(props) {
 	    _classCallCheck(this, Steps);
 	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Steps).call(this, props));
+	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 	
 	    _this.culcLastStepOffsetWidth = function () {
 	      var domNode = _reactDom2["default"].findDOMNode(_this);
@@ -19794,71 +19797,67 @@
 	    return _this;
 	  }
 	
-	  _createClass(Steps, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.culcLastStepOffsetWidth();
-	    }
-	  }, {
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate() {
-	      this.culcLastStepOffsetWidth();
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _classNames,
-	          _this2 = this;
+	  Steps.prototype.componentDidMount = function componentDidMount() {
+	    this.culcLastStepOffsetWidth();
+	  };
 	
-	      var props = this.props;
-	      var prefixCls = props.prefixCls;
-	      var className = props.className;
-	      var children = props.children;
-	      var direction = props.direction;
-	      var labelPlacement = props.labelPlacement;
-	      var iconPrefix = props.iconPrefix;
-	      var status = props.status;
-	      var size = props.size;
+	  Steps.prototype.componentDidUpdate = function componentDidUpdate() {
+	    this.culcLastStepOffsetWidth();
+	  };
 	
-	      var restProps = _objectWithoutProperties(props, ['prefixCls', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size']);
+	  Steps.prototype.render = function render() {
+	    var _classNames,
+	        _this2 = this;
 	
-	      var lastIndex = children.length - 1;
-	      var classString = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-' + direction, true), _defineProperty(_classNames, prefixCls + '-label-' + labelPlacement, direction === 'horizontal'), _defineProperty(_classNames, prefixCls + '-hidden', this.state.lastStepOffsetWidth === 0), _defineProperty(_classNames, className, className), _classNames));
+	    var props = this.props;
+	    var prefixCls = props.prefixCls;
+	    var className = props.className;
+	    var children = props.children;
+	    var direction = props.direction;
+	    var labelPlacement = props.labelPlacement;
+	    var iconPrefix = props.iconPrefix;
+	    var status = props.status;
+	    var size = props.size;
 	
-	      return _react2["default"].createElement(
-	        'div',
-	        _extends({ className: classString }, restProps),
-	        _react2["default"].Children.map(children, function (ele, idx) {
-	          var tailWidth = direction === 'vertical' || idx === lastIndex ? null : 100 / lastIndex + '%';
-	          var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -(_this2.state.lastStepOffsetWidth / lastIndex + 1);
-	          var np = {
-	            stepNumber: (idx + 1).toString(),
-	            stepLast: idx === lastIndex,
-	            tailWidth: tailWidth,
-	            adjustMarginRight: adjustMarginRight,
-	            prefixCls: prefixCls,
-	            iconPrefix: iconPrefix
-	          };
+	    var restProps = _objectWithoutProperties(props, ['prefixCls', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size']);
 	
-	          // fix tail color
-	          if (props.status === 'error' && idx === props.current - 1) {
-	            np.className = props.prefixCls + '-next-error';
+	    var lastIndex = children.length - 1;
+	    var reLayouted = this.state.lastStepOffsetWidth > 0;
+	    var classString = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-' + direction, true), _defineProperty(_classNames, prefixCls + '-label-' + labelPlacement, direction === 'horizontal'), _defineProperty(_classNames, prefixCls + '-hidden', !reLayouted), _defineProperty(_classNames, className, className), _classNames));
+	
+	    return _react2["default"].createElement(
+	      'div',
+	      _extends({ className: classString }, restProps),
+	      _react2["default"].Children.map(children, function (ele, idx) {
+	        var tailWidth = direction === 'vertical' || idx === lastIndex || !reLayouted ? null : 100 / lastIndex + '%';
+	        var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -(_this2.state.lastStepOffsetWidth / lastIndex + 1);
+	        var np = {
+	          stepNumber: (idx + 1).toString(),
+	          stepLast: idx === lastIndex,
+	          tailWidth: tailWidth,
+	          adjustMarginRight: adjustMarginRight,
+	          prefixCls: prefixCls,
+	          iconPrefix: iconPrefix
+	        };
+	
+	        // fix tail color
+	        if (props.status === 'error' && idx === props.current - 1) {
+	          np.className = props.prefixCls + '-next-error';
+	        }
+	
+	        if (!ele.props.status) {
+	          if (idx === props.current) {
+	            np.status = status;
+	          } else if (idx < props.current) {
+	            np.status = 'finish';
+	          } else {
+	            np.status = 'wait';
 	          }
-	
-	          if (!ele.props.status) {
-	            if (idx === props.current) {
-	              np.status = status;
-	            } else if (idx < props.current) {
-	              np.status = 'finish';
-	            } else {
-	              np.status = 'wait';
-	            }
-	          }
-	          return _react2["default"].cloneElement(ele, np);
-	        }, this)
-	      );
-	    }
-	  }]);
+	        }
+	        return _react2["default"].cloneElement(ele, np);
+	      }, this)
+	    );
+	  };
 	
 	  return Steps;
 	}(_react2["default"].Component);

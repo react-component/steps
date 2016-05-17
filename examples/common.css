@@ -267,7 +267,7 @@ body {
   line-height: 18px;
 }
 .rc-steps-horizontal.rc-steps-hidden {
-  vertical-align: hidden;
+  visibility: hidden;
 }
 .rc-steps-horizontal .rc-steps-description {
   max-width: 100px;
