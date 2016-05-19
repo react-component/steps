@@ -19,7 +19,7 @@ export default class Steps extends React.Component {
     const domNode = ReactDOM.findDOMNode(this);
     if (domNode.children.length > 0) {
       setTimeout(() => {
-        const lastStepOffsetWidth = domNode.lastChild.offsetWidth;
+        const lastStepOffsetWidth = domNode.lastChild.getBoundingClientRect().width;
         if (this.state.lastStepOffsetWidth === lastStepOffsetWidth) {
           return;
         }

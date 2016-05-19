@@ -46,8 +46,8 @@
     "expect.js": "~0.3.x",
     "pre-commit": "1.x",
     "rc-tools": "^5.3.3",
-    "react": "~0.14.0",
-    "react-dom": "~0.14.0"
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
   },
   "pre-commit": [
     "lint"
