@@ -15,10 +15,15 @@ export default class Steps extends React.Component {
   componentDidUpdate() {
     this.culcLastStepOffsetWidth();
   }
+  componentWillUnmount() {
+    if (this.culcTimeout) {
+      clearTimeout(this.culcTimeout);
+    }
+  }
   culcLastStepOffsetWidth = () => {
     const domNode = ReactDOM.findDOMNode(this);
     if (domNode.children.length > 0) {
-      setTimeout(() => {
+      this.culcTimeout = setTimeout(() => {
         const lastStepOffsetWidth = domNode.lastChild.getBoundingClientRect().width;
         if (this.state.lastStepOffsetWidth === lastStepOffsetWidth) {
           return;
