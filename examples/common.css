@@ -305,6 +305,9 @@ body {
 .rc-steps-label-vertical .rc-steps-main .rc-steps-description {
   text-align: left;
 }
+.hidden {
+  display: none;
+}
 @font-face {
   font-family: 'anticon';
   src: url('//at.alicdn.com/t/font_1434092639_4910953.eot');
