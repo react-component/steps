@@ -4,7 +4,7 @@ import classNames from 'classnames';
 function Step(props) {
   const {
     className, prefixCls, style, tailWidth,
-    status = 'wait', iconPrefix, icon,
+    status = 'wait', iconPrefix, icon, wrapperStyle,
     adjustMarginRight, stepLast, stepNumber,
     description, title, ...restProps } = props;
   const iconClassName = classNames({
@@ -31,11 +31,17 @@ function Step(props) {
     >
       {stepLast ? '' : <div className={`${prefixCls}-tail`}><i /></div>}
       <div className={`${prefixCls}-step`}>
-        <div className={`${prefixCls}-head`}>
+        <div
+          className={`${prefixCls}-head`}
+          style={{ background: wrapperStyle.background || wrapperStyle.backgroundColor }}
+        >
           <div className={`${prefixCls}-head-inner`}>{iconNode}</div>
         </div>
         <div className={`${prefixCls}-main`}>
-          <div className={`${prefixCls}-title`}>{title}</div>
+          <div
+            className={`${prefixCls}-title`}
+            style={{ background: wrapperStyle.background || wrapperStyle.backgroundColor }}
+          >{title}</div>
           {description ? <div className={`${prefixCls}-description`}>{description}</div> : ''}
         </div>
       </div>
@@ -47,6 +53,7 @@ Step.propTypes = {
   className: PropTypes.string,
   prefixCls: PropTypes.string,
   style: PropTypes.object,
+  wrapperStyle: PropTypes.object,
   tailWidth: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,

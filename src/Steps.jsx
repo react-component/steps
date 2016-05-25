@@ -34,8 +34,8 @@ export default class Steps extends React.Component {
   }
   render() {
     const props = this.props;
-    const { prefixCls, className, children, direction, labelPlacement,
-            iconPrefix, status, size, ...restProps } = props;
+    const { prefixCls, style = {}, className, children, direction,
+            labelPlacement, iconPrefix, status, size, ...restProps } = props;
     const lastIndex = children.length - 1;
     const reLayouted = this.state.lastStepOffsetWidth > 0;
     const classString = classNames({
@@ -48,7 +48,7 @@ export default class Steps extends React.Component {
     });
 
     return (
-      <div className={classString} {...restProps}>
+      <div className={classString} style={style} {...restProps}>
         {
           React.Children.map(children, (ele, idx) => {
             const tailWidth = (direction === 'vertical' || idx === lastIndex || !reLayouted)
@@ -62,6 +62,7 @@ export default class Steps extends React.Component {
               adjustMarginRight,
               prefixCls,
               iconPrefix,
+              wrapperStyle: style,
             };
 
             // fix tail color
