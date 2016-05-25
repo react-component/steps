@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		10:0
+/******/ 		11:0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 /******/
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"alternativeLabel","1":"customIcon","2":"dynamic","3":"errorStep","4":"hiddenRender","5":"nextStep","6":"simple","7":"smallSize","8":"vertical","9":"verticalSmall"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"alternativeLabel","1":"background","2":"customIcon","3":"dynamic","4":"errorStep","5":"hiddenRender","6":"nextStep","7":"simple","8":"smallSize","9":"vertical","10":"verticalSmall"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -20300,6 +20300,8 @@
 	
 	    var props = this.props;
 	    var prefixCls = props.prefixCls;
+	    var _props$style = props.style;
+	    var style = _props$style === undefined ? {} : _props$style;
 	    var className = props.className;
 	    var children = props.children;
 	    var direction = props.direction;
@@ -20308,7 +20310,7 @@
 	    var status = props.status;
 	    var size = props.size;
 	
-	    var restProps = _objectWithoutProperties(props, ['prefixCls', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size']);
+	    var restProps = _objectWithoutProperties(props, ['prefixCls', 'style', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size']);
 	
 	    var lastIndex = children.length - 1;
 	    var reLayouted = this.state.lastStepOffsetWidth > 0;
@@ -20316,7 +20318,7 @@
 	
 	    return _react2["default"].createElement(
 	      'div',
-	      _extends({ className: classString }, restProps),
+	      _extends({ className: classString, style: style }, restProps),
 	      _react2["default"].Children.map(children, function (ele, idx) {
 	        var tailWidth = direction === 'vertical' || idx === lastIndex || !reLayouted ? null : 100 / lastIndex + '%';
 	        var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -(_this2.state.lastStepOffsetWidth / lastIndex + 1);
@@ -20326,7 +20328,8 @@
 	          tailWidth: tailWidth,
 	          adjustMarginRight: adjustMarginRight,
 	          prefixCls: prefixCls,
-	          iconPrefix: iconPrefix
+	          iconPrefix: iconPrefix,
+	          wrapperStyle: style
 	        };
 	
 	        // fix tail color
@@ -20462,13 +20465,14 @@
 	  var status = _props$status === undefined ? 'wait' : _props$status;
 	  var iconPrefix = props.iconPrefix;
 	  var icon = props.icon;
+	  var wrapperStyle = props.wrapperStyle;
 	  var adjustMarginRight = props.adjustMarginRight;
 	  var stepLast = props.stepLast;
 	  var stepNumber = props.stepNumber;
 	  var description = props.description;
 	  var title = props.title;
 	
-	  var restProps = _objectWithoutProperties(props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title']);
+	  var restProps = _objectWithoutProperties(props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title']);
 	
 	  var iconClassName = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish'), _defineProperty(_classNames, iconPrefix + 'icon-cross', !icon && status === 'error'), _classNames));
 	  var iconNode = icon || status === 'finish' || status === 'error' ? _react2["default"].createElement('span', { className: iconClassName }) : _react2["default"].createElement(
@@ -20493,7 +20497,10 @@
 	      { className: prefixCls + '-step' },
 	      _react2["default"].createElement(
 	        'div',
-	        { className: prefixCls + '-head' },
+	        {
+	          className: prefixCls + '-head',
+	          style: { background: wrapperStyle.background || wrapperStyle.backgroundColor }
+	        },
 	        _react2["default"].createElement(
 	          'div',
 	          { className: prefixCls + '-head-inner' },
@@ -20505,7 +20512,10 @@
 	        { className: prefixCls + '-main' },
 	        _react2["default"].createElement(
 	          'div',
-	          { className: prefixCls + '-title' },
+	          {
+	            className: prefixCls + '-title',
+	            style: { background: wrapperStyle.background || wrapperStyle.backgroundColor }
+	          },
 	          title
 	        ),
 	        description ? _react2["default"].createElement(
@@ -20522,6 +20532,7 @@
 	  className: _react.PropTypes.string,
 	  prefixCls: _react.PropTypes.string,
 	  style: _react.PropTypes.object,
+	  wrapperStyle: _react.PropTypes.object,
 	  tailWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
 	  status: _react.PropTypes.string,
 	  iconPrefix: _react.PropTypes.string,
