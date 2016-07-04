@@ -24,7 +24,8 @@ export default class Steps extends React.Component {
     const domNode = ReactDOM.findDOMNode(this);
     if (domNode.children.length > 0) {
       this.culcTimeout = setTimeout(() => {
-        const lastStepOffsetWidth = domNode.lastChild.getBoundingClientRect().width;
+        // +1 for fit edge bug of digit width, like 35.4px
+        const lastStepOffsetWidth = domNode.lastChild.offsetWidth + 1;
         if (this.state.lastStepOffsetWidth === lastStepOffsetWidth) {
           return;
         }
