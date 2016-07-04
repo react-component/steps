@@ -20265,7 +20265,8 @@
 	      var domNode = _reactDom2["default"].findDOMNode(_this);
 	      if (domNode.children.length > 0) {
 	        _this.culcTimeout = setTimeout(function () {
-	          var lastStepOffsetWidth = domNode.lastChild.getBoundingClientRect().width;
+	          // +1 for fit edge bug of digit width, like 35.4px
+	          var lastStepOffsetWidth = domNode.lastChild.offsetWidth + 1;
 	          if (_this.state.lastStepOffsetWidth === lastStepOffsetWidth) {
 	            return;
 	          }
