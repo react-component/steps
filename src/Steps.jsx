@@ -36,7 +36,7 @@ export default class Steps extends React.Component {
   render() {
     const props = this.props;
     const { prefixCls, style = {}, className, children, direction,
-            labelPlacement, iconPrefix, status, size, ...restProps } = props;
+            labelPlacement, iconPrefix, status, size, current, ...restProps } = props;
     const lastIndex = children.length - 1;
     const reLayouted = this.state.lastStepOffsetWidth > 0;
     const classString = classNames({
@@ -67,14 +67,14 @@ export default class Steps extends React.Component {
             };
 
             // fix tail color
-            if (props.status === 'error' && idx === props.current - 1) {
+            if (status === 'error' && idx === current - 1) {
               np.className = `${props.prefixCls}-next-error`;
             }
 
             if (!ele.props.status) {
-              if (idx === props.current) {
+              if (idx === current) {
                 np.status = status;
-              } else if (idx < props.current) {
+              } else if (idx < current) {
                 np.status = 'finish';
               } else {
                 np.status = 'wait';
