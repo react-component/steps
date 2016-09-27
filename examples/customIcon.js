@@ -9,7 +9,11 @@ const container = document.getElementById('__react-content');
 
 ReactDOM.render(
   <Steps>
-    <Steps.Step status="finish" title="步骤1" icon="cloud" />
+    <Steps.Step
+      status="finish"
+      title="步骤1"
+      icon={<span className="rc-steps-icon rcicon rcicon-cloud"></span>}
+    />
     <Steps.Step status="process" title="步骤2" icon="apple" />
     <Steps.Step status="wait" title="步骤3" icon="github" />
   </Steps>

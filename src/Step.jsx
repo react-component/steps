@@ -1,6 +1,10 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
+function isString(str) {
+  return typeof str === 'string';
+}
+
 function Step(props) {
   const {
     className, prefixCls, style, tailWidth,
@@ -10,13 +14,20 @@ function Step(props) {
   const iconClassName = classNames({
     [`${prefixCls}-icon`]: true,
     [`${iconPrefix}icon`]: true,
-    [`${iconPrefix}icon-${icon}`]: icon,
+    [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
     [`${iconPrefix}icon-check`]: !icon && status === 'finish',
     [`${iconPrefix}icon-cross`]: !icon && status === 'error',
   });
-  const iconNode = (icon || status === 'finish' || status === 'error')
-          ? <span className={iconClassName} />
-          : <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
+
+  let iconNode;
+  if (icon && !isString(icon)) {
+    iconNode = icon;
+  } else if (icon || status === 'finish' || status === 'error') {
+    iconNode = <span className={iconClassName} />;
+  } else {
+    iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
+  }
+
   const classString = classNames({
     [`${prefixCls}-item`]: true,
     [`${prefixCls}-item-last`]: stepLast,
@@ -60,7 +71,7 @@ Step.propTypes = {
   ]),
   status: PropTypes.string,
   iconPrefix: PropTypes.string,
-  icon: PropTypes.string,
+  icon: PropTypes.node,
   adjustMarginRight: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
