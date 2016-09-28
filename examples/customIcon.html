@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>customIcon.js - example - rc-steps@2.1.5</title>
+  <title>customIcon.js - example - rc-steps@2.2.0</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -251,35 +251,39 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   <!--[if lt IE 9]>
   <script src="https://a.alipayobjects.com/??es5-shim/4.0.5/es5-shim.js,es5-shim/4.0.5/es5-sham.js,html5shiv/3.7.2/src/html5shiv.js"></script>
   <![endif]-->
-  
+  <script src="https://as.alipayobjects.com/g/component/??modernizr/2.8.3/modernizr.js,fastclick/1.0.6/fastclick.js"></script>
+  <script>
+  if(!window.Promise) {
+    document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+  }
+  </script>
   <link rel="stylesheet" href="common.css" />
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <h1>rc-steps@2.1.5</h1>
+      <h1>rc-steps@2.2.0</h1>
 
       <p>steps ui component for react</p>
     </div>
     <div class="example" id="__react-content"></div>
 
-    <div class="highlight"><pre><code language="js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps/assets/index.css'</span>);
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps/assets/iconfont.css'</span>);
+    <div class="highlight"><pre><code language="js"><span class="hljs-keyword">import</span> <span class="hljs-string">'rc-steps/assets/index.css'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'rc-steps/assets/iconfont.css'</span>;
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+<span class="hljs-keyword">import</span> Steps, { Step } <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-steps'</span>;
 
-<span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
-<span class="hljs-keyword">const</span> ReactDOM = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react-dom'</span>);
-<span class="hljs-keyword">const</span> Steps = <span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-steps'</span>);
-
-<span class="hljs-keyword">const</span> container = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'__react-content'</span>);
+<span class="hljs-keyword">const</span> Icon = ({ type }) =&gt; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">{`rcicon</span> <span class="hljs-attribute">rcicon-</span>${<span class="hljs-attribute">type</span>}`} /&gt;</span>;</span>
 
 ReactDOM.render(
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"finish"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"步骤1"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"cloud"</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"process"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"步骤2"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"apple"</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"wait"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"步骤3"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"github"</span> /&gt;</span>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span> <span class="hljs-attribute">current</span>=<span class="hljs-value">{1}</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"步骤1"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">{&lt;Icon</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"cloud"</span> /&gt;</span>} /&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"步骤2"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"apple"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"步骤3"</span> <span class="hljs-attribute">icon</span>=<span class="hljs-value">"github"</span> /&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>
-, container);
+, document.getElementById('__react-content'));
 </span></code></pre></div>
   </div>
   <a href="http://github.com/react-component/steps">
@@ -288,7 +292,7 @@ ReactDOM.render(
          alt="Fork me on GitHub"
          data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
   </a>
-  
+  <script>FastClick.attach(document.body);</script>
   <script src="common.js?nowrap"></script>
   <script src="customIcon.js?nowrap"></script>
 </body>
