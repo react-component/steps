@@ -1,16 +1,15 @@
-require('rc-steps/assets/index.less');
-require('rc-steps/assets/iconfont.less');
+import 'rc-steps/assets/index.less';
+import 'rc-steps/assets/iconfont.less';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Steps, { Step } from 'rc-steps';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Steps = require('rc-steps');
-
-const container = document.getElementById('__react-content');
+const Icon = ({ type }) => <i className={`rcicon rcicon-${type}`} />;
 
 ReactDOM.render(
-  <Steps>
-    <Steps.Step status="finish" title="步骤1" icon="cloud" />
-    <Steps.Step status="process" title="步骤2" icon="apple" />
-    <Steps.Step status="wait" title="步骤3" icon="github" />
+  <Steps current={1}>
+    <Step title="步骤1" icon={<Icon type="cloud" />} />
+    <Step title="步骤2" icon="apple" />
+    <Step title="步骤3" icon="github" />
   </Steps>
-, container);
+, document.getElementById('__react-content'));
