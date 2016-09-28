@@ -1,6 +1,10 @@
 # History
 ----
 
+## 2.2.0
+
+* `icon` can be React.Node now.
+
 ## 2.1.0
 
 * Add `labelPlacement`, support vertial title and description
