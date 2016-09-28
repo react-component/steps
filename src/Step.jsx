@@ -21,7 +21,7 @@ function Step(props) {
 
   let iconNode;
   if (icon && !isString(icon)) {
-    iconNode = icon;
+    iconNode = <span className={`${prefixCls}-icon`}>{icon}</span>;
   } else if (icon || status === 'finish' || status === 'error') {
     iconNode = <span className={iconClassName} />;
   } else {
