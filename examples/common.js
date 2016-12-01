@@ -21639,7 +21639,7 @@
 	      _extends({ className: classString, style: style }, restProps),
 	      _react2.default.Children.map(children, function (ele, idx) {
 	        var tailWidth = direction === 'vertical' || idx === lastIndex || !reLayouted ? null : 100 / lastIndex + '%';
-	        var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -(_this2.state.lastStepOffsetWidth / lastIndex + 1);
+	        var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -Math.round(_this2.state.lastStepOffsetWidth / lastIndex + 1);
 	        var np = {
 	          stepNumber: (idx + 1).toString(),
 	          stepLast: idx === lastIndex,
