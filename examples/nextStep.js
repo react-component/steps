@@ -26,14 +26,14 @@ const MyForm = React.createClass({
       currentStep: Math.floor(Math.random() * steps.length),
     };
   },
-  componentDidMount() {
+  // componentDidMount() {
     // You can dynamically set tail's left position based on main's width for each step.
     // this.stepsRefs.forEach(s => {
     //   if (s.refs.tail) {
     //     s.refs.tail.style.left = `${s.refs.main.offsetWidth / 2}px`;
     //   }
     // });
-  },
+  // },
   nextStep() {
     let s = this.state.currentStep + 1;
     if (s === steps.length) {
@@ -55,7 +55,7 @@ const MyForm = React.createClass({
             {
               steps.map((s, i) => {
                 return (
-                  <Steps.Step ref={c => this.stepsRefs.push(c)}
+                  <Steps.Step ref={c => this.stepsRefs[i] = c}
                     key={i}
                     title={s.title}
                   />
