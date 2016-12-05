@@ -26,6 +26,14 @@ const MyForm = React.createClass({
       currentStep: Math.floor(Math.random() * steps.length),
     };
   },
+  componentDidMount() {
+    // You can dynamically set tail's left position based on main's width for each step.
+    // this.stepsRefs.forEach(s => {
+    //   if (s.refs.tail) {
+    //     s.refs.tail.style.left = `${s.refs.main.offsetWidth / 2}px`;
+    //   }
+    // });
+  },
   nextStep() {
     let s = this.state.currentStep + 1;
     if (s === steps.length) {
@@ -37,6 +45,7 @@ const MyForm = React.createClass({
   },
   render() {
     const cs = this.state.currentStep;
+    this.stepsRefs = [];
     return (
       <form className="my-step-form">
         <div>这个demo随机生成3~6个步骤，初始随机进行到其中一个步骤</div>
@@ -46,7 +55,7 @@ const MyForm = React.createClass({
             {
               steps.map((s, i) => {
                 return (
-                  <Steps.Step
+                  <Steps.Step ref={c => this.stepsRefs.push(c)}
                     key={i}
                     title={s.title}
                   />
