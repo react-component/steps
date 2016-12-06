@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>nextStep.js - example - rc-steps@2.2.1</title>
+  <title>nextStep.js - example - rc-steps@2.2.2</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -263,7 +263,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <body>
   <div class="container">
     <div class="header">
-      <h1>rc-steps@2.2.1</h1>
+      <h1>rc-steps@2.2.2</h1>
 
       <p>steps ui component for react</p>
     </div>
@@ -297,6 +297,16 @@ const MyForm = React.createClass({
       currentStep: Math.floor(Math.random() * steps.length),
     };
   },
+  /*
+  componentDidMount() {
+    // You can dynamically set tail's left position based on main's width for each step.
+    this.stepsRefs.forEach(s =&gt; {
+      if (s.refs.tail) {
+        s.refs.tail.style.left = `${s.refs.main.offsetWidth / 2}px`;
+      }
+    });
+  },
+  */
   nextStep() {
     let s = this.state.currentStep + 1;
     if (s === steps.length) {
@@ -308,6 +318,7 @@ const MyForm = React.createClass({
   },
   render() {
     const cs = this.state.currentStep;
+    this.stepsRefs = [];
     return (
       &lt;form className="my-step-form"&gt;
         &lt;div&gt;这个demo随机生成3~6个步骤，初始随机进行到其中一个步骤&lt;/div&gt;
@@ -317,7 +328,7 @@ const MyForm = React.createClass({
             {
               steps.map((s, i) =&gt; {
                 return (
-                  &lt;Steps.Step
+                  &lt;Steps.Step ref={c =&gt; this.stepsRefs[i] = c}
                     key={i}
                     title={s.title}
                   /&gt;

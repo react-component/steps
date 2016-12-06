@@ -21756,6 +21756,10 @@
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
 	var _react = __webpack_require__(4);
@@ -21768,100 +21772,124 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 	
 	function isString(str) {
 	  return typeof str === 'string';
 	}
 	
-	function Step(props) {
-	  var _classNames, _classNames2;
+	var Step = function (_React$Component) {
+	  _inherits(Step, _React$Component);
 	
-	  var className = props.className;
-	  var prefixCls = props.prefixCls;
-	  var style = props.style;
-	  var tailWidth = props.tailWidth;
-	  var _props$status = props.status;
-	  var status = _props$status === undefined ? 'wait' : _props$status;
-	  var iconPrefix = props.iconPrefix;
-	  var icon = props.icon;
-	  var wrapperStyle = props.wrapperStyle;
-	  var adjustMarginRight = props.adjustMarginRight;
-	  var stepLast = props.stepLast;
-	  var stepNumber = props.stepNumber;
-	  var description = props.description;
-	  var title = props.title;
+	  function Step() {
+	    _classCallCheck(this, Step);
 	
-	  var restProps = _objectWithoutProperties(props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title']);
-	
-	  var iconClassName = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon && isString(icon)), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish'), _defineProperty(_classNames, iconPrefix + 'icon-cross', !icon && status === 'error'), _classNames));
-	
-	  var iconNode = void 0;
-	  if (icon && !isString(icon)) {
-	    iconNode = _react2.default.createElement(
-	      'span',
-	      { className: prefixCls + '-icon' },
-	      icon
-	    );
-	  } else if (icon || status === 'finish' || status === 'error') {
-	    iconNode = _react2.default.createElement('span', { className: iconClassName });
-	  } else {
-	    iconNode = _react2.default.createElement(
-	      'span',
-	      { className: prefixCls + '-icon' },
-	      stepNumber
-	    );
+	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
 	  }
 	
-	  var classString = (0, _classnames2.default)((_classNames2 = {}, _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _defineProperty(_classNames2, className, !!className), _classNames2));
-	  return _react2.default.createElement(
-	    'div',
-	    _extends({}, restProps, {
-	      className: classString,
-	      style: _extends({ width: tailWidth, marginRight: adjustMarginRight }, style)
-	    }),
-	    stepLast ? '' : _react2.default.createElement(
+	  Step.prototype.render = function render() {
+	    var _classNames, _classNames2;
+	
+	    var _props = this.props;
+	    var className = _props.className;
+	    var prefixCls = _props.prefixCls;
+	    var style = _props.style;
+	    var tailWidth = _props.tailWidth;
+	    var _props$status = _props.status;
+	    var status = _props$status === undefined ? 'wait' : _props$status;
+	    var iconPrefix = _props.iconPrefix;
+	    var icon = _props.icon;
+	    var wrapperStyle = _props.wrapperStyle;
+	    var adjustMarginRight = _props.adjustMarginRight;
+	    var stepLast = _props.stepLast;
+	    var stepNumber = _props.stepNumber;
+	    var description = _props.description;
+	    var title = _props.title;
+	
+	    var restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title']);
+	
+	    var iconClassName = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon && isString(icon)), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish'), _defineProperty(_classNames, iconPrefix + 'icon-cross', !icon && status === 'error'), _classNames));
+	
+	    var iconNode = void 0;
+	    if (icon && !isString(icon)) {
+	      iconNode = _react2.default.createElement(
+	        'span',
+	        { className: prefixCls + '-icon' },
+	        icon
+	      );
+	    } else if (icon || status === 'finish' || status === 'error') {
+	      iconNode = _react2.default.createElement('span', { className: iconClassName });
+	    } else {
+	      iconNode = _react2.default.createElement(
+	        'span',
+	        { className: prefixCls + '-icon' },
+	        stepNumber
+	      );
+	    }
+	
+	    var classString = (0, _classnames2.default)((_classNames2 = {}, _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _defineProperty(_classNames2, className, !!className), _classNames2));
+	    return _react2.default.createElement(
 	      'div',
-	      { className: prefixCls + '-tail' },
-	      _react2.default.createElement('i', null)
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: prefixCls + '-step' },
-	      _react2.default.createElement(
+	      _extends({}, restProps, {
+	        className: classString,
+	        style: _extends({ width: tailWidth, marginRight: adjustMarginRight }, style)
+	      }),
+	      stepLast ? '' : _react2.default.createElement(
 	        'div',
-	        {
-	          className: prefixCls + '-head',
-	          style: { background: wrapperStyle.background || wrapperStyle.backgroundColor }
-	        },
-	        _react2.default.createElement(
-	          'div',
-	          { className: prefixCls + '-head-inner' },
-	          iconNode
-	        )
+	        { ref: 'tail', className: prefixCls + '-tail' },
+	        _react2.default.createElement('i', null)
 	      ),
 	      _react2.default.createElement(
 	        'div',
-	        { className: prefixCls + '-main' },
+	        { className: prefixCls + '-step' },
 	        _react2.default.createElement(
 	          'div',
 	          {
-	            className: prefixCls + '-title',
+	            className: prefixCls + '-head',
 	            style: { background: wrapperStyle.background || wrapperStyle.backgroundColor }
 	          },
-	          title
+	          _react2.default.createElement(
+	            'div',
+	            { className: prefixCls + '-head-inner' },
+	            iconNode
+	          )
 	        ),
-	        description ? _react2.default.createElement(
+	        _react2.default.createElement(
 	          'div',
-	          { className: prefixCls + '-description' },
-	          description
-	        ) : ''
+	          { ref: 'main', className: prefixCls + '-main' },
+	          _react2.default.createElement(
+	            'div',
+	            {
+	              className: prefixCls + '-title',
+	              style: { background: wrapperStyle.background || wrapperStyle.backgroundColor }
+	            },
+	            title
+	          ),
+	          description ? _react2.default.createElement(
+	            'div',
+	            { className: prefixCls + '-description' },
+	            description
+	          ) : ''
+	        )
 	      )
-	    )
-	  );
-	}
+	    );
+	  };
+	
+	  return Step;
+	}(_react2.default.Component);
+	
+	exports.default = Step;
+	
 	
 	Step.propTypes = {
 	  className: _react.PropTypes.string,
@@ -21880,6 +21908,7 @@
 	};
 	
 	module.exports = Step;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ])));

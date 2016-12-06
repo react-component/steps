@@ -42,6 +42,17 @@ webpackJsonp([6],{
 	      currentStep: Math.floor(Math.random() * steps.length)
 	    };
 	  },
+	
+	  /*
+	  componentDidMount() {
+	    // You can dynamically set tail's left position based on main's width for each step.
+	    this.stepsRefs.forEach(s => {
+	      if (s.refs.tail) {
+	        s.refs.tail.style.left = `${s.refs.main.offsetWidth / 2}px`;
+	      }
+	    });
+	  },
+	  */
 	  nextStep: function nextStep() {
 	    var s = this.state.currentStep + 1;
 	    if (s === steps.length) {
@@ -52,7 +63,10 @@ webpackJsonp([6],{
 	    });
 	  },
 	  render: function render() {
+	    var _this = this;
+	
 	    var cs = this.state.currentStep;
+	    this.stepsRefs = [];
 	    return React.createElement(
 	      'form',
 	      { className: 'my-step-form' },
@@ -75,7 +89,9 @@ webpackJsonp([6],{
 	          Steps,
 	          { current: cs },
 	          steps.map(function (s, i) {
-	            return React.createElement(Steps.Step, {
+	            return React.createElement(Steps.Step, { ref: function ref(c) {
+	                return _this.stepsRefs[i] = c;
+	              },
 	              key: i,
 	              title: s.title
 	            });
