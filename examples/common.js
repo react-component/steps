@@ -21577,12 +21577,15 @@
 	
 	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 	
-	    _this.culcLastStepOffsetWidth = function () {
+	    _this.calcLastStepOffsetWidth = function () {
 	      var domNode = _reactDom2.default.findDOMNode(_this);
 	      if (domNode.children.length > 0) {
-	        _this.culcTimeout = setTimeout(function () {
+	        if (_this.calcTimeout) {
+	          clearTimeout(_this.calcTimeout);
+	        }
+	        _this.calcTimeout = setTimeout(function () {
 	          // +1 for fit edge bug of digit width, like 35.4px
-	          var lastStepOffsetWidth = domNode.lastChild.offsetWidth + 1;
+	          var lastStepOffsetWidth = (domNode.lastChild.offsetWidth || 0) + 1;
 	          if (_this.state.lastStepOffsetWidth === lastStepOffsetWidth) {
 	            return;
 	          }
@@ -21598,16 +21601,16 @@
 	  }
 	
 	  Steps.prototype.componentDidMount = function componentDidMount() {
-	    this.culcLastStepOffsetWidth();
+	    this.calcLastStepOffsetWidth();
 	  };
 	
 	  Steps.prototype.componentDidUpdate = function componentDidUpdate() {
-	    this.culcLastStepOffsetWidth();
+	    this.calcLastStepOffsetWidth();
 	  };
 	
 	  Steps.prototype.componentWillUnmount = function componentWillUnmount() {
-	    if (this.culcTimeout) {
-	      clearTimeout(this.culcTimeout);
+	    if (this.calcTimeout) {
+	      clearTimeout(this.calcTimeout);
 	    }
 	  };
 	
