@@ -10,20 +10,23 @@ export default class Steps extends React.Component {
     };
   }
   componentDidMount() {
-    this.culcLastStepOffsetWidth();
+    this.calcLastStepOffsetWidth();
   }
   componentDidUpdate() {
-    this.culcLastStepOffsetWidth();
+    this.calcLastStepOffsetWidth();
   }
   componentWillUnmount() {
-    if (this.culcTimeout) {
-      clearTimeout(this.culcTimeout);
+    if (this.calcTimeout) {
+      clearTimeout(this.calcTimeout);
     }
   }
-  culcLastStepOffsetWidth = () => {
+  calcLastStepOffsetWidth = () => {
     const domNode = ReactDOM.findDOMNode(this);
     if (domNode.children.length > 0) {
-      this.culcTimeout = setTimeout(() => {
+      if (this.calcTimeout) {
+        clearTimeout(this.calcTimeout);
+      }
+      this.calcTimeout = setTimeout(() => {
         // +1 for fit edge bug of digit width, like 35.4px
         const lastStepOffsetWidth = domNode.lastChild.offsetWidth + 1;
         if (this.state.lastStepOffsetWidth === lastStepOffsetWidth) {
