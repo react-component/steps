@@ -27,7 +27,7 @@ export default class Step extends React.Component {
       if (typeof progressDot === 'function') {
         iconNode = (
           <span className={`${prefixCls}-icon`}>
-            {progressDot(iconDot, stepNumber - 1)}
+            {progressDot(iconDot, { index: stepNumber - 1, status, title, description })}
           </span>
         );
       } else {
@@ -106,7 +106,10 @@ Step.propTypes = {
   stepNumber: PropTypes.string,
   description: PropTypes.any,
   title: PropTypes.any,
-  progressDot: PropTypes.any,
+  progressDot: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func,
+  ]),
 };
 
 module.exports = Step;

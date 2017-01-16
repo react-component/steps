@@ -110,7 +110,10 @@ Steps.propTypes = {
   children: PropTypes.any,
   status: PropTypes.string,
   size: PropTypes.string,
-  progressDot: PropTypes.any,
+  progressDot: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func,
+  ]),
 };
 
 Steps.defaultProps = {
