@@ -1,14 +1,14 @@
-webpackJsonp([8],{
+webpackJsonp([7],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(188);
+	module.exports = __webpack_require__(187);
 
 
 /***/ },
 
-/***/ 188:
+/***/ 187:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34,6 +34,9 @@ webpackJsonp([8],{
 	}, {
 	  title: '待运行',
 	  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'
+	}, {
+	  title: '待运行',
+	  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶'
 	}].map(function (s, i) {
 	  return React.createElement(Steps.Step, {
 	    key: i,
@@ -45,11 +48,11 @@ webpackJsonp([8],{
 	
 	ReactDOM.render(React.createElement(
 	  Steps,
-	  { current: 1 },
+	  { progressDot: true, current: 1 },
 	  steps
 	), container);
 
 /***/ }
 
 });
-//# sourceMappingURL=simple.js.map
+//# sourceMappingURL=progressDot.js.map

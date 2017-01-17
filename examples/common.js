@@ -51,7 +51,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		11:0
+/******/ 		12:0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -97,7 +97,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 /******/
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"alternativeLabel","1":"background","2":"customIcon","3":"dynamic","4":"errorStep","5":"hiddenRender","6":"nextStep","7":"simple","8":"smallSize","9":"vertical","10":"verticalSmall"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"alternativeLabel","1":"background","2":"customIcon","3":"dynamic","4":"errorStep","5":"hiddenRender","6":"nextStep","7":"progressDot","8":"simple","9":"smallSize","10":"vertical","11":"verticalSmall"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -21577,7 +21577,7 @@
 	
 	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 	
-	    _this.calcLastStepOffsetWidth = function () {
+	    _this.calcStepOffsetWidth = function () {
 	      var domNode = _reactDom2.default.findDOMNode(_this);
 	      if (domNode.children.length > 0) {
 	        if (_this.calcTimeout) {
@@ -21586,26 +21586,28 @@
 	        _this.calcTimeout = setTimeout(function () {
 	          // +1 for fit edge bug of digit width, like 35.4px
 	          var lastStepOffsetWidth = (domNode.lastChild.offsetWidth || 0) + 1;
-	          if (_this.state.lastStepOffsetWidth === lastStepOffsetWidth) {
+	          var firstStepOffsetWidth = (domNode.firstChild.offsetWidth || 0) + 1;
+	          if (_this.state.lastStepOffsetWidth === lastStepOffsetWidth && _this.state.firstStepOffsetWidth === firstStepOffsetWidth) {
 	            return;
 	          }
-	          _this.setState({ lastStepOffsetWidth: lastStepOffsetWidth });
+	          _this.setState({ lastStepOffsetWidth: lastStepOffsetWidth, firstStepOffsetWidth: firstStepOffsetWidth });
 	        });
 	      }
 	    };
 	
 	    _this.state = {
-	      lastStepOffsetWidth: 0
+	      lastStepOffsetWidth: 0,
+	      firstStepOffsetWidth: 0
 	    };
 	    return _this;
 	  }
 	
 	  Steps.prototype.componentDidMount = function componentDidMount() {
-	    this.calcLastStepOffsetWidth();
+	    this.calcStepOffsetWidth();
 	  };
 	
 	  Steps.prototype.componentDidUpdate = function componentDidUpdate() {
-	    this.calcLastStepOffsetWidth();
+	    this.calcStepOffsetWidth();
 	  };
 	
 	  Steps.prototype.componentWillUnmount = function componentWillUnmount() {
@@ -21630,27 +21632,32 @@
 	    var status = props.status;
 	    var size = props.size;
 	    var current = props.current;
+	    var progressDot = props.progressDot;
 	
-	    var restProps = _objectWithoutProperties(props, ['prefixCls', 'style', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size', 'current']);
+	    var restProps = _objectWithoutProperties(props, ['prefixCls', 'style', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size', 'current', 'progressDot']);
 	
 	    var lastIndex = children.length - 1;
 	    var reLayouted = this.state.lastStepOffsetWidth > 0;
-	    var classString = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-' + direction, true), _defineProperty(_classNames, prefixCls + '-label-' + labelPlacement, direction === 'horizontal'), _defineProperty(_classNames, prefixCls + '-hidden', !reLayouted), _defineProperty(_classNames, className, className), _classNames));
+	    var adjustedlabelPlacement = !!progressDot ? 'vertical' : labelPlacement;
+	    var classString = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-' + direction, true), _defineProperty(_classNames, prefixCls + '-label-' + adjustedlabelPlacement, direction === 'horizontal'), _defineProperty(_classNames, prefixCls + '-hidden', !reLayouted), _defineProperty(_classNames, prefixCls + '-dot', !!progressDot), _defineProperty(_classNames, className, className), _classNames));
 	
 	    return _react2.default.createElement(
 	      'div',
 	      _extends({ className: classString, style: style }, restProps),
 	      _react2.default.Children.map(children, function (ele, idx) {
-	        var tailWidth = direction === 'vertical' || idx === lastIndex || !reLayouted ? null : 100 / lastIndex + '%';
+	        var itemWidth = direction === 'vertical' || idx === lastIndex || !reLayouted ? null : 100 / lastIndex + '%';
 	        var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -Math.round(_this2.state.lastStepOffsetWidth / lastIndex + 1);
+	        var tailWidth = direction === 'vertical' ? '' : _this2.state.firstStepOffsetWidth + Math.round(_this2.state.lastStepOffsetWidth / 2 + 1) - Math.round(_this2.state.lastStepOffsetWidth / lastIndex + 1);
 	        var np = {
 	          stepNumber: (idx + 1).toString(),
 	          stepLast: idx === lastIndex,
+	          itemWidth: itemWidth,
 	          tailWidth: tailWidth,
 	          adjustMarginRight: adjustMarginRight,
 	          prefixCls: prefixCls,
 	          iconPrefix: iconPrefix,
-	          wrapperStyle: style
+	          wrapperStyle: style,
+	          progressDot: progressDot
 	        };
 	
 	        // fix tail color
@@ -21685,7 +21692,8 @@
 	  labelPlacement: _react.PropTypes.string,
 	  children: _react.PropTypes.any,
 	  status: _react.PropTypes.string,
-	  size: _react.PropTypes.string
+	  size: _react.PropTypes.string,
+	  progressDot: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.func])
 	};
 	
 	Steps.defaultProps = {
@@ -21695,7 +21703,8 @@
 	  labelPlacement: 'horizontal',
 	  current: 0,
 	  status: 'process',
-	  size: ''
+	  size: '',
+	  progressDot: false
 	};
 	module.exports = exports['default'];
 
@@ -21808,6 +21817,7 @@
 	    var prefixCls = _props.prefixCls;
 	    var style = _props.style;
 	    var tailWidth = _props.tailWidth;
+	    var itemWidth = _props.itemWidth;
 	    var _props$status = _props.status;
 	    var status = _props$status === undefined ? 'wait' : _props$status;
 	    var iconPrefix = _props.iconPrefix;
@@ -21818,13 +21828,30 @@
 	    var stepNumber = _props.stepNumber;
 	    var description = _props.description;
 	    var title = _props.title;
+	    var progressDot = _props.progressDot;
 	
-	    var restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title']);
+	    var restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'tailWidth', 'itemWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title', 'progressDot']);
 	
 	    var iconClassName = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon && isString(icon)), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish'), _defineProperty(_classNames, iconPrefix + 'icon-cross', !icon && status === 'error'), _classNames));
 	
 	    var iconNode = void 0;
-	    if (icon && !isString(icon)) {
+	    var iconDot = _react2.default.createElement('span', { className: prefixCls + '-icon-dot' });
+	    // `progressDot` enjoy the highest priority
+	    if (!!progressDot) {
+	      if (typeof progressDot === 'function') {
+	        iconNode = _react2.default.createElement(
+	          'span',
+	          { className: prefixCls + '-icon' },
+	          progressDot(iconDot, { index: stepNumber - 1, status: status, title: title, description: description })
+	        );
+	      } else {
+	        iconNode = _react2.default.createElement(
+	          'span',
+	          { className: prefixCls + '-icon' },
+	          iconDot
+	        );
+	      }
+	    } else if (icon && !isString(icon)) {
 	      iconNode = _react2.default.createElement(
 	        'span',
 	        { className: prefixCls + '-icon' },
@@ -21839,17 +21866,20 @@
 	        stepNumber
 	      );
 	    }
-	
 	    var classString = (0, _classnames2.default)((_classNames2 = {}, _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _defineProperty(_classNames2, className, !!className), _classNames2));
 	    return _react2.default.createElement(
 	      'div',
 	      _extends({}, restProps, {
 	        className: classString,
-	        style: _extends({ width: tailWidth, marginRight: adjustMarginRight }, style)
+	        style: _extends({ width: itemWidth, marginRight: adjustMarginRight }, style)
 	      }),
 	      stepLast ? '' : _react2.default.createElement(
 	        'div',
-	        { ref: 'tail', className: prefixCls + '-tail' },
+	        {
+	          ref: 'tail',
+	          style: tailWidth ? { width: tailWidth } : {},
+	          className: prefixCls + '-tail'
+	        },
 	        _react2.default.createElement('i', null)
 	      ),
 	      _react2.default.createElement(
@@ -21900,6 +21930,7 @@
 	  style: _react.PropTypes.object,
 	  wrapperStyle: _react.PropTypes.object,
 	  tailWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+	  itemWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
 	  status: _react.PropTypes.string,
 	  iconPrefix: _react.PropTypes.string,
 	  icon: _react.PropTypes.node,
@@ -21907,7 +21938,8 @@
 	  stepLast: _react.PropTypes.bool,
 	  stepNumber: _react.PropTypes.string,
 	  description: _react.PropTypes.any,
-	  title: _react.PropTypes.any
+	  title: _react.PropTypes.any,
+	  progressDot: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.func])
 	};
 	
 	module.exports = Step;

@@ -25,6 +25,9 @@
 .rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-head-inner > .rc-steps-icon {
   color: #ccc;
 }
+.rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-head-inner > .rc-steps-icon .rc-steps-icon-dot {
+  background: #ccc;
+}
 .rc-steps .rc-steps-item.rc-steps-status-wait .rc-steps-title {
   color: #999;
 }
@@ -40,6 +43,9 @@
 }
 .rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-head-inner > .rc-steps-icon {
   color: #fff;
+}
+.rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-head-inner > .rc-steps-icon .rc-steps-icon-dot {
+  background: #2db7f5;
 }
 .rc-steps .rc-steps-item.rc-steps-status-process .rc-steps-title {
   color: #666;
@@ -57,6 +63,9 @@
 .rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-head-inner > .rc-steps-icon {
   color: #2db7f5;
 }
+.rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-head-inner > .rc-steps-icon .rc-steps-icon-dot {
+  background: #2db7f5;
+}
 .rc-steps .rc-steps-item.rc-steps-status-finish .rc-steps-tail > i {
   background-color: #2db7f5;
 }
@@ -72,6 +81,9 @@
 }
 .rc-steps .rc-steps-item.rc-steps-status-error .rc-steps-head-inner > .rc-steps-icon {
   color: #f50;
+}
+.rc-steps .rc-steps-item.rc-steps-status-error .rc-steps-head-inner > .rc-steps-icon .rc-steps-icon-dot {
+  background: #f50;
 }
 .rc-steps .rc-steps-item.rc-steps-status-error .rc-steps-tail > i {
   background-color: #e9e9e9;
@@ -263,6 +275,7 @@
 }
 .rc-steps-vertical.rc-steps-small .rc-steps-tail > i {
   height: 100%;
+  width: 1px;
 }
 .rc-steps-vertical.rc-steps-small .rc-steps-title {
   line-height: 18px;
@@ -305,6 +318,57 @@
 }
 .rc-steps-label-vertical .rc-steps-main .rc-steps-description {
   text-align: left;
+}
+.rc-steps-dot .rc-steps-tail {
+  padding: 0 0 0 50px;
+  width: 100%;
+  top: 1px;
+}
+.rc-steps-dot .rc-steps-tail > i {
+  height: 3px;
+}
+.rc-steps-dot .rc-steps-head {
+  padding-right: 0;
+}
+.rc-steps-dot .rc-steps-head-inner {
+  width: 5px;
+  height: 5px;
+  line-height: 5px;
+  border: 0;
+}
+.rc-steps-dot .rc-steps-head-inner .rc-steps-icon-dot {
+  float: left;
+  width: 100%;
+  height: 100%;
+  border-radius: 2.5px;
+}
+.rc-steps-dot .rc-steps-status-process .rc-steps-head {
+  top: -1px;
+}
+.rc-steps-dot .rc-steps-status-process .rc-steps-head-inner {
+  width: 7px;
+  height: 7px;
+  line-height: 7px;
+}
+.rc-steps-dot .rc-steps-status-process .rc-steps-head-inner .rc-steps-icon-dot {
+  border-radius: 3.5px;
+}
+.rc-steps-dot.rc-steps-vertical .rc-steps-tail {
+  left: 2px;
+  height: 100%;
+  padding: 0;
+  top: 15px;
+}
+.rc-steps-dot.rc-steps-vertical .rc-steps-tail > i {
+  height: 100%;
+  width: 3px;
+}
+.rc-steps-dot.rc-steps-vertical .rc-steps-head {
+  top: 12px;
+  left: 1px;
+}
+.rc-steps-dot.rc-steps-vertical .rc-steps-status-process .rc-steps-head {
+  left: 0;
 }
 .hidden {
   display: none;
