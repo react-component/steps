@@ -1,6 +1,10 @@
 # History
 ----
 
+## 2.3.0
+
+* Add new step style of prop `progressDot`.
+
 ## 2.2.0
 
 * `icon` can be React.Node now.
