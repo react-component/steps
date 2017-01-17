@@ -59,6 +59,9 @@
         background-color: #fff;
         > .@{stepsPrefixClass}-icon {
           color: @wait-icon-color;
+          .@{stepsPrefixClass}-icon-dot {
+            background: @wait-icon-color;
+          }
         }
       }
       .@{stepsPrefixClass}-title {
@@ -77,6 +80,9 @@
         background-color: @process-icon-color;
         > .@{stepsPrefixClass}-icon {
           color: #fff;
+          .@{stepsPrefixClass}-icon-dot {
+            background: @process-icon-color;
+          }
         }
       }
       .@{stepsPrefixClass}-title {
@@ -95,6 +101,9 @@
         background-color: #fff;
         > .@{stepsPrefixClass}-icon {
           color: @finish-icon-color;
+          .@{stepsPrefixClass}-icon-dot {
+            background: @finish-icon-color;
+          }
         }
       }
       .@{stepsPrefixClass}-tail > i {
@@ -114,6 +123,9 @@
         background-color: #fff;
         > .@{stepsPrefixClass}-icon {
           color: @error-icon-color;
+          .@{stepsPrefixClass}-icon-dot {
+            background: @error-icon-color;
+          }
         }
       }
       .@{stepsPrefixClass}-tail > i {
@@ -323,6 +335,7 @@
     padding: 22px 0 4px 0;
     > i {
       height: 100%;
+      width: 1px;
     }
   }
 
@@ -374,6 +387,69 @@
     }
     .@{stepsPrefixClass}-description {
       text-align: left;
+    }
+  }
+}
+
+.@{stepsPrefixClass}-dot {
+  .@{stepsPrefixClass}-tail {
+    padding: 0 0 0 50px;
+    width: 100%;
+    top: 1px;
+
+    & > i {
+      height: 3px;
+    }
+  }
+  .@{stepsPrefixClass}-head {
+    padding-right: 0;
+    &-inner {
+      width: 5px;
+      height: 5px;
+      line-height: 5px;
+      border: 0;
+
+      .@{stepsPrefixClass}-icon-dot {
+        float: left;
+        width: 100%;
+        height: 100%;
+        border-radius: 2.5px;
+      }
+    }
+  }
+  .@{stepsPrefixClass}-status-process {
+    .@{stepsPrefixClass}-head {
+      top: -1px;
+      &-inner {
+        width: 7px;
+        height: 7px;
+        line-height: 7px;
+
+        .@{stepsPrefixClass}-icon-dot {
+          border-radius: 3.5px;
+        }
+      }
+    }
+  }
+  &.@{stepsPrefixClass}-vertical {
+    .@{stepsPrefixClass}-tail {
+      left: 2px;
+      height: 100%;
+      padding: 0;
+      top: 15px;
+      > i {
+        height: 100%;
+        width: 3px;
+      }
+    }
+    .@{stepsPrefixClass}-head {
+      top: 12px;
+      left: 1px;
+    }
+    .@{stepsPrefixClass}-status-process {
+      .@{stepsPrefixClass}-head {
+        left: 0;
+      }
     }
   }
 }
