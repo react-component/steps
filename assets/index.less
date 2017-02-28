@@ -1,5 +1,6 @@
 @css-prefix             : rc-;
 @stepsPrefixClass: ~"@{css-prefix}steps";
+@stepDescriptionMaxWidth: 100px;
 
 .scale(@ratio) {
   -webkit-transform: scale(@ratio);
@@ -349,7 +350,7 @@
     visibility: hidden;
   }
   .@{stepsPrefixClass}-description {
-    max-width: 100px;
+    max-width: @stepDescriptionMaxWidth;
   }
   .@{stepsPrefixClass}-item:not(:first-child) .@{stepsPrefixClass}-head {
     position: relative;
@@ -361,12 +362,13 @@
 .@{stepsPrefixClass}-label-vertical {
   .@{stepsPrefixClass}-tail {
     padding: 0 32px;
+    margin-left: 22px;
   }
   .@{stepsPrefixClass}-item {
     .@{stepsPrefixClass}-step {
       display: inline-block;
       text-align: center;
-      width: 100px;
+      width: @stepDescriptionMaxWidth;
     }
   }
   .@{stepsPrefixClass}-item:not(:first-child) .@{stepsPrefixClass}-head {
@@ -394,9 +396,10 @@
 
 .@{stepsPrefixClass}-dot {
   .@{stepsPrefixClass}-tail {
-    padding: 0 0 0 50px;
     width: 100%;
     top: 1px;
+    margin: 0 0 0 @stepDescriptionMaxWidth / 2;
+    padding: 0;
 
     & > i {
       height: 3px;

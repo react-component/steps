@@ -64,15 +64,10 @@ export default class Steps extends React.Component {
               ? null : `${100 / lastIndex}%`;
             const adjustMarginRight = (direction === 'vertical' || idx === lastIndex)
               ? null : -Math.round(this.state.lastStepOffsetWidth / lastIndex + 1);
-            const tailWidth = direction === 'vertical' ? ''
-              : (this.state.firstStepOffsetWidth +
-                Math.round(this.state.lastStepOffsetWidth / 2 + 1) -
-                Math.round(this.state.lastStepOffsetWidth / lastIndex + 1));
             const np = {
               stepNumber: (idx + 1).toString(),
               stepLast: idx === lastIndex,
               itemWidth,
-              tailWidth,
               adjustMarginRight,
               prefixCls,
               iconPrefix,

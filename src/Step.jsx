@@ -8,7 +8,7 @@ function isString(str) {
 export default class Step extends React.Component {
   render() {
     const {
-      className, prefixCls, style, tailWidth, itemWidth,
+      className, prefixCls, style, itemWidth,
       status = 'wait', iconPrefix, icon, wrapperStyle,
       adjustMarginRight, stepLast, stepNumber,
       description, title, progressDot, ...restProps } = this.props;
@@ -56,8 +56,8 @@ export default class Step extends React.Component {
           stepLast ? ''
           : <div
             ref="tail"
-            style={ tailWidth ? { width: tailWidth } : {}}
             className={`${prefixCls}-tail`}
+            style={{ paddingRight: -adjustMarginRight }}
           >
             <i />
           </div>
@@ -87,10 +87,6 @@ Step.propTypes = {
   prefixCls: PropTypes.string,
   style: PropTypes.object,
   wrapperStyle: PropTypes.object,
-  tailWidth: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
   itemWidth: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
