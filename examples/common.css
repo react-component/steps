@@ -293,10 +293,12 @@
 }
 .rc-steps-label-vertical .rc-steps-tail {
   padding: 0 32px;
+  margin-left: 22px;
 }
 .rc-steps-label-vertical .rc-steps-item .rc-steps-step {
   display: inline-block;
   text-align: center;
+  width: 100px;
 }
 .rc-steps-label-vertical .rc-steps-item:not(:first-child) .rc-steps-head {
   margin-left: 0;
@@ -320,9 +322,10 @@
   text-align: left;
 }
 .rc-steps-dot .rc-steps-tail {
-  padding: 0 0 0 50px;
   width: 100%;
   top: 1px;
+  margin: 0 0 0 50px;
+  padding: 0;
 }
 .rc-steps-dot .rc-steps-tail > i {
   height: 3px;

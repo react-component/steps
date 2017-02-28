@@ -21647,12 +21647,10 @@
 	      _react2.default.Children.map(children, function (ele, idx) {
 	        var itemWidth = direction === 'vertical' || idx === lastIndex || !reLayouted ? null : 100 / lastIndex + '%';
 	        var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -Math.round(_this2.state.lastStepOffsetWidth / lastIndex + 1);
-	        var tailWidth = direction === 'vertical' ? '' : _this2.state.firstStepOffsetWidth + Math.round(_this2.state.lastStepOffsetWidth / 2 + 1) - Math.round(_this2.state.lastStepOffsetWidth / lastIndex + 1);
 	        var np = {
 	          stepNumber: (idx + 1).toString(),
 	          stepLast: idx === lastIndex,
 	          itemWidth: itemWidth,
-	          tailWidth: tailWidth,
 	          adjustMarginRight: adjustMarginRight,
 	          prefixCls: prefixCls,
 	          iconPrefix: iconPrefix,
@@ -21816,7 +21814,6 @@
 	    var className = _props.className;
 	    var prefixCls = _props.prefixCls;
 	    var style = _props.style;
-	    var tailWidth = _props.tailWidth;
 	    var itemWidth = _props.itemWidth;
 	    var _props$status = _props.status;
 	    var status = _props$status === undefined ? 'wait' : _props$status;
@@ -21830,7 +21827,7 @@
 	    var title = _props.title;
 	    var progressDot = _props.progressDot;
 	
-	    var restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'tailWidth', 'itemWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title', 'progressDot']);
+	    var restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'itemWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title', 'progressDot']);
 	
 	    var iconClassName = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon && isString(icon)), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish'), _defineProperty(_classNames, iconPrefix + 'icon-cross', !icon && status === 'error'), _classNames));
 	
@@ -21877,8 +21874,8 @@
 	        'div',
 	        {
 	          ref: 'tail',
-	          style: tailWidth ? { width: tailWidth } : {},
-	          className: prefixCls + '-tail'
+	          className: prefixCls + '-tail',
+	          style: { paddingRight: -adjustMarginRight }
 	        },
 	        _react2.default.createElement('i', null)
 	      ),
@@ -21929,7 +21926,6 @@
 	  prefixCls: _react.PropTypes.string,
 	  style: _react.PropTypes.object,
 	  wrapperStyle: _react.PropTypes.object,
-	  tailWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
 	  itemWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
 	  status: _react.PropTypes.string,
 	  iconPrefix: _react.PropTypes.string,
