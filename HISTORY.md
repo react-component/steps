@@ -1,6 +1,10 @@
 # History
 ----
 
+## 2.4.0
+
+* Refactor for extra width of tail. https://github.com/ant-design/ant-design/issues/5083
+
 ## 2.3.0
 
 * Add new step style of prop `progressDot`.
