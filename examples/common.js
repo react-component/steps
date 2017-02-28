@@ -21586,18 +21586,13 @@
 	        _this.calcTimeout = setTimeout(function () {
 	          // +1 for fit edge bug of digit width, like 35.4px
 	          var lastStepOffsetWidth = (domNode.lastChild.offsetWidth || 0) + 1;
-	          var firstStepOffsetWidth = (domNode.firstChild.offsetWidth || 0) + 1;
-	          if (_this.state.lastStepOffsetWidth === lastStepOffsetWidth && _this.state.firstStepOffsetWidth === firstStepOffsetWidth) {
-	            return;
-	          }
-	          _this.setState({ lastStepOffsetWidth: lastStepOffsetWidth, firstStepOffsetWidth: firstStepOffsetWidth });
+	          _this.setState({ lastStepOffsetWidth: lastStepOffsetWidth });
 	        });
 	      }
 	    };
 	
 	    _this.state = {
-	      lastStepOffsetWidth: 0,
-	      firstStepOffsetWidth: 0
+	      lastStepOffsetWidth: 0
 	    };
 	    return _this;
 	  }
