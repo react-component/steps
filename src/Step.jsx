@@ -57,6 +57,7 @@ export default class Step extends React.Component {
           : <div
             ref="tail"
             className={`${prefixCls}-tail`}
+            style={{ paddingRight: -adjustMarginRight }}
           >
             <i />
           </div>
