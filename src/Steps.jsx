@@ -7,7 +7,6 @@ export default class Steps extends React.Component {
     super(props);
     this.state = {
       lastStepOffsetWidth: 0,
-      firstStepOffsetWidth: 0,
     };
   }
   componentDidMount() {
@@ -30,12 +29,7 @@ export default class Steps extends React.Component {
       this.calcTimeout = setTimeout(() => {
         // +1 for fit edge bug of digit width, like 35.4px
         const lastStepOffsetWidth = (domNode.lastChild.offsetWidth || 0) + 1;
-        const firstStepOffsetWidth = (domNode.firstChild.offsetWidth || 0) + 1;
-        if (this.state.lastStepOffsetWidth === lastStepOffsetWidth &&
-          this.state.firstStepOffsetWidth === firstStepOffsetWidth) {
-          return;
-        }
-        this.setState({ lastStepOffsetWidth, firstStepOffsetWidth });
+        this.setState({ lastStepOffsetWidth });
       });
     }
   }
