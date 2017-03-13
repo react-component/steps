@@ -1,6 +1,6 @@
 {
   "name": "rc-steps",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "steps ui component for react",
   "keywords": [
     "react",
@@ -53,6 +53,7 @@
     "lint"
   ],
   "dependencies": {
-    "classnames": "^2.2.3"
+    "classnames": "^2.2.3",
+    "lodash.debounce": "^4.0.8"
   }
 }

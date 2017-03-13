@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import debounce from 'lodash.debounce';
 
 export default class Steps extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ export default class Steps extends React.Component {
     this.state = {
       lastStepOffsetWidth: 0,
     };
+    this.calcStepOffsetWidth = debounce(this.calcStepOffsetWidth, 150);
   }
   componentDidMount() {
     this.calcStepOffsetWidth();
@@ -29,6 +31,11 @@ export default class Steps extends React.Component {
       this.calcTimeout = setTimeout(() => {
         // +1 for fit edge bug of digit width, like 35.4px
         const lastStepOffsetWidth = (domNode.lastChild.offsetWidth || 0) + 1;
+        // Reduce shake bug
+        if (this.state.lastStepOffsetWidth === lastStepOffsetWidth ||
+            Math.abs(this.state.lastStepOffsetWidth - lastStepOffsetWidth) <= 3) {
+          return;
+        }
         this.setState({ lastStepOffsetWidth });
       });
     }
