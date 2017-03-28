@@ -21618,6 +21618,9 @@
 	    if (this.calcTimeout) {
 	      clearTimeout(this.calcTimeout);
 	    }
+	    if (this.calcStepOffsetWidth.cancel) {
+	      this.calcStepOffsetWidth.cancel();
+	    }
 	  };
 	
 	  Steps.prototype.render = function render() {
