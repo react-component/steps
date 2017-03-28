@@ -21,6 +21,9 @@ export default class Steps extends React.Component {
     if (this.calcTimeout) {
       clearTimeout(this.calcTimeout);
     }
+    if (this.calcStepOffsetWidth.cancel) {
+      this.calcStepOffsetWidth.cancel();
+    }
   }
   calcStepOffsetWidth = () => {
     const domNode = ReactDOM.findDOMNode(this);
