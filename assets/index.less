@@ -214,9 +214,12 @@
     display: inline-block;
     padding-right: 10px;
   }
-  .@{stepsPrefixClass}-item-last {
+  .@{stepsPrefixClass}-item:last-child {
     .@{stepsPrefixClass}-title {
       padding-right: 0;
+    }
+    .@{stepsPrefixClass}-tail {
+      display: none;
     }
   }
   .@{stepsPrefixClass}-description {

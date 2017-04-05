@@ -10,7 +10,7 @@ export default class Step extends React.Component {
     const {
       className, prefixCls, style, itemWidth,
       status = 'wait', iconPrefix, icon, wrapperStyle,
-      adjustMarginRight, stepLast, stepNumber,
+      adjustMarginRight, stepNumber,
       description, title, progressDot, ...restProps } = this.props;
     const iconClassName = classNames({
       [`${prefixCls}-icon`]: true,
@@ -42,7 +42,6 @@ export default class Step extends React.Component {
     }
     const classString = classNames({
       [`${prefixCls}-item`]: true,
-      [`${prefixCls}-item-last`]: stepLast,
       [`${prefixCls}-status-${status}`]: true,
       [`${prefixCls}-custom`]: icon,
       [className]: !!className,
@@ -52,16 +51,13 @@ export default class Step extends React.Component {
         className={classString}
         style={{ width: itemWidth, marginRight: adjustMarginRight, ...style }}
       >
-        {
-          stepLast ? ''
-          : <div
-            ref="tail"
-            className={`${prefixCls}-tail`}
-            style={{ paddingRight: -adjustMarginRight }}
-          >
-            <i />
-          </div>
-        }
+        <div
+          ref="tail"
+          className={`${prefixCls}-tail`}
+          style={{ paddingRight: -adjustMarginRight }}
+        >
+          <i />
+        </div>
         <div className={`${prefixCls}-step`}>
           <div
             className={`${prefixCls}-head`}
@@ -98,7 +94,6 @@ Step.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-  stepLast: PropTypes.bool,
   stepNumber: PropTypes.string,
   description: PropTypes.any,
   title: PropTypes.any,

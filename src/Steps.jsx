@@ -70,7 +70,6 @@ export default class Steps extends React.Component {
               ? null : -Math.round(this.state.lastStepOffsetWidth / lastIndex + 1);
             const np = {
               stepNumber: (idx + 1).toString(),
-              stepLast: idx === lastIndex,
               itemWidth,
               adjustMarginRight,
               prefixCls,
