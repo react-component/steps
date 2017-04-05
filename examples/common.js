@@ -21656,7 +21656,6 @@
 	        var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -Math.round(_this2.state.lastStepOffsetWidth / lastIndex + 1);
 	        var np = {
 	          stepNumber: (idx + 1).toString(),
-	          stepLast: idx === lastIndex,
 	          itemWidth: itemWidth,
 	          adjustMarginRight: adjustMarginRight,
 	          prefixCls: prefixCls,
@@ -22212,13 +22211,12 @@
 	    var icon = _props.icon;
 	    var wrapperStyle = _props.wrapperStyle;
 	    var adjustMarginRight = _props.adjustMarginRight;
-	    var stepLast = _props.stepLast;
 	    var stepNumber = _props.stepNumber;
 	    var description = _props.description;
 	    var title = _props.title;
 	    var progressDot = _props.progressDot;
 	
-	    var restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'itemWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title', 'progressDot']);
+	    var restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'itemWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepNumber', 'description', 'title', 'progressDot']);
 	
 	    var iconClassName = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon && isString(icon)), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish'), _defineProperty(_classNames, iconPrefix + 'icon-cross', !icon && status === 'error'), _classNames));
 	
@@ -22254,14 +22252,14 @@
 	        stepNumber
 	      );
 	    }
-	    var classString = (0, _classnames2.default)((_classNames2 = {}, _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _defineProperty(_classNames2, className, !!className), _classNames2));
+	    var classString = (0, _classnames2.default)((_classNames2 = {}, _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _defineProperty(_classNames2, className, !!className), _classNames2));
 	    return _react2.default.createElement(
 	      'div',
 	      _extends({}, restProps, {
 	        className: classString,
 	        style: _extends({ width: itemWidth, marginRight: adjustMarginRight }, style)
 	      }),
-	      stepLast ? '' : _react2.default.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        {
 	          ref: 'tail',
@@ -22322,7 +22320,6 @@
 	  iconPrefix: _react.PropTypes.string,
 	  icon: _react.PropTypes.node,
 	  adjustMarginRight: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
-	  stepLast: _react.PropTypes.bool,
 	  stepNumber: _react.PropTypes.string,
 	  description: _react.PropTypes.any,
 	  title: _react.PropTypes.any,

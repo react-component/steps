@@ -161,8 +161,11 @@
   display: inline-block;
   padding-right: 10px;
 }
-.rc-steps .rc-steps-item-last .rc-steps-title {
+.rc-steps .rc-steps-item:last-child .rc-steps-title {
   padding-right: 0;
+}
+.rc-steps .rc-steps-item:last-child .rc-steps-tail {
+  display: none;
 }
 .rc-steps .rc-steps-description {
   font-size: 12px;
