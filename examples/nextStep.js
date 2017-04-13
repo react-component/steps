@@ -1,10 +1,9 @@
-require('rc-steps/assets/index.less');
-require('rc-steps/assets/iconfont.less');
-require('./nextStep.css');
-
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Steps = require('rc-steps');
+import 'rc-steps/assets/index.less';
+import 'rc-steps/assets/iconfont.less';
+import './nextStep.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Steps, { Step } from 'rc-steps';
 
 const container = document.getElementById('__react-content');
 
@@ -20,12 +19,10 @@ function generateRandomSteps() {
 }
 const steps = generateRandomSteps();
 
-const MyForm = React.createClass({
-  getInitialState() {
-    return {
-      currentStep: Math.floor(Math.random() * steps.length),
-    };
-  },
+class MyForm extends React.Component {
+  state = {
+    currentStep: Math.floor(Math.random() * steps.length),
+  };
   /*
   componentDidMount() {
     // You can dynamically set tail's left position based on main's width for each step.
@@ -34,9 +31,9 @@ const MyForm = React.createClass({
         s.refs.tail.style.left = `${s.refs.main.offsetWidth / 2}px`;
       }
     });
-  },
+  }
   */
-  nextStep() {
+  nextStep = () => {
     let s = this.state.currentStep + 1;
     if (s === steps.length) {
       s = 0;
@@ -44,7 +41,7 @@ const MyForm = React.createClass({
     this.setState({
       currentStep: s,
     });
-  },
+  }
   render() {
     const cs = this.state.currentStep;
     this.stepsRefs = [];
@@ -57,7 +54,7 @@ const MyForm = React.createClass({
             {
               steps.map((s, i) => {
                 return (
-                  <Steps.Step ref={c => this.stepsRefs[i] = c}
+                  <Step ref={c => this.stepsRefs[i] = c}
                     key={i}
                     title={s.title}
                   />
@@ -70,7 +67,7 @@ const MyForm = React.createClass({
         <div><button type="button" onClick={this.nextStep}>下一步</button></div>
       </form>
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(<MyForm />, container);
