@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 function isString(str) {
@@ -102,5 +103,3 @@ Step.propTypes = {
     PropTypes.func,
   ]),
 };
-
-module.exports = Step;

@@ -1,9 +1,8 @@
-require('rc-steps/assets/index.less');
-require('rc-steps/assets/iconfont.less');
-
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Steps = require('rc-steps');
+import 'rc-steps/assets/index.less';
+import 'rc-steps/assets/iconfont.less';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Steps, { Step } from 'rc-steps';
 
 const container = document.getElementById('__react-content');
 
@@ -21,7 +20,7 @@ const steps = [{
   title: '待运行',
 }].map((s, i) => {
   return (
-    <Steps.Step
+    <Step
       key={i}
       status={s.status}
       title={s.title}

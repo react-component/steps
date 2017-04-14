@@ -1,4 +1,5 @@
-const Steps = require('./Steps');
-Steps.Step = require('./Step');
+import Steps from './Steps';
+import Step from './Step';
 
-module.exports = Steps;
+Steps.Step = Step;
+export default Steps;

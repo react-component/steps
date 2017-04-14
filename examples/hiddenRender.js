@@ -1,13 +1,11 @@
-/* eslint-disable react/no-multi-comp */
-require('rc-steps/assets/index.less');
-require('rc-steps/assets/iconfont.less');
-
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Steps = require('rc-steps');
-const Step = Steps.Step;
+import 'rc-steps/assets/index.less';
+import 'rc-steps/assets/iconfont.less';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Steps, { Step } from 'rc-steps';
 
 const container = document.getElementById('__react-content');
+
 const data = [{
   title: '已完成',
   description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶',
@@ -22,17 +20,15 @@ const data = [{
   description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶',
 }];
 
-const App = React.createClass({
-  getInitialState() {
-    return {
-      hidden: true,
-    };
-  },
-  toggle(e) {
+class App extends React.Component {
+  state = {
+    hidden: true,
+  };
+  toggle = (e) => {
     this.setState({
       hidden: !e.target.checked,
     });
-  },
+  }
   render() {
     return (
       <div>
@@ -43,21 +39,19 @@ const App = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
-const StepDemo = React.createClass({
-  render() {
-    const steps = data.map((s, i) => (
-      <Step
-        key={i}
-        status={s.status}
-        title={s.title}
-        description={s.description}
-      />
-    ));
-    return <Steps>{steps}</Steps>;
-  },
-});
+const StepDemo = () => {
+  const steps = data.map((s, i) => (
+    <Step
+      key={i}
+      status={s.status}
+      title={s.title}
+      description={s.description}
+    />
+  ));
+  return <Steps>{steps}</Steps>;
+};
 
 ReactDOM.render(<App />, container);

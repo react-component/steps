@@ -54,6 +54,7 @@
   ],
   "dependencies": {
     "classnames": "^2.2.3",
-    "lodash.debounce": "^4.0.8"
+    "lodash.debounce": "^4.0.8",
+    "prop-types": "^15.5.7"
   }
 }
