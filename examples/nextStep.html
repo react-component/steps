@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>nextStep.js - example - rc-steps@2.5.0</title>
+  <title>nextStep.js - example - rc-steps@2.5.1</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -263,19 +263,18 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <body>
   <div class="container">
     <div class="header">
-      <h1>rc-steps@2.5.0</h1>
+      <h1>rc-steps@2.5.1</h1>
 
       <p>steps ui component for react</p>
     </div>
     <div class="example" id="__react-content"></div>
 
-    <div class="highlight"><pre><code language="undefined">require('rc-steps/assets/index.css');
-require('rc-steps/assets/iconfont.css');
-require('./nextStep.css');
-
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Steps = require('rc-steps');
+    <div class="highlight"><pre><code language="undefined">import 'rc-steps/assets/index.css';
+import 'rc-steps/assets/iconfont.css';
+import './nextStep.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Steps, { Step } from 'rc-steps';
 
 const container = document.getElementById('__react-content');
 
@@ -291,12 +290,10 @@ function generateRandomSteps() {
 }
 const steps = generateRandomSteps();
 
-const MyForm = React.createClass({
-  getInitialState() {
-    return {
-      currentStep: Math.floor(Math.random() * steps.length),
-    };
-  },
+class MyForm extends React.Component {
+  state = {
+    currentStep: Math.floor(Math.random() * steps.length),
+  };
   /*
   componentDidMount() {
     // You can dynamically set tail's left position based on main's width for each step.
@@ -305,9 +302,9 @@ const MyForm = React.createClass({
         s.refs.tail.style.left = `${s.refs.main.offsetWidth / 2}px`;
       }
     });
-  },
+  }
   */
-  nextStep() {
+  nextStep = () =&gt; {
     let s = this.state.currentStep + 1;
     if (s === steps.length) {
       s = 0;
@@ -315,7 +312,7 @@ const MyForm = React.createClass({
     this.setState({
       currentStep: s,
     });
-  },
+  }
   render() {
     const cs = this.state.currentStep;
     this.stepsRefs = [];
@@ -328,7 +325,7 @@ const MyForm = React.createClass({
             {
               steps.map((s, i) =&gt; {
                 return (
-                  &lt;Steps.Step ref={c =&gt; this.stepsRefs[i] = c}
+                  &lt;Step ref={c =&gt; this.stepsRefs[i] = c}
                     key={i}
                     title={s.title}
                   /&gt;
@@ -341,8 +338,8 @@ const MyForm = React.createClass({
         &lt;div&gt;&lt;button type="button" onClick={this.nextStep}&gt;下一步&lt;/button&gt;&lt;/div&gt;
       &lt;/form&gt;
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(&lt;MyForm /&gt;, container);
 </code></pre></div>

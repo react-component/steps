@@ -21526,10 +21526,23 @@
 
 	'use strict';
 	
-	var Steps = __webpack_require__(177);
-	Steps.Step = __webpack_require__(180);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
-	module.exports = Steps;
+	var _Steps = __webpack_require__(177);
+	
+	var _Steps2 = _interopRequireDefault(_Steps);
+	
+	var _Step = __webpack_require__(180);
+	
+	var _Step2 = _interopRequireDefault(_Step);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	_Steps2.default.Step = _Step2.default;
+	exports.default = _Steps2.default;
+	module.exports = exports['default'];
 
 /***/ },
 /* 177 */
@@ -21546,6 +21559,10 @@
 	var _react = __webpack_require__(4);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"prop-types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
 	var _reactDom = __webpack_require__(37);
 	
@@ -21690,14 +21707,14 @@
 	
 	
 	Steps.propTypes = {
-	  prefixCls: _react.PropTypes.string,
-	  iconPrefix: _react.PropTypes.string,
-	  direction: _react.PropTypes.string,
-	  labelPlacement: _react.PropTypes.string,
-	  children: _react.PropTypes.any,
-	  status: _react.PropTypes.string,
-	  size: _react.PropTypes.string,
-	  progressDot: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.func])
+	  prefixCls: _propTypes2.default.string,
+	  iconPrefix: _propTypes2.default.string,
+	  direction: _propTypes2.default.string,
+	  labelPlacement: _propTypes2.default.string,
+	  children: _propTypes2.default.any,
+	  status: _propTypes2.default.string,
+	  size: _propTypes2.default.string,
+	  progressDot: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.func])
 	};
 	
 	Steps.defaultProps = {
@@ -22166,6 +22183,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _propTypes = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"prop-types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
 	var _classnames = __webpack_require__(178);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
@@ -22311,22 +22332,20 @@
 	
 	
 	Step.propTypes = {
-	  className: _react.PropTypes.string,
-	  prefixCls: _react.PropTypes.string,
-	  style: _react.PropTypes.object,
-	  wrapperStyle: _react.PropTypes.object,
-	  itemWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
-	  status: _react.PropTypes.string,
-	  iconPrefix: _react.PropTypes.string,
-	  icon: _react.PropTypes.node,
-	  adjustMarginRight: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
-	  stepNumber: _react.PropTypes.string,
-	  description: _react.PropTypes.any,
-	  title: _react.PropTypes.any,
-	  progressDot: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.func])
+	  className: _propTypes2.default.string,
+	  prefixCls: _propTypes2.default.string,
+	  style: _propTypes2.default.object,
+	  wrapperStyle: _propTypes2.default.object,
+	  itemWidth: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+	  status: _propTypes2.default.string,
+	  iconPrefix: _propTypes2.default.string,
+	  icon: _propTypes2.default.node,
+	  adjustMarginRight: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+	  stepNumber: _propTypes2.default.string,
+	  description: _propTypes2.default.any,
+	  title: _propTypes2.default.any,
+	  progressDot: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.func])
 	};
-	
-	module.exports = Step;
 	module.exports = exports['default'];
 
 /***/ }
