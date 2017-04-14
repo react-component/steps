@@ -1,6 +1,14 @@
 # History
 ----
 
+## 2.5.1
+
+* Support react@15.5
+
+## 2.5.0
+
+* Refactor for last tail style.
+
 ## 2.4.0
 
 * Refactor for extra width of tail. https://github.com/ant-design/ant-design/issues/5083
