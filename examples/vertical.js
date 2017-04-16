@@ -1,15 +1,15 @@
 webpackJsonp([10],{
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(191);
+	module.exports = __webpack_require__(203);
 
 
-/***/ },
+/***/ }),
 
-/***/ 191:
-/***/ function(module, exports, __webpack_require__) {
+/***/ 203:
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -21,11 +21,11 @@ webpackJsonp([10],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(37);
+	var _reactDom = __webpack_require__(39);
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _rcSteps = __webpack_require__(175);
+	var _rcSteps = __webpack_require__(185);
 	
 	var _rcSteps2 = _interopRequireDefault(_rcSteps);
 	
@@ -60,7 +60,7 @@ webpackJsonp([10],{
 	  steps
 	), container);
 
-/***/ }
+/***/ })
 
 });
 //# sourceMappingURL=vertical.js.map

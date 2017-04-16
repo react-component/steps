@@ -1,15 +1,15 @@
 webpackJsonp([5],{
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(185);
+	module.exports = __webpack_require__(197);
 
 
-/***/ },
+/***/ }),
 
-/***/ 185:
-/***/ function(module, exports, __webpack_require__) {
+/***/ 197:
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -21,11 +21,11 @@ webpackJsonp([5],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(37);
+	var _reactDom = __webpack_require__(39);
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _rcSteps = __webpack_require__(175);
+	var _rcSteps = __webpack_require__(185);
 	
 	var _rcSteps2 = _interopRequireDefault(_rcSteps);
 	
@@ -84,7 +84,7 @@ webpackJsonp([5],{
 	        'label',
 	        null,
 	        _react2.default.createElement('input', { type: 'checkbox', onChange: this.toggle }),
-	        ' 显示步骤条'
+	        ' \u663E\u793A\u6B65\u9AA4\u6761'
 	      ),
 	      _react2.default.createElement('br', null),
 	      _react2.default.createElement(
@@ -116,7 +116,7 @@ webpackJsonp([5],{
 	
 	_reactDom2.default.render(_react2.default.createElement(App, null), container);
 
-/***/ }
+/***/ })
 
 });
 //# sourceMappingURL=hiddenRender.js.map
