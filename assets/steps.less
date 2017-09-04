@@ -1,6 +1,5 @@
 @stepsPrefixClass: ~"rc-steps";
 @stepDescriptionMaxWidth: 100px;
-
 @primary-color: #108ee9;
 @process-icon-color: @primary-color;
 @process-title-color: rgba(0,0,0,.65);
@@ -136,16 +135,18 @@
   }
 }
 
-.@{stepsPrefixClass}-horizontal .@{stepsPrefixClass}-item {
-  margin-right: 10px;
-  &:last-child {
-    margin-right: 0;
-  }
-  &-tail {
-    display: none;
-  }
-  &-description {
-    max-width: @stepDescriptionMaxWidth;
+.@{stepsPrefixClass}-horizontal:not(.@{stepsPrefixClass}-label-vertical) {
+  .@{stepsPrefixClass}-item {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+    &-tail {
+      display: none;
+    }
+    &-description {
+      max-width: @stepDescriptionMaxWidth;
+    }
   }
 }
 
@@ -180,3 +181,6 @@
 
 @import 'custom-icon';
 @import 'small';
+@import 'vertical';
+@import 'label-placement';
+@import 'progress-dot';
