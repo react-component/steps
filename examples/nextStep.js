@@ -1,4 +1,4 @@
-import 'rc-steps/assets/index.less';
+import 'rc-steps/assets/steps.less';
 import 'rc-steps/assets/iconfont.less';
 import './nextStep.css';
 import React from 'react';
