@@ -7,6 +7,32 @@ import debounce from 'lodash.debounce';
 import { isFlexSupported } from './utils';
 
 export default class Steps extends Component {
+  static propTypes = {
+    prefixCls: PropTypes.string,
+    className: PropTypes.string,
+    iconPrefix: PropTypes.string,
+    direction: PropTypes.string,
+    labelPlacement: PropTypes.string,
+    children: PropTypes.any,
+    status: PropTypes.string,
+    size: PropTypes.string,
+    progressDot: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.func,
+    ]),
+    style: PropTypes.object,
+    current: PropTypes.number,
+  };
+  static defaultProps = {
+    prefixCls: 'rc-steps',
+    iconPrefix: 'rc',
+    direction: 'horizontal',
+    labelPlacement: 'horizontal',
+    current: 0,
+    status: 'process',
+    size: '',
+    progressDot: false,
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -107,31 +133,3 @@ export default class Steps extends Component {
     );
   }
 }
-
-Steps.propTypes = {
-  prefixCls: PropTypes.string,
-  className: PropTypes.string,
-  iconPrefix: PropTypes.string,
-  direction: PropTypes.string,
-  labelPlacement: PropTypes.string,
-  children: PropTypes.any,
-  status: PropTypes.string,
-  size: PropTypes.string,
-  progressDot: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.func,
-  ]),
-  style: PropTypes.object,
-  current: PropTypes.number,
-};
-
-Steps.defaultProps = {
-  prefixCls: 'rc-steps',
-  iconPrefix: 'rc',
-  direction: 'horizontal',
-  labelPlacement: 'horizontal',
-  current: 0,
-  status: 'process',
-  size: '',
-  progressDot: false,
-};
