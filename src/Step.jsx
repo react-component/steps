@@ -49,9 +49,9 @@ export default class Step extends React.Component {
 
     const classString = classNames(
       `${prefixCls}-item`,
-      `${prefixCls}-status-${status}`,
+      `${prefixCls}-item-${status}`,
       className,
-      { [`${prefixCls}-custom`]: icon },
+      { [`${prefixCls}-item-custom`]: icon },
     );
     const stepItemStyle = { ...style };
     if (itemWidth) {
@@ -60,34 +60,21 @@ export default class Step extends React.Component {
     if (adjustMarginRight) {
       stepItemStyle.marginRight = adjustMarginRight;
     }
-    const tailStyle = adjustMarginRight ? { paddingRight: -adjustMarginRight } : null;
     return (
       <div
         {...restProps}
         className={classString}
         style={stepItemStyle}
       >
-        <div className={`${prefixCls}-tail`} style={tailStyle}>
-          <i />
+        <div className={`${prefixCls}-item-tail`} />
+        <div className={`${prefixCls}-item-icon`}>
+          {this.renderIconNode()}
         </div>
-        <div className={`${prefixCls}-step`}>
-          <div
-            className={`${prefixCls}-head`}
-            style={{ background: wrapperStyle.background || wrapperStyle.backgroundColor }}
-          >
-            <div className={`${prefixCls}-head-inner`}>
-              {this.renderIconNode()}
-            </div>
+        <div className={`${prefixCls}-item-content`}>
+          <div className={`${prefixCls}-item-title`}>
+            {title}
           </div>
-          <div ref="main" className={`${prefixCls}-main`}>
-            <div
-              className={`${prefixCls}-title`}
-              style={{ background: wrapperStyle.background || wrapperStyle.backgroundColor }}
-            >
-              {title}
-            </div>
-            {description ? <div className={`${prefixCls}-description`}>{description}</div> : null}
-          </div>
+          {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
         </div>
       </div>
     );

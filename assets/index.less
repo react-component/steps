@@ -1,26 +1,9 @@
-@css-prefix             : rc-;
-@stepsPrefixClass: ~"@{css-prefix}steps";
+@stepsPrefixClass: ~"rc-steps";
 @stepDescriptionMaxWidth: 100px;
-
-.scale(@ratio) {
-  -webkit-transform: scale(@ratio);
-  -ms-transform: scale(@ratio); // IE9 only
-  -o-transform: scale(@ratio);
-  transform: scale(@ratio);
-}
-
-.rc-steps, .rc-steps * {
-  box-sizing: border-box;
-}
-
-.rc-steps {
-  line-height: 1.5;
-  display: flex;
-}
 
 @primary-color: #108ee9;
 @process-icon-color: @primary-color;
-@process-title-color: #666;
+@process-title-color: rgba(0,0,0,.65);
 @process-description-color: @process-title-color;
 @process-tail-color: #e9e9e9;
 @wait-icon-color: #ccc;
@@ -36,29 +19,67 @@
 @error-description-color: @wait-title-color;
 @error-tail-color: @process-tail-color;
 
-.transition(@transition) {
-  transition: @transition;
-  -webkit-transition: @transition;
-  -moz-transition: @transition;
-}
-
 .@{stepsPrefixClass} {
   font-size: 0;
   width: 100%;
   line-height: 1.5;
+  display: flex;
 
-  .@{stepsPrefixClass}-item {
+  &,
+  * {
+    box-sizing: border-box;
+  }
+
+  &-item {
     position: relative;
     display: inline-block;
     vertical-align: top;
     flex: 1;
+    overflow: hidden;
 
     &:last-child {
       flex: none;
     }
 
-    &.@{stepsPrefixClass}-status-wait {
-      .@{stepsPrefixClass}-head-inner {
+    &:last-child &-tail,
+    &:last-child &-content-title:after {
+      display: none;
+    }
+
+    &-icon,
+    &-content {
+      display: inline-block;
+    }
+
+    &-content {
+      margin-top: 3px;
+      &-title {
+        font-size: 14px;
+        margin-bottom: 4px;
+        color: #666;
+        font-weight: bold;
+        display: inline-block;
+        padding-right: 10px;
+        position: relative;
+        &:after {
+          content: '';
+          height: 1px;
+          width: 1000px;
+          background: @wait-tail-color;
+          display: block;
+          position: absolute;
+          top: 0.55em;
+          left: 100%;
+        }
+      }
+      &-description {
+        font-size: 12px;
+        color: #999;
+      }
+    }
+
+    &-wait {
+      .@{stepsPrefixClass}-item-icon {
         border-color: @wait-icon-color;
         background-color: #fff;
         > .@{stepsPrefixClass}-icon {
@@ -74,13 +95,13 @@
       .@{stepsPrefixClass}-description {
         color: @wait-description-color;
       }
-      .@{stepsPrefixClass}-tail > i {
+      .@{stepsPrefixClass}-tail:after {
         background-color: @wait-tail-color;
       }
     }
 
     &.@{stepsPrefixClass}-status-process {
-      .@{stepsPrefixClass}-head-inner {
+      .@{stepsPrefixClass}-item-icon-inner {
         border-color: @process-icon-color;
         background-color: @process-icon-color;
         > .@{stepsPrefixClass}-icon {
@@ -96,12 +117,12 @@
       .@{stepsPrefixClass}-description {
         color: @process-description-color;
       }
-      .@{stepsPrefixClass}-tail > i {
+      .@{stepsPrefixClass}-tail:after {
         background-color: @process-tail-color;
       }
     }
     &.@{stepsPrefixClass}-status-finish {
-      .@{stepsPrefixClass}-head-inner {
+      .@{stepsPrefixClass}-item-icon-inner {
         border-color: @finish-icon-color;
         background-color: #fff;
         > .@{stepsPrefixClass}-icon {
@@ -111,7 +132,7 @@
           }
         }
       }
-      .@{stepsPrefixClass}-tail > i {
+      .@{stepsPrefixClass}-tail:after {
         background-color: @finish-tail-color;
       }
       .@{stepsPrefixClass}-title {
@@ -123,7 +144,7 @@
     }
 
     &.@{stepsPrefixClass}-status-error {
-      .@{stepsPrefixClass}-head-inner {
+      .@{stepsPrefixClass}-item-icon-inner {
         border-color: @error-icon-color;
         background-color: #fff;
         > .@{stepsPrefixClass}-icon {
@@ -133,7 +154,7 @@
           }
         }
       }
-      .@{stepsPrefixClass}-tail > i {
+      .@{stepsPrefixClass}-tail:after {
         background-color: @error-tail-color;
       }
       .@{stepsPrefixClass}-title {
@@ -145,13 +166,13 @@
     }
 
     &.@{stepsPrefixClass}-next-error {
-      .@{stepsPrefixClass}-tail > i {
+      .@{stepsPrefixClass}-tail:after {
         background-color: @error-icon-color;
       }
     }
 
     &.@{stepsPrefixClass}-custom {
-      .@{stepsPrefixClass}-head-inner {
+      .@{stepsPrefixClass}-item-icon-inner {
         background: none;
         border: 0;
         width: auto;
@@ -164,24 +185,20 @@
         }
       }
       &.@{stepsPrefixClass}-status-process {
-        .@{stepsPrefixClass}-head-inner > .@{stepsPrefixClass}-icon {
+        .@{stepsPrefixClass}-item-icon-inner > .@{stepsPrefixClass}-icon {
           color: @process-icon-color;
         }
       }
     }
   }
 
-  .@{stepsPrefixClass}-head, .@{stepsPrefixClass}-main {
+  .@{stepsPrefixClass}-item-icon, .@{stepsPrefixClass}-item-content {
     position: relative;
     display: inline-block;
     vertical-align: top;
   }
-  .@{stepsPrefixClass}-head {
-    background: #fff;
-  }
 
-  .@{stepsPrefixClass}-head-inner {
-    display: block;
+  &-item-icon {
     border: 1px solid @wait-icon-color;
     width: 26px;
     height: 26px;
@@ -190,8 +207,7 @@
     border-radius: 26px;
     font-size: 14px;
     margin-right: 8px;
-    .transition(background-color 0.3s ease);
-    .transition(border-color 0.3s ease);
+    transition: background-color .3s, border-color .3s;
 
     > .@{stepsPrefixClass}-icon {
       line-height: 1;
@@ -206,48 +222,26 @@
       }
     }
   }
-  .@{stepsPrefixClass}-main {
-    margin-top: 3px;
-  }
-  .@{stepsPrefixClass}-title {
-    font-size: 14px;
-    margin-bottom: 4px;
-    color: #666;
-    font-weight: bold;
-    background: #fff;
-    display: inline-block;
-    padding-right: 10px;
-  }
-  .@{stepsPrefixClass}-item:last-child {
-    .@{stepsPrefixClass}-title {
-      padding-right: 0;
-    }
-    .@{stepsPrefixClass}-tail {
-      display: none;
-    }
-  }
-  .@{stepsPrefixClass}-description {
-    font-size: 12px;
-    color: #999;
-  }
+
   .@{stepsPrefixClass}-tail {
     position: absolute;
     left: 0;
     width: 100%;
     top: 12px;
     padding: 0 10px;
-    > i {
+    &:after {
+      content: '';
       display: inline-block;
       background: @wait-tail-color;
       height: 1px;
       border-radius: 1px;
       width: 100%;
-      .transition(background 0.3s ease);
+      transition: background .3s;
     }
   }
 
   &.@{stepsPrefixClass}-small {
-    .@{stepsPrefixClass}-head-inner {
+    .@{stepsPrefixClass}-item-icon-inner {
       border: 1px solid @wait-icon-color;
       width: 18px;
       height: 18px;
@@ -259,11 +253,11 @@
       > .@{stepsPrefixClass}-icon.rcicon {
         font-size: 12px;
         font-size: ~"9px \9"; // ie8-9
-        .scale(0.75);
+        transform: scale(.75);
         top: -1px;
       }
     }
-    .@{stepsPrefixClass}-main {
+    .@{stepsPrefixClass}-item-content {
       margin-top: 0;
     }
     .@{stepsPrefixClass}-title {
@@ -279,7 +273,7 @@
     .@{stepsPrefixClass}-tail {
       top: 8px;
       padding: 0 8px;
-      > i {
+      &:after {
         height: 1px;
         border-radius: 1px;
         width: 100%;
@@ -287,7 +281,7 @@
     }
   }
 
-  &.@{stepsPrefixClass}-small .@{stepsPrefixClass}-item.@{stepsPrefixClass}-custom .@{stepsPrefixClass}-head-inner, .@{stepsPrefixClass}-item.@{stepsPrefixClass}-custom .@{stepsPrefixClass}-head-inner {
+  &.@{stepsPrefixClass}-small .@{stepsPrefixClass}-item.@{stepsPrefixClass}-custom .@{stepsPrefixClass}-item-icon-inner, .@{stepsPrefixClass}-item.@{stepsPrefixClass}-custom .@{stepsPrefixClass}-item-icon-inner {
     width: inherit;
     height: inherit;
     line-height: inherit;
@@ -298,8 +292,10 @@
 }
 
 .@{stepsPrefixClass}-vertical {
+  display: block;
   .@{stepsPrefixClass}-item {
     display: block;
+    overflow: visible;
   }
 
   .@{stepsPrefixClass}-tail {
@@ -309,25 +305,28 @@
     height: 100%;
     width: 1px;
     padding: 30px 0 4px 0;
-    > i {
+    &:after {
       height: 100%;
       width: 1px;
     }
   }
 
-  .@{stepsPrefixClass}-head {
+  .@{stepsPrefixClass}-item-icon {
     float: left;
     &-inner {
       margin-right: 16px;
     }
   }
 
-  .@{stepsPrefixClass}-main {
+  .@{stepsPrefixClass}-item-content {
     min-height: 47px;
     overflow: hidden;
     display: block;
     .@{stepsPrefixClass}-title {
       line-height: 26px;
+      &:after {
+        display: none;
+      }
     }
     .@{stepsPrefixClass}-description {
       padding-bottom: 12px;
@@ -341,7 +340,7 @@
     left: 9px;
     top: 0;
     padding: 22px 0 4px 0;
-    > i {
+    &:after {
       height: 100%;
       width: 1px;
     }
@@ -353,16 +352,17 @@
 }
 
 .@{stepsPrefixClass}-horizontal {
-  &.@{stepsPrefixClass}-hidden {
-    visibility: hidden;
-  }
-  .@{stepsPrefixClass}-description {
-    max-width: @stepDescriptionMaxWidth;
-  }
-  .@{stepsPrefixClass}-item:not(:first-child) .@{stepsPrefixClass}-head {
-    position: relative;
-    margin-left: -10px;
-    padding-left: 10px;
+  .@{stepsPrefixClass}-item {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+    &-tail {
+      display: none;
+    }
+    &-content-description {
+      max-width: @stepDescriptionMaxWidth;
+    }
   }
 }
 
@@ -378,18 +378,18 @@
       width: @stepDescriptionMaxWidth;
     }
   }
-  .@{stepsPrefixClass}-item:not(:first-child) .@{stepsPrefixClass}-head {
+  .@{stepsPrefixClass}-item:not(:first-child) .@{stepsPrefixClass}-item-icon {
     margin-left: 0;
     padding-left: 0;
   }
-  .@{stepsPrefixClass}-head {
+  .@{stepsPrefixClass}-item-icon {
     display: inline-block;
     padding-right: 10px;
     &-inner {
       margin: 0 auto;
     }
   }
-  .@{stepsPrefixClass}-main {
+  .@{stepsPrefixClass}-item-content {
     display: block;
     margin-top: 10px;
     .@{stepsPrefixClass}-title {
@@ -408,11 +408,11 @@
     margin: 0 0 0 @stepDescriptionMaxWidth / 2;
     padding: 0;
 
-    & > i {
+    &:after {
       height: 3px;
     }
   }
-  .@{stepsPrefixClass}-head {
+  .@{stepsPrefixClass}-item-icon {
     padding-right: 0;
     &-inner {
       width: 5px;
@@ -429,7 +429,7 @@
     }
   }
   .@{stepsPrefixClass}-status-process {
-    .@{stepsPrefixClass}-head {
+    .@{stepsPrefixClass}-item-icon {
       top: -1px;
       &-inner {
         width: 7px;
@@ -448,17 +448,17 @@
       height: 100%;
       padding: 0;
       top: 15px;
-      > i {
+      &:after {
         height: 100%;
         width: 3px;
       }
     }
-    .@{stepsPrefixClass}-head {
+    .@{stepsPrefixClass}-item-icon {
       top: 12px;
       left: 1px;
     }
     .@{stepsPrefixClass}-status-process {
-      .@{stepsPrefixClass}-head {
+      .@{stepsPrefixClass}-item-icon {
         left: 0;
       }
     }

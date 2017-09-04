@@ -1,4 +1,4 @@
-import 'rc-steps/assets/index.less';
+import 'rc-steps/assets/steps.less';
 import 'rc-steps/assets/iconfont.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -16,6 +16,12 @@ ReactDOM.render(
       <Step title="待运行" />
     </Steps>
     <Steps current={1} style={{ marginTop: 40 }}>
+      <Step title="已完成" description={description} />
+      <Step title="进行中" description={description} />
+      <Step title="待运行" description={description} />
+      <Step title="待运行" description={description} />
+    </Steps>
+    <Steps current={1} style={{ marginTop: 40 }} status="error">
       <Step title="已完成" description={description} />
       <Step title="进行中" description={description} />
       <Step title="待运行" description={description} />
