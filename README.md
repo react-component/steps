@@ -2,16 +2,27 @@
 
 ---
 
-React steps component
+React steps component.
 
-## Development
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
+[![npm download][download-image]][download-url]
 
-```
-npm install
-npm start
-```
+[npm-image]: http://img.shields.io/npm/v/rc-steps.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/rc-steps
+[download-image]: https://img.shields.io/npm/dm/rc-steps.svg?style=flat-square
+[download-url]: https://npmjs.org/package/rc-steps
+[travis-image]: https://img.shields.io/travis/react-component/steps.svg?style=flat-square
+[travis-url]: https://travis-ci.org/react-component/steps
+[coveralls-image]: https://img.shields.io/coveralls/react-component/steps.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/react-component/steps?branch=master
 
 ## Usage
+
+```bash
+npm install rc-steps
+```
 
 ```jsx
 <Steps current={1}>
@@ -110,6 +121,13 @@ online example: http://react-component.github.io/steps/examples/
     </tr>
   </tbody>
 </table>
+
+## Development
+
+```
+npm install
+npm start
+```
 
 ## License
 
