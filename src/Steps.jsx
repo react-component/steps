@@ -48,7 +48,8 @@ export default class Steps extends React.Component {
     const props = this.props;
     const { prefixCls, style = {}, className, children, direction,
             labelPlacement, iconPrefix, status, size, current, progressDot, ...restProps } = props;
-    const lastIndex = children.length - 1;
+    const filteredChildren = React.Children.toArray(children).filter(c => !!c);
+    const lastIndex = filteredChildren.length - 1;
     const reLayouted = this.state.lastStepOffsetWidth > 0;
     const adjustedlabelPlacement = !!progressDot ? 'vertical' : labelPlacement;
     const classString = classNames({
@@ -64,7 +65,10 @@ export default class Steps extends React.Component {
     return (
       <div className={classString} style={style} {...restProps}>
         {
-          React.Children.map(children, (ele, idx) => {
+          React.Children.map(filteredChildren, (ele, idx) => {
+            if (!ele) {
+              return null;
+            }
             const itemWidth = (direction === 'vertical' || idx === lastIndex || !reLayouted)
               ? null : `${100 / lastIndex}%`;
             const adjustMarginRight = (direction === 'vertical' || idx === lastIndex)
