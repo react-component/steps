@@ -89,7 +89,8 @@ export default class Steps extends Component {
       ...restProps,
     } = this.props;
     const { lastStepOffsetWidth, flexSupported } = this.state;
-    const lastIndex = Children.count(children.length);
+    const filteredChildren = React.Children.toArray(children).filter(c => !!c);
+    const lastIndex = filteredChildren.length - 1;
     const adjustedlabelPlacement = !!progressDot ? 'vertical' : labelPlacement;
     const classString = classNames(prefixCls, `${prefixCls}-${direction}`, className, {
       [`${prefixCls}-${size}`]: size,
@@ -100,7 +101,10 @@ export default class Steps extends Component {
     return (
       <div className={classString} style={style} {...restProps}>
         {
-          Children.map(children, (child, index) => {
+          Children.map(filteredChildren, (child, index) => {
+            if (!child) {
+              return null;
+            }
             const childProps = {
               stepNumber: `${index + 1}`,
               prefixCls,
