@@ -10,7 +10,7 @@ export default class Steps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFlexSupported: true,
+      flexSupported: true,
       lastStepOffsetWidth: 0,
     };
     this.calcStepOffsetWidth = debounce(this.calcStepOffsetWidth, 150);
@@ -19,7 +19,7 @@ export default class Steps extends React.Component {
     this.calcStepOffsetWidth();
     if (!isFlexSupported()) {
       this.setState({
-        isFlexSupported: false,
+        flexSupported: false,
       });
     }
   }
@@ -61,7 +61,8 @@ export default class Steps extends React.Component {
       labelPlacement, iconPrefix, status, size, current, progressDot,
       ...restProps,
     } = this.props;
-    const lastIndex = children.length - 1;
+    const { lastStepOffsetWidth, flexSupported } = this.state;
+    const lastIndex = Children.count(children.length);
     const adjustedlabelPlacement = !!progressDot ? 'vertical' : labelPlacement;
     const classString = classNames(prefixCls, `${prefixCls}-${direction}`, className, {
       [`${prefixCls}-${size}`]: size,
@@ -79,12 +80,11 @@ export default class Steps extends React.Component {
               iconPrefix,
               wrapperStyle: style,
               progressDot,
+              ...child.props,
             };
-            if (!this.state.isFlexSupported) {
-              childProps.itemWidth = (direction === 'vertical' || index === lastIndex)
-                ? null : `${100 / lastIndex}%`;
-              childProps.adjustMarginRight = (direction === 'vertical' || index === lastIndex)
-                ? null : -Math.round(this.state.lastStepOffsetWidth / lastIndex + 1);
+            if (!flexSupported && direction !== 'vertical' && index !== lastIndex) {
+              childProps.itemWidth = `${100 / lastIndex}%`;
+              childProps.adjustMarginRight = -Math.round(lastStepOffsetWidth / lastIndex + 1);
             }
             // fix tail color
             if (status === 'error' && index === current - 1) {
