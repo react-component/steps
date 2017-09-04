@@ -21,7 +21,7 @@ class App extends React.Component {
     }],
   };
   addStep = () => {
-    const steps = this.state.steps;
+    const steps = [...this.state.steps];
     steps.push({
       title: '待运行',
       description: '新的节点',

@@ -6,34 +6,14 @@ import Steps, { Step } from 'rc-steps';
 
 const container = document.getElementById('__react-content');
 
-const steps = [{
-  title: '已完成',
-  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶',
-}, {
-  title: '进行中',
-  description: '这里是',
-}, {
-  title: '待运行',
-  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶',
-}, {
-  title: '待运行',
-  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶',
-}, {
-  title: '待运行',
-  description: '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶',
-}].map((s, i) => {
-  return (
-    <Step
-      key={i}
-      status={s.status}
-      title={s.title}
-      description={s.description}
-    />
-  );
-});
+const description = '这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊';
 
 ReactDOM.render(
-  <Steps progressDot current={1}>
-    {steps}
+  <Steps progressDot size="small" current={1}>
+    <Step title="已完成" description={description} />
+    <Step title="进行中" description={description} />
+    <Step title="待运行" description={description} />
+    <Step title="待运行" description={description} />
+    <Step title="待运行" description={description} />
   </Steps>
 , container);
