@@ -43,6 +43,11 @@ describe('Steps', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
+    it('renders progressDot function correctly', () => {
+      const wrapper = render(React.cloneElement(steps, { progressDot: () => <span>a</span> }));
+      expect(wrapper).toMatchSnapshot();
+    });
+
     it('renders step with description', () => {
       const wrapper = render(
         <Steps>
