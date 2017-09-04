@@ -12,11 +12,13 @@
 .rc-steps, .rc-steps * {
   box-sizing: border-box;
 }
+
 .rc-steps {
   line-height: 1.5;
+  display: flex;
 }
 
-@primary-color: #2db7f5;
+@primary-color: #108ee9;
 @process-icon-color: @primary-color;
 @process-title-color: #666;
 @process-description-color: @process-title-color;
@@ -49,9 +51,10 @@
     position: relative;
     display: inline-block;
     vertical-align: top;
+    flex: 1;
 
-    .@{stepsPrefixClass}-item:last-child {
-      position: absolute;
+    &:last-child {
+      flex: none;
     }
 
     &.@{stepsPrefixClass}-status-wait {
@@ -75,6 +78,7 @@
         background-color: @wait-tail-color;
       }
     }
+
     &.@{stepsPrefixClass}-status-process {
       .@{stepsPrefixClass}-head-inner {
         border-color: @process-icon-color;

@@ -1,19 +1,27 @@
-import React from 'react';
+/* eslint react/no-did-mount-set-state: 0 */
+import React, { cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
+import { isFlexSupported } from './utils';
 
 export default class Steps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isFlexSupported: true,
       lastStepOffsetWidth: 0,
     };
     this.calcStepOffsetWidth = debounce(this.calcStepOffsetWidth, 150);
   }
   componentDidMount() {
     this.calcStepOffsetWidth();
+    if (!isFlexSupported()) {
+      this.setState({
+        isFlexSupported: false,
+      });
+    }
   }
   componentDidUpdate() {
     this.calcStepOffsetWidth();
@@ -22,11 +30,14 @@ export default class Steps extends React.Component {
     if (this.calcTimeout) {
       clearTimeout(this.calcTimeout);
     }
-    if (this.calcStepOffsetWidth.cancel) {
+    if (this.calcStepOffsetWidth && this.calcStepOffsetWidth.cancel) {
       this.calcStepOffsetWidth.cancel();
     }
   }
   calcStepOffsetWidth = () => {
+    if (isFlexSupported()) {
+      return;
+    }
     const domNode = ReactDOM.findDOMNode(this);
     if (domNode.children.length > 0) {
       if (this.calcTimeout) {
@@ -45,60 +56,51 @@ export default class Steps extends React.Component {
     }
   }
   render() {
-    const props = this.props;
-    const { prefixCls, style = {}, className, children, direction,
-            labelPlacement, iconPrefix, status, size, current, progressDot, ...restProps } = props;
-    const filteredChildren = React.Children.toArray(children).filter(c => !!c);
-    const lastIndex = filteredChildren.length - 1;
-    const reLayouted = this.state.lastStepOffsetWidth > 0;
+    const {
+      prefixCls, style = {}, className, children, direction,
+      labelPlacement, iconPrefix, status, size, current, progressDot,
+      ...restProps,
+    } = this.props;
+    const lastIndex = children.length - 1;
     const adjustedlabelPlacement = !!progressDot ? 'vertical' : labelPlacement;
-    const classString = classNames({
-      [prefixCls]: true,
+    const classString = classNames(prefixCls, `${prefixCls}-${direction}`, className, {
       [`${prefixCls}-${size}`]: size,
-      [`${prefixCls}-${direction}`]: true,
       [`${prefixCls}-label-${adjustedlabelPlacement}`]: direction === 'horizontal',
-      [`${prefixCls}-hidden`]: !reLayouted,
       [`${prefixCls}-dot`]: !!progressDot,
-      [className]: className,
     });
 
     return (
       <div className={classString} style={style} {...restProps}>
         {
-          React.Children.map(filteredChildren, (ele, idx) => {
-            if (!ele) {
-              return null;
-            }
-            const itemWidth = (direction === 'vertical' || idx === lastIndex || !reLayouted)
-              ? null : `${100 / lastIndex}%`;
-            const adjustMarginRight = (direction === 'vertical' || idx === lastIndex)
-              ? null : -Math.round(this.state.lastStepOffsetWidth / lastIndex + 1);
-            const np = {
-              stepNumber: (idx + 1).toString(),
-              itemWidth,
-              adjustMarginRight,
+          Children.map(children, (child, index) => {
+            const childProps = {
+              stepNumber: `${index + 1}`,
               prefixCls,
               iconPrefix,
               wrapperStyle: style,
               progressDot,
             };
-
-            // fix tail color
-            if (status === 'error' && idx === current - 1) {
-              np.className = `${props.prefixCls}-next-error`;
+            if (!this.state.isFlexSupported) {
+              childProps.itemWidth = (direction === 'vertical' || index === lastIndex)
+                ? null : `${100 / lastIndex}%`;
+              childProps.adjustMarginRight = (direction === 'vertical' || index === lastIndex)
+                ? null : -Math.round(this.state.lastStepOffsetWidth / lastIndex + 1);
             }
-
-            if (!ele.props.status) {
-              if (idx === current) {
-                np.status = status;
-              } else if (idx < current) {
-                np.status = 'finish';
+            // fix tail color
+            if (status === 'error' && index === current - 1) {
+              childProps.className = `${prefixCls}-next-error`;
+            }
+            if (!child.props.status) {
+              if (index === current) {
+                childProps.status = status;
+              } else if (index < current) {
+                childProps.status = 'finish';
               } else {
-                np.status = 'wait';
+                childProps.status = 'wait';
               }
             }
-            return React.cloneElement(ele, np);
-          }, this)
+            return cloneElement(child, childProps);
+          })
         }
       </div>
     );
@@ -107,6 +109,7 @@ export default class Steps extends React.Component {
 
 Steps.propTypes = {
   prefixCls: PropTypes.string,
+  className: PropTypes.string,
   iconPrefix: PropTypes.string,
   direction: PropTypes.string,
   labelPlacement: PropTypes.string,
@@ -117,6 +120,8 @@ Steps.propTypes = {
     PropTypes.bool,
     PropTypes.func,
   ]),
+  style: PropTypes.object,
+  current: PropTypes.number,
 };
 
 Steps.defaultProps = {

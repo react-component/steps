@@ -47,16 +47,21 @@ export default class Step extends React.Component {
       [`${prefixCls}-custom`]: icon,
       [className]: !!className,
     });
+    const stepItemStyle = { ...style };
+    if (itemWidth) {
+      stepItemStyle.width = itemWidth;
+    }
+    if (adjustMarginRight) {
+      stepItemStyle.marginRight = adjustMarginRight;
+    }
+    const tailStyle = adjustMarginRight ? { paddingRight: -adjustMarginRight } : null;
     return (
-      <div {...restProps}
+      <div
+        {...restProps}
         className={classString}
-        style={{ width: itemWidth, marginRight: adjustMarginRight, ...style }}
+        style={stepItemStyle}
       >
-        <div
-          ref="tail"
-          className={`${prefixCls}-tail`}
-          style={{ paddingRight: -adjustMarginRight }}
-        >
+        <div className={`${prefixCls}-tail`} style={tailStyle}>
           <i />
         </div>
         <div className={`${prefixCls}-step`}>
