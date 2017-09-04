@@ -66,5 +66,20 @@ describe('Steps', () => {
       );
       expect(wrapper).toMatchSnapshot();
     });
+
+    it('renders with fasly children', () => {
+      const wrapper = render(
+        <Steps>
+          <Step title="已完成" description="xx" status="wait" />
+          <Step title="进行中" description="xx" status="wait" />
+          {undefined}
+          <Step title="待运行" description="xx" status="process" />
+          {false}
+          <Step title="待运行" description="xx" status="finish" />
+          {null}
+        </Steps>
+      );
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });
