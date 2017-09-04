@@ -1,12 +1,12 @@
 /* eslint react/no-did-mount-set-state: 0 */
-import React, { cloneElement, Children } from 'react';
+import React, { cloneElement, Children, Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import { isFlexSupported } from './utils';
 
-export default class Steps extends React.Component {
+export default class Steps extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +38,8 @@ export default class Steps extends React.Component {
     if (isFlexSupported()) {
       return;
     }
-    const domNode = ReactDOM.findDOMNode(this);
+    // Just for IE9
+    const domNode = findDOMNode(this);
     if (domNode.children.length > 0) {
       if (this.calcTimeout) {
         clearTimeout(this.calcTimeout);
