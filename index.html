@@ -7,7 +7,7 @@
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" rel="stylesheet"/>
-  <title>rc-steps@2.5.2 - steps ui component for react</title>
+  <title>rc-steps@3.0.0 - steps ui component for react</title>
   <style>
     @font-face {
       font-family: octicons-anchor;
@@ -737,7 +737,7 @@
 
 <body>
 <div class="header">
-  <h1>rc-steps@2.5.2</h1>
+  <h1>rc-steps@3.0.0</h1>
 </div>
 <div class="examples">
   <h3>EXAMPLES</h3>
@@ -746,15 +746,13 @@
       
       <li><a href="examples/alternativeLabel.html">alternativeLabel</a></li>
       
-      <li><a href="examples/background.html">background</a></li>
+      <li><a href="examples/composable.html">composable</a></li>
       
       <li><a href="examples/customIcon.html">customIcon</a></li>
       
       <li><a href="examples/dynamic.html">dynamic</a></li>
       
       <li><a href="examples/errorStep.html">errorStep</a></li>
-      
-      <li><a href="examples/hiddenRender.html">hiddenRender</a></li>
       
       <li><a href="examples/nextStep.html">nextStep</a></li>
       
@@ -775,15 +773,99 @@
   <h3>README.md</h3>
   <div class="markdown-body">
     <h1>rc-steps<a id="user-content-rc-steps" name="rc-steps" class="anchor" aria-hidden="true" href="#rc-steps"><span class="octicon octicon-link"></span></a></h1><hr>
-<p>React steps component</p>
-<h2>Development<a id="user-content-development" name="development" class="anchor" aria-hidden="true" href="#development"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="undefined">npm install
-npm start</code></pre></div><h2>Usage<a id="user-content-usage" name="usage" class="anchor" aria-hidden="true" href="#usage"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span> <span class="hljs-attribute">current</span>=<span class="hljs-value">{1}</span>&gt;</span>
+<p>React steps component.</p>
+<p><a href="http://npmjs.org/package/rc-steps" title="null"><img src="http://img.shields.io/npm/v/rc-steps.svg?style=flat-square" alt="NPM version"></a>
+<a href="https://travis-ci.org/react-component/steps" title="null"><img src="https://img.shields.io/travis/react-component/steps.svg?style=flat-square" alt="build status"></a>
+<a href="https://coveralls.io/r/react-component/steps?branch=master" title="null"><img src="https://img.shields.io/coveralls/react-component/steps.svg?style=flat-square" alt="Test coverage"></a>
+<a href="https://npmjs.org/package/rc-steps" title="null"><img src="https://img.shields.io/npm/dm/rc-steps.svg?style=flat-square" alt="npm download"></a></p>
+<h2>Usage<a id="user-content-usage" name="usage" class="anchor" aria-hidden="true" href="#usage"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="bash">npm install rc-steps</code></pre></div><div class="highlight"><pre><code language="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span> <span class="hljs-attribute">current</span>=<span class="hljs-value">{1}</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"first"</span> /&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"second"</span> /&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">Steps.Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"third"</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span></code></pre></div><h2>Example<a id="user-content-example" name="example" class="anchor" aria-hidden="true" href="#example"><span class="octicon octicon-link"></span></a></h2><p><a href="http://localhost:8002/examples" title="null">http://localhost:8002/examples</a></p>
 <p>online example: <a href="http://react-component.github.io/steps/examples/" title="null">http://react-component.github.io/steps/examples/</a></p>
-<h2>License<a id="user-content-license" name="license" class="anchor" aria-hidden="true" href="#license"><span class="octicon octicon-link"></span></a></h2><p>rc-steps is released under the MIT license.</p>
+<h2>API<a id="user-content-api" name="api" class="anchor" aria-hidden="true" href="#api"><span class="octicon octicon-link"></span></a></h2><table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th style="width: 100px;">name</th>
+      <th style="width: 50px;">type</th>
+      <th style="width: 50px;">default</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>direction</td>
+      <td>string</td>
+      <td>horizontal</td>
+      <td>direction of Steps, enum: <code>horizontal</code> or <code>vertical</code></td>
+    </tr>
+    <tr>
+      <td>current</td>
+      <td>number</td>
+      <td>0</td>
+      <td>index of current step</td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>string</td>
+      <td></td>
+      <td>size of Steps, could be <code>small</code></td>
+    </tr>
+    <tr>
+      <td>labelPlacement</td>
+      <td>string</td>
+      <td></td>
+      <td>placement of step title, could be <code>vertical</code></td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>string</td>
+      <td>wait</td>
+      <td>status of current Steps, could be <code>error</code> <code>process</code> <code>finish</code> <code>wait</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Steps.Step<a id="user-content-steps.step" name="steps.step" class="anchor" aria-hidden="true" href="#steps.step"><span class="octicon octicon-link"></span></a></h3><table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th style="width: 100px;">name</th>
+      <th style="width: 50px;">type</th>
+      <th style="width: 50px;">default</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>title</td>
+      <td>ReactNode</td>
+      <td></td>
+      <td>title of step item</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>ReactNode</td>
+      <td></td>
+      <td>description of step item</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>ReactNode or string</td>
+      <td></td>
+      <td>set icon of step item</td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>string</td>
+      <td></td>
+      <td>status of current Steps, could be <code>error</code> <code>process</code> <code>finish</code> <code>wait</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Development<a id="user-content-development" name="development" class="anchor" aria-hidden="true" href="#development"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="undefined">npm install
+npm start</code></pre></div><h2>License<a id="user-content-license" name="license" class="anchor" aria-hidden="true" href="#license"><span class="octicon octicon-link"></span></a></h2><p>rc-steps is released under the MIT license.</p>
 
   </div>
 </div>

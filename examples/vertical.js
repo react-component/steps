@@ -1,66 +1,48 @@
-webpackJsonp([10],{
+webpackJsonp([3],{
 
-/***/ 0:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 149:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-	module.exports = __webpack_require__(205);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rc_steps_assets_index_less__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rc_steps_assets_index_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rc_steps_assets_index_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rc_steps_assets_iconfont_less__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rc_steps_assets_iconfont_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rc_steps_assets_iconfont_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rc_steps__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rc_steps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rc_steps__);
 
+
+
+
+
+
+var container = document.getElementById('__react-content');
+
+var description = '这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊';
+
+__WEBPACK_IMPORTED_MODULE_3_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
+  __WEBPACK_IMPORTED_MODULE_4_rc_steps___default.a,
+  { direction: 'vertical' },
+  __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_rc_steps__["Step"], { title: '\u5DF2\u5B8C\u6210', description: description }),
+  __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_rc_steps__["Step"], { title: '\u8FDB\u884C\u4E2D', description: description }),
+  __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_rc_steps__["Step"], { title: '\u5F85\u8FD0\u884C', description: description }),
+  __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_rc_steps__["Step"], { title: '\u5F85\u8FD0\u884C', description: description })
+), container);
 
 /***/ }),
 
-/***/ 205:
+/***/ 314:
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	__webpack_require__(2);
-	
-	__webpack_require__(3);
-	
-	var _react = __webpack_require__(4);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(40);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
-	var _rcSteps = __webpack_require__(187);
-	
-	var _rcSteps2 = _interopRequireDefault(_rcSteps);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var container = document.getElementById('__react-content');
-	
-	var steps = [{
-	  status: 'finish',
-	  title: '已完成',
-	  description: '这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊'
-	}, {
-	  status: 'process',
-	  title: '进行中',
-	  description: '这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊'
-	}, {
-	  status: 'wait',
-	  title: '待运行',
-	  description: '这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊'
-	}].map(function (s, i) {
-	  return _react2.default.createElement(_rcSteps.Step, {
-	    key: i,
-	    status: s.status,
-	    title: s.title,
-	    description: s.description
-	  });
-	});
-	
-	_reactDom2.default.render(_react2.default.createElement(
-	  _rcSteps2.default,
-	  { direction: 'vertical' },
-	  steps
-	), container);
+module.exports = __webpack_require__(149);
+
 
 /***/ })
 
-});
+},[314]);
 //# sourceMappingURL=vertical.js.map
