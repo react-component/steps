@@ -1,6 +1,10 @@
 # History
 ----
 
+## 3.0.0
+
+- Rewrite from bottom.
+
 ## 2.5.1
 
 * Support react@15.5
