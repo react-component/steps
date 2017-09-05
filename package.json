@@ -8,6 +8,7 @@
     "react-steps"
   ],
   "main": "./lib/index",
+  "module": "./es/index",
   "files": [
     "lib",
     "assets/*.css"
@@ -32,27 +33,45 @@
   },
   "scripts": {
     "build": "rc-tools run build",
+    "compile": "rc-tools run compile --babel-runtime",
     "gh-pages": "rc-tools run gh-pages",
     "start": "rc-tools run server",
-    "pub": "rc-tools run pub",
+    "pub": "rc-tools run pub --babel-runtime",
     "lint": "rc-tools run lint",
-    "karma": "rc-tools run karma",
-    "saucelabs": "rc-tools run saucelabs",
-    "test": "rc-tools run test",
-    "chrome-test": "rc-tools run chrome-test",
-    "coverage": "rc-tools run coverage"
+    "lint:fix": "rc-tools run lint --fix",
+    "test": "jest",
+    "prepublish": "rc-tools run guard",
+    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "transform": {
+      "\\.jsx?$": "./node_modules/rc-tools/scripts/jestPreprocessor.js"
+    }
   },
   "devDependencies": {
-    "expect.js": "~0.3.x",
+    "coveralls": "^2.11.15",
+    "enzyme": "^2.6.0",
+    "enzyme-to-json": "^1.5.0",
+    "jest": "^20.0.4",
     "pre-commit": "1.x",
-    "rc-tools": "^5.3.3",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "querystring": "^0.2.0",
+    "rc-dialog": "6.x",
+    "rc-tools": "6.x",
+    "react": "15.x",
+    "react-dom": "15.x",
+    "react-test-renderer": "^15.3.2"
   },
   "pre-commit": [
     "lint"
   ],
   "dependencies": {
+    "babel-runtime": "^6.23.0",
     "classnames": "^2.2.3",
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.5.7"

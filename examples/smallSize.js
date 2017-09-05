@@ -5,31 +5,20 @@ import ReactDOM from 'react-dom';
 import Steps, { Step } from 'rc-steps';
 
 const container = document.getElementById('__react-content');
-
-const steps = [{
-  status: 'finish',
-  title: '已完成',
-}, {
-  status: 'process',
-  title: '进行中',
-}, {
-  status: 'wait',
-  title: '待运行',
-}, {
-  status: 'wait',
-  title: '待运行',
-}].map((s, i) => {
-  return (
-    <Step
-      key={i}
-      status={s.status}
-      title={s.title}
-    />
-  );
-});
+const Icon = ({ type }) => <i className={`rcicon rcicon-${type}`} />;
 
 ReactDOM.render(
-  <Steps size="small">
-    {steps}
-  </Steps>
+  <div>
+    <Steps size="small" current={1}>
+      <Step title="已完成" />
+      <Step title="进行中" />
+      <Step title="待运行" />
+      <Step title="待运行" />
+    </Steps>
+    <Steps size="small" current={1} style={{ marginTop: 40 }}>
+      <Step title="步骤1" icon={<Icon type="cloud" />} />
+      <Step title="步骤2" icon="apple" />
+      <Step title="步骤3" icon="github" />
+    </Steps>
+  </div>
 , container);

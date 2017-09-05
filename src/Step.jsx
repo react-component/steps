@@ -7,24 +7,20 @@ function isString(str) {
 }
 
 export default class Step extends React.Component {
-  render() {
+  renderIconNode() {
     const {
-      className, prefixCls, style, itemWidth,
-      status = 'wait', iconPrefix, icon, wrapperStyle,
-      adjustMarginRight, stepNumber,
-      description, title, progressDot, ...restProps } = this.props;
-    const iconClassName = classNames({
-      [`${prefixCls}-icon`]: true,
-      [`${iconPrefix}icon`]: true,
+      prefixCls, progressDot, stepNumber, status, title, description, icon,
+      iconPrefix,
+    } = this.props;
+    let iconNode;
+    const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
       [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
       [`${iconPrefix}icon-check`]: !icon && status === 'finish',
       [`${iconPrefix}icon-cross`]: !icon && status === 'error',
     });
-
-    let iconNode;
     const iconDot = <span className={`${prefixCls}-icon-dot`}></span>;
     // `progressDot` enjoy the highest priority
-    if (!!progressDot) {
+    if (progressDot) {
       if (typeof progressDot === 'function') {
         iconNode = (
           <span className={`${prefixCls}-icon`}>
@@ -41,38 +37,44 @@ export default class Step extends React.Component {
     } else {
       iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
     }
-    const classString = classNames({
-      [`${prefixCls}-item`]: true,
-      [`${prefixCls}-status-${status}`]: true,
-      [`${prefixCls}-custom`]: icon,
-      [className]: !!className,
-    });
+    return iconNode;
+  }
+  render() {
+    const {
+      className, prefixCls, style, itemWidth,
+      status = 'wait', iconPrefix, icon, wrapperStyle,
+      adjustMarginRight, stepNumber,
+      description, title, progressDot, ...restProps,
+    } = this.props;
+
+    const classString = classNames(
+      `${prefixCls}-item`,
+      `${prefixCls}-item-${status}`,
+      className,
+      { [`${prefixCls}-item-custom`]: icon },
+    );
+    const stepItemStyle = { ...style };
+    if (itemWidth) {
+      stepItemStyle.width = itemWidth;
+    }
+    if (adjustMarginRight) {
+      stepItemStyle.marginRight = adjustMarginRight;
+    }
     return (
-      <div {...restProps}
+      <div
+        {...restProps}
         className={classString}
-        style={{ width: itemWidth, marginRight: adjustMarginRight, ...style }}
+        style={stepItemStyle}
       >
-        <div
-          ref="tail"
-          className={`${prefixCls}-tail`}
-          style={{ paddingRight: -adjustMarginRight }}
-        >
-          <i />
+        <div className={`${prefixCls}-item-tail`} />
+        <div className={`${prefixCls}-item-icon`}>
+          {this.renderIconNode()}
         </div>
-        <div className={`${prefixCls}-step`}>
-          <div
-            className={`${prefixCls}-head`}
-            style={{ background: wrapperStyle.background || wrapperStyle.backgroundColor }}
-          >
-            <div className={`${prefixCls}-head-inner`}>{iconNode}</div>
+        <div className={`${prefixCls}-item-content`}>
+          <div className={`${prefixCls}-item-title`}>
+            {title}
           </div>
-          <div ref="main" className={`${prefixCls}-main`}>
-            <div
-              className={`${prefixCls}-title`}
-              style={{ background: wrapperStyle.background || wrapperStyle.backgroundColor }}
-            >{title}</div>
-            {description ? <div className={`${prefixCls}-description`}>{description}</div> : ''}
-          </div>
+          {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
         </div>
       </div>
     );

@@ -1,19 +1,53 @@
-import React from 'react';
+/* eslint react/no-did-mount-set-state: 0 */
+import React, { cloneElement, Children, Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
+import { isFlexSupported } from './utils';
 
-export default class Steps extends React.Component {
+export default class Steps extends Component {
+  static propTypes = {
+    prefixCls: PropTypes.string,
+    className: PropTypes.string,
+    iconPrefix: PropTypes.string,
+    direction: PropTypes.string,
+    labelPlacement: PropTypes.string,
+    children: PropTypes.any,
+    status: PropTypes.string,
+    size: PropTypes.string,
+    progressDot: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.func,
+    ]),
+    style: PropTypes.object,
+    current: PropTypes.number,
+  };
+  static defaultProps = {
+    prefixCls: 'rc-steps',
+    iconPrefix: 'rc',
+    direction: 'horizontal',
+    labelPlacement: 'horizontal',
+    current: 0,
+    status: 'process',
+    size: '',
+    progressDot: false,
+  };
   constructor(props) {
     super(props);
     this.state = {
+      flexSupported: true,
       lastStepOffsetWidth: 0,
     };
     this.calcStepOffsetWidth = debounce(this.calcStepOffsetWidth, 150);
   }
   componentDidMount() {
     this.calcStepOffsetWidth();
+    if (!isFlexSupported()) {
+      this.setState({
+        flexSupported: false,
+      });
+    }
   }
   componentDidUpdate() {
     this.calcStepOffsetWidth();
@@ -22,12 +56,16 @@ export default class Steps extends React.Component {
     if (this.calcTimeout) {
       clearTimeout(this.calcTimeout);
     }
-    if (this.calcStepOffsetWidth.cancel) {
+    if (this.calcStepOffsetWidth && this.calcStepOffsetWidth.cancel) {
       this.calcStepOffsetWidth.cancel();
     }
   }
   calcStepOffsetWidth = () => {
-    const domNode = ReactDOM.findDOMNode(this);
+    if (isFlexSupported()) {
+      return;
+    }
+    // Just for IE9
+    const domNode = findDOMNode(this);
     if (domNode.children.length > 0) {
       if (this.calcTimeout) {
         clearTimeout(this.calcTimeout);
@@ -45,87 +83,57 @@ export default class Steps extends React.Component {
     }
   }
   render() {
-    const props = this.props;
-    const { prefixCls, style = {}, className, children, direction,
-            labelPlacement, iconPrefix, status, size, current, progressDot, ...restProps } = props;
+    const {
+      prefixCls, style = {}, className, children, direction,
+      labelPlacement, iconPrefix, status, size, current, progressDot,
+      ...restProps,
+    } = this.props;
+    const { lastStepOffsetWidth, flexSupported } = this.state;
     const filteredChildren = React.Children.toArray(children).filter(c => !!c);
     const lastIndex = filteredChildren.length - 1;
-    const reLayouted = this.state.lastStepOffsetWidth > 0;
     const adjustedlabelPlacement = !!progressDot ? 'vertical' : labelPlacement;
-    const classString = classNames({
-      [prefixCls]: true,
+    const classString = classNames(prefixCls, `${prefixCls}-${direction}`, className, {
       [`${prefixCls}-${size}`]: size,
-      [`${prefixCls}-${direction}`]: true,
       [`${prefixCls}-label-${adjustedlabelPlacement}`]: direction === 'horizontal',
-      [`${prefixCls}-hidden`]: !reLayouted,
       [`${prefixCls}-dot`]: !!progressDot,
-      [className]: className,
     });
 
     return (
       <div className={classString} style={style} {...restProps}>
         {
-          React.Children.map(filteredChildren, (ele, idx) => {
-            if (!ele) {
+          Children.map(filteredChildren, (child, index) => {
+            if (!child) {
               return null;
             }
-            const itemWidth = (direction === 'vertical' || idx === lastIndex || !reLayouted)
-              ? null : `${100 / lastIndex}%`;
-            const adjustMarginRight = (direction === 'vertical' || idx === lastIndex)
-              ? null : -Math.round(this.state.lastStepOffsetWidth / lastIndex + 1);
-            const np = {
-              stepNumber: (idx + 1).toString(),
-              itemWidth,
-              adjustMarginRight,
+            const childProps = {
+              stepNumber: `${index + 1}`,
               prefixCls,
               iconPrefix,
               wrapperStyle: style,
               progressDot,
+              ...child.props,
             };
-
-            // fix tail color
-            if (status === 'error' && idx === current - 1) {
-              np.className = `${props.prefixCls}-next-error`;
+            if (!flexSupported && direction !== 'vertical' && index !== lastIndex) {
+              childProps.itemWidth = `${100 / lastIndex}%`;
+              childProps.adjustMarginRight = -Math.round(lastStepOffsetWidth / lastIndex + 1);
             }
-
-            if (!ele.props.status) {
-              if (idx === current) {
-                np.status = status;
-              } else if (idx < current) {
-                np.status = 'finish';
+            // fix tail color
+            if (status === 'error' && index === current - 1) {
+              childProps.className = `${prefixCls}-next-error`;
+            }
+            if (!child.props.status) {
+              if (index === current) {
+                childProps.status = status;
+              } else if (index < current) {
+                childProps.status = 'finish';
               } else {
-                np.status = 'wait';
+                childProps.status = 'wait';
               }
             }
-            return React.cloneElement(ele, np);
-          }, this)
+            return cloneElement(child, childProps);
+          })
         }
       </div>
     );
   }
 }
-
-Steps.propTypes = {
-  prefixCls: PropTypes.string,
-  iconPrefix: PropTypes.string,
-  direction: PropTypes.string,
-  labelPlacement: PropTypes.string,
-  children: PropTypes.any,
-  status: PropTypes.string,
-  size: PropTypes.string,
-  progressDot: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.func,
-  ]),
-};
-
-Steps.defaultProps = {
-  prefixCls: 'rc-steps',
-  iconPrefix: 'rc',
-  direction: 'horizontal',
-  labelPlacement: 'horizontal',
-  current: 0,
-  status: 'process',
-  size: '',
-  progressDot: false,
-};
