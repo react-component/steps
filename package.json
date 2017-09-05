@@ -1,6 +1,6 @@
 {
   "name": "rc-steps",
-  "version": "2.5.2",
+  "version": "3.0.0",
   "description": "steps ui component for react",
   "keywords": [
     "react",
@@ -16,8 +16,8 @@
   "homepage": "http://github.com/react-component/steps",
   "maintainers": [
     {
-      "name": "yuhangge",
-      "email": "abeyuhang@gmail.com"
+      "name": "afc163",
+      "email": "afc163@gmail.com"
     }
   ],
   "repository": {
