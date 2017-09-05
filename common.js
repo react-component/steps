@@ -11554,9 +11554,6 @@ var Step = function (_React$Component) {
   return Step;
 }(__WEBPACK_IMPORTED_MODULE_7_react___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["a"] = (Step);
-
-
 Step.propTypes = {
   className: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.string,
   prefixCls: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.string,
@@ -11572,6 +11569,7 @@ Step.propTypes = {
   title: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
   progressDot: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.oneOfType([__WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.bool, __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.func])
 };
+/* harmony default export */ __webpack_exports__["a"] = (Step);
 
 /***/ }),
 /* 152 */
@@ -11785,10 +11783,13 @@ Steps.defaultProps = {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Steps__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Step__ = __webpack_require__(151);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Step", function() { return __WEBPACK_IMPORTED_MODULE_1__Step__["a"]; });
 
 
 
 __WEBPACK_IMPORTED_MODULE_0__Steps__["a" /* default */].Step = __WEBPACK_IMPORTED_MODULE_1__Step__["a" /* default */];
+
+
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0__Steps__["a" /* default */]);
 
 /***/ }),
