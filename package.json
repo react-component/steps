@@ -11,7 +11,8 @@
   "module": "./es/index",
   "files": [
     "lib",
-    "assets/*.css"
+    "assets/iconfont.css",
+    "assets/index.css"
   ],
   "homepage": "http://github.com/react-component/steps",
   "maintainers": [
