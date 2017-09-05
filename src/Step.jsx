@@ -7,6 +7,30 @@ function isString(str) {
 }
 
 export default class Step extends React.Component {
+  static propTypes = {
+    className: PropTypes.string,
+    prefixCls: PropTypes.string,
+    style: PropTypes.object,
+    wrapperStyle: PropTypes.object,
+    itemWidth: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    status: PropTypes.string,
+    iconPrefix: PropTypes.string,
+    icon: PropTypes.node,
+    adjustMarginRight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    stepNumber: PropTypes.string,
+    description: PropTypes.any,
+    title: PropTypes.any,
+    progressDot: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.func,
+    ]),
+  };
   renderIconNode() {
     const {
       prefixCls, progressDot, stepNumber, status, title, description, icon,
@@ -80,28 +104,3 @@ export default class Step extends React.Component {
     );
   }
 }
-
-Step.propTypes = {
-  className: PropTypes.string,
-  prefixCls: PropTypes.string,
-  style: PropTypes.object,
-  wrapperStyle: PropTypes.object,
-  itemWidth: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  status: PropTypes.string,
-  iconPrefix: PropTypes.string,
-  icon: PropTypes.node,
-  adjustMarginRight: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  stepNumber: PropTypes.string,
-  description: PropTypes.any,
-  title: PropTypes.any,
-  progressDot: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.func,
-  ]),
-};
