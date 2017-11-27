@@ -11,6 +11,7 @@
   "module": "./es/index",
   "files": [
     "lib",
+    "es",
     "assets/iconfont.css",
     "assets/index.css"
   ],
@@ -67,7 +68,7 @@
     "pre-commit": "1.x",
     "querystring": "^0.2.0",
     "rc-dialog": "6.x",
-    "rc-tools": "6.x",
+    "rc-tools": "7.x",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-test-renderer": "^16.0.0"
