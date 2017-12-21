@@ -30,6 +30,7 @@ export default class Step extends React.Component {
       PropTypes.bool,
       PropTypes.func,
     ]),
+    tailContent: PropTypes.any,
   };
   renderIconNode() {
     const {
@@ -68,7 +69,8 @@ export default class Step extends React.Component {
       className, prefixCls, style, itemWidth,
       status = 'wait', iconPrefix, icon, wrapperStyle,
       adjustMarginRight, stepNumber,
-      description, title, progressDot, ...restProps,
+      description, title, progressDot, tailContent,
+      ...restProps,
     } = this.props;
 
     const classString = classNames(
@@ -90,7 +92,9 @@ export default class Step extends React.Component {
         className={classString}
         style={stepItemStyle}
       >
-        <div className={`${prefixCls}-item-tail`} />
+        <div className={`${prefixCls}-item-tail`}>
+          {tailContent}
+        </div>
         <div className={`${prefixCls}-item-icon`}>
           {this.renderIconNode()}
         </div>
