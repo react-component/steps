@@ -86,5 +86,17 @@ describe('Steps', () => {
       );
       expect(wrapper).toMatchSnapshot();
     });
+
+    it('renders step with tailContent', () => {
+      const wrapper = render(
+        <Steps>
+          <Step title="已完成" description="xx" tailContent="text" />
+          <Step title="进行中" description="xx" tailContent={<div>content</div>} />
+          <Step title="待运行" description="xx" tailContent={3} />
+          <Step title="待运行" description="xx" tailContent="text" />
+        </Steps>
+      );
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });

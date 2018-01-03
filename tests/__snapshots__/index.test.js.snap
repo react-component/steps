@@ -984,6 +984,143 @@ exports[`Steps render renders step with description and status 1`] = `
 </div>
 `;
 
+exports[`Steps render renders step with tailContent 1`] = `
+<div
+  class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
+>
+  <div
+    class="rc-steps-item rc-steps-item-process"
+  >
+    <div
+      class="rc-steps-item-tail"
+    >
+      text
+    </div>
+    <div
+      class="rc-steps-item-icon"
+    >
+      <span
+        class="rc-steps-icon"
+      >
+        1
+      </span>
+    </div>
+    <div
+      class="rc-steps-item-content"
+    >
+      <div
+        class="rc-steps-item-title"
+      >
+        已完成
+      </div>
+      <div
+        class="rc-steps-item-description"
+      >
+        xx
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait"
+  >
+    <div
+      class="rc-steps-item-tail"
+    >
+      <div>
+        content
+      </div>
+    </div>
+    <div
+      class="rc-steps-item-icon"
+    >
+      <span
+        class="rc-steps-icon"
+      >
+        2
+      </span>
+    </div>
+    <div
+      class="rc-steps-item-content"
+    >
+      <div
+        class="rc-steps-item-title"
+      >
+        进行中
+      </div>
+      <div
+        class="rc-steps-item-description"
+      >
+        xx
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait"
+  >
+    <div
+      class="rc-steps-item-tail"
+    >
+      3
+    </div>
+    <div
+      class="rc-steps-item-icon"
+    >
+      <span
+        class="rc-steps-icon"
+      >
+        3
+      </span>
+    </div>
+    <div
+      class="rc-steps-item-content"
+    >
+      <div
+        class="rc-steps-item-title"
+      >
+        待运行
+      </div>
+      <div
+        class="rc-steps-item-description"
+      >
+        xx
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait"
+  >
+    <div
+      class="rc-steps-item-tail"
+    >
+      text
+    </div>
+    <div
+      class="rc-steps-item-icon"
+    >
+      <span
+        class="rc-steps-icon"
+      >
+        4
+      </span>
+    </div>
+    <div
+      class="rc-steps-item-content"
+    >
+      <div
+        class="rc-steps-item-title"
+      >
+        待运行
+      </div>
+      <div
+        class="rc-steps-item-description"
+      >
+        xx
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Steps render renders vertical correctly 1`] = `
 <div
   class="rc-steps rc-steps-vertical"
