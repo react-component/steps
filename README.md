@@ -109,7 +109,7 @@ online example: http://react-component.github.io/steps/examples/
     </tr>
     <tr>
       <td>icon</td>
-      <td>ReactNode or string</td>
+      <td>ReactNode</td>
       <td></td>
       <td>set icon of step item</td>
     </tr>
@@ -118,6 +118,12 @@ online example: http://react-component.github.io/steps/examples/
       <td>string</td>
       <td></td>
       <td>status of current Steps, could be `error` `process` `finish` `wait`</td>
+    </tr>
+    <tr>
+      <td>tailContent</td>
+      <td>ReactNode</td>
+      <td></td>
+      <td>content above tail</td>
     </tr>
   </tbody>
 </table>

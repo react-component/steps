@@ -1,6 +1,10 @@
 # History
 ----
 
+## 3.1.0
+
+- Add `tailContent`.
+
 ## 3.0.0
 
 - Rewrite from bottom.
