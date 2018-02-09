@@ -3,7 +3,7 @@ import React, { cloneElement, Children, Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
-import debounce from 'lodash.debounce';
+import debounce from 'lodash/debounce';
 import { isFlexSupported } from './utils';
 
 export default class Steps extends Component {

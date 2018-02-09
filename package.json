@@ -79,7 +79,7 @@
   "dependencies": {
     "babel-runtime": "^6.23.0",
     "classnames": "^2.2.3",
-    "lodash.debounce": "^4.0.8",
+    "lodash": "^4.17.5",
     "prop-types": "^15.5.7"
   }
 }
