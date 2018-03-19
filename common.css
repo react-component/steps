@@ -108,13 +108,13 @@
   background: #ccc;
 }
 .rc-steps-item-wait .rc-steps-item-title {
-  color: gba(0, 0, 0, 0.43);
+  color: rgba(0, 0, 0, 0.43);
 }
 .rc-steps-item-wait .rc-steps-item-title:after {
   background-color: #e9e9e9;
 }
 .rc-steps-item-wait .rc-steps-item-description {
-  color: gba(0, 0, 0, 0.43);
+  color: rgba(0, 0, 0, 0.43);
 }
 .rc-steps-item-wait .rc-steps-item-tail:after {
   background-color: #e9e9e9;
@@ -158,13 +158,13 @@
   background: #108ee9;
 }
 .rc-steps-item-finish .rc-steps-item-title {
-  color: gba(0, 0, 0, 0.43);
+  color: rgba(0, 0, 0, 0.43);
 }
 .rc-steps-item-finish .rc-steps-item-title:after {
   background-color: #108ee9;
 }
 .rc-steps-item-finish .rc-steps-item-description {
-  color: gba(0, 0, 0, 0.43);
+  color: rgba(0, 0, 0, 0.43);
 }
 .rc-steps-item-finish .rc-steps-item-tail:after {
   background-color: #108ee9;
