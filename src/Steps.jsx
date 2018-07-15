@@ -22,6 +22,7 @@ export default class Steps extends Component {
     ]),
     style: PropTypes.object,
     current: PropTypes.number,
+    start: PropTypes.number,
   };
   static defaultProps = {
     prefixCls: 'rc-steps',
@@ -32,6 +33,7 @@ export default class Steps extends Component {
     status: 'process',
     size: '',
     progressDot: false,
+    start: 1,
   };
   constructor(props) {
     super(props);
@@ -86,7 +88,7 @@ export default class Steps extends Component {
     const {
       prefixCls, style = {}, className, children, direction,
       labelPlacement, iconPrefix, status, size, current, progressDot,
-      ...restProps,
+      start, ...restProps,
     } = this.props;
     const { lastStepOffsetWidth, flexSupported } = this.state;
     const filteredChildren = React.Children.toArray(children).filter(c => !!c);
@@ -106,7 +108,7 @@ export default class Steps extends Component {
               return null;
             }
             const childProps = {
-              stepNumber: `${index + 1}`,
+              stepNumber: `${start + index}`,
               prefixCls,
               iconPrefix,
               wrapperStyle: style,

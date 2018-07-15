@@ -1370,3 +1370,118 @@ exports[`Steps render renders with fasly children 1`] = `
   </div>
 </div>
 `;
+
+exports[`Steps render renders step with specified starting number 1`] = `
+<div
+  class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
+>
+  <div
+    class="rc-steps-item rc-steps-item-process"
+  >
+    <div
+      class="rc-steps-item-tail"
+    >
+      
+    </div>
+    <div
+      class="rc-steps-item-icon"
+    >
+      <span
+        class="rc-steps-icon"
+      >
+        4
+      </span>
+    </div>
+    <div
+      class="rc-steps-item-content"
+    >
+      <div
+        class="rc-steps-item-title"
+      >
+        已完成
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait"
+  >
+    <div
+      class="rc-steps-item-tail"
+    >
+      
+    </div>
+    <div
+      class="rc-steps-item-icon"
+    >
+      <span
+        class="rc-steps-icon"
+      >
+        5
+      </span>
+    </div>
+    <div
+      class="rc-steps-item-content"
+    >
+      <div
+        class="rc-steps-item-title"
+      >
+        进行中
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait"
+  >
+    <div
+      class="rc-steps-item-tail"
+    >
+      
+    </div>
+    <div
+      class="rc-steps-item-icon"
+    >
+      <span
+        class="rc-steps-icon"
+      >
+        6
+      </span>
+    </div>
+    <div
+      class="rc-steps-item-content"
+    >
+      <div
+        class="rc-steps-item-title"
+      >
+        待运行
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait"
+  >
+    <div
+      class="rc-steps-item-tail"
+    >
+      
+    </div>
+    <div
+      class="rc-steps-item-icon"
+    >
+      <span
+        class="rc-steps-icon"
+      >
+        7
+      </span>
+    </div>
+    <div
+      class="rc-steps-item-content"
+    >
+      <div
+        class="rc-steps-item-title"
+      >
+        待运行
+      </div>
+    </div>
+  </div>
+</div>
+`;
