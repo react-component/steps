@@ -98,5 +98,10 @@ describe('Steps', () => {
       );
       expect(wrapper).toMatchSnapshot();
     });
+
+    it('renders step with specified starting number', () => {
+      const wrapper = render(React.cloneElement(steps, { start: 4 }));
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });
