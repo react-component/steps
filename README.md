@@ -63,6 +63,12 @@ online example: http://react-component.github.io/steps/examples/
       <td>index of current step</td>
     </tr>
     <tr>
+      <td>initial</td>
+      <td>number</td>
+      <td>0</td>
+      <td>index initial</td>
+    </tr>
+    <tr>
       <td>size</td>
       <td>string</td>
       <td></td>
