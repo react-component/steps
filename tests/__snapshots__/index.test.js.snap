@@ -5,7 +5,7 @@ exports[`Steps render renders correctly 1`] = `
   class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
 >
   <div
-    class="rc-steps-item rc-steps-item-process"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-tail"
@@ -147,7 +147,7 @@ exports[`Steps render renders current correctly 1`] = `
     </div>
   </div>
   <div
-    class="rc-steps-item rc-steps-item-finish"
+    class="rc-steps-item rc-steps-item-process"
   >
     <div
       class="rc-steps-item-tail"
@@ -158,9 +158,9 @@ exports[`Steps render renders current correctly 1`] = `
       class="rc-steps-item-icon"
     >
       <span
-        class="rc-steps-icon rcicon rcicon-check"
+        class="rc-steps-icon"
       >
-        
+        2
       </span>
     </div>
     <div
@@ -174,7 +174,7 @@ exports[`Steps render renders current correctly 1`] = `
     </div>
   </div>
   <div
-    class="rc-steps-item rc-steps-item-process"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-tail"
@@ -235,7 +235,7 @@ exports[`Steps render renders labelPlacement correctly 1`] = `
   class="rc-steps rc-steps-horizontal rc-steps-label-vertical"
 >
   <div
-    class="rc-steps-item rc-steps-item-process"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-tail"
@@ -350,7 +350,7 @@ exports[`Steps render renders progressDot correctly 1`] = `
   class="rc-steps rc-steps-horizontal rc-steps-label-vertical rc-steps-dot"
 >
   <div
-    class="rc-steps-item rc-steps-item-process"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-tail"
@@ -481,7 +481,7 @@ exports[`Steps render renders progressDot function correctly 1`] = `
   class="rc-steps rc-steps-horizontal rc-steps-label-vertical rc-steps-dot"
 >
   <div
-    class="rc-steps-item rc-steps-item-process"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-tail"
@@ -631,7 +631,7 @@ exports[`Steps render renders status correctly 1`] = `
     </div>
   </div>
   <div
-    class="rc-steps-item rc-steps-item-finish rc-steps-next-error"
+    class="rc-steps-item rc-steps-item-error rc-steps-next-error"
   >
     <div
       class="rc-steps-item-tail"
@@ -642,7 +642,7 @@ exports[`Steps render renders status correctly 1`] = `
       class="rc-steps-item-icon"
     >
       <span
-        class="rc-steps-icon rcicon rcicon-check"
+        class="rc-steps-icon rcicon rcicon-cross"
       >
         
       </span>
@@ -658,7 +658,7 @@ exports[`Steps render renders status correctly 1`] = `
     </div>
   </div>
   <div
-    class="rc-steps-item rc-steps-item-error"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-tail"
@@ -669,9 +669,9 @@ exports[`Steps render renders status correctly 1`] = `
       class="rc-steps-item-icon"
     >
       <span
-        class="rc-steps-icon rcicon rcicon-cross"
+        class="rc-steps-icon"
       >
-        
+        3
       </span>
     </div>
     <div
@@ -719,7 +719,7 @@ exports[`Steps render renders step with description 1`] = `
   class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
 >
   <div
-    class="rc-steps-item rc-steps-item-process"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-tail"
@@ -989,7 +989,7 @@ exports[`Steps render renders step with tailContent 1`] = `
   class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
 >
   <div
-    class="rc-steps-item rc-steps-item-process"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-tail"
@@ -1126,7 +1126,7 @@ exports[`Steps render renders vertical correctly 1`] = `
   class="rc-steps rc-steps-vertical"
 >
   <div
-    class="rc-steps-item rc-steps-item-process"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-tail"
