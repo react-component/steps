@@ -2,7 +2,6 @@
   font-size: 0;
   width: 100%;
   line-height: 1.5;
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
@@ -14,15 +13,13 @@
   position: relative;
   display: inline-block;
   vertical-align: top;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+      flex: 1;
   overflow: hidden;
 }
 .rc-steps-item:last-child {
-  -webkit-box-flex: 0;
-      -ms-flex: none;
-          flex: none;
+  -ms-flex: none;
+      flex: none;
 }
 .rc-steps-item:last-child .rc-steps-item-tail,
 .rc-steps-item:last-child .rc-steps-item-title:after {
@@ -233,8 +230,7 @@
 .rc-steps-small .rc-steps-item-icon > .rc-steps-icon {
   font-size: 12px;
   font-size: 9px \9;
-  -webkit-transform: scale(0.75);
-          transform: scale(0.75);
+  transform: scale(0.75);
   top: -1px;
 }
 .rc-steps-small .rc-steps-item-content {
@@ -270,8 +266,7 @@
 .rc-steps-small .rc-steps-item-custom .rc-steps-item-icon > .rc-steps-icon {
   font-size: 20px;
   top: -2.5px;
-  -webkit-transform: none;
-          transform: none;
+  transform: none;
 }
 .rc-steps-vertical {
   display: block;
@@ -868,8 +863,7 @@
 :root .rcicon-double-left,
 :root .rcicon-verticle-left,
 :root .rcicon-backward {
-  -webkit-filter: none;
-          filter: none;
+  filter: none;
 }
 
 /*# sourceMappingURL=common.css.map*/
