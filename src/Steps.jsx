@@ -21,6 +21,7 @@ export default class Steps extends Component {
       PropTypes.func,
     ]),
     style: PropTypes.object,
+    initial: PropTypes.number,
     current: PropTypes.number,
   };
   static defaultProps = {
@@ -28,6 +29,7 @@ export default class Steps extends Component {
     iconPrefix: 'rc',
     direction: 'horizontal',
     labelPlacement: 'horizontal',
+    initial: 0,
     current: 0,
     status: 'process',
     size: '',
@@ -75,7 +77,7 @@ export default class Steps extends Component {
         const lastStepOffsetWidth = (domNode.lastChild.offsetWidth || 0) + 1;
         // Reduce shake bug
         if (this.state.lastStepOffsetWidth === lastStepOffsetWidth ||
-            Math.abs(this.state.lastStepOffsetWidth - lastStepOffsetWidth) <= 3) {
+          Math.abs(this.state.lastStepOffsetWidth - lastStepOffsetWidth) <= 3) {
           return;
         }
         this.setState({ lastStepOffsetWidth });
@@ -85,7 +87,7 @@ export default class Steps extends Component {
   render() {
     const {
       prefixCls, style = {}, className, children, direction,
-      labelPlacement, iconPrefix, status, size, current, progressDot,
+      labelPlacement, iconPrefix, status, size, current, progressDot, initial,
       ...restProps,
     } = this.props;
     const { lastStepOffsetWidth, flexSupported } = this.state;
@@ -105,8 +107,9 @@ export default class Steps extends Component {
             if (!child) {
               return null;
             }
+            const stepNumber = initial ? initial + index : index + 1;
             const childProps = {
-              stepNumber: `${index + 1}`,
+              stepNumber: `${stepNumber}`,
               prefixCls,
               iconPrefix,
               wrapperStyle: style,
@@ -122,9 +125,9 @@ export default class Steps extends Component {
               childProps.className = `${prefixCls}-next-error`;
             }
             if (!child.props.status) {
-              if (index === current) {
+              if (stepNumber === current) {
                 childProps.status = status;
-              } else if (index < current) {
+              } else if (stepNumber < current) {
                 childProps.status = 'finish';
               } else {
                 childProps.status = 'wait';
