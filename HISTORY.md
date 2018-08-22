@@ -1,6 +1,10 @@
 # History
 ----
 
+## 3.2.0
+
+- Add `initial` prop.
+
 ## 3.1.0
 
 - Add `tailContent`.
