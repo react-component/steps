@@ -107,9 +107,9 @@ export default class Steps extends Component {
             if (!child) {
               return null;
             }
-            const stepNumber = initial ? initial + index : index + 1;
+            const stepNumber = initial + index;
             const childProps = {
-              stepNumber: `${stepNumber}`,
+              stepNumber: `${stepNumber + 1}`,
               prefixCls,
               iconPrefix,
               wrapperStyle: style,
