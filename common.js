@@ -21520,9 +21520,9 @@ var Steps = function (_Component) {
         if (!child) {
           return null;
         }
-        var stepNumber = initial ? initial + index : index + 1;
+        var stepNumber = initial + index;
         var childProps = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-          stepNumber: '' + stepNumber,
+          stepNumber: '' + (stepNumber + 1),
           prefixCls: prefixCls,
           iconPrefix: iconPrefix,
           wrapperStyle: style,
