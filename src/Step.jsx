@@ -31,17 +31,19 @@ export default class Step extends React.Component {
       PropTypes.func,
     ]),
     tailContent: PropTypes.any,
+    finishIcon: PropTypes.node,
+    errorIcon: PropTypes.node,
   };
   renderIconNode() {
     const {
       prefixCls, progressDot, stepNumber, status, title, description, icon,
-      iconPrefix,
+      iconPrefix, finishIcon, errorIcon,
     } = this.props;
     let iconNode;
     const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
       [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
-      [`${iconPrefix}icon-check`]: !icon && status === 'finish',
-      [`${iconPrefix}icon-cross`]: !icon && status === 'error',
+      [`${iconPrefix}icon-check`]: !icon && status === 'finish' && !finishIcon,
+      [`${iconPrefix}icon-close`]: !icon && status === 'error' && !errorIcon,
     });
     const iconDot = <span className={`${prefixCls}-icon-dot`}></span>;
     // `progressDot` enjoy the highest priority
@@ -57,11 +59,16 @@ export default class Step extends React.Component {
       }
     } else if (icon && !isString(icon)) {
       iconNode = <span className={`${prefixCls}-icon`}>{icon}</span>;
+    } else if (finishIcon && status === 'finish') {
+      iconNode = <span className={`${prefixCls}-icon`}>{finishIcon}</span>;
+    } else if (errorIcon && status === 'error') {
+      iconNode = <span className={`${prefixCls}-icon`}>{errorIcon}</span>;
     } else if (icon || status === 'finish' || status === 'error') {
       iconNode = <span className={iconClassName} />;
     } else {
       iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
     }
+
     return iconNode;
   }
   render() {
@@ -70,6 +77,7 @@ export default class Step extends React.Component {
       status = 'wait', iconPrefix, icon, wrapperStyle,
       adjustMarginRight, stepNumber,
       description, title, progressDot, tailContent,
+      finishIcon, errorIcon,
       ...restProps,
     } = this.props;
 
