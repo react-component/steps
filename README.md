@@ -87,16 +87,10 @@ online example: http://react-component.github.io/steps/examples/
       <td>status of current Steps, could be `error` `process` `finish` `wait`</td>
     </tr>
     <tr>
-      <td>finishIcon</td>
-      <td>ReactNode</td>
+      <td>icons</td>
+      <td>{ finish: ReactNode, error: ReactNode }</td>
       <td></td>
-      <td>spicify the finish icon</td>
-    </tr>
-    <tr>
-      <td>errorIcon</td>
-      <td>ReactNode</td>
-      <td></td>
-      <td>spicify the error icon</td>
+      <td>spicify the default finish icon and error icon</td>
     </tr>
   </tbody>
 </table>

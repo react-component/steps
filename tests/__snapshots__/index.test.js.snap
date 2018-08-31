@@ -131,7 +131,7 @@ exports[`Steps render renders current correctly 1`] = `
       class="rc-steps-item-icon"
     >
       <span
-        class="rc-steps-icon rcicon rcicon-check"
+        class="rc-steps-icon rcicon"
       >
         
       </span>
@@ -158,7 +158,7 @@ exports[`Steps render renders current correctly 1`] = `
       class="rc-steps-item-icon"
     >
       <span
-        class="rc-steps-icon rcicon rcicon-check"
+        class="rc-steps-icon rcicon"
       >
         
       </span>
@@ -615,7 +615,7 @@ exports[`Steps render renders status correctly 1`] = `
       class="rc-steps-item-icon"
     >
       <span
-        class="rc-steps-icon rcicon rcicon-check"
+        class="rc-steps-icon rcicon"
       >
         
       </span>
@@ -642,7 +642,7 @@ exports[`Steps render renders status correctly 1`] = `
       class="rc-steps-item-icon"
     >
       <span
-        class="rc-steps-icon rcicon rcicon-check"
+        class="rc-steps-icon rcicon"
       >
         
       </span>
@@ -669,7 +669,7 @@ exports[`Steps render renders status correctly 1`] = `
       class="rc-steps-item-icon"
     >
       <span
-        class="rc-steps-icon rcicon rcicon-close"
+        class="rc-steps-icon rcicon"
       >
         
       </span>
@@ -961,7 +961,7 @@ exports[`Steps render renders step with description and status 1`] = `
       class="rc-steps-item-icon"
     >
       <span
-        class="rc-steps-icon rcicon rcicon-check"
+        class="rc-steps-icon rcicon"
       >
         
       </span>
@@ -1348,7 +1348,7 @@ exports[`Steps render renders with fasly children 1`] = `
       class="rc-steps-item-icon"
     >
       <span
-        class="rc-steps-icon rcicon rcicon-check"
+        class="rc-steps-icon rcicon"
       >
         
       </span>

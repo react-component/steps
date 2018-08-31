@@ -1,3 +1,5 @@
+import 'rc-steps/assets/index.less';
+import 'rc-steps/assets/iconfont.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Steps, { Step } from 'rc-steps';
@@ -55,8 +57,13 @@ function getErrorIcon() {
   );
 }
 
+const icons = {
+  finish: getFinishIcon(),
+  error: getErrorIcon(),
+};
+
 ReactDOM.render(
-  <Steps current={1} status="error" finishIcon={getFinishIcon()} errorIcon={getErrorIcon()}>
+  <Steps current={1} status="error" icons={icons}>
     <Step title="Finished" description="This is a description" />
     <Step title="In Process" description="This is a description" />
     <Step title="Waiting" description="This is a description" />

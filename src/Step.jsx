@@ -31,19 +31,21 @@ export default class Step extends React.Component {
       PropTypes.func,
     ]),
     tailContent: PropTypes.any,
-    finishIcon: PropTypes.node,
-    errorIcon: PropTypes.node,
+    icons: PropTypes.shape({
+      finish: PropTypes.node,
+      error: PropTypes.node,
+    }),
   };
   renderIconNode() {
     const {
       prefixCls, progressDot, stepNumber, status, title, description, icon,
-      iconPrefix, finishIcon, errorIcon,
+      iconPrefix, icons,
     } = this.props;
     let iconNode;
     const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
       [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
-      [`${iconPrefix}icon-check`]: !icon && status === 'finish' && !finishIcon,
-      [`${iconPrefix}icon-close`]: !icon && status === 'error' && !errorIcon,
+      [`${iconPrefix}icon-check`]: !icon && status === 'finish' && (icons && !icons.finish),
+      [`${iconPrefix}icon-close`]: !icon && status === 'error' && (icons && !icons.error),
     });
     const iconDot = <span className={`${prefixCls}-icon-dot`}></span>;
     // `progressDot` enjoy the highest priority
@@ -59,10 +61,10 @@ export default class Step extends React.Component {
       }
     } else if (icon && !isString(icon)) {
       iconNode = <span className={`${prefixCls}-icon`}>{icon}</span>;
-    } else if (finishIcon && status === 'finish') {
-      iconNode = <span className={`${prefixCls}-icon`}>{finishIcon}</span>;
-    } else if (errorIcon && status === 'error') {
-      iconNode = <span className={`${prefixCls}-icon`}>{errorIcon}</span>;
+    } else if (icons && icons.finish && status === 'finish') {
+      iconNode = <span className={`${prefixCls}-icon`}>{icons.finish}</span>;
+    } else if (icons && icons.error && status === 'error') {
+      iconNode = <span className={`${prefixCls}-icon`}>{icons.error}</span>;
     } else if (icon || status === 'finish' || status === 'error') {
       iconNode = <span className={iconClassName} />;
     } else {
@@ -77,7 +79,7 @@ export default class Step extends React.Component {
       status = 'wait', iconPrefix, icon, wrapperStyle,
       adjustMarginRight, stepNumber,
       description, title, progressDot, tailContent,
-      finishIcon, errorIcon,
+      icons,
       ...restProps,
     } = this.props;
 

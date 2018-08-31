@@ -152,8 +152,12 @@ describe('Steps', () => {
       );
     }
     it('should render svg finishIcon and errorIcon correctly', () => {
+      const icons = {
+        finish: getFinishIcon(),
+        error: getErrorIcon(),
+      };
       const wrapper = render(
-        <Steps current={1} status="error" finishIcon={getFinishIcon()} errorIcon={getErrorIcon()}>
+        <Steps current={1} status="error" icons={icons}>
           <Step title="Finished" description="This is a description" />
           <Step title="In Process" description="This is a description" />
           <Step title="Waiting" description="This is a description" />

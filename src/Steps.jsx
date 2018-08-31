@@ -23,8 +23,10 @@ export default class Steps extends Component {
     style: PropTypes.object,
     initial: PropTypes.number,
     current: PropTypes.number,
-    finishIcon: PropTypes.node,
-    errorIcon: PropTypes.node,
+    icons: PropTypes.shape({
+      finish: PropTypes.node,
+      error: PropTypes.node,
+    }),
   };
   static defaultProps = {
     prefixCls: 'rc-steps',
@@ -90,7 +92,7 @@ export default class Steps extends Component {
     const {
       prefixCls, style = {}, className, children, direction,
       labelPlacement, iconPrefix, status, size, current, progressDot, initial,
-      finishIcon, errorIcon,
+      icons,
       ...restProps,
     } = this.props;
     const { lastStepOffsetWidth, flexSupported } = this.state;
@@ -117,8 +119,7 @@ export default class Steps extends Component {
               iconPrefix,
               wrapperStyle: style,
               progressDot,
-              finishIcon,
-              errorIcon,
+              icons,
               ...child.props,
             };
             if (!flexSupported && direction !== 'vertical' && index !== lastIndex) {
