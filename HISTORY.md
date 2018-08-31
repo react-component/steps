@@ -1,6 +1,10 @@
 # History
 ----
 
+## 3.230
+
+- Add `icons` prop for change preset icon.
+
 ## 3.2.0
 
 - Add `initial` prop.
