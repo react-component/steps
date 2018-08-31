@@ -86,6 +86,12 @@ online example: http://react-component.github.io/steps/examples/
       <td>wait</td>
       <td>status of current Steps, could be `error` `process` `finish` `wait`</td>
     </tr>
+    <tr>
+      <td>icons</td>
+      <td>{ finish: ReactNode, error: ReactNode }</td>
+      <td></td>
+      <td>spicify the default finish icon and error icon</td>
+    </tr>
   </tbody>
 </table>
 
