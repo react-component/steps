@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		11: 0
+/******/ 		12: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -21500,7 +21500,8 @@ var Steps = function (_Component) {
         current = _props.current,
         progressDot = _props.progressDot,
         initial = _props.initial,
-        restProps = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_objectWithoutProperties___default()(_props, ['prefixCls', 'style', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size', 'current', 'progressDot', 'initial']);
+        icons = _props.icons,
+        restProps = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_objectWithoutProperties___default()(_props, ['prefixCls', 'style', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size', 'current', 'progressDot', 'initial', 'icons']);
 
     var _state = this.state,
         lastStepOffsetWidth = _state.lastStepOffsetWidth,
@@ -21526,7 +21527,8 @@ var Steps = function (_Component) {
           prefixCls: prefixCls,
           iconPrefix: iconPrefix,
           wrapperStyle: style,
-          progressDot: progressDot
+          progressDot: progressDot,
+          icons: icons
         }, child.props);
         if (!flexSupported && direction !== 'vertical' && index !== lastIndex) {
           childProps.itemWidth = 100 / lastIndex + '%';
@@ -21565,7 +21567,11 @@ Steps.propTypes = {
   progressDot: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.oneOfType([__WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.bool, __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.func]),
   style: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.object,
   initial: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.number,
-  current: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.number
+  current: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.number,
+  icons: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.shape({
+    finish: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.node,
+    error: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.node
+  })
 };
 Steps.defaultProps = {
   prefixCls: 'rc-steps',
@@ -23610,10 +23616,11 @@ var Step = function (_React$Component) {
         title = _props.title,
         description = _props.description,
         icon = _props.icon,
-        iconPrefix = _props.iconPrefix;
+        iconPrefix = _props.iconPrefix,
+        icons = _props.icons;
 
     var iconNode = void 0;
-    var iconClassName = __WEBPACK_IMPORTED_MODULE_7_classnames___default()(prefixCls + '-icon', iconPrefix + 'icon', (_classNames = {}, _classNames[iconPrefix + 'icon-' + icon] = icon && isString(icon), _classNames[iconPrefix + 'icon-check'] = !icon && status === 'finish', _classNames[iconPrefix + 'icon-cross'] = !icon && status === 'error', _classNames));
+    var iconClassName = __WEBPACK_IMPORTED_MODULE_7_classnames___default()(prefixCls + '-icon', iconPrefix + 'icon', (_classNames = {}, _classNames[iconPrefix + 'icon-' + icon] = icon && isString(icon), _classNames[iconPrefix + 'icon-check'] = !icon && status === 'finish' && icons && !icons.finish, _classNames[iconPrefix + 'icon-close'] = !icon && status === 'error' && icons && !icons.error, _classNames));
     var iconDot = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: prefixCls + '-icon-dot' });
     // `progressDot` enjoy the highest priority
     if (progressDot) {
@@ -23636,6 +23643,18 @@ var Step = function (_React$Component) {
         { className: prefixCls + '-icon' },
         icon
       );
+    } else if (icons && icons.finish && status === 'finish') {
+      iconNode = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'span',
+        { className: prefixCls + '-icon' },
+        icons.finish
+      );
+    } else if (icons && icons.error && status === 'error') {
+      iconNode = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'span',
+        { className: prefixCls + '-icon' },
+        icons.error
+      );
     } else if (icon || status === 'finish' || status === 'error') {
       iconNode = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: iconClassName });
     } else {
@@ -23645,6 +23664,7 @@ var Step = function (_React$Component) {
         stepNumber
       );
     }
+
     return iconNode;
   };
 
@@ -23667,7 +23687,8 @@ var Step = function (_React$Component) {
         title = _props2.title,
         progressDot = _props2.progressDot,
         tailContent = _props2.tailContent,
-        restProps = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_objectWithoutProperties___default()(_props2, ['className', 'prefixCls', 'style', 'itemWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepNumber', 'description', 'title', 'progressDot', 'tailContent']);
+        icons = _props2.icons,
+        restProps = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_objectWithoutProperties___default()(_props2, ['className', 'prefixCls', 'style', 'itemWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepNumber', 'description', 'title', 'progressDot', 'tailContent', 'icons']);
 
     var classString = __WEBPACK_IMPORTED_MODULE_7_classnames___default()(prefixCls + '-item', prefixCls + '-item-' + status, className, (_classNames2 = {}, _classNames2[prefixCls + '-item-custom'] = icon, _classNames2));
     var stepItemStyle = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, style);
@@ -23727,7 +23748,11 @@ Step.propTypes = {
   description: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.any,
   title: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.any,
   progressDot: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.oneOfType([__WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.bool, __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.func]),
-  tailContent: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.any
+  tailContent: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.any,
+  icons: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.shape({
+    finish: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.node,
+    error: __WEBPACK_IMPORTED_MODULE_6_prop_types___default.a.node
+  })
 };
 /* harmony default export */ __webpack_exports__["a"] = (Step);
 
