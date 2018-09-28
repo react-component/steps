@@ -66,7 +66,7 @@ export default class Step extends React.Component {
     } else if (icons && icons.error && status === 'error') {
       iconNode = <span className={`${prefixCls}-icon`}>{icons.error}</span>;
     } else if (icon || status === 'finish' || status === 'error') {
-      iconNode = <span className={iconClassName} />;
+      iconNode = <span className={iconClassName}>{stepNumber}</span>;
     } else {
       iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
     }
