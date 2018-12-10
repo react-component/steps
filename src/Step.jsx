@@ -44,8 +44,8 @@ export default class Step extends React.Component {
     let iconNode;
     const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
       [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
-      [`${iconPrefix}icon-check`]: !icon && status === 'finish' && (icons && !icons.finish),
-      [`${iconPrefix}icon-close`]: !icon && status === 'error' && (icons && !icons.error),
+      [`${iconPrefix}icon-check`]: !icon && status === 'finish' && (!icons || (icons && !icons.finish)),
+      [`${iconPrefix}icon-close`]: !icon && status === 'error' && (!icons || (icons && !icons.error)),
     });
     const iconDot = <span className={`${prefixCls}-icon-dot`}></span>;
     // `progressDot` enjoy the highest priority
