@@ -8,7 +8,7 @@ notifications:
   - yesmeck@gmail.com
 
 node_js:
-- node
+- 10
 
 before_install:
 - |

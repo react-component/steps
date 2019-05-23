@@ -166,4 +166,8 @@ describe('Steps', () => {
       expect(wrapper).toMatchSnapshot();
     });
   });
+
+  it('onChange', () => {
+    // TODO
+  });
 });
