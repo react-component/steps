@@ -43,7 +43,8 @@
     "lint:fix": "rc-tools run lint --fix",
     "test": "jest",
     "prepublish": "rc-tools run guard",
-    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "now-build": "npm run build"
   },
   "jest": {
     "setupFiles": [
