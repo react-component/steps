@@ -68,10 +68,10 @@ export default class Steps extends Component {
     }
   }
 
-  onStepClick = (current) => {
-    const { onChange } = this.props;
-    if (onChange) {
-      onChange(current);
+  onStepClick = (next) => {
+    const { onChange, current } = this.props;
+    if (onChange && current !== next) {
+      onChange(next);
     }
   };
 

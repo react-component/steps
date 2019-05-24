@@ -13,6 +13,7 @@ const ControlSteps = () => {
     <Steps
       current={current}
       onChange={(val) => {
+        console.log('Change:', val);
         setCurrent(val);
       }}
     >
