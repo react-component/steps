@@ -1,7 +1,11 @@
 # History
 ----
 
-## 3.230
+## 3.4.0
+
+- Support `onChange` event.
+
+## 3.3.0
 
 - Add `icons` prop for change preset icon.
 
