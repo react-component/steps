@@ -42,6 +42,7 @@ var ControlSteps = function ControlSteps() {
     {
       current: current,
       onChange: function onChange(val) {
+        console.log('Change:', val);
         setCurrent(val);
       }
     },

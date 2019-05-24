@@ -26381,11 +26381,13 @@ var Steps = function (_Component) {
 
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, _Component.call(this, props));
 
-    _this.onStepClick = function (current) {
-      var onChange = _this.props.onChange;
+    _this.onStepClick = function (next) {
+      var _this$props = _this.props,
+          onChange = _this$props.onChange,
+          current = _this$props.current;
 
-      if (onChange) {
-        onChange(current);
+      if (onChange && current !== next) {
+        onChange(next);
       }
     };
 
