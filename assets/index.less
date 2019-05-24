@@ -19,6 +19,15 @@
   flex: 1;
   overflow: hidden;
 
+  &[role='button'] {
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
   &:last-child {
     flex: none;
   }
