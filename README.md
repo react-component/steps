@@ -92,6 +92,12 @@ online example: http://react-component.github.io/steps/examples/
       <td></td>
       <td>spicify the default finish icon and error icon</td>
     </tr>
+    <tr>
+      <td>onChange</td>
+      <td>(current: number) => void</td>
+      <td></td>
+      <td>Trigger when Step changed</td>
+    </tr>
   </tbody>
 </table>
 

@@ -27,6 +27,7 @@ export default class Steps extends Component {
       finish: PropTypes.node,
       error: PropTypes.node,
     }),
+    onChange: PropTypes.func,
   };
   static defaultProps = {
     prefixCls: 'rc-steps',
@@ -66,6 +67,14 @@ export default class Steps extends Component {
       this.calcStepOffsetWidth.cancel();
     }
   }
+
+  onStepClick = (current) => {
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange(current);
+    }
+  };
+
   calcStepOffsetWidth = () => {
     if (isFlexSupported()) {
       return;
@@ -92,7 +101,7 @@ export default class Steps extends Component {
     const {
       prefixCls, style = {}, className, children, direction,
       labelPlacement, iconPrefix, status, size, current, progressDot, initial,
-      icons,
+      icons, onChange,
       ...restProps,
     } = this.props;
     const { lastStepOffsetWidth, flexSupported } = this.state;
@@ -116,11 +125,13 @@ export default class Steps extends Component {
             const stepNumber = initial + index;
             const childProps = {
               stepNumber: `${stepNumber + 1}`,
+              stepIndex: stepNumber,
               prefixCls,
               iconPrefix,
               wrapperStyle: style,
               progressDot,
               icons,
+              onStepClick: onChange && this.onStepClick,
               ...child.props,
             };
             if (!flexSupported && direction !== 'vertical' && index !== lastIndex) {

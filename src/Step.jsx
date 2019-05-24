@@ -24,6 +24,7 @@ export default class Step extends React.Component {
       PropTypes.string,
     ]),
     stepNumber: PropTypes.string,
+    stepIndex: PropTypes.number,
     description: PropTypes.any,
     title: PropTypes.any,
     progressDot: PropTypes.oneOfType([
@@ -35,7 +36,20 @@ export default class Step extends React.Component {
       finish: PropTypes.node,
       error: PropTypes.node,
     }),
+    onClick: PropTypes.func,
+    onStepClick: PropTypes.func,
   };
+
+  onClick = (...args) => {
+    const { onClick, onStepClick, stepIndex } = this.props;
+
+    if (onClick) {
+      onClick(...args);
+    }
+
+    onStepClick(stepIndex);
+  };
+
   renderIconNode() {
     const {
       prefixCls, progressDot, stepNumber, status, title, description, icon,
@@ -79,7 +93,7 @@ export default class Step extends React.Component {
       status = 'wait', iconPrefix, icon, wrapperStyle,
       adjustMarginRight, stepNumber,
       description, title, progressDot, tailContent,
-      icons,
+      icons, stepIndex, onStepClick, onClick,
       ...restProps,
     } = this.props;
 
@@ -96,8 +110,18 @@ export default class Step extends React.Component {
     if (adjustMarginRight) {
       stepItemStyle.marginRight = adjustMarginRight;
     }
+
+    const accessibilityProps = {};
+    if (onStepClick) {
+      accessibilityProps.role = 'button';
+      accessibilityProps.tabIndex = 0;
+      accessibilityProps.onClick = this.onClick;
+    }
+
     return (
       <div
+        onClick={onClick}
+        {...accessibilityProps}
         {...restProps}
         className={classString}
         style={stepItemStyle}

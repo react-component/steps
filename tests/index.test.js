@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { mount, render } from 'enzyme';
 import Steps, { Step } from '../src';
 
 describe('Steps', () => {
@@ -165,5 +165,19 @@ describe('Steps', () => {
       );
       expect(wrapper).toMatchSnapshot();
     });
+  });
+
+  it('onChange', () => {
+    const onChange = jest.fn();
+    const wrapper = mount(
+      <Steps onChange={onChange}>
+        <Step />
+        <Step />
+        <Step />
+      </Steps>
+    );
+
+    wrapper.find(Step).at(1).simulate('click');
+    expect(onChange).toBeCalledWith(1);
   });
 });
