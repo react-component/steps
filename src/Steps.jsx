@@ -27,7 +27,7 @@ export default class Steps extends Component {
       finish: PropTypes.node,
       error: PropTypes.node,
     }),
-    showStepNum: PropTypes.bool,
+    showNumber: PropTypes.bool,
     onChange: PropTypes.func,
   };
   static defaultProps = {
@@ -102,7 +102,7 @@ export default class Steps extends Component {
     const {
       prefixCls, style = {}, className, children, direction,
       labelPlacement, iconPrefix, status, size, current, progressDot, initial,
-      icons, onChange, showStepNum,
+      icons, onChange, showNumber,
       ...restProps,
     } = this.props;
     const { lastStepOffsetWidth, flexSupported } = this.state;
@@ -132,7 +132,7 @@ export default class Steps extends Component {
               wrapperStyle: style,
               progressDot,
               icons,
-              showStepNum,
+              showNumber,
               onStepClick: onChange && this.onStepClick,
               ...child.props,
             };

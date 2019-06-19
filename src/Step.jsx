@@ -36,7 +36,7 @@ export default class Step extends React.Component {
       finish: PropTypes.node,
       error: PropTypes.node,
     }),
-    showStepNum: PropTypes.bool,
+    showNumber: PropTypes.bool,
     onClick: PropTypes.func,
     onStepClick: PropTypes.func,
   };
@@ -54,7 +54,7 @@ export default class Step extends React.Component {
   renderIconNode() {
     const {
       prefixCls, progressDot, stepNumber, status, title, description, icon,
-      iconPrefix, icons, showStepNum,
+      iconPrefix, icons, showNumber,
     } = this.props;
     let iconNode;
     const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
@@ -81,7 +81,7 @@ export default class Step extends React.Component {
     } else if (icons && icons.error && status === 'error') {
       iconNode = <span className={`${prefixCls}-icon`}>{icons.error}</span>;
     } else if (icon || status === 'finish' || status === 'error') {
-      iconNode = <span className={iconClassName}>{showStepNum ? stepNumber : ''}</span>;
+      iconNode = <span className={iconClassName}>{showNumber ? stepNumber : ''}</span>;
     } else {
       iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
     }

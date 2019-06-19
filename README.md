@@ -93,7 +93,7 @@ online example: http://react-component.github.io/steps/examples/
       <td>spicify the default finish icon and error icon</td>
     </tr>
     <tr>
-      <td>showStepNum</td>
+      <td>showNumber</td>
       <td>boolean</td>
       <td></td>
       <td>display step number, It will be ignored if icons is provided</td>
@@ -138,7 +138,7 @@ online example: http://react-component.github.io/steps/examples/
       <td>set icon of step item</td>
     </tr>
     <tr>
-      <td>showStepNum</td>
+      <td>showNumber</td>
       <td>boolean</td>
       <td></td>
       <td>display step number, It will be ignored if icon/icons is provided</td>
