@@ -93,6 +93,12 @@ online example: http://react-component.github.io/steps/examples/
       <td>spicify the default finish icon and error icon</td>
     </tr>
     <tr>
+      <td>showStepNum</td>
+      <td>boolean</td>
+      <td></td>
+      <td>display step number, It will be ignored if icons is provided</td>
+    </tr>
+    <tr>
       <td>onChange</td>
       <td>(current: number) => void</td>
       <td></td>
@@ -130,6 +136,12 @@ online example: http://react-component.github.io/steps/examples/
       <td>ReactNode</td>
       <td></td>
       <td>set icon of step item</td>
+    </tr>
+    <tr>
+      <td>showStepNum</td>
+      <td>boolean</td>
+      <td></td>
+      <td>display step number, It will be ignored if icon/icons is provided</td>
     </tr>
     <tr>
       <td>status</td>
