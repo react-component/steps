@@ -1,0 +1,40 @@
+@import 'variables';
+
+.@{stepsPrefixClass}-nav {
+  .@{stepsPrefixClass}-item {
+    outline: none;
+    box-sizing: border-box;
+
+    &-title {
+      &:after {
+        display: none;
+      }
+    }
+
+    &:last-child:after {
+      display: none;
+    }
+
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #ccc;
+      border-bottom: none;
+      border-left: none;
+      transform: rotate(45deg);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -8px;
+      margin-right: -50px;
+    }
+
+    &-active {
+      .@{stepsPrefixClass}-item-container {
+        border-bottom: 3px solid @primary-color;
+      }
+    }
+  }
+}

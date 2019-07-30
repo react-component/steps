@@ -16,6 +16,7 @@ export default class Step extends React.Component {
       PropTypes.number,
       PropTypes.string,
     ]),
+    active: PropTypes.bool,
     status: PropTypes.string,
     iconPrefix: PropTypes.string,
     icon: PropTypes.node,
@@ -89,7 +90,7 @@ export default class Step extends React.Component {
   }
   render() {
     const {
-      className, prefixCls, style, itemWidth,
+      className, prefixCls, style, itemWidth, active,
       status = 'wait', iconPrefix, icon, wrapperStyle,
       adjustMarginRight, stepNumber,
       description, title, progressDot, tailContent,
@@ -101,7 +102,10 @@ export default class Step extends React.Component {
       `${prefixCls}-item`,
       `${prefixCls}-item-${status}`,
       className,
-      { [`${prefixCls}-item-custom`]: icon },
+      {
+        [`${prefixCls}-item-custom`]: icon,
+        [`${prefixCls}-item-active`]: active,
+      },
     );
     const stepItemStyle = { ...style };
     if (itemWidth) {
@@ -126,17 +130,19 @@ export default class Step extends React.Component {
         className={classString}
         style={stepItemStyle}
       >
-        <div className={`${prefixCls}-item-tail`}>
-          {tailContent}
-        </div>
-        <div className={`${prefixCls}-item-icon`}>
-          {this.renderIconNode()}
-        </div>
-        <div className={`${prefixCls}-item-content`}>
-          <div className={`${prefixCls}-item-title`}>
-            {title}
+        <div className={`${prefixCls}-item-container`}>
+          <div className={`${prefixCls}-item-tail`}>
+            {tailContent}
           </div>
-          {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
+          <div className={`${prefixCls}-item-icon`}>
+            {this.renderIconNode()}
+          </div>
+          <div className={`${prefixCls}-item-content`}>
+            <div className={`${prefixCls}-item-title`}>
+              {title}
+            </div>
+            {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
+          </div>
         </div>
       </div>
     );

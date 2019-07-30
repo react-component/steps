@@ -151,6 +151,7 @@ export default class Steps extends Component {
                 childProps.status = 'wait';
               }
             }
+            childProps.active = stepNumber === current;
             return cloneElement(child, childProps);
           })
         }
