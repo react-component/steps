@@ -177,7 +177,7 @@ describe('Steps', () => {
       </Steps>
     );
 
-    wrapper.find(Step).at(1).simulate('click');
+    wrapper.find('.rc-steps-item-container').at(1).simulate('click');
     expect(onChange).toBeCalledWith(1);
   });
 });

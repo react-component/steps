@@ -124,13 +124,11 @@ export default class Step extends React.Component {
 
     return (
       <div
-        onClick={onClick}
-        {...accessibilityProps}
         {...restProps}
         className={classString}
         style={stepItemStyle}
       >
-        <div className={`${prefixCls}-item-container`}>
+        <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
           <div className={`${prefixCls}-item-tail`}>
             {tailContent}
           </div>
