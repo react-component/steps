@@ -1267,7 +1267,7 @@ exports[`Steps render renders step with tailContent 1`] = `
 
 exports[`Steps render renders step with type navigation 1`] = `
 <div
-  class="rc-steps rc-steps-horizontal rc-steps-label-horizontal rc-steps-nav"
+  class="rc-steps rc-steps-horizontal rc-steps-label-horizontal rc-steps-navigation"
 >
   <div
     class="rc-steps-item rc-steps-item-finish"

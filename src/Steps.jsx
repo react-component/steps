@@ -115,7 +115,7 @@ export default class Steps extends Component {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-label-${adjustedlabelPlacement}`]: direction === 'horizontal',
       [`${prefixCls}-dot`]: !!progressDot,
-      [`${prefixCls}-nav`]: isNav,
+      [`${prefixCls}-navigation`]: isNav,
       [`${prefixCls}-flex-not-supported`]: !flexSupported,
     });
 
