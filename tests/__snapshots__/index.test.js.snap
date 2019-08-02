@@ -1509,7 +1509,7 @@ exports[`Steps render renders with fasly children 1`] = `
     </div>
   </div>
   <div
-    class="rc-steps-item rc-steps-item-finish"
+    class="rc-steps-item rc-steps-item-finish rc-steps-item-disabled"
   >
     <div
       class="rc-steps-item-container"

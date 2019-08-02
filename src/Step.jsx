@@ -17,6 +17,7 @@ export default class Step extends React.Component {
       PropTypes.string,
     ]),
     active: PropTypes.bool,
+    disabled: PropTypes.bool,
     status: PropTypes.string,
     iconPrefix: PropTypes.string,
     icon: PropTypes.node,
@@ -92,7 +93,7 @@ export default class Step extends React.Component {
     const {
       className, prefixCls, style, itemWidth, active,
       status = 'wait', iconPrefix, icon, wrapperStyle,
-      adjustMarginRight, stepNumber,
+      adjustMarginRight, stepNumber, disabled,
       description, title, progressDot, tailContent,
       icons, stepIndex, onStepClick, onClick,
       ...restProps,
@@ -105,6 +106,7 @@ export default class Step extends React.Component {
       {
         [`${prefixCls}-item-custom`]: icon,
         [`${prefixCls}-item-active`]: active,
+        [`${prefixCls}-item-disabled`]: disabled === true,
       },
     );
     const stepItemStyle = { ...style };
@@ -116,7 +118,7 @@ export default class Step extends React.Component {
     }
 
     const accessibilityProps = {};
-    if (onStepClick) {
+    if (onStepClick && !disabled) {
       accessibilityProps.role = 'button';
       accessibilityProps.tabIndex = 0;
       accessibilityProps.onClick = this.onClick;

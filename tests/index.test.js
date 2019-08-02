@@ -80,7 +80,7 @@ describe('Steps', () => {
           {undefined}
           <Step title="待运行" description="xx" status="process" />
           {false}
-          <Step title="待运行" description="xx" status="finish" />
+          <Step title="待运行" disabled description="xx" status="finish" />
           {null}
         </Steps>
       );
@@ -179,5 +179,19 @@ describe('Steps', () => {
 
     wrapper.find('.rc-steps-item-container').at(1).simulate('click');
     expect(onChange).toBeCalledWith(1);
+  });
+
+  it('disabled', () => {
+    const onChange = jest.fn();
+    const wrapper = mount(
+      <Steps onChange={onChange}>
+        <Step />
+        <Step />
+        <Step disabled/>
+      </Steps>
+    );
+
+    wrapper.find('.rc-steps-item-container').at(2).simulate('click');
+    expect(onChange).not.toBeCalled();
   });
 });

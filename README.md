@@ -143,6 +143,12 @@ online example: http://react-component.github.io/steps/examples/
       <td></td>
       <td>content above tail</td>
     </tr>
+    <tr>
+      <td>disabled</td>
+      <td>bool</td>
+      <td>false</td>
+      <td>disabled step when onChange exist</td>
+    </tr>
   </tbody>
 </table>
 
