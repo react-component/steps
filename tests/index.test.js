@@ -76,11 +76,11 @@ describe('Steps', () => {
       const wrapper = render(
         <Steps>
           <Step title="已完成" description="xx" status="wait" />
-          <Step title="进行中" description="xx" status="wait" />
+          <Step title="进行中" subTitle="剩余 00:00:07" description="xx" status="wait" />
           {undefined}
           <Step title="待运行" description="xx" status="process" />
           {false}
-          <Step title="待运行" description="xx" status="finish" />
+          <Step title="待运行" disabled description="xx" status="finish" />
           {null}
         </Steps>
       );
@@ -94,6 +94,18 @@ describe('Steps', () => {
           <Step title="进行中" description="xx" tailContent={<div>content</div>} />
           <Step title="待运行" description="xx" tailContent={3} />
           <Step title="待运行" description="xx" tailContent="text" />
+        </Steps>
+      );
+      expect(wrapper).toMatchSnapshot();
+    });
+
+
+    it('renders step with type navigation', () => {
+      const wrapper = render(
+        <Steps type="navigation" current={1} onChange={() => {}}>
+          <Step title="Step 1" subTitle="剩余 00:00:05 超长隐藏" description="This is a description." />
+          <Step title="Step 2" description="This is a description." />
+          <Step title="Step 3" disabled description="This is a description." />
         </Steps>
       );
       expect(wrapper).toMatchSnapshot();
@@ -177,7 +189,21 @@ describe('Steps', () => {
       </Steps>
     );
 
-    wrapper.find(Step).at(1).simulate('click');
+    wrapper.find('.rc-steps-item-container').at(1).simulate('click');
     expect(onChange).toBeCalledWith(1);
+  });
+
+  it('disabled', () => {
+    const onChange = jest.fn();
+    const wrapper = mount(
+      <Steps onChange={onChange}>
+        <Step />
+        <Step />
+        <Step disabled/>
+      </Steps>
+    );
+
+    wrapper.find('.rc-steps-item-container').at(2).simulate('click');
+    expect(onChange).not.toBeCalled();
   });
 });

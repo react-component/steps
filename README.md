@@ -51,6 +51,12 @@ online example: http://react-component.github.io/steps/examples/
   </thead>
   <tbody>
     <tr>
+      <td>type</td>
+      <td>string</td>
+      <td>default</td>
+      <td>diretypetion of Steps, enum: `default` or `navigation`</td>
+    </tr>
+    <tr>
       <td>direction</td>
       <td>string</td>
       <td>horizontal</td>
@@ -120,6 +126,12 @@ online example: http://react-component.github.io/steps/examples/
       <td>title of step item</td>
     </tr>
     <tr>
+      <td>subTitle</td>
+      <td>ReactNode</td>
+      <td></td>
+      <td>subTitle of step item</td>
+    </tr>
+    <tr>
       <td>description</td>
       <td>ReactNode</td>
       <td></td>
@@ -142,6 +154,12 @@ online example: http://react-component.github.io/steps/examples/
       <td>ReactNode</td>
       <td></td>
       <td>content above tail</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>bool</td>
+      <td>false</td>
+      <td>disabled step when onChange exist</td>
     </tr>
   </tbody>
 </table>

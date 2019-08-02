@@ -12,25 +12,19 @@ export default class Step extends React.Component {
     prefixCls: PropTypes.string,
     style: PropTypes.object,
     wrapperStyle: PropTypes.object,
-    itemWidth: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    itemWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    active: PropTypes.bool,
+    disabled: PropTypes.bool,
     status: PropTypes.string,
     iconPrefix: PropTypes.string,
     icon: PropTypes.node,
-    adjustMarginRight: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    adjustMarginRight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     stepNumber: PropTypes.string,
     stepIndex: PropTypes.number,
     description: PropTypes.any,
     title: PropTypes.any,
-    progressDot: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.func,
-    ]),
+    subTitle: PropTypes.any,
+    progressDot: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
     tailContent: PropTypes.any,
     icons: PropTypes.shape({
       finish: PropTypes.node,
@@ -52,8 +46,15 @@ export default class Step extends React.Component {
 
   renderIconNode() {
     const {
-      prefixCls, progressDot, stepNumber, status, title, description, icon,
-      iconPrefix, icons,
+      prefixCls,
+      progressDot,
+      stepNumber,
+      status,
+      title,
+      description,
+      icon,
+      iconPrefix,
+      icons,
     } = this.props;
     let iconNode;
     const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
@@ -61,13 +62,18 @@ export default class Step extends React.Component {
       [`${iconPrefix}icon-check`]: !icon && status === 'finish' && (icons && !icons.finish),
       [`${iconPrefix}icon-close`]: !icon && status === 'error' && (icons && !icons.error),
     });
-    const iconDot = <span className={`${prefixCls}-icon-dot`}></span>;
+    const iconDot = <span className={`${prefixCls}-icon-dot`} />;
     // `progressDot` enjoy the highest priority
     if (progressDot) {
       if (typeof progressDot === 'function') {
         iconNode = (
           <span className={`${prefixCls}-icon`}>
-            {progressDot(iconDot, { index: stepNumber - 1, status, title, description })}
+            {progressDot(iconDot, {
+              index: stepNumber - 1,
+              status,
+              title,
+              description,
+            })}
           </span>
         );
       } else {
@@ -87,22 +93,38 @@ export default class Step extends React.Component {
 
     return iconNode;
   }
+
   render() {
     const {
-      className, prefixCls, style, itemWidth,
-      status = 'wait', iconPrefix, icon, wrapperStyle,
-      adjustMarginRight, stepNumber,
-      description, title, progressDot, tailContent,
-      icons, stepIndex, onStepClick, onClick,
-      ...restProps,
+      className,
+      prefixCls,
+      style,
+      itemWidth,
+      active,
+      status = 'wait',
+      iconPrefix,
+      icon,
+      wrapperStyle,
+      adjustMarginRight,
+      stepNumber,
+      disabled,
+      description,
+      title,
+      subTitle,
+      progressDot,
+      tailContent,
+      icons,
+      stepIndex,
+      onStepClick,
+      onClick,
+      ...restProps
     } = this.props;
 
-    const classString = classNames(
-      `${prefixCls}-item`,
-      `${prefixCls}-item-${status}`,
-      className,
-      { [`${prefixCls}-item-custom`]: icon },
-    );
+    const classString = classNames(`${prefixCls}-item`, `${prefixCls}-item-${status}`, className, {
+      [`${prefixCls}-item-custom`]: icon,
+      [`${prefixCls}-item-active`]: active,
+      [`${prefixCls}-item-disabled`]: disabled === true,
+    });
     const stepItemStyle = { ...style };
     if (itemWidth) {
       stepItemStyle.width = itemWidth;
@@ -112,31 +134,28 @@ export default class Step extends React.Component {
     }
 
     const accessibilityProps = {};
-    if (onStepClick) {
+    if (onStepClick && !disabled) {
       accessibilityProps.role = 'button';
       accessibilityProps.tabIndex = 0;
       accessibilityProps.onClick = this.onClick;
     }
 
     return (
-      <div
-        onClick={onClick}
-        {...accessibilityProps}
-        {...restProps}
-        className={classString}
-        style={stepItemStyle}
-      >
-        <div className={`${prefixCls}-item-tail`}>
-          {tailContent}
-        </div>
-        <div className={`${prefixCls}-item-icon`}>
-          {this.renderIconNode()}
-        </div>
-        <div className={`${prefixCls}-item-content`}>
-          <div className={`${prefixCls}-item-title`}>
-            {title}
+      <div {...restProps} className={classString} style={stepItemStyle}>
+        <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
+          <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
+          <div className={`${prefixCls}-item-icon`}>{this.renderIconNode()}</div>
+          <div className={`${prefixCls}-item-content`}>
+            <div className={`${prefixCls}-item-title`}>
+              {title}
+              {subTitle && (
+                <div title={subTitle} className={`${prefixCls}-item-subtitle`}>
+                  {subTitle}
+                </div>
+              )}
+            </div>
+            {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
           </div>
-          {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
         </div>
       </div>
     );

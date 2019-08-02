@@ -35,7 +35,7 @@ ReactDOM.render(
     </Steps>
     <Steps current={1} style={{ marginTop: 40 }}>
       <Step title="已完成" description={description} />
-      <Step title="进行中" description={description} />
+      <Step title="进行中" subTitle="剩余 00:00:07" description={description} />
       <Step title="待运行" description={description} />
       <Step title="待运行" description={description} />
     </Steps>
