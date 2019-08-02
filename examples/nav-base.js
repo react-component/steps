@@ -57,7 +57,7 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		"examples/composable": 0
+/******/ 		"examples/nav-base": 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -148,17 +148,17 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push([1,"common"]);
+/******/ 	deferredModules.push([6,"common"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./examples/composable.js":
-/*!********************************!*\
-  !*** ./examples/composable.js ***!
-  \********************************/
+/***/ "./examples/nav-base.js":
+/*!******************************!*\
+  !*** ./examples/nav-base.js ***!
+  \******************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -174,7 +174,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var rc_steps__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rc-steps */ "./index.js");
 /* harmony import */ var rc_steps__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(rc_steps__WEBPACK_IMPORTED_MODULE_4__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (typeof call === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -182,46 +198,108 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 var container = document.getElementById('__react-content');
-var description = '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶';
+var Step = rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a.Step;
 
-var CustomStep = function CustomStep(props) {
-  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], _extends({
-    style: {
-      fontWeight: 'bold',
-      fontStyle: 'italic'
+var Demo =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Demo, _React$Component);
+
+  function Demo() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, Demo);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-  }, props));
-};
 
-react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render(react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
-  current: 1
-}, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
-  title: "\u5DF2\u5B8C\u6210",
-  description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
-  title: "\u8FDB\u884C\u4E2D",
-  description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(CustomStep, {
-  title: "\u8FDB\u884C\u4E2D",
-  description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
-  title: "\u5F85\u8FD0\u884C",
-  description: description
-})), container);
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Demo)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      current: 0
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onChange", function (current) {
+      console.log('onChange:', current);
+
+      _this.setState({
+        current: current
+      });
+    });
+
+    return _this;
+  }
+
+  _createClass(Demo, [{
+    key: "render",
+    value: function render() {
+      var current = this.state.current;
+      var containerStyle = {
+        border: '1px solid rgb(235, 237, 240)',
+        marginBottom: 24
+      };
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        style: containerStyle,
+        type: "navigation",
+        current: current,
+        onChange: this.onChange
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Step, {
+        title: "Step 1",
+        status: "finish",
+        subTitle: "\u5269\u4F59 00:00:05 \u8D85\u957F\u9690\u85CF",
+        description: "This is a description."
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Step, {
+        title: "Step 2",
+        status: "process",
+        description: "This is a description."
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Step, {
+        title: "Step 3",
+        status: "wait",
+        disabled: true,
+        description: "This is a description."
+      })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        style: containerStyle,
+        type: "navigation",
+        current: current,
+        onChange: this.onChange
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Step, {
+        title: "Step 1",
+        status: "finish",
+        subTitle: "\u5269\u4F59 00:00:05 \u8D85\u957F\u9690\u85CF"
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Step, {
+        title: "Step 2",
+        status: "process"
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Step, {
+        title: "Step 3",
+        status: "wait"
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Step, {
+        title: "Step 3",
+        status: "wait"
+      })));
+    }
+  }]);
+
+  return Demo;
+}(react__WEBPACK_IMPORTED_MODULE_2___default.a.Component);
+
+react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render(react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Demo, null), container);
 
 /***/ }),
 
-/***/ 1:
-/*!**************************************!*\
-  !*** multi ./examples/composable.js ***!
-  \**************************************/
+/***/ 6:
+/*!************************************!*\
+  !*** multi ./examples/nav-base.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ./examples/composable.js */"./examples/composable.js");
+module.exports = __webpack_require__(/*! ./examples/nav-base.js */"./examples/nav-base.js");
 
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=composable.js.map
+//# sourceMappingURL=nav-base.js.map

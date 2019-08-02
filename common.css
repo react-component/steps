@@ -2,7 +2,6 @@
   font-size: 0;
   width: 100%;
   line-height: 1.5;
-  display: -ms-flexbox;
   display: flex;
 }
 .rc-steps,
@@ -13,24 +12,25 @@
   position: relative;
   display: inline-block;
   vertical-align: top;
-  -ms-flex: 1;
-      flex: 1;
+  flex: 1;
   overflow: hidden;
 }
-.rc-steps-item[role='button'] {
+.rc-steps-item-container[role='button'] {
   cursor: pointer;
-  transition: all .3s;
+  transition: opacity 0.3s;
 }
-.rc-steps-item[role='button']:hover {
+.rc-steps-item-container[role='button']:hover {
   opacity: 0.7;
 }
 .rc-steps-item:last-child {
-  -ms-flex: none;
-      flex: none;
+  flex: none;
 }
 .rc-steps-item:last-child .rc-steps-item-tail,
 .rc-steps-item:last-child .rc-steps-item-title:after {
   display: none;
+}
+.rc-steps-item-container {
+  display: inline-block;
 }
 .rc-steps-item-icon,
 .rc-steps-item-content {
@@ -73,7 +73,7 @@
   height: 1px;
   border-radius: 1px;
   width: 100%;
-  transition: background .3s;
+  transition: background 0.3s;
 }
 .rc-steps-item-content {
   margin-top: 3px;
@@ -96,6 +96,12 @@
   position: absolute;
   top: 0.55em;
   left: 100%;
+}
+.rc-steps-item-subtitle {
+  font-size: 12px;
+  display: inline-block;
+  color: #999;
+  margin-left: 8px;
 }
 .rc-steps-item-description {
   font-size: 12px;
@@ -381,6 +387,57 @@
 .rc-steps-dot .rc-steps-item-process .rc-steps-dot .rc-steps-item-icon .rc-steps-icon-dot {
   border-radius: 3.5px;
 }
+.rc-steps-navigation {
+  padding-top: 8px;
+}
+.rc-steps-navigation.rc-steps-horizontal .rc-steps-item-description {
+  max-width: 140px;
+}
+.rc-steps-navigation .rc-steps-item {
+  box-sizing: border-box;
+  text-align: center;
+  overflow: visible;
+}
+.rc-steps-navigation .rc-steps-item-container {
+  text-align: left;
+  padding-bottom: 8px;
+  outline: none;
+}
+.rc-steps-navigation .rc-steps-item-title {
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rc-steps-navigation .rc-steps-item-title:after {
+  display: none;
+}
+.rc-steps-navigation .rc-steps-item:last-child {
+  flex: 1;
+}
+.rc-steps-navigation .rc-steps-item:last-child:after {
+  display: none;
+}
+.rc-steps-navigation .rc-steps-item:after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-left: none;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -12px;
+  margin-left: -8px;
+}
+.rc-steps-navigation .rc-steps-item-active .rc-steps-item-container {
+  padding-bottom: 5px;
+  border-bottom: 3px solid #108ee9;
+}
+
 @font-face {
   font-family: 'anticon';
   src: url('//at.alicdn.com/t/font_1434092639_4910953.eot');
@@ -405,45 +462,45 @@
   font-family: "anticon" !important;
 }
 .rcicon-step-backward:before {
-  content: "\E662";
+  content: "\e662";
 }
 .rcicon-step-forward {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-step-forward:before {
-  content: "\E662";
+  content: "\e662";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-fast-backward:before {
-  content: "\E62A";
+  content: "\e62a";
 }
 .rcicon-fast-forward {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-fast-forward:before {
-  content: "\E62A";
+  content: "\e62a";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-shrink:before {
-  content: "\E65F";
+  content: "\e65f";
 }
 .rcicon-arrow-salt:before {
-  content: "\E608";
+  content: "\e608";
 }
 .rcicon-caret-down:before {
-  content: "\E60F";
+  content: "\e60f";
 }
 .rcicon-caret-left {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 .rcicon-caret-left:before {
-  content: "\E60F";
+  content: "\e60f";
   -webkit-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg);
@@ -453,7 +510,7 @@
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-caret-up:before {
-  content: "\E60F";
+  content: "\e60f";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
@@ -463,117 +520,117 @@
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 .rcicon-caret-right:before {
-  content: "\E60F";
+  content: "\e60f";
   -webkit-transform: rotate(270deg);
   -ms-transform: rotate(270deg);
   -o-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 .rcicon-caret-circle-right:before {
-  content: "\E60D";
+  content: "\e60d";
 }
 .rcicon-caret-circle-left {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-caret-circle-left:before {
-  content: "\E60D";
+  content: "\e60d";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-caret-circle-o-right:before {
-  content: "\E60E";
+  content: "\e60e";
 }
 .rcicon-caret-circle-o-left {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-caret-circle-o-left:before {
-  content: "\E60E";
+  content: "\e60e";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-circle-right:before {
-  content: "\E602";
+  content: "\e602";
 }
 .rcicon-circle-left {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-circle-left:before {
-  content: "\E602";
+  content: "\e602";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-circle-o-right:before {
-  content: "\E603";
+  content: "\e603";
 }
 .rcicon-circle-o-left {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-circle-o-left:before {
-  content: "\E603";
+  content: "\e603";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-double-right:before {
-  content: "\E604";
+  content: "\e604";
 }
 .rcicon-double-left {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-double-left:before {
-  content: "\E604";
+  content: "\e604";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-verticle-right:before {
-  content: "\E605";
+  content: "\e605";
 }
 .rcicon-verticle-left {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-verticle-left:before {
-  content: "\E605";
+  content: "\e605";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-forward:before {
-  content: "\E630";
+  content: "\e630";
 }
 .rcicon-backward {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-backward:before {
-  content: "\E630";
+  content: "\e630";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .rcicon-rollback:before {
-  content: "\E65A";
+  content: "\e65a";
 }
 .rcicon-retweet:before {
-  content: "\E659";
+  content: "\e659";
 }
 .rcicon-right:before {
-  content: "\E611";
+  content: "\e611";
 }
 .rcicon-down {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 .rcicon-down:before {
-  content: "\E611";
+  content: "\e611";
   -webkit-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg);
@@ -583,7 +640,7 @@
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 .rcicon-left:before {
-  content: "\E611";
+  content: "\e611";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
@@ -593,267 +650,267 @@
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 .rcicon-up:before {
-  content: "\E611";
+  content: "\e611";
   -webkit-transform: rotate(270deg);
   -ms-transform: rotate(270deg);
   -o-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 .rcicon-question:before {
-  content: "\E655";
+  content: "\e655";
 }
 .rcicon-question-circle:before {
-  content: "\E656";
+  content: "\e656";
 }
 .rcicon-question-circle-o:before {
-  content: "\E657";
+  content: "\e657";
 }
 .rcicon-plus:before {
-  content: "\E651";
+  content: "\e651";
 }
 .rcicon-plus-circle:before {
-  content: "\E652";
+  content: "\e652";
 }
 .rcicon-plus-circle-o:before {
-  content: "\E653";
+  content: "\e653";
 }
 .rcicon-pause:before {
-  content: "\E64C";
+  content: "\e64c";
 }
 .rcicon-pause-circle:before {
-  content: "\E64D";
+  content: "\e64d";
 }
 .rcicon-pause-circle-o:before {
-  content: "\E64E";
+  content: "\e64e";
 }
 .rcicon-minus:before {
-  content: "\E646";
+  content: "\e646";
 }
 .rcicon-minus-circle:before {
-  content: "\E647";
+  content: "\e647";
 }
 .rcicon-minus-circle-o:before {
-  content: "\E648";
+  content: "\e648";
 }
 .rcicon-info-circle:before {
-  content: "\E637";
+  content: "\e637";
 }
 .rcicon-info-circle-o:before {
-  content: "\E638";
+  content: "\e638";
 }
 .rcicon-info:before {
-  content: "\E63A";
+  content: "\e63a";
 }
 .rcicon-exclamation:before {
-  content: "\E627";
+  content: "\e627";
 }
 .rcicon-exclamation-circle:before {
-  content: "\E628";
+  content: "\e628";
 }
 .rcicon-exclamation-circle-o:before {
-  content: "\E629";
+  content: "\e629";
 }
 .rcicon-cross:before {
-  content: "\E61E";
+  content: "\e61e";
 }
 .rcicon-cross-circle:before {
-  content: "\E61F";
+  content: "\e61f";
 }
 .rcicon-cross-circle-o:before {
-  content: "\E620";
+  content: "\e620";
 }
 .rcicon-check:before {
-  content: "\E613";
+  content: "\e613";
 }
 .rcicon-check-circle:before {
-  content: "\E614";
+  content: "\e614";
 }
 .rcicon-check-circle-o:before {
-  content: "\E615";
+  content: "\e615";
 }
 .rcicon-clock-circle:before {
-  content: "\E616";
+  content: "\e616";
 }
 .rcicon-clock-circle-o:before {
-  content: "\E617";
+  content: "\e617";
 }
 .rcicon-lock:before {
-  content: "\E641";
+  content: "\e641";
 }
 .rcicon-android:before {
-  content: "\E601";
+  content: "\e601";
 }
 .rcicon-apple:before {
-  content: "\E606";
+  content: "\e606";
 }
 .rcicon-area-chart:before {
-  content: "\E607";
+  content: "\e607";
 }
 .rcicon-bar-chart:before {
-  content: "\E609";
+  content: "\e609";
 }
 .rcicon-bars:before {
-  content: "\E60A";
+  content: "\e60a";
 }
 .rcicon-book:before {
-  content: "\E60B";
+  content: "\e60b";
 }
 .rcicon-calendar:before {
-  content: "\E60C";
+  content: "\e60c";
 }
 .rcicon-cloud:before {
-  content: "\E618";
+  content: "\e618";
 }
 .rcicon-cloud-download:before {
-  content: "\E619";
+  content: "\e619";
 }
 .rcicon-code:before {
-  content: "\E61A";
+  content: "\e61a";
 }
 .rcicon-copy:before {
-  content: "\E61C";
+  content: "\e61c";
 }
 .rcicon-credit-card:before {
-  content: "\E61D";
+  content: "\e61d";
 }
 .rcicon-delete:before {
-  content: "\E621";
+  content: "\e621";
 }
 .rcicon-desktop:before {
-  content: "\E622";
+  content: "\e622";
 }
 .rcicon-download-line:before {
-  content: "\E623";
+  content: "\e623";
 }
 .rcicon-edit:before {
-  content: "\E624";
+  content: "\e624";
 }
 .rcicon-ellipsis:before {
-  content: "\E625";
+  content: "\e625";
 }
 .rcicon-environment:before {
-  content: "\E626";
+  content: "\e626";
 }
 .rcicon-file:before {
-  content: "\E62C";
+  content: "\e62c";
 }
 .rcicon-file-text:before {
-  content: "\E62D";
+  content: "\e62d";
 }
 .rcicon-folder:before {
-  content: "\E62E";
+  content: "\e62e";
 }
 .rcicon-folder-open:before {
-  content: "\E62F";
+  content: "\e62f";
 }
 .rcicon-github:before {
-  content: "\E631";
+  content: "\e631";
 }
 .rcicon-hdd:before {
-  content: "\E632";
+  content: "\e632";
 }
 .rcicon-frown:before {
-  content: "\E633";
+  content: "\e633";
 }
 .rcicon-meh:before {
-  content: "\E634";
+  content: "\e634";
 }
 .rcicon-inbox:before {
-  content: "\E635";
+  content: "\e635";
 }
 .rcicon-laptop:before {
-  content: "\E63D";
+  content: "\e63d";
 }
 .rcicon-large:before {
-  content: "\E63E";
+  content: "\e63e";
 }
 .rcicon-line-chart:before {
-  content: "\E63F";
+  content: "\e63f";
 }
 .rcicon-link:before {
-  content: "\E640";
+  content: "\e640";
 }
 .rcicon-logout:before {
-  content: "\E642";
+  content: "\e642";
 }
 .rcicon-mail:before {
-  content: "\E643";
+  content: "\e643";
 }
 .rcicon-menu-fold:before {
-  content: "\E644";
+  content: "\e644";
 }
 .rcicon-menu-unfold:before {
-  content: "\E645";
+  content: "\e645";
 }
 .rcicon-mobile:before {
-  content: "\E649";
+  content: "\e649";
 }
 .rcicon-notification:before {
-  content: "\E64A";
+  content: "\e64a";
 }
 .rcicon-paper-clip:before {
-  content: "\E64B";
+  content: "\e64b";
 }
 .rcicon-picture:before {
-  content: "\E64F";
+  content: "\e64f";
 }
 .rcicon-pie-chart:before {
-  content: "\E650";
+  content: "\e650";
 }
 .rcicon-poweroff:before {
-  content: "\E654";
+  content: "\e654";
 }
 .rcicon-reload:before {
-  content: "\E658";
+  content: "\e658";
 }
 .rcicon-search:before {
-  content: "\E65B";
+  content: "\e65b";
 }
 .rcicon-setting:before {
-  content: "\E65C";
+  content: "\e65c";
 }
 .rcicon-share-alt:before {
-  content: "\E65D";
+  content: "\e65d";
 }
 .rcicon-shopping-cart:before {
-  content: "\E65E";
+  content: "\e65e";
 }
 .rcicon-smile:before {
-  content: "\E661";
+  content: "\e661";
 }
 .rcicon-tablet:before {
-  content: "\E664";
+  content: "\e664";
 }
 .rcicon-tag:before {
-  content: "\E665";
+  content: "\e665";
 }
 .rcicon-tags:before {
-  content: "\E666";
+  content: "\e666";
 }
 .rcicon-to-top:before {
-  content: "\E667";
+  content: "\e667";
 }
 .rcicon-unlock:before {
-  content: "\E668";
+  content: "\e668";
 }
 .rcicon-upload:before {
-  content: "\E669";
+  content: "\e669";
 }
 .rcicon-user:before {
-  content: "\E66A";
+  content: "\e66a";
 }
 .rcicon-video-camera:before {
-  content: "\E66B";
+  content: "\e66b";
 }
 .rcicon-windows:before {
-  content: "\E66C";
+  content: "\e66c";
 }
 .rcicon-loading:before {
   display: inline-block;
   -webkit-animation: loadingCircle 1s infinite linear;
   -o-animation: loadingCircle 1s infinite linear;
   animation: loadingCircle 1s infinite linear;
-  content: "\E610";
+  content: "\e610";
 }
 :root .rcicon-step-forward,
 :root .rcicon-fast-forward,
@@ -870,7 +927,9 @@
 :root .rcicon-double-left,
 :root .rcicon-verticle-left,
 :root .rcicon-backward {
-  filter: none;
+  -webkit-filter: none;
+          filter: none;
 }
+
 
 /*# sourceMappingURL=common.css.map*/

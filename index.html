@@ -7,7 +7,7 @@
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" rel="stylesheet"/>
-  <title>rc-steps@3.4.1 - steps ui component for react</title>
+  <title>rc-steps@3.5.0 - steps ui component for react</title>
   <style>
     @font-face {
       font-family: octicons-anchor;
@@ -737,7 +737,7 @@
 
 <body>
 <div class="header">
-  <h1>rc-steps@3.4.1</h1>
+  <h1>rc-steps@3.5.0</h1>
 </div>
 <div class="examples">
   <h3>EXAMPLES</h3>
@@ -755,6 +755,8 @@
       <li><a href="examples/dynamic.html">dynamic</a></li>
       
       <li><a href="examples/errorStep.html">errorStep</a></li>
+      
+      <li><a href="examples/nav-base.html">nav-base</a></li>
       
       <li><a href="examples/nextStep.html">nextStep</a></li>
       
@@ -796,6 +798,12 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>type</td>
+      <td>string</td>
+      <td>default</td>
+      <td>diretypetion of Steps, enum: <code>default</code> or <code>navigation</code></td>
+    </tr>
     <tr>
       <td>direction</td>
       <td>string</td>
@@ -864,6 +872,12 @@
       <td>title of step item</td>
     </tr>
     <tr>
+      <td>subTitle</td>
+      <td>ReactNode</td>
+      <td></td>
+      <td>subTitle of step item</td>
+    </tr>
+    <tr>
       <td>description</td>
       <td>ReactNode</td>
       <td></td>
@@ -886,6 +900,12 @@
       <td>ReactNode</td>
       <td></td>
       <td>content above tail</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>bool</td>
+      <td>false</td>
+      <td>disabled step when onChange exist</td>
     </tr>
   </tbody>
 </table>

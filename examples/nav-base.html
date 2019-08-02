@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>progressDot.js - example - rc-steps@3.5.0</title>
+  <title>nav-base.js - example - rc-steps@3.5.0</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -273,21 +273,56 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <span class="hljs-keyword">import</span> <span class="hljs-string">'rc-steps/assets/iconfont.css'</span>;
 <span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
-<span class="hljs-keyword">import</span> Steps, { Step } <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-steps'</span>;
+<span class="hljs-keyword">import</span> Steps <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-steps'</span>;
 
 <span class="hljs-keyword">const</span> container = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'__react-content'</span>);
 
-<span class="hljs-keyword">const</span> description = <span class="hljs-string">'这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊'</span>;
+<span class="hljs-keyword">const</span> { Step } = Steps;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = {
+    current: <span class="hljs-number">0</span>,
+  };
+
+  onChange = current =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'onChange:'</span>, current);
+    <span class="hljs-keyword">this</span>.setState({ current });
+  };
+
+  render() {
+    <span class="hljs-keyword">const</span> { current } = <span class="hljs-keyword">this</span>.state;
+    <span class="hljs-keyword">const</span> containerStyle = {
+      border: <span class="hljs-string">'1px solid rgb(235, 237, 240)'</span>,
+      marginBottom: <span class="hljs-number">24</span>,
+    };
+
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">Steps</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{containerStyle}</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"navigation"</span> <span class="hljs-attribute">current</span>=<span class="hljs-value">{current}</span> <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{this.onChange}</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">Step</span>
+            <span class="hljs-attribute">title</span>=<span class="hljs-value">"Step 1"</span>
+            <span class="hljs-attribute">status</span>=<span class="hljs-value">"finish"</span>
+            <span class="hljs-attribute">subTitle</span>=<span class="hljs-value">"剩余 00:00:05 超长隐藏"</span>
+            <span class="hljs-attribute">description</span>=<span class="hljs-value">"This is a description."</span>
+          /&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Step 2"</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"process"</span> <span class="hljs-attribute">description</span>=<span class="hljs-value">"This is a description."</span> /&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Step 3"</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"wait"</span> <span class="hljs-attribute">disabled</span> <span class="hljs-attribute">description</span>=<span class="hljs-value">"This is a description."</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">Steps</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{containerStyle}</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"navigation"</span> <span class="hljs-attribute">current</span>=<span class="hljs-value">{current}</span> <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{this.onChange}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Step 1"</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"finish"</span> <span class="hljs-attribute">subTitle</span>=<span class="hljs-value">"剩余 00:00:05 超长隐藏"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Step 2"</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"process"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Step 3"</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"wait"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"Step 3"</span> <span class="hljs-attribute">status</span>=<span class="hljs-value">"wait"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    )</span>;
+  }
+}
 
 ReactDOM.render(
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Steps</span> <span class="hljs-attribute">progressDot</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"small"</span> <span class="hljs-attribute">current</span>=<span class="hljs-value">{1}</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"已完成"</span> <span class="hljs-attribute">description</span>=<span class="hljs-value">{description}</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"进行中"</span> <span class="hljs-attribute">description</span>=<span class="hljs-value">{description}</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"待运行"</span> <span class="hljs-attribute">description</span>=<span class="hljs-value">{description}</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"待运行"</span> <span class="hljs-attribute">description</span>=<span class="hljs-value">{description}</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">Step</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"待运行"</span> <span class="hljs-attribute">description</span>=<span class="hljs-value">{description}</span> /&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">Steps</span>&gt;</span>
-, container);
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Demo</span> /&gt;</span>,
+  container,
+);
 </span></code></pre></div>
   </div>
   <a href="http://github.com/react-component/steps">
@@ -298,7 +333,7 @@ ReactDOM.render(
   </a>
   <script>FastClick.attach(document.body);</script>
   <script src="../common.js?nowrap"></script>
-  <script src="progressDot.js?nowrap"></script>
+  <script src="nav-base.js?nowrap"></script>
 </body>
 
 </html>
