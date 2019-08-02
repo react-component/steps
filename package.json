@@ -44,7 +44,9 @@
     "test": "jest",
     "prepublish": "rc-tools run guard",
     "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "now-build": "npm run build"
+    "now-build": "npm run build",
+    "pre-commit": "rc-tools run pre-commit",
+    "lint-staged": "lint-staged"
   },
   "jest": {
     "setupFiles": [
@@ -69,14 +71,21 @@
     "pre-commit": "1.x",
     "querystring": "^0.2.0",
     "rc-dialog": "6.x",
-    "rc-tools": "7.x",
+    "rc-tools": "9.x",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-test-renderer": "^16.0.0"
+    "react-test-renderer": "^16.0.0",
+    "lint-staged": "^9.0.0"
   },
   "pre-commit": [
-    "lint"
+    "lint-staged"
   ],
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run pre-commit",
+      "git add"
+    ]
+  },
   "dependencies": {
     "babel-runtime": "^6.23.0",
     "classnames": "^2.2.3",
