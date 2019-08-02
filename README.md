@@ -51,6 +51,12 @@ online example: http://react-component.github.io/steps/examples/
   </thead>
   <tbody>
     <tr>
+      <td>type</td>
+      <td>string</td>
+      <td>default</td>
+      <td>diretypetion of Steps, enum: `default` or `navigation`</td>
+    </tr>
+    <tr>
       <td>direction</td>
       <td>string</td>
       <td>horizontal</td>

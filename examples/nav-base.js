@@ -1,5 +1,4 @@
 import 'rc-steps/assets/index.less';
-import 'rc-steps/assets/nav.less';
 import 'rc-steps/assets/iconfont.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -21,17 +20,19 @@ class Demo extends React.Component {
 
   render() {
     const { current } = this.state;
+    const containerStyle = {
+      border: '1px solid rgb(235, 237, 240)',
+    };
 
     return (
-      <Steps className="rc-steps-nav" current={current} onChange={this.onChange}>
-        <Step title="Step 1" subTitle="剩余 00:00:05" description="This is a description." />
+      <Steps style={containerStyle} type="navigation" current={current} onChange={this.onChange}>
+        <Step title="Step 1" subTitle="剩余 00:00:05 超长隐藏" description="This is a description." />
         <Step title="Step 2" description="This is a description." />
         <Step title="Step 3" disabled description="This is a description." />
       </Steps>
     );
   }
 }
-
 
 ReactDOM.render(
   <Demo />,

@@ -141,7 +141,7 @@ export default class Step extends React.Component {
           <div className={`${prefixCls}-item-content`}>
             <div className={`${prefixCls}-item-title`}>
               {title}
-              { subTitle && <div className={`${prefixCls}-item-subtitle`}>
+              { subTitle && <div title={subTitle} className={`${prefixCls}-item-subtitle`}>
                 {subTitle}
               </div> }
             </div>

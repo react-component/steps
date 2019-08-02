@@ -8,6 +8,7 @@ import { isFlexSupported } from './utils';
 
 export default class Steps extends Component {
   static propTypes = {
+    type: PropTypes.string,
     prefixCls: PropTypes.string,
     className: PropTypes.string,
     iconPrefix: PropTypes.string,
@@ -30,6 +31,7 @@ export default class Steps extends Component {
     onChange: PropTypes.func,
   };
   static defaultProps = {
+    type: 'default',
     prefixCls: 'rc-steps',
     iconPrefix: 'rc',
     direction: 'horizontal',
@@ -99,11 +101,12 @@ export default class Steps extends Component {
   }
   render() {
     const {
-      prefixCls, style = {}, className, children, direction,
+      prefixCls, style = {}, className, children, direction, type,
       labelPlacement, iconPrefix, status, size, current, progressDot, initial,
       icons, onChange,
       ...restProps,
     } = this.props;
+    const isNav = type === 'navigation';
     const { lastStepOffsetWidth, flexSupported } = this.state;
     const filteredChildren = React.Children.toArray(children).filter(c => !!c);
     const lastIndex = filteredChildren.length - 1;
@@ -112,6 +115,7 @@ export default class Steps extends Component {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-label-${adjustedlabelPlacement}`]: direction === 'horizontal',
       [`${prefixCls}-dot`]: !!progressDot,
+      [`${prefixCls}-nav`]: isNav,
       [`${prefixCls}-flex-not-supported`]: !flexSupported,
     });
 
@@ -134,9 +138,14 @@ export default class Steps extends Component {
               onStepClick: onChange && this.onStepClick,
               ...child.props,
             };
-            if (!flexSupported && direction !== 'vertical' && index !== lastIndex) {
-              childProps.itemWidth = `${100 / lastIndex}%`;
-              childProps.adjustMarginRight = -Math.round(lastStepOffsetWidth / lastIndex + 1);
+            if (!flexSupported && direction !== 'vertical') {
+              if (isNav) {
+                childProps.itemWidth = `${100 / (lastIndex + 1)}%`;
+                childProps.adjustMarginRight = 0;
+              } else if (index !== lastIndex) {
+                childProps.itemWidth = `${100 / lastIndex}%`;
+                childProps.adjustMarginRight = -Math.round(lastStepOffsetWidth / lastIndex + 1);
+              }
             }
             // fix tail color
             if (status === 'error' && index === current - 1) {

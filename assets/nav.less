@@ -1,27 +1,40 @@
 @import 'variables';
 
 .@{stepsPrefixClass}-nav {
+  padding-top: 8px;
   &.@{stepsPrefixClass}-horizontal {
     .@{stepsPrefixClass}-item-description {
-      max-width: 170px;
+      max-width: @stepNavContentMaxWidth;
     }
   }
 
   .@{stepsPrefixClass}-item {
     box-sizing: border-box;
+    text-align: center;
+    overflow: visible;
 
     &-container {
+      text-align: left;
+      padding-bottom: 8px;
       outline: none;
     }
 
     &-title {
+      max-width: @stepNavContentMaxWidth;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  
       &:after {
         display: none;
       }
     }
 
-    &:last-child:after {
-      display: none;
+    &:last-child {
+      flex: 1;
+      &:after {
+        display: none;
+      }
     }
 
     &:after {
@@ -35,13 +48,14 @@
       transform: rotate(45deg);
       position: absolute;
       top: 50%;
-      left: 50%;
-      margin-top: -8px;
-      margin-right: -50px;
+      left: 100%;
+      margin-top: -12px;
+      margin-left: -8px;
     }
 
     &-active {
       .@{stepsPrefixClass}-item-container {
+        padding-bottom: 5px;
         border-bottom: 3px solid @primary-color;
       }
     }

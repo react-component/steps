@@ -1465,6 +1465,7 @@ exports[`Steps render renders with fasly children 1`] = `
           进行中
           <div
             class="rc-steps-item-subtitle"
+            title="剩余 00:00:07"
           >
             剩余 00:00:07
           </div>
