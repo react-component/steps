@@ -99,6 +99,18 @@ describe('Steps', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
+
+    it('renders step with type navigation', () => {
+      const wrapper = render(
+        <Steps type="navigation" current={1} onChange={() => {}}>
+          <Step title="Step 1" subTitle="剩余 00:00:05 超长隐藏" description="This is a description." />
+          <Step title="Step 2" description="This is a description." />
+          <Step title="Step 3" disabled description="This is a description." />
+        </Steps>
+      );
+      expect(wrapper).toMatchSnapshot();
+    });
+
     function getFinishIcon() {
       const path = 'M923 283.6c-13.4-31.1-32.6-58.9-56.9-82.8-24.3-23.8-52.' +
         '5-42.4-84-55.5-32.5-13.5-66.9-20.3-102.4-20.3-49.3 0-97.4 13.5-139' +
