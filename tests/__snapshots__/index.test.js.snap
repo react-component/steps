@@ -1463,6 +1463,11 @@ exports[`Steps render renders with fasly children 1`] = `
           class="rc-steps-item-title"
         >
           进行中
+          <div
+            class="rc-steps-item-subtitle"
+          >
+            剩余 00:00:07
+          </div>
         </div>
         <div
           class="rc-steps-item-description"

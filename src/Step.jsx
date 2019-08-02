@@ -29,6 +29,7 @@ export default class Step extends React.Component {
     stepIndex: PropTypes.number,
     description: PropTypes.any,
     title: PropTypes.any,
+    subTitle: PropTypes.any,
     progressDot: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.func,
@@ -94,7 +95,7 @@ export default class Step extends React.Component {
       className, prefixCls, style, itemWidth, active,
       status = 'wait', iconPrefix, icon, wrapperStyle,
       adjustMarginRight, stepNumber, disabled,
-      description, title, progressDot, tailContent,
+      description, title, subTitle, progressDot, tailContent,
       icons, stepIndex, onStepClick, onClick,
       ...restProps,
     } = this.props;
@@ -140,6 +141,9 @@ export default class Step extends React.Component {
           <div className={`${prefixCls}-item-content`}>
             <div className={`${prefixCls}-item-title`}>
               {title}
+              { subTitle && <div className={`${prefixCls}-item-subtitle`}>
+                {subTitle}
+              </div> }
             </div>
             {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
           </div>

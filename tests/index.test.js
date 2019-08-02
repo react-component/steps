@@ -76,7 +76,7 @@ describe('Steps', () => {
       const wrapper = render(
         <Steps>
           <Step title="已完成" description="xx" status="wait" />
-          <Step title="进行中" description="xx" status="wait" />
+          <Step title="进行中" subTitle="剩余 00:00:07" description="xx" status="wait" />
           {undefined}
           <Step title="待运行" description="xx" status="process" />
           {false}

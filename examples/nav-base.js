@@ -24,7 +24,7 @@ class Demo extends React.Component {
 
     return (
       <Steps className="rc-steps-nav" current={current} onChange={this.onChange}>
-        <Step title="Step 1" description="This is a description." />
+        <Step title="Step 1" subTitle="剩余 00:00:05" description="This is a description." />
         <Step title="Step 2" description="This is a description." />
         <Step title="Step 3" disabled description="This is a description." />
       </Steps>
