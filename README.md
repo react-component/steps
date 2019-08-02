@@ -120,6 +120,12 @@ online example: http://react-component.github.io/steps/examples/
       <td>title of step item</td>
     </tr>
     <tr>
+      <td>subTitle</td>
+      <td>ReactNode</td>
+      <td></td>
+      <td>subTitle of step item</td>
+    </tr>
+    <tr>
       <td>description</td>
       <td>ReactNode</td>
       <td></td>
