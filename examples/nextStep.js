@@ -12,7 +12,7 @@ function generateRandomSteps() {
   const arr = [];
   for (let i = 0; i < n; i++) {
     arr.push({
-      title: `步骤${(i + 1)}`,
+      title: `步骤${i + 1}`,
     });
   }
   return arr;
@@ -23,6 +23,7 @@ class MyForm extends React.Component {
   state = {
     currentStep: Math.floor(Math.random() * steps.length),
   };
+
   /*
   componentDidMount() {
     // You can dynamically set tail's left position based on main's width for each step.
@@ -34,16 +35,18 @@ class MyForm extends React.Component {
   }
   */
   nextStep = () => {
-    let s = this.state.currentStep + 1;
+    const { currentStep } = this.state;
+    let s = currentStep + 1;
     if (s === steps.length) {
       s = 0;
     }
     this.setState({
       currentStep: s,
     });
-  }
+  };
+
   render() {
-    const cs = this.state.currentStep;
+    const { currentStep: cs } = this.state;
     this.stepsRefs = [];
     return (
       <form className="my-step-form">
@@ -51,20 +54,23 @@ class MyForm extends React.Component {
         <div>当前正在执行第{cs + 1}步</div>
         <div className="my-step-container">
           <Steps current={cs}>
-            {
-              steps.map((s, i) => {
-                return (
-                  <Step ref={c => this.stepsRefs[i] = c}
-                    key={i}
-                    title={s.title}
-                  />
-                );
-              })
-            }
+            {steps.map((s, i) => (
+              <Step
+                ref={c => {
+                  this.stepsRefs[i] = c;
+                }}
+                key={i}
+                title={s.title}
+              />
+            ))}
           </Steps>
         </div>
 
-        <div><button type="button" onClick={this.nextStep}>下一步</button></div>
+        <div>
+          <button type="button" onClick={this.nextStep}>
+            下一步
+          </button>
+        </div>
       </form>
     );
   }

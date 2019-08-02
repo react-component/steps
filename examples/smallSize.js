@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import Steps, { Step } from 'rc-steps';
 
 const container = document.getElementById('__react-content');
+// eslint-disable-next-line react/prop-types
 const Icon = ({ type }) => <i className={`rcicon rcicon-${type}`} />;
 
 ReactDOM.render(
@@ -20,5 +21,6 @@ ReactDOM.render(
       <Step title="步骤2" icon="apple" />
       <Step title="步骤3" icon="github" />
     </Steps>
-  </div>
-, container);
+  </div>,
+  container,
+);
