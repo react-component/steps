@@ -1,6 +1,10 @@
 # History
 ----
 
+## 3.5.0
+
+- Support `navigation` type & `disabled` prop.
+
 ## 3.4.0
 
 - Support `onChange` event.
