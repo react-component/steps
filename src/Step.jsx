@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { ENTER_KEY_CODE, SPACE_KEY_CODE } from './constants';
 
 function isString(str) {
   return typeof str === 'string';
@@ -31,6 +32,8 @@ export default class Step extends React.Component {
       error: PropTypes.node,
     }),
     onClick: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onKeyUp: PropTypes.func,
     onStepClick: PropTypes.func,
   };
 
@@ -42,6 +45,30 @@ export default class Step extends React.Component {
     }
 
     onStepClick(stepIndex);
+  };
+
+  onKeyDown = evt => {
+    const { onKeyDown } = this.props;
+
+    if (onKeyDown) {
+      onKeyDown(evt);
+    }
+
+    if (evt.keyCode === SPACE_KEY_CODE) {
+      evt.preventDefault();
+    }
+  };
+
+  onKeyUp = evt => {
+    const { onKeyUp, onStepClick, stepIndex } = this.props;
+
+    if (onKeyUp) {
+      onKeyUp(evt);
+    }
+
+    if (evt.keyCode === ENTER_KEY_CODE || evt.keyCode === SPACE_KEY_CODE) {
+      onStepClick(stepIndex);
+    }
   };
 
   renderIconNode() {
@@ -117,6 +144,8 @@ export default class Step extends React.Component {
       stepIndex,
       onStepClick,
       onClick,
+      onKeyDown,
+      onKeyUp,
       ...restProps
     } = this.props;
 
@@ -138,11 +167,19 @@ export default class Step extends React.Component {
       accessibilityProps.role = 'button';
       accessibilityProps.tabIndex = 0;
       accessibilityProps.onClick = this.onClick;
+      accessibilityProps.onKeyDown = this.onKeyDown;
+      accessibilityProps.onKeyUp = this.onKeyUp;
     }
 
     return (
       <div {...restProps} className={classString} style={stepItemStyle}>
-        <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
+        <div
+          onClick={onClick}
+          onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
+          {...accessibilityProps}
+          className={`${prefixCls}-item-container`}
+        >
           <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
           <div className={`${prefixCls}-item-icon`}>{this.renderIconNode()}</div>
           <div className={`${prefixCls}-item-content`}>
