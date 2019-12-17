@@ -96,7 +96,7 @@ online example: http://react-component.github.io/steps/examples/
       <td>icons</td>
       <td>{ finish: ReactNode, error: ReactNode }</td>
       <td></td>
-      <td>spicify the default finish icon and error icon</td>
+      <td>specify the default finish icon and error icon</td>
     </tr>
     <tr>
       <td>onChange</td>
