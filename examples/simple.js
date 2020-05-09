@@ -168,17 +168,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rc_steps_assets_index_less__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(rc_steps_assets_index_less__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var rc_steps_assets_iconfont_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rc-steps/assets/iconfont.less */ "./assets/iconfont.less");
 /* harmony import */ var rc_steps_assets_iconfont_less__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rc_steps_assets_iconfont_less__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/_react@16.8.6@react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "./node_modules/_react-dom@16.8.6@react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var rc_steps__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rc-steps */ "./index.js");
 /* harmony import */ var rc_steps__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(rc_steps__WEBPACK_IMPORTED_MODULE_4__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -196,71 +200,72 @@ var ControlSteps = function ControlSteps() {
       current = _React$useState2[0],
       setCurrent = _React$useState2[1];
 
-  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
     current: current,
     onChange: function onChange(val) {
+      // eslint-disable-next-line no-console
       console.log('Change:', val);
       setCurrent(val);
     }
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
     title: "\u5DF2\u5B8C\u6210"
-  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
     title: "\u8FDB\u884C\u4E2D"
-  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
     title: "\u5F85\u8FD0\u884C",
     description: "Hello World!"
-  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
     title: "\u5F85\u8FD0\u884C"
   }));
 };
 
-react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render(react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
+react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
   current: 1
-}, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5DF2\u5B8C\u6210"
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u8FDB\u884C\u4E2D"
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5F85\u8FD0\u884C"
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5F85\u8FD0\u884C"
-})), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
+})), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
   current: 1,
   style: {
     marginTop: 40
   }
-}, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5DF2\u5B8C\u6210",
   description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u8FDB\u884C\u4E2D",
   subTitle: "\u5269\u4F59 00:00:07",
   description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5F85\u8FD0\u884C",
   description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5F85\u8FD0\u884C",
   description: description
-})), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
+})), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
   current: 1,
   style: {
     marginTop: 40
   },
   status: "error"
-}, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5DF2\u5B8C\u6210",
   description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u8FDB\u884C\u4E2D",
   description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5F85\u8FD0\u884C",
   description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5F85\u8FD0\u884C",
   description: description
-})), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(ControlSteps, null)), container);
+})), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(ControlSteps, null)), container);
 
 /***/ }),
 

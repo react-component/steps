@@ -168,9 +168,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rc_steps_assets_index_less__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(rc_steps_assets_index_less__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var rc_steps_assets_iconfont_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rc-steps/assets/iconfont.less */ "./assets/iconfont.less");
 /* harmony import */ var rc_steps_assets_iconfont_less__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rc_steps_assets_iconfont_less__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/_react@16.8.6@react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "./node_modules/_react-dom@16.8.6@react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var rc_steps__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rc-steps */ "./index.js");
 /* harmony import */ var rc_steps__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(rc_steps__WEBPACK_IMPORTED_MODULE_4__);
@@ -181,18 +181,18 @@ __webpack_require__.r(__webpack_exports__);
 
 var container = document.getElementById('__react-content');
 var description = '这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊这里是多信息的描述啊';
-react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render(react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
+react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4___default.a, {
   direction: "vertical"
-}, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5DF2\u5B8C\u6210",
   description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u8FDB\u884C\u4E2D",
   description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5F85\u8FD0\u884C",
   description: description
-}), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_4__["Step"], {
   title: "\u5F85\u8FD0\u884C",
   description: description
 })), container);

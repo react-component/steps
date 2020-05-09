@@ -181,9 +181,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rc_steps_assets_iconfont_less__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rc_steps_assets_iconfont_less__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _nextStep_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./nextStep.css */ "./examples/nextStep.css");
 /* harmony import */ var _nextStep_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nextStep_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/_react@16.8.6@react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "./node_modules/_react-dom@16.8.6@react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var rc_steps__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rc-steps */ "./index.js");
 /* harmony import */ var rc_steps__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(rc_steps__WEBPACK_IMPORTED_MODULE_5__);
@@ -193,15 +193,19 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (typeof call === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (typeof call === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -228,14 +232,12 @@ function generateRandomSteps() {
 
 var steps = generateRandomSteps();
 
-var MyForm =
-/*#__PURE__*/
-function (_React$Component) {
+var MyForm = /*#__PURE__*/function (_React$Component) {
   _inherits(MyForm, _React$Component);
 
-  function MyForm() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(MyForm);
 
+  function MyForm() {
     var _this;
 
     _classCallCheck(this, MyForm);
@@ -244,7 +246,7 @@ function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(MyForm)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       currentStep: Math.floor(Math.random() * steps.length)
@@ -273,21 +275,21 @@ function (_React$Component) {
 
       var cs = this.state.currentStep;
       this.stepsRefs = [];
-      return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("form", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("form", {
         className: "my-step-form"
-      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, "\u8FD9\u4E2Ademo\u968F\u673A\u751F\u62103~6\u4E2A\u6B65\u9AA4\uFF0C\u521D\u59CB\u968F\u673A\u8FDB\u884C\u5230\u5176\u4E2D\u4E00\u4E2A\u6B65\u9AA4"), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, "\u5F53\u524D\u6B63\u5728\u6267\u884C\u7B2C", cs + 1, "\u6B65"), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, "\u8FD9\u4E2Ademo\u968F\u673A\u751F\u62103~6\u4E2A\u6B65\u9AA4\uFF0C\u521D\u59CB\u968F\u673A\u8FDB\u884C\u5230\u5176\u4E2D\u4E00\u4E2A\u6B65\u9AA4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, "\u5F53\u524D\u6B63\u5728\u6267\u884C\u7B2C", cs + 1, "\u6B65"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
         className: "my-step-container"
-      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_5___default.a, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_5___default.a, {
         current: cs
       }, steps.map(function (s, i) {
-        return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_5__["Step"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(rc_steps__WEBPACK_IMPORTED_MODULE_5__["Step"], {
           ref: function ref(c) {
             _this2.stepsRefs[i] = c;
           },
           key: i,
           title: s.title
         });
-      }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
         type: "button",
         onClick: this.nextStep
       }, "\u4E0B\u4E00\u6B65")));
@@ -297,7 +299,7 @@ function (_React$Component) {
   return MyForm;
 }(react__WEBPACK_IMPORTED_MODULE_3___default.a.Component);
 
-react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(MyForm, null), container);
+react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(MyForm, null), container);
 
 /***/ }),
 
