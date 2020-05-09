@@ -1,5 +1,5 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 function isString(str) {
@@ -7,33 +7,6 @@ function isString(str) {
 }
 
 export default class Step extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    prefixCls: PropTypes.string,
-    style: PropTypes.object,
-    wrapperStyle: PropTypes.object,
-    itemWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    active: PropTypes.bool,
-    disabled: PropTypes.bool,
-    status: PropTypes.string,
-    iconPrefix: PropTypes.string,
-    icon: PropTypes.node,
-    adjustMarginRight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    stepNumber: PropTypes.string,
-    stepIndex: PropTypes.number,
-    description: PropTypes.any,
-    title: PropTypes.any,
-    subTitle: PropTypes.any,
-    progressDot: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-    tailContent: PropTypes.any,
-    icons: PropTypes.shape({
-      finish: PropTypes.node,
-      error: PropTypes.node,
-    }),
-    onClick: PropTypes.func,
-    onStepClick: PropTypes.func,
-  };
-
   onClick = (...args) => {
     const { onClick, onStepClick, stepIndex } = this.props;
 

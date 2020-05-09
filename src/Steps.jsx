@@ -1,33 +1,11 @@
-/* eslint react/no-did-mount-set-state: 0 */
+/* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
 import React, { cloneElement, Children, Component } from 'react';
-import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import debounce from 'lodash/debounce';
 import { isFlexSupported } from './utils';
 
 export default class Steps extends Component {
-  static propTypes = {
-    type: PropTypes.string,
-    prefixCls: PropTypes.string,
-    className: PropTypes.string,
-    iconPrefix: PropTypes.string,
-    direction: PropTypes.string,
-    labelPlacement: PropTypes.string,
-    children: PropTypes.any,
-    status: PropTypes.string,
-    size: PropTypes.string,
-    progressDot: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-    style: PropTypes.object,
-    initial: PropTypes.number,
-    current: PropTypes.number,
-    icons: PropTypes.shape({
-      finish: PropTypes.node,
-      error: PropTypes.node,
-    }),
-    onChange: PropTypes.func,
-  };
-
   static defaultProps = {
     type: 'default',
     prefixCls: 'rc-steps',

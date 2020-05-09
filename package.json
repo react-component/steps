@@ -35,10 +35,10 @@
   },
   "scripts": {
     "build": "rc-tools run build",
-    "compile": "rc-tools run compile --babel-runtime",
+    "compile": "rc-tools run compile",
     "gh-pages": "rc-tools run gh-pages",
     "start": "rc-tools run server",
-    "pub": "rc-tools run pub --babel-runtime",
+    "pub": "rc-tools run pub",
     "lint": "rc-tools run lint",
     "lint:fix": "rc-tools run lint --fix",
     "test": "jest",
@@ -63,19 +63,20 @@
     }
   },
   "devDependencies": {
+    "babel-core": "^7.0.0-bridge.0",
     "coveralls": "^3.0.4",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.1",
     "enzyme-to-json": "^3.0.0",
-    "jest": "^26.0.1",
+    "jest": "^26.0.0",
+    "lint-staged": "^10.0.1",
     "pre-commit": "1.x",
     "querystring": "^0.2.0",
     "rc-dialog": "7.x",
-    "rc-tools": "9.x",
+    "rc-tools": "^9.6.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-test-renderer": "^16.0.0",
-    "lint-staged": "^10.0.1"
+    "react-test-renderer": "^16.0.0"
   },
   "pre-commit": [
     "lint-staged"
@@ -87,9 +88,7 @@
     ]
   },
   "dependencies": {
-    "babel-runtime": "^6.23.0",
     "classnames": "^2.2.3",
-    "lodash": "^4.17.5",
-    "prop-types": "^15.5.7"
+    "lodash": "^4.17.5"
   }
 }
