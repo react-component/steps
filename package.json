@@ -67,7 +67,7 @@
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.1",
     "enzyme-to-json": "^3.0.0",
-    "jest": "^26.0.1",
+    "jest": "^24.0.0",
     "pre-commit": "1.x",
     "querystring": "^0.2.0",
     "rc-dialog": "7.x",
