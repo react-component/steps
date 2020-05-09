@@ -35,10 +35,10 @@
   },
   "scripts": {
     "build": "rc-tools run build",
-    "compile": "rc-tools run compile --babel-runtime",
+    "compile": "rc-tools run compile",
     "gh-pages": "rc-tools run gh-pages",
     "start": "rc-tools run server",
-    "pub": "rc-tools run pub --babel-runtime",
+    "pub": "rc-tools run pub",
     "lint": "rc-tools run lint",
     "lint:fix": "rc-tools run lint --fix",
     "test": "jest",
@@ -87,9 +87,7 @@
     ]
   },
   "dependencies": {
-    "babel-runtime": "^6.23.0",
     "classnames": "^2.2.3",
-    "lodash": "^4.17.5",
-    "prop-types": "^15.5.7"
+    "lodash": "^4.17.5"
   }
 }
