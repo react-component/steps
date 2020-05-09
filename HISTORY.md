@@ -1,6 +1,11 @@
 # History
 ----
 
+## 3.6.0
+
+- Remove babel-runtime and prop-types
+- Fix icon missing #85
+
 ## 3.5.0
 
 - Support `navigation` type & `disabled` prop.
