@@ -140,7 +140,7 @@ exports[`Steps render renders current correctly 1`] = `
         class="rc-steps-item-icon"
       >
         <span
-          class="rc-steps-icon rcicon"
+          class="rc-steps-icon rcicon rcicon-check"
         />
       </div>
       <div
@@ -167,7 +167,7 @@ exports[`Steps render renders current correctly 1`] = `
         class="rc-steps-item-icon"
       >
         <span
-          class="rc-steps-icon rcicon"
+          class="rc-steps-icon rcicon rcicon-check"
         />
       </div>
       <div
@@ -644,7 +644,7 @@ exports[`Steps render renders status correctly 1`] = `
         class="rc-steps-item-icon"
       >
         <span
-          class="rc-steps-icon rcicon"
+          class="rc-steps-icon rcicon rcicon-check"
         />
       </div>
       <div
@@ -671,7 +671,7 @@ exports[`Steps render renders status correctly 1`] = `
         class="rc-steps-item-icon"
       >
         <span
-          class="rc-steps-icon rcicon"
+          class="rc-steps-icon rcicon rcicon-check"
         />
       </div>
       <div
@@ -698,7 +698,7 @@ exports[`Steps render renders status correctly 1`] = `
         class="rc-steps-item-icon"
       >
         <span
-          class="rc-steps-icon rcicon"
+          class="rc-steps-icon rcicon rcicon-cross"
         />
       </div>
       <div
@@ -1006,7 +1006,7 @@ exports[`Steps render renders step with description and status 1`] = `
         class="rc-steps-item-icon"
       >
         <span
-          class="rc-steps-icon rcicon"
+          class="rc-steps-icon rcicon rcicon-check"
         />
       </div>
       <div
@@ -1200,7 +1200,7 @@ exports[`Steps render renders step with type navigation 1`] = `
         class="rc-steps-item-icon"
       >
         <span
-          class="rc-steps-icon rcicon"
+          class="rc-steps-icon rcicon rcicon-check"
         />
       </div>
       <div
@@ -1546,7 +1546,7 @@ exports[`Steps render renders with fasly children 1`] = `
         class="rc-steps-item-icon"
       >
         <span
-          class="rc-steps-icon rcicon"
+          class="rc-steps-icon rcicon rcicon-check"
         />
       </div>
       <div
