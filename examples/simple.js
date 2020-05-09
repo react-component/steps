@@ -13,6 +13,7 @@ const ControlSteps = () => {
     <Steps
       current={current}
       onChange={(val) => {
+        // eslint-disable-next-line no-console
         console.log('Change:', val);
         setCurrent(val);
       }}

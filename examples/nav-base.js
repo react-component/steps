@@ -14,6 +14,7 @@ class Demo extends React.Component {
   };
 
   onChange = current => {
+    // eslint-disable-next-line no-console
     console.log('onChange:', current);
     this.setState({ current });
   };

@@ -1,4 +1,4 @@
-/* eslint react/no-did-mount-set-state: 0 */
+/* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
 import React, { cloneElement, Children, Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
