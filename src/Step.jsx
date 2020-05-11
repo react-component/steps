@@ -28,12 +28,15 @@ export default class Step extends React.Component {
       icon,
       iconPrefix,
       icons,
+      showNumber,
     } = this.props;
     let iconNode;
     const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
       [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
-      [`${iconPrefix}icon-check`]: !icon && status === 'finish' && ((icons && !icons.finish) || !icons),
-      [`${iconPrefix}icon-cross`]: !icon && status === 'error' && ((icons && !icons.error) || !icons),
+      [`${iconPrefix}icon-check`]:
+        !icon && status === 'finish' && ((icons && !icons.finish) || !icons),
+      [`${iconPrefix}icon-cross`]:
+        !icon && status === 'error' && ((icons && !icons.error) || !icons),
     });
     const iconDot = <span className={`${prefixCls}-icon-dot`} />;
     // `progressDot` enjoy the highest priority
@@ -61,7 +64,7 @@ export default class Step extends React.Component {
     } else if (icon || status === 'finish' || status === 'error') {
       iconNode = <span className={iconClassName} />;
     } else {
-      iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
+      iconNode = <span className={`${prefixCls}-icon`}>{showNumber ? stepNumber : ''}</span>;
     }
 
     return iconNode;

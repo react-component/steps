@@ -100,6 +100,7 @@ export default class Steps extends Component {
       initial,
       icons,
       onChange,
+      showNumber,
       ...restProps
     } = this.props;
     const isNav = type === 'navigation';
@@ -130,6 +131,7 @@ export default class Steps extends Component {
             wrapperStyle: style,
             progressDot,
             icons,
+            showNumber,
             onStepClick: onChange && this.onStepClick,
             ...child.props,
           };
