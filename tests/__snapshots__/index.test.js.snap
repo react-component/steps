@@ -242,6 +242,154 @@ exports[`Steps render renders current correctly 1`] = `
 </div>
 `;
 
+exports[`Steps render renders final correctly 1`] = `
+<Steps
+  current={2}
+  direction="horizontal"
+  iconPrefix="rc"
+  initial={0}
+  labelPlacement="horizontal"
+  prefixCls="rc-steps"
+  progressDot={false}
+  showNumber={true}
+  size=""
+  status="process"
+  type="default"
+>
+  <div
+    className="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
+    style={Object {}}
+  >
+    <Step
+      active={false}
+      iconPrefix="rc"
+      key=".$.0"
+      prefixCls="rc-steps"
+      progressDot={false}
+      showNumber={true}
+      status="finish"
+      stepIndex={0}
+      stepNumber="1"
+      wrapperStyle={Object {}}
+    >
+      <div
+        className="rc-steps-item rc-steps-item-finish"
+        showNumber={true}
+        style={Object {}}
+      >
+        <div
+          className="rc-steps-item-container"
+        >
+          <div
+            className="rc-steps-item-tail"
+          />
+          <div
+            className="rc-steps-item-icon"
+          >
+            <span
+              className="rc-steps-icon rcicon rcicon-check"
+            >
+              1
+            </span>
+          </div>
+          <div
+            className="rc-steps-item-content"
+          >
+            <div
+              className="rc-steps-item-title"
+            />
+          </div>
+        </div>
+      </div>
+    </Step>
+    <Step
+      active={false}
+      iconPrefix="rc"
+      key=".$.1"
+      prefixCls="rc-steps"
+      progressDot={false}
+      showNumber={true}
+      status="finish"
+      stepIndex={1}
+      stepNumber="2"
+      wrapperStyle={Object {}}
+    >
+      <div
+        className="rc-steps-item rc-steps-item-finish"
+        showNumber={true}
+        style={Object {}}
+      >
+        <div
+          className="rc-steps-item-container"
+        >
+          <div
+            className="rc-steps-item-tail"
+          />
+          <div
+            className="rc-steps-item-icon"
+          >
+            <span
+              className="rc-steps-icon rcicon rcicon-check"
+            >
+              2
+            </span>
+          </div>
+          <div
+            className="rc-steps-item-content"
+          >
+            <div
+              className="rc-steps-item-title"
+            />
+          </div>
+        </div>
+      </div>
+    </Step>
+    <Step
+      active={true}
+      iconPrefix="rc"
+      key=".$.2"
+      prefixCls="rc-steps"
+      progressDot={false}
+      showNumber={true}
+      status="process"
+      stepIndex={2}
+      stepNumber="3"
+      wrapperStyle={Object {}}
+    >
+      <div
+        className="rc-steps-item rc-steps-item-process rc-steps-item-active"
+        showNumber={true}
+        style={Object {}}
+      >
+        <div
+          className="rc-steps-item-container"
+        >
+          <div
+            className="rc-steps-item-tail"
+          />
+          <div
+            className="rc-steps-item-icon"
+          >
+            <span
+              className="rc-steps-icon"
+            >
+              3
+            </span>
+          </div>
+          <div
+            className="rc-steps-item-content"
+          >
+            <div
+              className="rc-steps-item-title"
+            />
+          </div>
+        </div>
+      </div>
+    </Step>
+  </div>
+</Steps>
+`;
+
 exports[`Steps render renders labelPlacement correctly 1`] = `
 <div
   class="rc-steps rc-steps-horizontal rc-steps-label-vertical"
