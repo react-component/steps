@@ -5,6 +5,7 @@ import findDOMNode from 'rc-util/lib/Dom/findDOMNode';
 import classNames from 'classnames';
 import debounce from 'lodash/debounce';
 import { isFlexSupported } from './utils';
+import { Status, Icons } from './interface';
 
 export interface StepsProps {
   prefixCls?: string;
@@ -15,12 +16,12 @@ export interface StepsProps {
   type?: 'default' | 'navigation';
   labelPlacement?: 'horizontal' | 'vertical';
   iconPrefix?: string;
-  status?: 'error' | 'process' | 'finish' | 'wait';
+  status?: Status;
   size?: 'default' | 'small';
   current?: number;
   progressDot?: boolean;
   initial?: number;
-  icons?: { finish: React.ReactNode; error: React.ReactNode };
+  icons?: Icons;
   onChange?: (current: number) => void;
 }
 
