@@ -71,12 +71,12 @@
     "rc-dialog": "7.x",
     "rc-tools": "^9.6.1",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "typescript": "^3.9.3"
   },
   "dependencies": {
     "@babel/runtime": "^7.10.2",
     "classnames": "^2.2.3",
-    "lodash": "^4.17.5",
     "rc-util": "^5.0.1"
   }
 }

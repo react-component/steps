@@ -17,9 +17,7 @@ export interface StepProps {
   disabled?: boolean;
   stepIndex?: number;
   stepNumber?: number;
-  adjustMarginRight?: number;
   status?: Status;
-  itemWidth?: number;
   title?: React.ReactNode;
   subTitle?: React.ReactNode;
   description?: React.ReactNode;
@@ -107,13 +105,11 @@ export default class Step extends React.Component<StepProps> {
       className,
       prefixCls,
       style,
-      itemWidth,
       active,
       status = 'wait',
       iconPrefix,
       icon,
       wrapperStyle,
-      adjustMarginRight,
       stepNumber,
       disabled,
       description,
@@ -134,12 +130,6 @@ export default class Step extends React.Component<StepProps> {
       [`${prefixCls}-item-disabled`]: disabled === true,
     });
     const stepItemStyle = { ...style };
-    if (itemWidth) {
-      stepItemStyle.width = itemWidth;
-    }
-    if (adjustMarginRight) {
-      stepItemStyle.marginRight = adjustMarginRight;
-    }
 
     const accessibilityProps: {
       role?: string;

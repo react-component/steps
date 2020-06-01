@@ -1,10 +1,7 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
 import React, { cloneElement } from 'react';
 import toArray from 'rc-util/lib/Children/toArray';
-import findDOMNode from 'rc-util/lib/Dom/findDOMNode';
 import classNames from 'classnames';
-import debounce from 'lodash/debounce';
-import { isFlexSupported } from './utils';
 import { Status, Icons } from './interface';
 
 export interface StepsProps {
@@ -25,12 +22,7 @@ export interface StepsProps {
   onChange?: (current: number) => void;
 }
 
-export interface StepsState {
-  flexSupported: boolean;
-  lastStepOffsetWidth: number;
-}
-
-export default class Steps extends React.Component<StepsProps, StepsState> {
+export default class Steps extends React.Component<StepsProps> {
   static defaultProps = {
     type: 'default',
     prefixCls: 'rc-steps',
@@ -44,73 +36,10 @@ export default class Steps extends React.Component<StepsProps, StepsState> {
     progressDot: false,
   };
 
-  calcTimeout: number;
-
-  state: StepsState = {
-    flexSupported: true,
-    lastStepOffsetWidth: 0,
-  };
-
-  constructor(props: StepsProps) {
-    super(props);
-
-    this.debounceCalcStepOffsetWidth = debounce(this.calcStepOffsetWidth, 150);
-  }
-
-  debounceCalcStepOffsetWidth: ReturnType<typeof debounce>;
-
-  componentDidMount() {
-    this.debounceCalcStepOffsetWidth();
-    if (!isFlexSupported()) {
-      this.setState({
-        flexSupported: false,
-      });
-    }
-  }
-
-  componentDidUpdate() {
-    this.debounceCalcStepOffsetWidth();
-  }
-
-  componentWillUnmount() {
-    if (this.calcTimeout) {
-      clearTimeout(this.calcTimeout);
-    }
-    if (this.debounceCalcStepOffsetWidth && this.debounceCalcStepOffsetWidth.cancel) {
-      this.debounceCalcStepOffsetWidth.cancel();
-    }
-  }
-
-  onStepClick = (next) => {
+  onStepClick = (next: number) => {
     const { onChange, current } = this.props;
     if (onChange && current !== next) {
       onChange(next);
-    }
-  };
-
-  calcStepOffsetWidth = () => {
-    if (isFlexSupported()) {
-      return;
-    }
-    const { lastStepOffsetWidth } = this.state;
-    // Just for IE9
-    const domNode = findDOMNode<HTMLElement>(this);
-    if (domNode.children.length > 0) {
-      if (this.calcTimeout) {
-        clearTimeout(this.calcTimeout);
-      }
-      this.calcTimeout = setTimeout(() => {
-        // +1 for fit edge bug of digit width, like 35.4px
-        const offsetWidth = ((domNode.lastChild as HTMLElement).offsetWidth || 0) + 1;
-        // Reduce shake bug
-        if (
-          lastStepOffsetWidth === offsetWidth ||
-          Math.abs(lastStepOffsetWidth - offsetWidth) <= 3
-        ) {
-          return;
-        }
-        this.setState({ lastStepOffsetWidth: offsetWidth });
-      });
     }
   };
 
@@ -134,16 +63,13 @@ export default class Steps extends React.Component<StepsProps, StepsState> {
       ...restProps
     } = this.props;
     const isNav = type === 'navigation';
-    const { lastStepOffsetWidth, flexSupported } = this.state;
-    const filteredChildren = React.Children.toArray(children).filter((c) => !!c);
-    const lastIndex = filteredChildren.length - 1;
+    const filteredChildren = React.Children.toArray(children).filter(c => !!c);
     const adjustedLabelPlacement = progressDot ? 'vertical' : labelPlacement;
     const classString = classNames(prefixCls, `${prefixCls}-${direction}`, className, {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-label-${adjustedLabelPlacement}`]: direction === 'horizontal',
       [`${prefixCls}-dot`]: !!progressDot,
       [`${prefixCls}-navigation`]: isNav,
-      [`${prefixCls}-flex-not-supported`]: !flexSupported,
     });
 
     return (
@@ -164,15 +90,6 @@ export default class Steps extends React.Component<StepsProps, StepsState> {
             onStepClick: onChange && this.onStepClick,
             ...child.props,
           };
-          if (!flexSupported && direction !== 'vertical') {
-            if (isNav) {
-              childProps.itemWidth = `${100 / (lastIndex + 1)}%`;
-              childProps.adjustMarginRight = 0;
-            } else if (index !== lastIndex) {
-              childProps.itemWidth = `${100 / lastIndex}%`;
-              childProps.adjustMarginRight = -Math.round(lastStepOffsetWidth / lastIndex + 1);
-            }
-          }
           // fix tail color
           if (status === 'error' && index === current - 1) {
             childProps.className = `${prefixCls}-next-error`;
