@@ -1,11 +1,35 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
-import React, { cloneElement, Children, Component } from 'react';
-import { findDOMNode } from 'react-dom';
+import React, { cloneElement } from 'react';
+import toArray from 'rc-util/lib/Children/toArray';
+import findDOMNode from 'rc-util/lib/Dom/findDOMNode';
 import classNames from 'classnames';
 import debounce from 'lodash/debounce';
 import { isFlexSupported } from './utils';
 
-export default class Steps extends Component {
+export interface StepsProps {
+  prefixCls?: string;
+  style?: React.CSSProperties;
+  className?: string;
+  children?: React.ReactNode;
+  direction?: 'horizontal' | 'vertical';
+  type?: 'default' | 'navigation';
+  labelPlacement?: 'horizontal' | 'vertical';
+  iconPrefix?: string;
+  status?: 'error' | 'process' | 'finish' | 'wait';
+  size?: 'default' | 'small';
+  current?: number;
+  progressDot?: boolean;
+  initial?: number;
+  icons?: { finish: React.ReactNode; error: React.ReactNode };
+  onChange?: (current: number) => void;
+}
+
+export interface StepsState {
+  flexSupported: boolean;
+  lastStepOffsetWidth: number;
+}
+
+export default class Steps extends React.Component<StepsProps, StepsState> {
   static defaultProps = {
     type: 'default',
     prefixCls: 'rc-steps',
@@ -19,17 +43,23 @@ export default class Steps extends Component {
     progressDot: false,
   };
 
-  constructor(props) {
+  calcTimeout: number;
+
+  state: StepsState = {
+    flexSupported: true,
+    lastStepOffsetWidth: 0,
+  };
+
+  constructor(props: StepsProps) {
     super(props);
-    this.state = {
-      flexSupported: true,
-      lastStepOffsetWidth: 0,
-    };
-    this.calcStepOffsetWidth = debounce(this.calcStepOffsetWidth, 150);
+
+    this.debounceCalcStepOffsetWidth = debounce(this.calcStepOffsetWidth, 150);
   }
 
+  debounceCalcStepOffsetWidth: ReturnType<typeof debounce>;
+
   componentDidMount() {
-    this.calcStepOffsetWidth();
+    this.debounceCalcStepOffsetWidth();
     if (!isFlexSupported()) {
       this.setState({
         flexSupported: false,
@@ -38,19 +68,19 @@ export default class Steps extends Component {
   }
 
   componentDidUpdate() {
-    this.calcStepOffsetWidth();
+    this.debounceCalcStepOffsetWidth();
   }
 
   componentWillUnmount() {
     if (this.calcTimeout) {
       clearTimeout(this.calcTimeout);
     }
-    if (this.calcStepOffsetWidth && this.calcStepOffsetWidth.cancel) {
-      this.calcStepOffsetWidth.cancel();
+    if (this.debounceCalcStepOffsetWidth && this.debounceCalcStepOffsetWidth.cancel) {
+      this.debounceCalcStepOffsetWidth.cancel();
     }
   }
 
-  onStepClick = next => {
+  onStepClick = (next) => {
     const { onChange, current } = this.props;
     if (onChange && current !== next) {
       onChange(next);
@@ -63,14 +93,14 @@ export default class Steps extends Component {
     }
     const { lastStepOffsetWidth } = this.state;
     // Just for IE9
-    const domNode = findDOMNode(this);
+    const domNode = findDOMNode<HTMLElement>(this);
     if (domNode.children.length > 0) {
       if (this.calcTimeout) {
         clearTimeout(this.calcTimeout);
       }
       this.calcTimeout = setTimeout(() => {
         // +1 for fit edge bug of digit width, like 35.4px
-        const offsetWidth = (domNode.lastChild.offsetWidth || 0) + 1;
+        const offsetWidth = ((domNode.lastChild as HTMLElement).offsetWidth || 0) + 1;
         // Reduce shake bug
         if (
           lastStepOffsetWidth === offsetWidth ||
@@ -104,12 +134,12 @@ export default class Steps extends Component {
     } = this.props;
     const isNav = type === 'navigation';
     const { lastStepOffsetWidth, flexSupported } = this.state;
-    const filteredChildren = React.Children.toArray(children).filter(c => !!c);
+    const filteredChildren = React.Children.toArray(children).filter((c) => !!c);
     const lastIndex = filteredChildren.length - 1;
-    const adjustedlabelPlacement = progressDot ? 'vertical' : labelPlacement;
+    const adjustedLabelPlacement = progressDot ? 'vertical' : labelPlacement;
     const classString = classNames(prefixCls, `${prefixCls}-${direction}`, className, {
       [`${prefixCls}-${size}`]: size,
-      [`${prefixCls}-label-${adjustedlabelPlacement}`]: direction === 'horizontal',
+      [`${prefixCls}-label-${adjustedLabelPlacement}`]: direction === 'horizontal',
       [`${prefixCls}-dot`]: !!progressDot,
       [`${prefixCls}-navigation`]: isNav,
       [`${prefixCls}-flex-not-supported`]: !flexSupported,
@@ -117,7 +147,7 @@ export default class Steps extends Component {
 
     return (
       <div className={classString} style={style} {...restProps}>
-        {Children.map(filteredChildren, (child, index) => {
+        {toArray(filteredChildren).map((child, index) => {
           if (!child) {
             return null;
           }
