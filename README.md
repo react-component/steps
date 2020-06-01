@@ -6,7 +6,7 @@ React steps component.
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
+[![Test coverage][codecov-image]][codecov-url]
 [![Dependencies][david-image]][david-url]
 [![DevDependencies][david-dev-image]][david-dev-url]
 [![npm download][download-image]][download-url]
@@ -16,8 +16,8 @@ React steps component.
 [npm-url]: http://npmjs.org/package/rc-steps
 [travis-image]: https://img.shields.io/travis/react-component/steps.svg?style=flat-square
 [travis-url]: https://travis-ci.org/react-component/steps
-[coveralls-image]: https://img.shields.io/coveralls/react-component/steps.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/react-component/steps?branch=master
+[codecov-image]: https://img.shields.io/codecov/c/github/react-component/steps/master.svg?style=flat-square
+[codecov-url]: https://codecov.io/gh/react-component/steps/branch/master
 [david-url]: https://david-dm.org/react-component/steps
 [david-image]: https://david-dm.org/react-component/steps/status.svg?style=flat-square
 [david-dev-url]: https://david-dm.org/react-component/steps?type=dev
