@@ -1,13 +1,44 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
 import classNames from 'classnames';
+import { Status, Icons } from './interface';
 
-function isString(str) {
+function isString(str: any): str is string {
   return typeof str === 'string';
 }
 
-export default class Step extends React.Component {
-  onClick = (...args) => {
+export interface StepProps {
+  prefixCls?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  wrapperStyle?: React.CSSProperties;
+  iconPrefix?: string;
+  active?: boolean;
+  disabled?: boolean;
+  stepIndex?: number;
+  stepNumber?: number;
+  status?: Status;
+  title?: React.ReactNode;
+  subTitle?: React.ReactNode;
+  description?: React.ReactNode;
+  tailContent?: React.ReactNode;
+  icon?: React.ReactNode;
+  icons?: Icons;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onStepClick?: (index: number) => void;
+  progressDot?: (
+    iconDot,
+    info: {
+      index: number;
+      status: Status;
+      title: React.ReactNode;
+      description: React.ReactNode;
+    },
+  ) => React.ReactNode;
+}
+
+export default class Step extends React.Component<StepProps> {
+  onClick: React.MouseEventHandler<HTMLDivElement> = (...args) => {
     const { onClick, onStepClick, stepIndex } = this.props;
 
     if (onClick) {
@@ -32,8 +63,10 @@ export default class Step extends React.Component {
     let iconNode;
     const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
       [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
-      [`${iconPrefix}icon-check`]: !icon && status === 'finish' && ((icons && !icons.finish) || !icons),
-      [`${iconPrefix}icon-cross`]: !icon && status === 'error' && ((icons && !icons.error) || !icons),
+      [`${iconPrefix}icon-check`]:
+        !icon && status === 'finish' && ((icons && !icons.finish) || !icons),
+      [`${iconPrefix}icon-cross`]:
+        !icon && status === 'error' && ((icons && !icons.error) || !icons),
     });
     const iconDot = <span className={`${prefixCls}-icon-dot`} />;
     // `progressDot` enjoy the highest priority
@@ -72,13 +105,11 @@ export default class Step extends React.Component {
       className,
       prefixCls,
       style,
-      itemWidth,
       active,
       status = 'wait',
       iconPrefix,
       icon,
       wrapperStyle,
-      adjustMarginRight,
       stepNumber,
       disabled,
       description,
@@ -99,14 +130,12 @@ export default class Step extends React.Component {
       [`${prefixCls}-item-disabled`]: disabled === true,
     });
     const stepItemStyle = { ...style };
-    if (itemWidth) {
-      stepItemStyle.width = itemWidth;
-    }
-    if (adjustMarginRight) {
-      stepItemStyle.marginRight = adjustMarginRight;
-    }
 
-    const accessibilityProps = {};
+    const accessibilityProps: {
+      role?: string;
+      tabIndex?: number;
+      onClick?: React.MouseEventHandler<HTMLDivElement>;
+    } = {};
     if (onStepClick && !disabled) {
       accessibilityProps.role = 'button';
       accessibilityProps.tabIndex = 0;

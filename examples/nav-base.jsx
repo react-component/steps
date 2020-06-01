@@ -1,10 +1,7 @@
-import 'rc-steps/assets/index.less';
-import 'rc-steps/assets/iconfont.less';
+import '../assets/index.less';
+import '../assets/iconfont.less';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Steps from 'rc-steps';
-
-const container = document.getElementById('__react-content');
+import Steps from '../src';
 
 const { Step } = Steps;
 
@@ -39,17 +36,14 @@ class Demo extends React.Component {
           <Step title="Step 3" status="wait" disabled description="This is a description." />
         </Steps>
         <Steps style={containerStyle} type="navigation" current={current} onChange={this.onChange}>
-        <Step title="Step 1" status="finish" subTitle="剩余 00:00:05 超长隐藏" />
-        <Step title="Step 2" status="process"/>
-        <Step title="Step 3" status="wait" />
-        <Step title="Step 3" status="wait" />
-      </Steps>
+          <Step title="Step 1" status="finish" subTitle="剩余 00:00:05 超长隐藏" />
+          <Step title="Step 2" status="process" />
+          <Step title="Step 3" status="wait" />
+          <Step title="Step 3" status="wait" />
+        </Steps>
       </div>
     );
   }
 }
 
-ReactDOM.render(
-  <Demo />,
-  container,
-);
+export default Demo;

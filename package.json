@@ -2,19 +2,23 @@
   "name": "rc-steps",
   "version": "3.6.0",
   "description": "steps ui component for react",
+  "engines": {
+    "node": ">=8.x"
+  },
   "keywords": [
     "react",
     "react-component",
     "react-steps"
   ],
+  "files": [
+    "assets/*.css",
+    "dist",
+    "es",
+    "lib"
+  ],
   "main": "./lib/index",
   "module": "./es/index",
-  "files": [
-    "lib",
-    "es",
-    "assets/iconfont.css",
-    "assets/index.css"
-  ],
+  "types": "./lib/index.d.ts",
   "homepage": "http://github.com/react-component/steps",
   "maintainers": [
     {
@@ -29,65 +33,51 @@
   "bugs": {
     "url": "http://github.com/react-component/steps/issues"
   },
-  "licenses": "MIT",
+  "license": "MIT",
   "config": {
     "port": 8002
   },
   "scripts": {
-    "build": "rc-tools run build",
-    "compile": "rc-tools run compile",
-    "gh-pages": "rc-tools run gh-pages",
-    "start": "rc-tools run server",
-    "pub": "rc-tools run pub",
-    "lint": "rc-tools run lint",
-    "lint:fix": "rc-tools run lint --fix",
-    "test": "jest",
-    "prepublish": "rc-tools run guard",
-    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "now-build": "npm run build",
-    "pre-commit": "rc-tools run pre-commit",
-    "lint-staged": "lint-staged"
+    "start": "cross-env NODE_ENV=development father doc dev --storybook",
+    "build": "father doc build --storybook",
+    "compile": "father build && lessc assets/index.less assets/index.css",
+    "gh-pages": "npm run build && father doc deploy",
+    "prepublishOnly": "npm run compile && np --yolo --no-publish",
+    "postpublish": "npm run gh-pages",
+    "lint": "eslint src/ --ext .ts,.tsx,.jsx,.js,.md",
+    "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "test": "father test",
+    "coverage": "father test --coverage"
   },
-  "jest": {
-    "setupFiles": [
-      "./tests/setup.js"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "transform": {
-      "\\.jsx?$": "./node_modules/rc-tools/scripts/jestPreprocessor.js"
-    }
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
-    "babel-core": "^7.0.0-bridge.0",
-    "coveralls": "^3.0.4",
-    "enzyme": "^3.0.0",
+    "@types/classnames": "^2.2.9",
+    "@types/enzyme": "^3.10.5",
+    "@types/jest": "^25.1.0",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@umijs/fabric": "^2.0.9",
+    "cross-env": "^7.0.0",
+    "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.1",
-    "enzyme-to-json": "^3.0.0",
-    "jest": "^26.0.0",
-    "lint-staged": "^10.0.1",
-    "pre-commit": "1.x",
+    "enzyme-to-json": "^3.1.2",
+    "eslint": "^7.1.0",
+    "father": "^2.22.0",
+    "less": "^3.11.2",
+    "prettier": "^2.0.5",
     "querystring": "^0.2.0",
     "rc-dialog": "7.x",
     "rc-tools": "^9.6.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-test-renderer": "^16.0.0"
-  },
-  "pre-commit": [
-    "lint-staged"
-  ],
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "npm run pre-commit"
-    ]
+    "typescript": "^3.9.3"
   },
   "dependencies": {
+    "@babel/runtime": "^7.10.2",
     "classnames": "^2.2.3",
-    "lodash": "^4.17.5"
+    "rc-util": "^5.0.1"
   }
 }

@@ -1,9 +1,8 @@
-import 'rc-steps/assets/index.less';
-import 'rc-steps/assets/iconfont.less';
+import '../assets/index.less';
+import '../assets/iconfont.less';
 import './nextStep.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Steps, { Step } from 'rc-steps';
+import Steps, { Step } from '../src';
 
 const container = document.getElementById('__react-content');
 
@@ -76,4 +75,4 @@ class MyForm extends React.Component {
   }
 }
 
-ReactDOM.render(<MyForm />, container);
+export default MyForm;
