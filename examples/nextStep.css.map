@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///nextStep.css"],"names":[],"mappings":"AAAA;EACE,WAAW;AACb;AACA;EACE,mBAAmB;AACrB;AACA;EACE,WAAW;AACb,C","file":"examples/nextStep.css","sourcesContent":[".my-step-form {\n  width: 100%;\n}\n.my-step-form > div {\n  margin-bottom: 20px;\n}\n.my-step-container {\n  width: 100%;\n}"],"sourceRoot":""}
