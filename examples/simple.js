@@ -1,18 +1,17 @@
-import 'rc-steps/assets/index.less';
-import 'rc-steps/assets/iconfont.less';
+import '../assets/index.less';
+import '../assets/iconfont.less';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Steps, { Step } from 'rc-steps';
+import Steps, { Step } from '../src';
 
-const container = document.getElementById('__react-content');
-const description = '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶';
+const description =
+  '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶';
 
 const ControlSteps = () => {
   const [current, setCurrent] = React.useState(0);
   return (
     <Steps
       current={current}
-      onChange={(val) => {
+      onChange={val => {
         // eslint-disable-next-line no-console
         console.log('Change:', val);
         setCurrent(val);
@@ -26,7 +25,7 @@ const ControlSteps = () => {
   );
 };
 
-ReactDOM.render(
+export default () => (
   <div>
     <Steps current={1}>
       <Step title="已完成" />
@@ -47,6 +46,5 @@ ReactDOM.render(
       <Step title="待运行" description={description} />
     </Steps>
     <ControlSteps />
-  </div>,
-  container,
+  </div>
 );

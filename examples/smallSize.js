@@ -1,14 +1,12 @@
-import 'rc-steps/assets/index.less';
-import 'rc-steps/assets/iconfont.less';
+import '../assets/index.less';
+import '../assets/iconfont.less';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Steps, { Step } from 'rc-steps';
+import Steps, { Step } from '../src';
 
-const container = document.getElementById('__react-content');
 // eslint-disable-next-line react/prop-types
 const Icon = ({ type }) => <i className={`rcicon rcicon-${type}`} />;
 
-ReactDOM.render(
+export default () => (
   <div>
     <Steps size="small" current={1}>
       <Step title="已完成" />
@@ -21,6 +19,5 @@ ReactDOM.render(
       <Step title="步骤2" icon="apple" />
       <Step title="步骤3" icon="github" />
     </Steps>
-  </div>,
-  container,
+  </div>
 );

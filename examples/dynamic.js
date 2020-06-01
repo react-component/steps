@@ -1,8 +1,7 @@
-import 'rc-steps/assets/index.less';
-import 'rc-steps/assets/iconfont.less';
+import '../assets/index.less';
+import '../assets/iconfont.less';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Steps, { Step } from 'rc-steps';
+import Steps, { Step } from '../src';
 
 class App extends React.Component {
   state = {
@@ -58,4 +57,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('__react-content'));
+export default App;
