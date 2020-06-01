@@ -3,6 +3,7 @@ import React, { cloneElement } from 'react';
 import toArray from 'rc-util/lib/Children/toArray';
 import classNames from 'classnames';
 import { Status, Icons } from './interface';
+import Step from './Step';
 
 export interface StepsProps {
   prefixCls?: string;
@@ -23,6 +24,8 @@ export interface StepsProps {
 }
 
 export default class Steps extends React.Component<StepsProps> {
+  static Step = Step;
+
   static defaultProps = {
     type: 'default',
     prefixCls: 'rc-steps',

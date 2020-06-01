@@ -6,5 +6,6 @@ module.exports = {
     ...base.rules,
     'arrow-parens': 0,
     'react/no-find-dom-node': 0,
+    'react/sort-comp': 0,
   },
 };
