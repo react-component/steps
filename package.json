@@ -69,7 +69,7 @@
     "less": "^3.11.2",
     "prettier": "^2.0.5",
     "querystring": "^0.2.0",
-    "rc-dialog": "7.x",
+    "rc-dialog": "8.x",
     "rc-tools": "^9.6.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
