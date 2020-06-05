@@ -43,9 +43,7 @@ npm install rc-steps
 
 ## Example
 
-http://localhost:8002/examples
-
-online example: http://react-component.github.io/steps/examples/
+https://react-component.github.io/steps/
 
 ## API
 
