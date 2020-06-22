@@ -85,6 +85,7 @@ export default class Steps extends React.Component<StepsProps> {
           const childProps = {
             stepNumber: `${stepNumber + 1}`,
             stepIndex: stepNumber,
+            key: stepNumber,
             prefixCls,
             iconPrefix,
             wrapperStyle: style,
