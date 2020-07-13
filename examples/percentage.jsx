@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 
 const size = 'default';
 
-const content = <div>进步80%</div>;
+const content = <div>进度：80%</div>;
 
 // 通过用户是否传入percentage的属性来判断，是否展示进度
 const percentage = 80;
