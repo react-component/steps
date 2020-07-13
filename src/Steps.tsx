@@ -21,6 +21,8 @@ export interface StepsProps {
   initial?: number;
   icons?: Icons;
   onChange?: (current: number) => void;
+  showPercentage?: (dom: React.ReactNode, status: Status, percentage: number) => React.ReactNode;
+  percentage: number;
 }
 
 export default class Steps extends React.Component<StepsProps> {
@@ -63,6 +65,8 @@ export default class Steps extends React.Component<StepsProps> {
       initial,
       icons,
       onChange,
+      showPercentage,
+      percentage,
       ...restProps
     } = this.props;
     const isNav = type === 'navigation';
@@ -91,6 +95,8 @@ export default class Steps extends React.Component<StepsProps> {
             progressDot,
             icons,
             onStepClick: onChange && this.onStepClick,
+            showPercentage,
+            percentage,
             ...child.props,
           };
           // fix tail color
