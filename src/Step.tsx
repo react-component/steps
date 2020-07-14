@@ -35,6 +35,7 @@ export interface StepProps {
       description: React.ReactNode;
     },
   ) => React.ReactNode;
+  stepRender?: (dom: React.ReactNode, status: Status) => React.ReactNode;
 }
 
 export default class Step extends React.Component<StepProps> {
@@ -121,8 +122,7 @@ export default class Step extends React.Component<StepProps> {
       stepIndex,
       onStepClick,
       onClick,
-      showPercentage,
-      percentage,
+      stepRender,
       ...restProps
     } = this.props;
 
@@ -148,16 +148,14 @@ export default class Step extends React.Component<StepProps> {
       <div {...restProps} className={classString} style={stepItemStyle}>
         <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
           <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
-          {showPercentage &&
-            showPercentage(
-              <div
-                style={{ position: 'relative', marginRight: percentage === undefined ? '8px' : 0 }}
-                className={`${prefixCls}-item-icon`}
-              >
-                {this.renderIconNode()}
-              </div>,
+          {stepRender ? (
+            stepRender(
+              <div className={`${prefixCls}-item-icon`}>{this.renderIconNode()}</div>,
               status,
-            )}
+            )
+          ) : (
+            <div className={`${prefixCls}-item-icon`}>{this.renderIconNode()}</div>
+          )}
           <div className={`${prefixCls}-item-content`}>
             <div className={`${prefixCls}-item-title`}>
               {title}
