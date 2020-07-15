@@ -18,10 +18,10 @@ export interface StepsProps {
   size?: 'default' | 'small';
   current?: number;
   progressDot?: boolean;
+  progressPercentage?: boolean | Function;
   initial?: number;
   icons?: Icons;
   onChange?: (current: number) => void;
-  stepRender?: (dom: React.ReactNode, status: Status) => React.ReactNode;
 }
 
 export default class Steps extends React.Component<StepsProps> {
@@ -61,28 +61,26 @@ export default class Steps extends React.Component<StepsProps> {
       size,
       current,
       progressDot,
+      progressPercentage,
       initial,
       icons,
       onChange,
-      stepRender,
       ...restProps
     } = this.props;
     const isNav = type === 'navigation';
-    const filteredChildren = React.Children.toArray(children).filter(c => !!c);
+    const filteredChildren = React.Children.toArray(children);
     const adjustedLabelPlacement = progressDot ? 'vertical' : labelPlacement;
     const classString = classNames(prefixCls, `${prefixCls}-${direction}`, className, {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-label-${adjustedLabelPlacement}`]: direction === 'horizontal',
       [`${prefixCls}-dot`]: !!progressDot,
+      [`${prefixCls}-percentage`]: !!progressPercentage,
       [`${prefixCls}-navigation`]: isNav,
     });
 
     return (
       <div className={classString} style={style} {...restProps}>
         {toArray(filteredChildren).map((child, index) => {
-          if (!child) {
-            return null;
-          }
           const stepNumber = initial + index;
           const childProps = {
             stepNumber: `${stepNumber + 1}`,
@@ -92,9 +90,9 @@ export default class Steps extends React.Component<StepsProps> {
             iconPrefix,
             wrapperStyle: style,
             progressDot,
+            progressPercentage,
             icons,
             onStepClick: onChange && this.onStepClick,
-            stepRender,
             ...child.props,
           };
           // fix tail color

@@ -35,24 +35,35 @@ export interface StepProps {
       description: React.ReactNode;
     },
   ) => React.ReactNode;
+  progressPercentage?: (
+    iconPercentage,
+    info: {
+      index: number;
+      status: Status;
+      title: React.ReactNode;
+      description: React.ReactNode;
+    },
+  ) => React.ReactNode;
   stepRender?: (dom: React.ReactNode, status: Status) => React.ReactNode;
 }
 
 export default class Step extends React.Component<StepProps> {
   onClick: React.MouseEventHandler<HTMLDivElement> = (...args) => {
     const { onClick, onStepClick, stepIndex } = this.props;
-
     if (onClick) {
       onClick(...args);
     }
 
-    onStepClick(stepIndex);
+    if (onStepClick) {
+      onStepClick(stepIndex);
+    }
   };
 
   renderIconNode() {
     const {
       prefixCls,
       progressDot,
+      progressPercentage,
       stepNumber,
       status,
       title,
@@ -70,6 +81,7 @@ export default class Step extends React.Component<StepProps> {
         !icon && status === 'error' && ((icons && !icons.error) || !icons),
     });
     const iconDot = <span className={`${prefixCls}-icon-dot`} />;
+    const iconPercentage = <span className={`${prefixCls}-icon-percentage`} />;
     // `progressDot` enjoy the highest priority
     if (progressDot) {
       if (typeof progressDot === 'function') {
@@ -85,6 +97,21 @@ export default class Step extends React.Component<StepProps> {
         );
       } else {
         iconNode = <span className={`${prefixCls}-icon`}>{iconDot}</span>;
+      }
+    } else if (progressPercentage) {
+      if (typeof progressPercentage === 'function') {
+        iconNode = (
+          <span className={`${prefixCls}-icon`}>
+            {progressPercentage(iconPercentage, {
+              index: stepNumber - 1,
+              status,
+              title,
+              description,
+            })}
+          </span>
+        );
+      } else {
+        iconNode = <span className={`${prefixCls}-icon`}>{iconPercentage}</span>;
       }
     } else if (icon && !isString(icon)) {
       iconNode = <span className={`${prefixCls}-icon`}>{icon}</span>;
@@ -117,12 +144,12 @@ export default class Step extends React.Component<StepProps> {
       title,
       subTitle,
       progressDot,
+      progressPercentage,
       tailContent,
       icons,
       stepIndex,
       onStepClick,
       onClick,
-      stepRender,
       ...restProps
     } = this.props;
 
@@ -138,7 +165,7 @@ export default class Step extends React.Component<StepProps> {
       tabIndex?: number;
       onClick?: React.MouseEventHandler<HTMLDivElement>;
     } = {};
-    if (onStepClick && !disabled) {
+    if (!disabled) {
       accessibilityProps.role = 'button';
       accessibilityProps.tabIndex = 0;
       accessibilityProps.onClick = this.onClick;
@@ -148,14 +175,7 @@ export default class Step extends React.Component<StepProps> {
       <div {...restProps} className={classString} style={stepItemStyle}>
         <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
           <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
-          {stepRender ? (
-            stepRender(
-              <div className={`${prefixCls}-item-icon`}>{this.renderIconNode()}</div>,
-              status,
-            )
-          ) : (
-            <div className={`${prefixCls}-item-icon`}>{this.renderIconNode()}</div>
-          )}
+          <div className={`${prefixCls}-item-icon`}>{this.renderIconNode()}</div>
           <div className={`${prefixCls}-item-content`}>
             <div className={`${prefixCls}-item-title`}>
               {title}

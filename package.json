@@ -78,7 +78,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.10.2",
-    "antd": "^4.4.1",
     "classnames": "^2.2.3",
     "rc-util": "^5.0.1"
   }

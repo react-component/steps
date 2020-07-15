@@ -62,6 +62,18 @@ describe('Steps', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
+    it('renders progressPercentage correctly', () => {
+      const wrapper = render(React.cloneElement(steps, { progressPercentage: true }));
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('renders progressPercentage function correctly', () => {
+      const wrapper = render(
+        React.cloneElement(steps, { progressPercentage: () => <span>a</span> }),
+      );
+      expect(wrapper).toMatchSnapshot();
+    });
+
     it('renders step with description', () => {
       const wrapper = render(
         <Steps>
@@ -190,13 +202,25 @@ describe('Steps', () => {
       };
       const wrapper = render(
         <Steps current={1} status="error" icons={icons}>
-          <Step title="Finished" description="This is a description" />
+          <Step title="Finished" description="This is a description" icon="apple" />
           <Step title="In Process" description="This is a description" />
           <Step title="Waiting" description="This is a description" />
         </Steps>,
       );
       expect(wrapper).toMatchSnapshot();
     });
+  });
+
+  it('should render customIcon correctly', () => {
+    const Icon = ({ type }) => <i className={`rcicon rcicon-${type}`} />;
+    const wrapper = render(
+      <Steps current={1}>
+        <Step title="步骤1" icon={<Icon type="cloud" />} />
+        <Step title="步骤2" icon="apple" />
+        <Step title="步骤3" icon="github" />
+      </Steps>,
+    );
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('onChange', () => {
@@ -209,8 +233,29 @@ describe('Steps', () => {
       </Steps>,
     );
 
-    wrapper.find('.rc-steps-item-container').at(1).simulate('click');
+    wrapper
+      .find('.rc-steps-item-container')
+      .at(1)
+      .simulate('click');
     expect(onChange).toBeCalledWith(1);
+  });
+
+  it('onClick', () => {
+    const onClick = jest.fn();
+    const wrapper = mount(
+      <Steps>
+        <Step onClick={onClick} />
+        <Step />
+        <Step />
+      </Steps>,
+    );
+    console.log(wrapper, 'wrapper');
+
+    wrapper
+      .find('.rc-steps-item-container')
+      .at(0)
+      .simulate('click');
+    expect(onClick).toHaveBeenCalled();
   });
 
   it('disabled', () => {
@@ -223,7 +268,10 @@ describe('Steps', () => {
       </Steps>,
     );
 
-    wrapper.find('.rc-steps-item-container').at(2).simulate('click');
+    wrapper
+      .find('.rc-steps-item-container')
+      .at(2)
+      .simulate('click');
     expect(onChange).not.toBeCalled();
   });
 });
