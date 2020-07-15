@@ -249,7 +249,6 @@ describe('Steps', () => {
         <Step />
       </Steps>,
     );
-    console.log(wrapper, 'wrapper');
 
     wrapper
       .find('.rc-steps-item-container')
