@@ -44,7 +44,6 @@ export interface StepProps {
       description: React.ReactNode;
     },
   ) => React.ReactNode;
-  stepRender?: (dom: React.ReactNode, status: Status) => React.ReactNode;
 }
 
 export default class Step extends React.Component<StepProps> {
