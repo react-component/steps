@@ -18,7 +18,7 @@ export interface StepsProps {
   size?: 'default' | 'small';
   current?: number;
   progressDot?: boolean;
-  progressPercentage?: boolean | Function;
+  progress?: Function;
   initial?: number;
   icons?: Icons;
   onChange?: (current: number) => void;
@@ -61,7 +61,7 @@ export default class Steps extends React.Component<StepsProps> {
       size,
       current,
       progressDot,
-      progressPercentage,
+      progress,
       initial,
       icons,
       onChange,
@@ -74,7 +74,7 @@ export default class Steps extends React.Component<StepsProps> {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-label-${adjustedLabelPlacement}`]: direction === 'horizontal',
       [`${prefixCls}-dot`]: !!progressDot,
-      [`${prefixCls}-percentage`]: !!progressPercentage,
+      [`${prefixCls}-percentage`]: !!progress,
       [`${prefixCls}-navigation`]: isNav,
     });
 
@@ -90,7 +90,7 @@ export default class Steps extends React.Component<StepsProps> {
             iconPrefix,
             wrapperStyle: style,
             progressDot,
-            progressPercentage,
+            progress,
             icons,
             onStepClick: onChange && this.onStepClick,
             ...child.props,

@@ -35,7 +35,7 @@ export interface StepProps {
       description: React.ReactNode;
     },
   ) => React.ReactNode;
-  progressPercentage?: (
+  progress?: (
     iconPercentage,
     info: {
       index: number;
@@ -53,16 +53,14 @@ export default class Step extends React.Component<StepProps> {
       onClick(...args);
     }
 
-    if (onStepClick) {
-      onStepClick(stepIndex);
-    }
+    onStepClick(stepIndex);
   };
 
   renderIconNode() {
     const {
       prefixCls,
       progressDot,
-      progressPercentage,
+      progress,
       stepNumber,
       status,
       title,
@@ -97,21 +95,17 @@ export default class Step extends React.Component<StepProps> {
       } else {
         iconNode = <span className={`${prefixCls}-icon`}>{iconDot}</span>;
       }
-    } else if (progressPercentage) {
-      if (typeof progressPercentage === 'function') {
-        iconNode = (
-          <span className={`${prefixCls}-icon`}>
-            {progressPercentage(iconPercentage, {
-              index: stepNumber - 1,
-              status,
-              title,
-              description,
-            })}
-          </span>
-        );
-      } else {
-        iconNode = <span className={`${prefixCls}-icon`}>{iconPercentage}</span>;
-      }
+    } else if (typeof progress === 'function') {
+      iconNode = (
+        <span className={`${prefixCls}-icon`}>
+          {progress(iconPercentage, {
+            index: stepNumber - 1,
+            status,
+            title,
+            description,
+          })}
+        </span>
+      );
     } else if (icon && !isString(icon)) {
       iconNode = <span className={`${prefixCls}-icon`}>{icon}</span>;
     } else if (icons && icons.finish && status === 'finish') {
@@ -143,7 +137,7 @@ export default class Step extends React.Component<StepProps> {
       title,
       subTitle,
       progressDot,
-      progressPercentage,
+      progress,
       tailContent,
       icons,
       stepIndex,
@@ -164,7 +158,7 @@ export default class Step extends React.Component<StepProps> {
       tabIndex?: number;
       onClick?: React.MouseEventHandler<HTMLDivElement>;
     } = {};
-    if (!disabled) {
+    if (onStepClick && !disabled) {
       accessibilityProps.role = 'button';
       accessibilityProps.tabIndex = 0;
       accessibilityProps.onClick = this.onClick;

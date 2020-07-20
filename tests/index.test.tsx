@@ -62,15 +62,13 @@ describe('Steps', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('renders progressPercentage correctly', () => {
-      const wrapper = render(React.cloneElement(steps, { progressPercentage: true }));
+    it('renders progress correctly', () => {
+      const wrapper = render(React.cloneElement(steps, { progress: true }));
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('renders progressPercentage function correctly', () => {
-      const wrapper = render(
-        React.cloneElement(steps, { progressPercentage: () => <span>a</span> }),
-      );
+    it('renders progress function correctly', () => {
+      const wrapper = render(React.cloneElement(steps, { progress: () => <span>a</span> }));
       expect(wrapper).toMatchSnapshot();
     });
 
@@ -242,8 +240,9 @@ describe('Steps', () => {
 
   it('onClick', () => {
     const onClick = jest.fn();
+    const onChange = jest.fn();
     const wrapper = mount(
-      <Steps>
+      <Steps onChange={onChange}>
         <Step onClick={onClick} />
         <Step />
         <Step />
