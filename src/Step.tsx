@@ -78,7 +78,6 @@ export default class Step extends React.Component<StepProps> {
         !icon && status === 'error' && ((icons && !icons.error) || !icons),
     });
     const iconDot = <span className={`${prefixCls}-icon-dot`} />;
-    const iconPercentage = <span className={`${prefixCls}-icon-percentage`} />;
     // `progressDot` enjoy the highest priority
     if (progressDot) {
       if (typeof progressDot === 'function') {
@@ -95,10 +94,10 @@ export default class Step extends React.Component<StepProps> {
       } else {
         iconNode = <span className={`${prefixCls}-icon`}>{iconDot}</span>;
       }
-    } else if (typeof progress === 'function') {
+    } else if (typeof progress === 'function' && status === 'process') {
       iconNode = (
         <span className={`${prefixCls}-icon`}>
-          {progress(iconPercentage, {
+          {progress(<span className={`${prefixCls}-icon`}>{stepNumber}</span>, {
             index: stepNumber - 1,
             status,
             title,
