@@ -18,7 +18,15 @@ export interface StepsProps {
   size?: 'default' | 'small';
   current?: number;
   progressDot?: boolean;
-  progress?: Function;
+  progress?: (
+    iconNode,
+    info: {
+      index: number;
+      status: Status;
+      title: React.ReactNode;
+      description: React.ReactNode;
+    },
+  ) => React.ReactNode;
   initial?: number;
   icons?: Icons;
   onChange?: (current: number) => void;

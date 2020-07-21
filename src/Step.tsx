@@ -36,7 +36,7 @@ export interface StepProps {
     },
   ) => React.ReactNode;
   progress?: (
-    iconPercentage,
+    iconNode,
     info: {
       index: number;
       status: Status;
