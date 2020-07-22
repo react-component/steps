@@ -62,13 +62,8 @@ describe('Steps', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('renders progress correctly', () => {
-      const wrapper = render(React.cloneElement(steps, { progress: true }));
-      expect(wrapper).toMatchSnapshot();
-    });
-
-    it('renders progress function correctly', () => {
-      const wrapper = render(React.cloneElement(steps, { progress: () => <span>a</span> }));
+    it('renders stepIcon function correctly', () => {
+      const wrapper = render(React.cloneElement(steps, { stepIcon: () => <span>a</span> }));
       expect(wrapper).toMatchSnapshot();
     });
 

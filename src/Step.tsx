@@ -35,8 +35,8 @@ export interface StepProps {
       description: React.ReactNode;
     },
   ) => React.ReactNode;
-  progress?: (
-    iconNode,
+  stepIcon?: (
+    icon,
     info: {
       index: number;
       status: Status;
@@ -60,7 +60,7 @@ export default class Step extends React.Component<StepProps> {
     const {
       prefixCls,
       progressDot,
-      progress,
+      stepIcon,
       stepNumber,
       status,
       title,
@@ -94,10 +94,10 @@ export default class Step extends React.Component<StepProps> {
       } else {
         iconNode = <span className={`${prefixCls}-icon`}>{iconDot}</span>;
       }
-    } else if (typeof progress === 'function' && status === 'process') {
+    } else if (typeof stepIcon === 'function' && status === 'process') {
       iconNode = (
         <span className={`${prefixCls}-icon`}>
-          {progress(<span className={`${prefixCls}-icon`}>{stepNumber}</span>, {
+          {stepIcon(<span className={`${prefixCls}-icon`}>{stepNumber}</span>, {
             index: stepNumber - 1,
             status,
             title,
@@ -136,7 +136,7 @@ export default class Step extends React.Component<StepProps> {
       title,
       subTitle,
       progressDot,
-      progress,
+      stepIcon,
       tailContent,
       icons,
       stepIndex,

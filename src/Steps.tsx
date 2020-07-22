@@ -18,8 +18,8 @@ export interface StepsProps {
   size?: 'default' | 'small';
   current?: number;
   progressDot?: boolean;
-  progress?: (
-    iconNode,
+  stepIcon?: (
+    icon,
     info: {
       index: number;
       status: Status;
@@ -69,26 +69,25 @@ export default class Steps extends React.Component<StepsProps> {
       size,
       current,
       progressDot,
-      progress,
+      stepIcon,
       initial,
       icons,
       onChange,
       ...restProps
     } = this.props;
     const isNav = type === 'navigation';
-    const filteredChildren = React.Children.toArray(children);
     const adjustedLabelPlacement = progressDot ? 'vertical' : labelPlacement;
     const classString = classNames(prefixCls, `${prefixCls}-${direction}`, className, {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-label-${adjustedLabelPlacement}`]: direction === 'horizontal',
       [`${prefixCls}-dot`]: !!progressDot,
-      [`${prefixCls}-percentage`]: !!progress,
+      [`${prefixCls}-percentage`]: !!stepIcon,
       [`${prefixCls}-navigation`]: isNav,
     });
 
     return (
       <div className={classString} style={style} {...restProps}>
-        {toArray(filteredChildren).map((child, index) => {
+        {toArray(children).map((child, index) => {
           const stepNumber = initial + index;
           const childProps = {
             stepNumber: `${stepNumber + 1}`,
@@ -98,7 +97,7 @@ export default class Steps extends React.Component<StepsProps> {
             iconPrefix,
             wrapperStyle: style,
             progressDot,
-            progress,
+            stepIcon,
             icons,
             onStepClick: onChange && this.onStepClick,
             ...child.props,

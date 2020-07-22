@@ -4,7 +4,7 @@ import React from 'react';
 import Steps, { Step } from '../src';
 
 export default () => (
-  <Steps progress={() => <span>a</span>} current={1}>
+  <Steps stepIcon={() => <span>a</span>} current={1}>
     <Step title="已完成" />
     <Step title="进行中" />
     <Step title="待运行" />
