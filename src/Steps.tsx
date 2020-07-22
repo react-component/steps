@@ -81,7 +81,6 @@ export default class Steps extends React.Component<StepsProps> {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-label-${adjustedLabelPlacement}`]: direction === 'horizontal',
       [`${prefixCls}-dot`]: !!progressDot,
-      [`${prefixCls}-percentage`]: !!stepIcon,
       [`${prefixCls}-navigation`]: isNav,
     });
 
