@@ -1,9 +1,30 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
 import React, { cloneElement } from 'react';
 import toArray from 'rc-util/lib/Children/toArray';
+import devWarning from 'rc-util/lib/warning';
 import classNames from 'classnames';
 import { Status, Icons } from './interface';
 import Step from './Step';
+
+export type StepIconRender = (
+  icon,
+  info: {
+    index: number;
+    status: Status;
+    title: React.ReactNode;
+    description: React.ReactNode;
+  },
+) => React.ReactNode;
+
+export type ProgressDotRender = (
+  iconDot,
+  info: {
+    index: number;
+    status: Status;
+    title: React.ReactNode;
+    description: React.ReactNode;
+  },
+) => React.ReactNode;
 
 export interface StepsProps {
   prefixCls?: string;
@@ -17,16 +38,8 @@ export interface StepsProps {
   status?: Status;
   size?: 'default' | 'small';
   current?: number;
-  progressDot?: boolean;
-  stepIcon?: (
-    icon,
-    info: {
-      index: number;
-      status: Status;
-      title: React.ReactNode;
-      description: React.ReactNode;
-    },
-  ) => React.ReactNode;
+  progressDot?: ProgressDotRender | boolean;
+  stepIcon?: StepIconRender;
   initial?: number;
   icons?: Icons;
   onChange?: (current: number) => void;
@@ -83,6 +96,11 @@ export default class Steps extends React.Component<StepsProps> {
       [`${prefixCls}-dot`]: !!progressDot,
       [`${prefixCls}-navigation`]: isNav,
     });
+
+    devWarning(
+      !!progressDot,
+      '`progressDot` is deprecated. Please use `stepRender` to custom icon.',
+    );
 
     return (
       <div className={classString} style={style} {...restProps}>

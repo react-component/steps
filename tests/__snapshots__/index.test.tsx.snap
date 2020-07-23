@@ -1314,12 +1314,8 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
       <div
         class="rc-steps-item-icon"
       >
-        <span
-          class="rc-steps-icon"
-        >
-          <span>
-            a
-          </span>
+        <span>
+          a
         </span>
       </div>
       <div
@@ -1345,10 +1341,8 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
       <div
         class="rc-steps-item-icon"
       >
-        <span
-          class="rc-steps-icon"
-        >
-          2
+        <span>
+          a
         </span>
       </div>
       <div
@@ -1374,10 +1368,8 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
       <div
         class="rc-steps-item-icon"
       >
-        <span
-          class="rc-steps-icon"
-        >
-          3
+        <span>
+          a
         </span>
       </div>
       <div
@@ -1403,10 +1395,8 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
       <div
         class="rc-steps-item-icon"
       >
-        <span
-          class="rc-steps-icon"
-        >
-          4
+        <span>
+          a
         </span>
       </div>
       <div
