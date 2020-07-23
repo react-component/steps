@@ -1300,7 +1300,7 @@ exports[`Steps render renders step with type navigation 1`] = `
 
 exports[`Steps render renders stepIcon function correctly 1`] = `
 <div
-  class="rc-steps rc-steps-horizontal rc-steps-label-horizontal rc-steps-percentage"
+  class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
 >
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
