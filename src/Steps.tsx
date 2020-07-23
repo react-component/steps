@@ -98,7 +98,7 @@ export default class Steps extends React.Component<StepsProps> {
     });
 
     devWarning(
-      !!progressDot,
+      !progressDot,
       '`progressDot` is deprecated. Please use `stepRender` to custom icon.',
     );
 
