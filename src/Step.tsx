@@ -92,12 +92,15 @@ export default class Step extends React.Component<StepProps> {
     }
 
     if (stepIcon) {
-      iconNode = stepIcon(iconNode, {
-        index: stepNumber - 1,
-        status,
-        title,
-        description,
-      });
+      iconNode = stepIcon(
+        {
+          index: stepNumber - 1,
+          status,
+          title,
+          description,
+        },
+        iconNode,
+      );
     }
 
     return iconNode;

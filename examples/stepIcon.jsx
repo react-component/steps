@@ -3,7 +3,7 @@ import '../assets/iconfont.less';
 import React from 'react';
 import Steps, { Step } from '../src';
 
-function stepIcon(originalNode, { status }) {
+function stepIcon({ status }, originalNode) {
   const isProcessing = status === 'process';
   return isProcessing ? (
     <div style={{ backgroundColor: 'blue' }}>{originalNode}</div>

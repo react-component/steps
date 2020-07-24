@@ -7,13 +7,13 @@ import { Status, Icons } from './interface';
 import Step from './Step';
 
 export type StepIconRender = (
-  icon,
   info: {
     index: number;
     status: Status;
     title: React.ReactNode;
     description: React.ReactNode;
   },
+  icon,
 ) => React.ReactNode;
 
 export type ProgressDotRender = (
