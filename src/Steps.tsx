@@ -6,15 +6,13 @@ import classNames from 'classnames';
 import { Status, Icons } from './interface';
 import Step from './Step';
 
-export type StepIconRender = (
-  info: {
-    index: number;
-    status: Status;
-    title: React.ReactNode;
-    description: React.ReactNode;
-  },
-  icon,
-) => React.ReactNode;
+export type StepIconRender = (info: {
+  index: number;
+  status: Status;
+  title: React.ReactNode;
+  description: React.ReactNode;
+  node: React.ReactNode;
+}) => React.ReactNode;
 
 export type ProgressDotRender = (
   iconDot,
