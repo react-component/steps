@@ -1,9 +1,28 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
 import React, { cloneElement } from 'react';
 import toArray from 'rc-util/lib/Children/toArray';
+import devWarning from 'rc-util/lib/warning';
 import classNames from 'classnames';
 import { Status, Icons } from './interface';
 import Step from './Step';
+
+export type StepIconRender = (info: {
+  index: number;
+  status: Status;
+  title: React.ReactNode;
+  description: React.ReactNode;
+  node: React.ReactNode;
+}) => React.ReactNode;
+
+export type ProgressDotRender = (
+  iconDot,
+  info: {
+    index: number;
+    status: Status;
+    title: React.ReactNode;
+    description: React.ReactNode;
+  },
+) => React.ReactNode;
 
 export interface StepsProps {
   prefixCls?: string;
@@ -17,7 +36,8 @@ export interface StepsProps {
   status?: Status;
   size?: 'default' | 'small';
   current?: number;
-  progressDot?: boolean;
+  progressDot?: ProgressDotRender | boolean;
+  stepIcon?: StepIconRender;
   initial?: number;
   icons?: Icons;
   onChange?: (current: number) => void;
@@ -60,13 +80,13 @@ export default class Steps extends React.Component<StepsProps> {
       size,
       current,
       progressDot,
+      stepIcon,
       initial,
       icons,
       onChange,
       ...restProps
     } = this.props;
     const isNav = type === 'navigation';
-    const filteredChildren = React.Children.toArray(children).filter(c => !!c);
     const adjustedLabelPlacement = progressDot ? 'vertical' : labelPlacement;
     const classString = classNames(prefixCls, `${prefixCls}-${direction}`, className, {
       [`${prefixCls}-${size}`]: size,
@@ -75,12 +95,14 @@ export default class Steps extends React.Component<StepsProps> {
       [`${prefixCls}-navigation`]: isNav,
     });
 
+    devWarning(
+      !progressDot,
+      '`progressDot` is deprecated. Please use `stepRender` to custom icon.',
+    );
+
     return (
       <div className={classString} style={style} {...restProps}>
-        {toArray(filteredChildren).map((child, index) => {
-          if (!child) {
-            return null;
-          }
+        {toArray(children).map((child, index) => {
           const stepNumber = initial + index;
           const childProps = {
             stepNumber: `${stepNumber + 1}`,
@@ -90,6 +112,7 @@ export default class Steps extends React.Component<StepsProps> {
             iconPrefix,
             wrapperStyle: style,
             progressDot,
+            stepIcon,
             icons,
             onStepClick: onChange && this.onStepClick,
             ...child.props,

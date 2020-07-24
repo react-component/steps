@@ -1298,6 +1298,121 @@ exports[`Steps render renders step with type navigation 1`] = `
 </div>
 `;
 
+exports[`Steps render renders stepIcon function correctly 1`] = `
+<div
+  class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
+>
+  <div
+    class="rc-steps-item rc-steps-item-process rc-steps-item-active"
+  >
+    <div
+      class="rc-steps-item-container"
+    >
+      <div
+        class="rc-steps-item-tail"
+      />
+      <div
+        class="rc-steps-item-icon"
+      >
+        <span>
+          a
+        </span>
+      </div>
+      <div
+        class="rc-steps-item-content"
+      >
+        <div
+          class="rc-steps-item-title"
+        >
+          已完成
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait"
+  >
+    <div
+      class="rc-steps-item-container"
+    >
+      <div
+        class="rc-steps-item-tail"
+      />
+      <div
+        class="rc-steps-item-icon"
+      >
+        <span>
+          a
+        </span>
+      </div>
+      <div
+        class="rc-steps-item-content"
+      >
+        <div
+          class="rc-steps-item-title"
+        >
+          进行中
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait"
+  >
+    <div
+      class="rc-steps-item-container"
+    >
+      <div
+        class="rc-steps-item-tail"
+      />
+      <div
+        class="rc-steps-item-icon"
+      >
+        <span>
+          a
+        </span>
+      </div>
+      <div
+        class="rc-steps-item-content"
+      >
+        <div
+          class="rc-steps-item-title"
+        >
+          待运行
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait"
+  >
+    <div
+      class="rc-steps-item-container"
+    >
+      <div
+        class="rc-steps-item-tail"
+      />
+      <div
+        class="rc-steps-item-icon"
+      >
+        <span>
+          a
+        </span>
+      </div>
+      <div
+        class="rc-steps-item-content"
+      >
+        <div
+          class="rc-steps-item-title"
+        >
+          待运行
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Steps render renders vertical correctly 1`] = `
 <div
   class="rc-steps rc-steps-vertical"
@@ -1573,7 +1688,7 @@ exports[`Steps render should render svg finishIcon and errorIcon correctly 1`] =
   class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
 >
   <div
-    class="rc-steps-item rc-steps-item-finish rc-steps-next-error"
+    class="rc-steps-item rc-steps-item-finish rc-steps-next-error rc-steps-item-custom"
   >
     <div
       class="rc-steps-item-container"
@@ -1693,6 +1808,98 @@ exports[`Steps render should render svg finishIcon and errorIcon correctly 1`] =
           class="rc-steps-item-description"
         >
           This is a description
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps should render customIcon correctly 1`] = `
+<div
+  class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
+>
+  <div
+    class="rc-steps-item rc-steps-item-finish rc-steps-item-custom"
+  >
+    <div
+      class="rc-steps-item-container"
+    >
+      <div
+        class="rc-steps-item-tail"
+      />
+      <div
+        class="rc-steps-item-icon"
+      >
+        <span
+          class="rc-steps-icon"
+        >
+          <i
+            class="rcicon rcicon-cloud"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-steps-item-content"
+      >
+        <div
+          class="rc-steps-item-title"
+        >
+          步骤1
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-process rc-steps-item-custom rc-steps-item-active"
+  >
+    <div
+      class="rc-steps-item-container"
+    >
+      <div
+        class="rc-steps-item-tail"
+      />
+      <div
+        class="rc-steps-item-icon"
+      >
+        <span
+          class="rc-steps-icon rcicon rcicon-apple"
+        />
+      </div>
+      <div
+        class="rc-steps-item-content"
+      >
+        <div
+          class="rc-steps-item-title"
+        >
+          步骤2
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait rc-steps-item-custom"
+  >
+    <div
+      class="rc-steps-item-container"
+    >
+      <div
+        class="rc-steps-item-tail"
+      />
+      <div
+        class="rc-steps-item-icon"
+      >
+        <span
+          class="rc-steps-icon rcicon rcicon-github"
+        />
+      </div>
+      <div
+        class="rc-steps-item-content"
+      >
+        <div
+          class="rc-steps-item-title"
+        >
+          步骤3
         </div>
       </div>
     </div>

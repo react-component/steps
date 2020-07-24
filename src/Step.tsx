@@ -2,6 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Status, Icons } from './interface';
+import { StepIconRender, ProgressDotRender } from './Steps';
 
 function isString(str: any): str is string {
   return typeof str === 'string';
@@ -26,21 +27,13 @@ export interface StepProps {
   icons?: Icons;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   onStepClick?: (index: number) => void;
-  progressDot?: (
-    iconDot,
-    info: {
-      index: number;
-      status: Status;
-      title: React.ReactNode;
-      description: React.ReactNode;
-    },
-  ) => React.ReactNode;
+  progressDot?: ProgressDotRender | boolean;
+  stepIcon?: StepIconRender;
 }
 
 export default class Step extends React.Component<StepProps> {
   onClick: React.MouseEventHandler<HTMLDivElement> = (...args) => {
     const { onClick, onStepClick, stepIndex } = this.props;
-
     if (onClick) {
       onClick(...args);
     }
@@ -52,6 +45,7 @@ export default class Step extends React.Component<StepProps> {
     const {
       prefixCls,
       progressDot,
+      stepIcon,
       stepNumber,
       status,
       title,
@@ -97,6 +91,16 @@ export default class Step extends React.Component<StepProps> {
       iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
     }
 
+    if (stepIcon) {
+      iconNode = stepIcon({
+        index: stepNumber - 1,
+        status,
+        title,
+        description,
+        node: iconNode,
+      });
+    }
+
     return iconNode;
   }
 
@@ -115,7 +119,7 @@ export default class Step extends React.Component<StepProps> {
       description,
       title,
       subTitle,
-      progressDot,
+      stepIcon,
       tailContent,
       icons,
       stepIndex,

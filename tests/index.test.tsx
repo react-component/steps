@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
+import { resetWarned } from 'rc-util/lib/warning';
 import Steps, { Step } from '../src';
 
 describe('Steps', () => {
@@ -59,6 +60,21 @@ describe('Steps', () => {
 
     it('renders progressDot function correctly', () => {
       const wrapper = render(React.cloneElement(steps, { progressDot: () => <span>a</span> }));
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('devWarning when progressDot is set', () => {
+      const spy = jest.spyOn(console, 'error').mockImplementation();
+      resetWarned();
+      render(React.cloneElement(steps, { progressDot: () => <span>a</span> }));
+      expect(spy).toHaveBeenCalledWith(
+        'Warning: `progressDot` is deprecated. Please use `stepRender` to custom icon.',
+      );
+      spy.mockRestore();
+    });
+
+    it('renders stepIcon function correctly', () => {
+      const wrapper = render(React.cloneElement(steps, { stepIcon: () => <span>a</span> }));
       expect(wrapper).toMatchSnapshot();
     });
 
@@ -190,13 +206,25 @@ describe('Steps', () => {
       };
       const wrapper = render(
         <Steps current={1} status="error" icons={icons}>
-          <Step title="Finished" description="This is a description" />
+          <Step title="Finished" description="This is a description" icon="apple" />
           <Step title="In Process" description="This is a description" />
           <Step title="Waiting" description="This is a description" />
         </Steps>,
       );
       expect(wrapper).toMatchSnapshot();
     });
+  });
+
+  it('should render customIcon correctly', () => {
+    const Icon = ({ type }) => <i className={`rcicon rcicon-${type}`} />;
+    const wrapper = render(
+      <Steps current={1}>
+        <Step title="步骤1" icon={<Icon type="cloud" />} />
+        <Step title="步骤2" icon="apple" />
+        <Step title="步骤3" icon="github" />
+      </Steps>,
+    );
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('onChange', () => {
@@ -209,8 +237,29 @@ describe('Steps', () => {
       </Steps>,
     );
 
-    wrapper.find('.rc-steps-item-container').at(1).simulate('click');
+    wrapper
+      .find('.rc-steps-item-container')
+      .at(1)
+      .simulate('click');
     expect(onChange).toBeCalledWith(1);
+  });
+
+  it('onClick', () => {
+    const onClick = jest.fn();
+    const onChange = jest.fn();
+    const wrapper = mount(
+      <Steps onChange={onChange}>
+        <Step onClick={onClick} />
+        <Step />
+        <Step />
+      </Steps>,
+    );
+
+    wrapper
+      .find('.rc-steps-item-container')
+      .at(0)
+      .simulate('click');
+    expect(onClick).toHaveBeenCalled();
   });
 
   it('disabled', () => {
@@ -223,7 +272,10 @@ describe('Steps', () => {
       </Steps>,
     );
 
-    wrapper.find('.rc-steps-item-container').at(2).simulate('click');
+    wrapper
+      .find('.rc-steps-item-container')
+      .at(2)
+      .simulate('click');
     expect(onChange).not.toBeCalled();
   });
 });
