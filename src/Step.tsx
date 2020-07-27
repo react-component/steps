@@ -125,6 +125,7 @@ export default class Step extends React.Component<StepProps> {
       stepIndex,
       onStepClick,
       onClick,
+      progressDot,
       ...restProps
     } = this.props;
 
