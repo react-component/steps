@@ -119,13 +119,13 @@ export default class Step extends React.Component<StepProps> {
       description,
       title,
       subTitle,
+      progressDot,
       stepIcon,
       tailContent,
       icons,
       stepIndex,
       onStepClick,
       onClick,
-      progressDot,
       ...restProps
     } = this.props;
 
