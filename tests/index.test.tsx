@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
-import { resetWarned } from 'rc-util/lib/warning';
 import Steps, { Step } from '../src';
 
 describe('Steps', () => {
@@ -61,16 +60,6 @@ describe('Steps', () => {
     it('renders progressDot function correctly', () => {
       const wrapper = render(React.cloneElement(steps, { progressDot: () => <span>a</span> }));
       expect(wrapper).toMatchSnapshot();
-    });
-
-    it('devWarning when progressDot is set', () => {
-      const spy = jest.spyOn(console, 'error').mockImplementation();
-      resetWarned();
-      render(React.cloneElement(steps, { progressDot: () => <span>a</span> }));
-      expect(spy).toHaveBeenCalledWith(
-        'Warning: `progressDot` is deprecated. Please use `stepRender` to custom icon.',
-      );
-      spy.mockRestore();
     });
 
     it('renders stepIcon function correctly', () => {
