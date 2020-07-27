@@ -1,6 +1,6 @@
 {
   "name": "rc-steps",
-  "version": "4.1.1",
+  "version": "4.1.0",
   "description": "steps ui component for react",
   "engines": {
     "node": ">=8.x"
