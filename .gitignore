@@ -28,3 +28,4 @@ lib
 es
 coverage
 package-lock.json
+.doc
