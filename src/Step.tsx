@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import { Status, Icons } from './interface';
 import { StepIconRender, ProgressDotRender } from './Steps';
