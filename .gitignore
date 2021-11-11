@@ -29,3 +29,4 @@ es
 coverage
 package-lock.json
 .doc
+.umi

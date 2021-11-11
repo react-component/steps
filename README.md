@@ -33,7 +33,7 @@ React steps component.
 npm install rc-steps
 ```
 
-```jsx
+```jsx | pure
 <Steps current={1}>
   <Steps.Step title="first" />
   <Steps.Step title="second" />
