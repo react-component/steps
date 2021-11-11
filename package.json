@@ -34,12 +34,9 @@
     "url": "http://github.com/react-component/steps/issues"
   },
   "license": "MIT",
-  "config": {
-    "port": 8002
-  },
   "scripts": {
-    "start": "cross-env NODE_ENV=development father doc dev --storybook",
-    "build": "father doc build --storybook",
+    "start": "dumi dev",
+    "build": "dumi build",
     "compile": "father build && lessc assets/index.less assets/index.css",
     "gh-pages": "npm run build && father doc deploy",
     "prepublishOnly": "npm run compile && np --yolo --no-publish",
@@ -61,6 +58,7 @@
     "@types/react-dom": "^16.9.0",
     "@umijs/fabric": "^2.0.9",
     "cross-env": "^7.0.0",
+    "dumi": "^1.1.31",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.1",
     "enzyme-to-json": "^3.1.2",

@@ -1,8 +1,8 @@
-import '../assets/index.less';
-import '../assets/iconfont.less';
+import '../../assets/index.less';
+import '../../assets/iconfont.less';
 import './nextStep.css';
 import React from 'react';
-import Steps, { Step } from '../src';
+import Steps, { Step } from 'rc-steps';
 
 const container = document.getElementById('__react-content');
 

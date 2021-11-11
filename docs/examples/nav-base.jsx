@@ -1,7 +1,7 @@
-import '../assets/index.less';
-import '../assets/iconfont.less';
+import '../../assets/index.less';
+import '../../assets/iconfont.less';
 import React from 'react';
-import Steps from '../src';
+import Steps from 'rc-steps';
 
 const { Step } = Steps;
 
