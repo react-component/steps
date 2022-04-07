@@ -3844,16 +3844,16 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
-  version "17.0.34"
-  resolved "https://registry.npmmirror.com/@types/react/download/@types/react-17.0.34.tgz#797b66d359b692e3f19991b6b07e4b0c706c0102"
-  integrity sha1-eXtm01m2kuPxmZG2sH5LDHBsAQI=
+"@types/react@*", "@types/react@^18.0.0":
+  version "18.0.0"
+  resolved "https://registry.npmmirror.com/@types/react/-/react-18.0.0.tgz#4be8aa3a2d04afc3ac2cc1ca43d39b0bd412890c"
+  integrity sha512-7+K7zEQYu7NzOwQGLR91KwWXXDzmTFODRVizJyIALf6RfLv2GDpqpknX64pvRVILXCpXi7O/pua8NGk44dLvJw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^16", "@types/react@^16.9.2", "@types/react@^16.9.43":
+"@types/react@^16", "@types/react@^16.9.43":
   version "16.14.20"
   resolved "https://registry.npmmirror.com/@types/react/download/@types/react-16.14.20.tgz#ff6e932ad71d92c27590e4a8667c7a53a7d0baad"
   integrity sha1-/26TKtcdksJ1kOSoZnx6U6fQuq0=
