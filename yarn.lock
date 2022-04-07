@@ -3763,12 +3763,19 @@
     "@types/react" "*"
     "@types/reactcss" "*"
 
-"@types/react-dom@^16.9.0", "@types/react-dom@^16.9.8":
+"@types/react-dom@^16.9.8":
   version "16.9.14"
   resolved "https://registry.npmmirror.com/@types/react-dom/download/@types/react-dom-16.9.14.tgz#674b8f116645fe5266b40b525777fc6bb8eb3bcd"
   integrity sha1-Z0uPEWZF/lJmtAtSV3f8a7jrO80=
   dependencies:
     "@types/react" "^16"
+
+"@types/react-dom@^18.0.0":
+  version "18.0.0"
+  resolved "https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.0.0.tgz#b13f8d098e4b0c45df4f1ed123833143b0c71141"
+  integrity sha512-49897Y0UiCGmxZqpC8Blrf6meL8QUla6eb+BBhn69dTXlmuOlzkfr7HHY/O8J25e1lTUMs+YYxSlVDAaGHCOLg==
+  dependencies:
+    "@types/react" "*"
 
 "@types/react-redux@^7.1.20":
   version "7.1.20"
