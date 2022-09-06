@@ -39,7 +39,6 @@ class Demo extends React.Component {
           <Step title="Step 1" status="finish" subTitle="剩余 00:00:05 超长隐藏" />
           <Step title="Step 2" status="process" />
           <Step title="Step 3" status="wait" />
-          <Step title="Step 3" status="wait" />
         </Steps>
       </div>
     );

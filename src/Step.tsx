@@ -25,14 +25,14 @@ export interface StepProps {
   tailContent?: React.ReactNode;
   icon?: React.ReactNode;
   icons?: Icons;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onStepClick?: (index: number) => void;
   progressDot?: ProgressDotRender | boolean;
   stepIcon?: StepIconRender;
 }
 
 export default class Step extends React.Component<StepProps> {
-  onClick: React.MouseEventHandler<HTMLDivElement> = (...args) => {
+  onClick: React.MouseEventHandler<HTMLButtonElement> = (...args) => {
     const { onClick, onStepClick, stepIndex } = this.props;
     if (onClick) {
       onClick(...args);
@@ -136,37 +136,42 @@ export default class Step extends React.Component<StepProps> {
     });
     const stepItemStyle = { ...style };
 
-    const accessibilityProps: {
-      role?: string;
-      tabIndex?: number;
-      onClick?: React.MouseEventHandler<HTMLDivElement>;
-    } = {};
-    if (onStepClick && !disabled) {
-      accessibilityProps.role = 'button';
-      accessibilityProps.tabIndex = 0;
-      accessibilityProps.onClick = this.onClick;
-    }
+    const content = (
+      <>
+        <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
+        <div className={`${prefixCls}-item-icon`}>{this.renderIconNode()}</div>
+        <div className={`${prefixCls}-item-content`}>
+          <div className={`${prefixCls}-item-title`}>
+            {title}
+            {subTitle && (
+              <div
+                title={typeof subTitle === 'string' ? subTitle : undefined}
+                className={`${prefixCls}-item-subtitle`}
+              >
+                {subTitle}
+              </div>
+            )}
+          </div>
+          {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
+        </div>
+      </>
+    );
+
+    const wrapper = this.onClick ? (
+      <button
+        onClick={this.onClick}
+        className={`${prefixCls}-item-container ${prefixCls}-item-container-btn`}
+        disabled={disabled}
+      >
+        {content}
+      </button>
+    ) : (
+      <div className={`${prefixCls}-item-container`}>{content}</div>
+    );
 
     return (
       <div {...restProps} className={classString} style={stepItemStyle}>
-        <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
-          <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
-          <div className={`${prefixCls}-item-icon`}>{this.renderIconNode()}</div>
-          <div className={`${prefixCls}-item-content`}>
-            <div className={`${prefixCls}-item-title`}>
-              {title}
-              {subTitle && (
-                <div
-                  title={typeof subTitle === 'string' ? subTitle : undefined}
-                  className={`${prefixCls}-item-subtitle`}
-                >
-                  {subTitle}
-                </div>
-              )}
-            </div>
-            {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
-          </div>
-        </div>
+        {wrapper}
       </div>
     );
   }
