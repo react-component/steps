@@ -44,6 +44,7 @@
     "lint": "eslint src/ --ext .ts,.tsx,.jsx,.js,.md",
     "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "test": "father test",
+    "test:update": "father test -u",
     "coverage": "father test --coverage"
   },
   "peerDependencies": {

@@ -7,8 +7,8 @@ exports[`Steps render renders correctly 1`] = `
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -31,13 +31,13 @@ exports[`Steps render renders correctly 1`] = `
           已完成
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -60,13 +60,13 @@ exports[`Steps render renders correctly 1`] = `
           进行中
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -89,13 +89,13 @@ exports[`Steps render renders correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -118,7 +118,7 @@ exports[`Steps render renders correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -130,8 +130,8 @@ exports[`Steps render renders current correctly 1`] = `
   <div
     class="rc-steps-item rc-steps-item-finish"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -152,13 +152,13 @@ exports[`Steps render renders current correctly 1`] = `
           已完成
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-finish"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -179,13 +179,13 @@ exports[`Steps render renders current correctly 1`] = `
           进行中
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -208,13 +208,13 @@ exports[`Steps render renders current correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -237,7 +237,7 @@ exports[`Steps render renders current correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -249,8 +249,8 @@ exports[`Steps render renders labelPlacement correctly 1`] = `
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -273,13 +273,13 @@ exports[`Steps render renders labelPlacement correctly 1`] = `
           已完成
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -302,13 +302,13 @@ exports[`Steps render renders labelPlacement correctly 1`] = `
           进行中
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -331,13 +331,13 @@ exports[`Steps render renders labelPlacement correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -360,7 +360,7 @@ exports[`Steps render renders labelPlacement correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -372,8 +372,8 @@ exports[`Steps render renders progressDot correctly 1`] = `
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -398,13 +398,13 @@ exports[`Steps render renders progressDot correctly 1`] = `
           已完成
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -429,13 +429,13 @@ exports[`Steps render renders progressDot correctly 1`] = `
           进行中
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -460,13 +460,13 @@ exports[`Steps render renders progressDot correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -491,7 +491,7 @@ exports[`Steps render renders progressDot correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -503,8 +503,8 @@ exports[`Steps render renders progressDot function correctly 1`] = `
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -529,13 +529,13 @@ exports[`Steps render renders progressDot function correctly 1`] = `
           已完成
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -560,13 +560,13 @@ exports[`Steps render renders progressDot function correctly 1`] = `
           进行中
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -591,13 +591,13 @@ exports[`Steps render renders progressDot function correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -622,7 +622,7 @@ exports[`Steps render renders progressDot function correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -634,8 +634,8 @@ exports[`Steps render renders status correctly 1`] = `
   <div
     class="rc-steps-item rc-steps-item-finish"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -656,13 +656,13 @@ exports[`Steps render renders status correctly 1`] = `
           已完成
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-finish rc-steps-next-error"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -683,13 +683,13 @@ exports[`Steps render renders status correctly 1`] = `
           进行中
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-error rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -710,13 +710,13 @@ exports[`Steps render renders status correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -739,7 +739,7 @@ exports[`Steps render renders status correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -751,8 +751,8 @@ exports[`Steps render renders step with description 1`] = `
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -780,13 +780,13 @@ exports[`Steps render renders step with description 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -814,13 +814,13 @@ exports[`Steps render renders step with description 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -848,13 +848,13 @@ exports[`Steps render renders step with description 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -882,7 +882,7 @@ exports[`Steps render renders step with description 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -894,8 +894,8 @@ exports[`Steps render renders step with description and status 1`] = `
   <div
     class="rc-steps-item rc-steps-item-wait rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -923,13 +923,13 @@ exports[`Steps render renders step with description and status 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -957,13 +957,13 @@ exports[`Steps render renders step with description and status 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-process"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -991,13 +991,13 @@ exports[`Steps render renders step with description and status 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-finish"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1023,7 +1023,7 @@ exports[`Steps render renders step with description and status 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -1035,8 +1035,8 @@ exports[`Steps render renders step with tailContent 1`] = `
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1066,13 +1066,13 @@ exports[`Steps render renders step with tailContent 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1104,13 +1104,13 @@ exports[`Steps render renders step with tailContent 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1140,13 +1140,13 @@ exports[`Steps render renders step with tailContent 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1176,7 +1176,7 @@ exports[`Steps render renders step with tailContent 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -1188,10 +1188,8 @@ exports[`Steps render renders step with type navigation 1`] = `
   <div
     class="rc-steps-item rc-steps-item-finish"
   >
-    <div
-      class="rc-steps-item-container"
-      role="button"
-      tabindex="0"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1223,15 +1221,13 @@ exports[`Steps render renders step with type navigation 1`] = `
           This is a description.
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
-      role="button"
-      tabindex="0"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1259,13 +1255,14 @@ exports[`Steps render renders step with type navigation 1`] = `
           This is a description.
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait rc-steps-item-disabled"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
+      disabled=""
     >
       <div
         class="rc-steps-item-tail"
@@ -1293,7 +1290,7 @@ exports[`Steps render renders step with type navigation 1`] = `
           This is a description.
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -1305,8 +1302,8 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1327,13 +1324,13 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
           已完成
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1354,13 +1351,13 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
           进行中
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1381,13 +1378,13 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1408,7 +1405,7 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -1420,8 +1417,8 @@ exports[`Steps render renders vertical correctly 1`] = `
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1444,13 +1441,13 @@ exports[`Steps render renders vertical correctly 1`] = `
           已完成
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1473,13 +1470,13 @@ exports[`Steps render renders vertical correctly 1`] = `
           进行中
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1502,13 +1499,13 @@ exports[`Steps render renders vertical correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1531,7 +1528,7 @@ exports[`Steps render renders vertical correctly 1`] = `
           待运行
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -1543,8 +1540,8 @@ exports[`Steps render renders with fasly children 1`] = `
   <div
     class="rc-steps-item rc-steps-item-wait rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1572,13 +1569,13 @@ exports[`Steps render renders with fasly children 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1612,13 +1609,13 @@ exports[`Steps render renders with fasly children 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-process"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1646,13 +1643,14 @@ exports[`Steps render renders with fasly children 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-finish rc-steps-item-disabled"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
+      disabled=""
     >
       <div
         class="rc-steps-item-tail"
@@ -1678,7 +1676,7 @@ exports[`Steps render renders with fasly children 1`] = `
           xx
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -1690,8 +1688,8 @@ exports[`Steps render should render svg finishIcon and errorIcon correctly 1`] =
   <div
     class="rc-steps-item rc-steps-item-finish rc-steps-next-error rc-steps-item-custom"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1729,13 +1727,13 @@ exports[`Steps render should render svg finishIcon and errorIcon correctly 1`] =
           This is a description
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-error rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1776,13 +1774,13 @@ exports[`Steps render should render svg finishIcon and errorIcon correctly 1`] =
           This is a description
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1810,7 +1808,7 @@ exports[`Steps render should render svg finishIcon and errorIcon correctly 1`] =
           This is a description
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -1822,8 +1820,8 @@ exports[`Steps should render customIcon correctly 1`] = `
   <div
     class="rc-steps-item rc-steps-item-finish rc-steps-item-custom"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1848,13 +1846,13 @@ exports[`Steps should render customIcon correctly 1`] = `
           步骤1
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-custom rc-steps-item-active"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1875,13 +1873,13 @@ exports[`Steps should render customIcon correctly 1`] = `
           步骤2
         </div>
       </div>
-    </div>
+    </button>
   </div>
   <div
     class="rc-steps-item rc-steps-item-wait rc-steps-item-custom"
   >
-    <div
-      class="rc-steps-item-container"
+    <button
+      class="rc-steps-item-container rc-steps-item-container-btn"
     >
       <div
         class="rc-steps-item-tail"
@@ -1902,7 +1900,7 @@ exports[`Steps should render customIcon correctly 1`] = `
           步骤3
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
