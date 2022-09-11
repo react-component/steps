@@ -2,9 +2,7 @@ import '../../assets/index.less';
 import '../../assets/iconfont.less';
 import './nextStep.css';
 import React from 'react';
-import Steps, { Step } from 'rc-steps';
-
-const container = document.getElementById('__react-content');
+import Steps from 'rc-steps';
 
 function generateRandomSteps() {
   const n = Math.floor(Math.random() * 3) + 3;
@@ -23,16 +21,6 @@ class MyForm extends React.Component {
     currentStep: Math.floor(Math.random() * steps.length),
   };
 
-  /*
-  componentDidMount() {
-    // You can dynamically set tail's left position based on main's width for each step.
-    this.stepsRefs.forEach(s => {
-      if (s.refs.tail) {
-        s.refs.tail.style.left = `${s.refs.main.offsetWidth / 2}px`;
-      }
-    });
-  }
-  */
   nextStep = () => {
     const { currentStep } = this.state;
     let s = currentStep + 1;
@@ -52,17 +40,16 @@ class MyForm extends React.Component {
         <div>这个demo随机生成3~6个步骤，初始随机进行到其中一个步骤</div>
         <div>当前正在执行第{cs + 1}步</div>
         <div className="my-step-container">
-          <Steps current={cs}>
-            {steps.map((s, i) => (
-              <Step
-                ref={c => {
-                  this.stepsRefs[i] = c;
-                }}
-                key={i}
-                title={s.title}
-              />
-            ))}
-          </Steps>
+          <Steps
+            current={cs}
+            items={steps.map((s, i) => ({
+              ref: (c) => {
+                this.stepsRefs[i] = c;
+              },
+              key: i,
+              title: s.title,
+            }))}
+          />
         </div>
 
         <div>

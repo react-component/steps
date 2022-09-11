@@ -1,8 +1,8 @@
 /* eslint react/prop-types: 0 */
 import * as React from 'react';
 import classNames from 'classnames';
-import { Status, Icons } from './interface';
-import { StepIconRender, ProgressDotRender } from './Steps';
+import type { Status, Icons } from './interface';
+import type { StepIconRender, ProgressDotRender } from './Steps';
 
 function isString(str: any): str is string {
   return typeof str === 'string';

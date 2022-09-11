@@ -1,7 +1,7 @@
 import '../../assets/index.less';
 import '../../assets/iconfont.less';
 import React from 'react';
-import Steps, { Step } from 'rc-steps';
+import Steps from 'rc-steps';
 
 const description =
   '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶';
@@ -11,40 +11,96 @@ const ControlSteps = () => {
   return (
     <Steps
       current={current}
-      onChange={val => {
+      onChange={(val) => {
         // eslint-disable-next-line no-console
         console.log('Change:', val);
         setCurrent(val);
       }}
-    >
-      <Step title="已完成" />
-      <Step title="进行中" />
-      <Step title="待运行" description="Hello World!" />
-      <Step title="待运行" />
-    </Steps>
+      items={[
+        {
+          title: '已完成',
+        },
+        {
+          title: '进行中',
+        },
+        {
+          title: '待运行',
+          description: 'Hello World!',
+        },
+        {
+          title: '待运行',
+        },
+      ]}
+    />
   );
 };
 
 export default () => (
   <div>
-    <Steps current={1}>
-      <Step title="已完成" />
-      <Step title="进行中" />
-      <Step title="待运行" />
-      <Step title="待运行" />
-    </Steps>
-    <Steps current={1} style={{ marginTop: 40 }}>
-      <Step title="已完成" description={description} />
-      <Step title="进行中" subTitle="剩余 00:00:07" description={description} />
-      <Step title="待运行" description={description} />
-      <Step title="待运行" description={description} />
-    </Steps>
-    <Steps current={1} style={{ marginTop: 40 }} status="error">
-      <Step title="已完成" description={description} />
-      <Step title="进行中" description={description} />
-      <Step title="待运行" description={description} />
-      <Step title="待运行" description={description} />
-    </Steps>
+    <Steps
+      current={1}
+      items={[
+        {
+          title: '已完成',
+        },
+        {
+          title: '进行中',
+        },
+        {
+          title: '待运行',
+        },
+        {
+          title: '待运行',
+        },
+      ]}
+    />
+    <Steps
+      current={1}
+      style={{ marginTop: 40 }}
+      items={[
+        {
+          title: '已完成',
+          description,
+        },
+        {
+          title: '进行中',
+          subTitle: '剩余 00:00:07',
+          description,
+        },
+        {
+          title: '待运行',
+          description,
+        },
+        {
+          title: '待运行',
+          description,
+        },
+      ]}
+    />
+    <Steps
+      current={1}
+      style={{ marginTop: 40 }}
+      status="error"
+      items={[
+        {
+          title: '已完成',
+          description,
+        },
+        {
+          title: '进行中',
+          subTitle: '剩余 00:00:07',
+          description,
+        },
+        {
+          title: '待运行',
+          description,
+        },
+        {
+          title: '待运行',
+          description,
+        },
+      ]}
+    />
     <ControlSteps />
   </div>
 );
