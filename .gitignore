@@ -31,3 +31,4 @@ package-lock.json
 yarn.lock
 .doc
 .umi
+.npmrc
