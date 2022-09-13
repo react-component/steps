@@ -1,134 +1,229 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
-import Steps, { Step } from '../src';
+import Steps from '../src';
 
 describe('Steps', () => {
   describe('render', () => {
-    const steps = (
-      <Steps>
-        <Step title="已完成" />
-        <Step title="进行中" />
-        <Step title="待运行" />
-        <Step title="待运行" />
-      </Steps>
+    let description = 'xx';
+    const setSteps = (props) => (
+      <Steps
+        items={[
+          {
+            title: '已完成',
+          },
+          {
+            title: '进行中',
+          },
+          {
+            title: '待运行',
+          },
+          {
+            title: '待运行',
+          },
+        ]}
+        {...props}
+      />
     );
 
     it('renders correctly', () => {
-      const wrapper = render(steps);
+      const wrapper = render(setSteps({}));
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('render support Fragment', () => {
-      const wrapper = mount(
-        <Steps>
-          <Step title="已完成" />
-          <Step title="进行中" />
-          <>
-            <Step title="待运行" />
-            <Step title="待运行" />
-          </>
-        </Steps>,
-      );
-      expect(wrapper.find('div.rc-steps-item')).toHaveLength(4);
-    });
+    // it('render support Fragment', () => {
+    //   const wrapper = mount(
+    //     <Steps items={[]}>
+    //       <Step title="已完成" />
+    //       <Step title="进行中" />
+    //       <>
+    //         <Step title="待运行" />
+    //         <Step title="待运行" />
+    //       </>
+    //     </Steps>,
+    //   );
+    //   expect(wrapper.find('div.rc-steps-item')).toHaveLength(4);
+    // });
 
     it('renders current correctly', () => {
-      const wrapper = render(React.cloneElement(steps, { current: 2 }));
+      const wrapper = render(setSteps({ current: 2 }));
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders status correctly', () => {
-      const wrapper = render(React.cloneElement(steps, { current: 2, status: 'error' }));
+      const wrapper = render(setSteps({ current: 2, status: 'error' }));
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders vertical correctly', () => {
-      const wrapper = render(React.cloneElement(steps, { direction: 'vertical' }));
+      const wrapper = render(setSteps({ direction: 'vertical' }));
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders labelPlacement correctly', () => {
-      const wrapper = render(React.cloneElement(steps, { labelPlacement: 'vertical' }));
+      const wrapper = render(setSteps({ labelPlacement: 'vertical' }));
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders progressDot correctly', () => {
-      const wrapper = render(React.cloneElement(steps, { progressDot: true }));
+      const wrapper = render(setSteps({ progressDot: true }));
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders progressDot function correctly', () => {
-      const wrapper = render(React.cloneElement(steps, { progressDot: () => <span>a</span> }));
+      const wrapper = render(setSteps({ progressDot: () => <span>a</span> }));
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders stepIcon function correctly', () => {
-      const wrapper = render(React.cloneElement(steps, { stepIcon: () => <span>a</span> }));
+      const wrapper = render(setSteps({ stepIcon: () => <span>a</span> }));
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders step with description', () => {
       const wrapper = render(
-        <Steps>
-          <Step title="已完成" description="xx" />
-          <Step title="进行中" description="xx" />
-          <Step title="待运行" description="xx" />
-          <Step title="待运行" description="xx" />
-        </Steps>,
+        <Steps
+          items={[
+            {
+              title: '已完成',
+              description,
+            },
+            {
+              title: '进行中',
+              description,
+            },
+            {
+              title: '待运行',
+              description,
+            },
+            {
+              title: '待运行',
+              description,
+            },
+          ]}
+        />,
       );
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders step with description and status', () => {
       const wrapper = render(
-        <Steps>
-          <Step title="已完成" description="xx" status="wait" />
-          <Step title="进行中" description="xx" status="wait" />
-          <Step title="待运行" description="xx" status="process" />
-          <Step title="待运行" description="xx" status="finish" />
-        </Steps>,
+        <Steps
+          items={[
+            {
+              title: '已完成',
+              description,
+              status: 'wait',
+            },
+            {
+              title: '进行中',
+              description,
+              status: 'wait',
+            },
+            {
+              title: '待运行',
+              description,
+              status: 'process',
+            },
+            {
+              title: '待运行',
+              description,
+              status: 'finish',
+            },
+          ]}
+        />,
       );
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders with fasly children', () => {
       const wrapper = render(
-        <Steps>
-          <Step title="已完成" description="xx" status="wait" />
-          <Step title="进行中" subTitle="剩余 00:00:07" description="xx" status="wait" />
-          {undefined}
-          <Step title="待运行" description="xx" status="process" />
-          {false}
-          <Step title="待运行" disabled description="xx" status="finish" />
-          {null}
-        </Steps>,
+        <Steps
+          items={[
+            {
+              title: '已完成',
+              description: 'xx',
+              status: 'wait',
+            },
+            {
+              title: '进行中',
+              description: 'xx',
+              status: 'wait',
+              subTitle: '剩余 00:00:07',
+            },
+            undefined,
+            {
+              title: '待运行',
+              description: 'xx',
+              status: 'process',
+            },
+            false,
+            {
+              title: '待运行',
+              description: 'xx',
+              status: 'finish',
+              disabled: true,
+            },
+            null,
+          ]}
+        />,
       );
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders step with tailContent', () => {
       const wrapper = render(
-        <Steps>
-          <Step title="已完成" description="xx" tailContent="text" />
-          <Step title="进行中" description="xx" tailContent={<div>content</div>} />
-          <Step title="待运行" description="xx" tailContent={3} />
-          <Step title="待运行" description="xx" tailContent="text" />
-        </Steps>,
+        <Steps
+          items={[
+            {
+              title: '已完成',
+              description,
+              tailContent: 'text',
+            },
+            {
+              title: '进行中',
+              description,
+              tailContent: <div>content</div>,
+            },
+            {
+              title: '待运行',
+              description,
+              tailContent: 3,
+            },
+            {
+              title: '待运行',
+              description,
+              tailContent: 'text',
+            },
+          ]}
+        />,
       );
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders step with type navigation', () => {
+      description = 'This is a description.';
       const wrapper = render(
-        <Steps type="navigation" current={1} onChange={() => {}}>
-          <Step
-            title="Step 1"
-            subTitle="剩余 00:00:05 超长隐藏"
-            description="This is a description."
-          />
-          <Step title="Step 2" description="This is a description." />
-          <Step title="Step 3" disabled description="This is a description." />
-        </Steps>,
+        <Steps
+          type="navigation"
+          current={1}
+          onChange={() => {}}
+          items={[
+            {
+              title: 'Step 1',
+              subTitle: '剩余 00:00:05 超长隐藏',
+              description,
+            },
+            {
+              title: 'Step 2',
+              description,
+            },
+            {
+              title: 'Step 3',
+              description,
+              disabled: true,
+            },
+          ]}
+        />,
       );
       expect(wrapper).toMatchSnapshot();
     });
@@ -194,11 +289,26 @@ describe('Steps', () => {
         error: getErrorIcon(),
       };
       const wrapper = render(
-        <Steps current={1} status="error" icons={icons}>
-          <Step title="Finished" description="This is a description" icon="apple" />
-          <Step title="In Process" description="This is a description" />
-          <Step title="Waiting" description="This is a description" />
-        </Steps>,
+        <Steps
+          current={1}
+          status="error"
+          icons={icons}
+          items={[
+            {
+              title: 'Finished',
+              description: 'This is a description',
+              icon: 'apple',
+            },
+            {
+              title: 'In Process',
+              description: 'This is a description',
+            },
+            {
+              title: 'Waiting',
+              description: 'This is a description',
+            },
+          ]}
+        />,
       );
       expect(wrapper).toMatchSnapshot();
     });
@@ -207,11 +317,23 @@ describe('Steps', () => {
   it('should render customIcon correctly', () => {
     const Icon = ({ type }) => <i className={`rcicon rcicon-${type}`} />;
     const wrapper = render(
-      <Steps current={1}>
-        <Step title="步骤1" icon={<Icon type="cloud" />} />
-        <Step title="步骤2" icon="apple" />
-        <Step title="步骤3" icon="github" />
-      </Steps>,
+      <Steps
+        current={1}
+        items={[
+          {
+            title: '步骤1',
+            icon: <Icon type="cloud" />,
+          },
+          {
+            title: '步骤2',
+            icon: 'apple',
+          },
+          {
+            title: '步骤3',
+            icon: 'github',
+          },
+        ]}
+      />,
     );
     expect(wrapper).toMatchSnapshot();
   });
@@ -219,17 +341,26 @@ describe('Steps', () => {
   it('onChange', () => {
     const onChange = jest.fn();
     const wrapper = mount(
-      <Steps onChange={onChange}>
-        <Step />
-        <Step />
-        <Step />
-      </Steps>,
+      <Steps
+        onChange={onChange}
+        items={[
+          {
+            title: '已完成',
+          },
+          {
+            title: '进行中',
+          },
+          {
+            title: '待运行',
+          },
+          {
+            title: '待运行',
+          },
+        ]}
+      />,
     );
 
-    wrapper
-      .find('.rc-steps-item-container')
-      .at(1)
-      .simulate('click');
+    wrapper.find('.rc-steps-item-container').at(1).simulate('click');
     expect(onChange).toBeCalledWith(1);
   });
 
@@ -237,34 +368,46 @@ describe('Steps', () => {
     const onClick = jest.fn();
     const onChange = jest.fn();
     const wrapper = mount(
-      <Steps onChange={onChange}>
-        <Step onClick={onClick} />
-        <Step />
-        <Step />
-      </Steps>,
+      <Steps
+        onChange={onChange}
+        items={[
+          {
+            title: '已完成',
+            onClick,
+          },
+          {
+            title: '进行中',
+          },
+          {
+            title: '待运行',
+          },
+          {
+            title: '待运行',
+          },
+        ]}
+      />,
     );
 
-    wrapper
-      .find('.rc-steps-item-container')
-      .at(0)
-      .simulate('click');
+    wrapper.find('.rc-steps-item-container').at(0).simulate('click');
     expect(onClick).toHaveBeenCalled();
   });
 
   it('disabled', () => {
     const onChange = jest.fn();
     const wrapper = mount(
-      <Steps onChange={onChange}>
-        <Step />
-        <Step />
-        <Step disabled />
-      </Steps>,
+      <Steps
+        onChange={onChange}
+        items={[
+          {},
+          {},
+          {
+            disabled: true,
+          },
+        ]}
+      />,
     );
 
-    wrapper
-      .find('.rc-steps-item-container')
-      .at(2)
-      .simulate('click');
+    wrapper.find('.rc-steps-item-container').at(2).simulate('click');
     expect(onChange).not.toBeCalled();
   });
 });

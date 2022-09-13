@@ -1,7 +1,7 @@
 import '../../assets/index.less';
 import '../../assets/iconfont.less';
 import React from 'react';
-import Steps, { Step } from 'rc-steps';
+import Steps from 'rc-steps';
 
 function getFinishIcon() {
   const path =
@@ -64,10 +64,17 @@ const icons = {
   error: getErrorIcon(),
 };
 
+const description = 'This is a description';
+
 export default () => (
-  <Steps current={1} status="error" icons={icons}>
-    <Step title="Finished" description="This is a description" />
-    <Step title="In Process" description="This is a description" />
-    <Step title="Waiting" description="This is a description" />
-  </Steps>
+  <Steps
+    current={1}
+    status="error"
+    icons={icons}
+    items={[
+      { title: 'Finished', description },
+      { title: 'In Process', description },
+      { title: 'Waiting', description },
+    ]}
+  />
 );

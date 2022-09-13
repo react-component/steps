@@ -1,7 +1,7 @@
 import '../../assets/index.less';
 import '../../assets/iconfont.less';
 import React from 'react';
-import Steps, { Step } from 'rc-steps';
+import Steps from 'rc-steps';
 
 function stepIcon({ status, node }) {
   const isProcessing = status === 'process';
@@ -20,13 +20,27 @@ export default () => {
       >
         loop
       </button>
-      <Steps stepIcon={stepIcon} current={current}>
-        <Step title="已完成" />
-        <Step title="进行中" />
-        <Step title="待运行" />
-        <Step title="待运行" />
-        <Step title="待运行" />
-      </Steps>
+      <Steps
+        stepIcon={stepIcon}
+        current={current}
+        items={[
+          {
+            title: '已完成',
+          },
+          {
+            title: '进行中',
+          },
+          {
+            title: '待运行',
+          },
+          {
+            title: '待运行',
+          },
+          {
+            title: '待运行',
+          },
+        ]}
+      />
     </>
   );
 };

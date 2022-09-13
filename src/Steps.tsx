@@ -1,9 +1,9 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
-import React, { cloneElement } from 'react';
-import toArray from 'rc-util/lib/Children/toArray';
+import React from 'react';
 import classNames from 'classnames';
-import { Status, Icons } from './interface';
+import type { Status, Icons } from './interface';
 import Step from './Step';
+import type StepProps from './Step';
 
 export type StepIconRender = (info: {
   index: number;
@@ -39,6 +39,7 @@ export interface StepsProps {
   stepIcon?: StepIconRender;
   initial?: number;
   icons?: Icons;
+  items?: StepProps[];
   onChange?: (current: number) => void;
 }
 
@@ -83,6 +84,7 @@ export default class Steps extends React.Component<StepsProps> {
       initial,
       icons,
       onChange,
+      items = [],
       ...restProps
     } = this.props;
     const isNav = type === 'navigation';
@@ -96,37 +98,42 @@ export default class Steps extends React.Component<StepsProps> {
 
     return (
       <div className={classString} style={style} {...restProps}>
-        {toArray(children).map((child, index) => {
-          const stepNumber = initial + index;
-          const childProps = {
-            stepNumber: `${stepNumber + 1}`,
-            stepIndex: stepNumber,
-            key: stepNumber,
-            prefixCls,
-            iconPrefix,
-            wrapperStyle: style,
-            progressDot,
-            stepIcon,
-            icons,
-            onStepClick: onChange && this.onStepClick,
-            ...child.props,
-          };
-          // fix tail color
-          if (status === 'error' && index === current - 1) {
-            childProps.className = `${prefixCls}-next-error`;
-          }
-          if (!child.props.status) {
-            if (stepNumber === current) {
-              childProps.status = status;
-            } else if (stepNumber < current) {
-              childProps.status = 'finish';
-            } else {
-              childProps.status = 'wait';
+        {(items || [])
+          .filter((item) => item)
+          .map((item, index) => {
+            const stepNumber = initial + index;
+            // fix tail color
+            if (status === 'error' && index === current - 1) {
+              item.className = `${prefixCls}-next-error`;
             }
-          }
-          childProps.active = stepNumber === current;
-          return cloneElement(child, childProps);
-        })}
+
+            if (!item.status) {
+              if (stepNumber === current) {
+                item.status = status;
+              } else if (stepNumber < current) {
+                item.status = 'finish';
+              } else {
+                item.status = 'wait';
+              }
+            }
+
+            return (
+              <Step
+                {...item}
+                active={stepNumber === current}
+                stepNumber={`${stepNumber + 1}`}
+                stepIndex={stepNumber}
+                key={stepNumber}
+                prefixCls={prefixCls}
+                iconPrefix={iconPrefix}
+                wrapperStyle={style}
+                progressDot={progressDot}
+                stepIcon={stepIcon}
+                icons={icons}
+                onStepClick={onChange && this.onStepClick}
+              />
+            );
+          })}
       </div>
     );
   }
