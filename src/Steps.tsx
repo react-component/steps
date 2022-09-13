@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import type { Status, Icons } from './interface';
 import Step from './Step';
-import type StepProps from './Step';
+import type { StepProps } from './Step';
 
 export type StepIconRender = (info: {
   index: number;
@@ -121,7 +121,7 @@ export default class Steps extends React.Component<StepsProps> {
               <Step
                 {...item}
                 active={stepNumber === current}
-                stepNumber={`${stepNumber + 1}`}
+                stepNumber={stepNumber + 1}
                 stepIndex={stepNumber}
                 key={stepNumber}
                 prefixCls={prefixCls}
