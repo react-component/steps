@@ -78,7 +78,6 @@
     "prettier": "^2.5.1",
     "querystring": "^0.2.0",
     "rc-dialog": "8.x",
-    "rc-test": "^7.0.14",
     "rc-tools": "^9.6.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
