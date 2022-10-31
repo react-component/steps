@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount, render } from 'enzyme';
 import Steps from '../src';
 
@@ -28,6 +27,12 @@ describe('Steps', () => {
     it('renders correctly', () => {
       const wrapper = render(setSteps({}));
       expect(wrapper).toMatchSnapshot();
+    });
+
+    it('renders without items', () => {
+      expect(() => {
+        render(setSteps({ items: undefined }));
+      }).not.toThrow();
     });
 
     // it('render support Fragment', () => {

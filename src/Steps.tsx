@@ -1,9 +1,9 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
-import React from 'react';
 import classNames from 'classnames';
-import type { Status, Icons } from './interface';
-import Step from './Step';
+import React from 'react';
+import type { Icons, Status } from './interface';
 import type { StepProps } from './Step';
+import Step from './Step';
 
 export type StepIconRender = (info: {
   index: number;
@@ -98,7 +98,7 @@ export default class Steps extends React.Component<StepsProps> {
 
     return (
       <div className={classString} style={style} {...restProps}>
-        {(items || [])
+        {items
           .filter((item) => item)
           .map((item, index) => {
             const stepNumber = initial + index;
