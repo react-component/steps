@@ -101,7 +101,7 @@ export default class Steps extends React.Component<StepsProps> {
         {(items || [])
           .filter((item) => item)
           .map((item, index) => {
-            const mergedItem = item;
+            const mergedItem = { ...item };
             const stepNumber = initial + index;
             // fix tail color
             if (status === 'error' && index === current - 1) {
