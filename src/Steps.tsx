@@ -99,7 +99,7 @@ export default class Steps extends React.Component<StepsProps> {
     return (
       <div className={classString} style={style} {...restProps}>
         {(items || [])
-          .filter((item) => item)
+          .filter(item => item)
           .map((item, index) => {
             const stepNumber = initial + index;
             // fix tail color
@@ -107,19 +107,16 @@ export default class Steps extends React.Component<StepsProps> {
               item.className = `${prefixCls}-next-error`;
             }
 
-            if (!item.status) {
-              if (stepNumber === current) {
-                item.status = status;
-              } else if (stepNumber < current) {
-                item.status = 'finish';
-              } else {
-                item.status = 'wait';
-              }
+            if (stepNumber === current) {
+              item.status = status;
+            } else if (stepNumber < current) {
+              item.status = 'finish';
+            } else {
+              item.status = 'wait';
             }
 
             return (
               <Step
-                {...item}
                 active={stepNumber === current}
                 stepNumber={stepNumber + 1}
                 stepIndex={stepNumber}
@@ -131,6 +128,7 @@ export default class Steps extends React.Component<StepsProps> {
                 stepIcon={stepIcon}
                 icons={icons}
                 onStepClick={onChange && this.onStepClick}
+                {...item}
               />
             );
           })}
