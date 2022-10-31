@@ -99,20 +99,21 @@ export default class Steps extends React.Component<StepsProps> {
     return (
       <div className={classString} style={style} {...restProps}>
         {(items || [])
-          .filter(item => item)
+          .filter((item) => item)
           .map((item, index) => {
+            const mergedItem = item;
             const stepNumber = initial + index;
             // fix tail color
             if (status === 'error' && index === current - 1) {
-              item.className = `${prefixCls}-next-error`;
+              mergedItem.className = `${prefixCls}-next-error`;
             }
 
             if (stepNumber === current) {
-              item.status = status;
+              mergedItem.status = status;
             } else if (stepNumber < current) {
-              item.status = 'finish';
+              mergedItem.status = 'finish';
             } else {
-              item.status = 'wait';
+              mergedItem.status = 'wait';
             }
 
             return (
@@ -128,7 +129,7 @@ export default class Steps extends React.Component<StepsProps> {
                 stepIcon={stepIcon}
                 icons={icons}
                 onStepClick={onChange && this.onStepClick}
-                {...item}
+                {...mergedItem}
               />
             );
           })}
