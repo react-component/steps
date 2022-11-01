@@ -112,7 +112,7 @@ export default class Steps extends React.Component<StepsProps> {
               mergedItem.status = status;
             } else if (stepNumber < current) {
               mergedItem.status = 'finish';
-            } else {
+            } else if (!mergedItem.status) {
               mergedItem.status = 'wait';
             }
 
