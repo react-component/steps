@@ -61,7 +61,7 @@ https://react-component.github.io/steps/
       <td>type</td>
       <td>string</td>
       <td>default</td>
-      <td>diretypetion of Steps, enum: `default` or `navigation`</td>
+      <td>diretypetion of Steps, could be `default` `navigation` `inline`</td>
     </tr>
     <tr>
       <td>direction</td>
@@ -104,6 +104,12 @@ https://react-component.github.io/steps/
       <td>{ finish: ReactNode, error: ReactNode }</td>
       <td></td>
       <td>specify the default finish icon and error icon</td>
+    </tr>
+    <tr>
+      <td>itemRender</td>
+      <td>(item: StepProps, stepItem: React.ReactNode) => React.ReactNode</td>
+      <td></td>
+      <td>custom step item renderer</td>
     </tr>
     <tr>
       <td>onChange</td>
@@ -167,6 +173,12 @@ https://react-component.github.io/steps/
       <td>bool</td>
       <td>false</td>
       <td>disabled step when onChange exist</td>
+    </tr>
+    <tr>
+      <td>render</td>
+      <td>(stepItem: React.ReactNode) => React.ReactNode</td>
+      <td></td>
+      <td>custom step item renderer</td>
     </tr>
   </tbody>
 </table>

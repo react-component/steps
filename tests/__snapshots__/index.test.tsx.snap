@@ -1181,6 +1181,128 @@ exports[`Steps render renders step with tailContent 1`] = `
 </div>
 `;
 
+exports[`Steps render renders step with type inline 1`] = `
+<div
+  class="rc-steps rc-steps-horizontal rc-steps-label-vertical rc-steps-dot rc-steps-inline"
+>
+  <div
+    class="rc-steps-item rc-steps-item-finish"
+    title="This is a description."
+  >
+    <div
+      class="rc-steps-item-container"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="rc-steps-item-tail"
+      />
+      <div
+        class="rc-steps-item-icon"
+      >
+        <span
+          class="rc-steps-icon"
+        >
+          <span
+            class="rc-steps-icon-dot"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-steps-item-content"
+      >
+        <div
+          class="rc-steps-item-title"
+        >
+          Step 1
+        </div>
+        <div
+          class="rc-steps-item-description"
+        >
+          This is a description.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-process rc-steps-item-active"
+    title="This is a description."
+  >
+    <div
+      class="rc-steps-item-container"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="rc-steps-item-tail"
+      />
+      <div
+        class="rc-steps-item-icon"
+      >
+        <span
+          class="rc-steps-icon"
+        >
+          <span
+            class="rc-steps-icon-dot"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-steps-item-content"
+      >
+        <div
+          class="rc-steps-item-title"
+        >
+          Step 2
+        </div>
+        <div
+          class="rc-steps-item-description"
+        >
+          This is a description.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="rc-steps-item rc-steps-item-wait rc-steps-item-disabled"
+    title="This is a description."
+  >
+    <div
+      class="rc-steps-item-container"
+    >
+      <div
+        class="rc-steps-item-tail"
+      />
+      <div
+        class="rc-steps-item-icon"
+      >
+        <span
+          class="rc-steps-icon"
+        >
+          <span
+            class="rc-steps-icon-dot"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-steps-item-content"
+      >
+        <div
+          class="rc-steps-item-title"
+        >
+          Step 3
+        </div>
+        <div
+          class="rc-steps-item-description"
+        >
+          This is a description.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Steps render renders step with type navigation 1`] = `
 <div
   class="rc-steps rc-steps-horizontal rc-steps-label-horizontal rc-steps-navigation"

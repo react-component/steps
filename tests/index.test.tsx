@@ -1,3 +1,4 @@
+import React from 'react';
 import { mount, render } from 'enzyme';
 import Steps from '../src';
 
@@ -229,6 +230,36 @@ describe('Steps', () => {
               disabled: true,
             },
           ]}
+        />,
+      );
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('renders step with type inline', () => {
+      description = 'This is a description.';
+      const wrapper = render(
+        <Steps
+          type="inline"
+          current={1}
+          onChange={() => {}}
+          items={[
+            {
+              title: 'Step 1',
+              description,
+            },
+            {
+              title: 'Step 2',
+              description,
+            },
+            {
+              title: 'Step 3',
+              description,
+              disabled: true,
+            },
+          ]}
+          itemRender={(item, stepItem) => (
+            React.cloneElement(stepItem, { title: item.description })
+          )}
         />,
       );
       expect(wrapper).toMatchSnapshot();
