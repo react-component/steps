@@ -892,7 +892,7 @@ exports[`Steps render renders step with description and status 1`] = `
   class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
 >
   <div
-    class="rc-steps-item rc-steps-item-wait rc-steps-item-active"
+    class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
     <div
       class="rc-steps-item-container"
@@ -960,7 +960,7 @@ exports[`Steps render renders step with description and status 1`] = `
     </div>
   </div>
   <div
-    class="rc-steps-item rc-steps-item-process"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-container"
@@ -994,7 +994,7 @@ exports[`Steps render renders step with description and status 1`] = `
     </div>
   </div>
   <div
-    class="rc-steps-item rc-steps-item-finish"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-container"
@@ -1006,8 +1006,10 @@ exports[`Steps render renders step with description and status 1`] = `
         class="rc-steps-item-icon"
       >
         <span
-          class="rc-steps-icon rcicon rcicon-check"
-        />
+          class="rc-steps-icon"
+        >
+          4
+        </span>
       </div>
       <div
         class="rc-steps-item-content"
@@ -1536,12 +1538,12 @@ exports[`Steps render renders vertical correctly 1`] = `
 </div>
 `;
 
-exports[`Steps render renders with fasly children 1`] = `
+exports[`Steps render renders with falsy children 1`] = `
 <div
   class="rc-steps rc-steps-horizontal rc-steps-label-horizontal"
 >
   <div
-    class="rc-steps-item rc-steps-item-wait rc-steps-item-active"
+    class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
     <div
       class="rc-steps-item-container"
@@ -1615,7 +1617,7 @@ exports[`Steps render renders with fasly children 1`] = `
     </div>
   </div>
   <div
-    class="rc-steps-item rc-steps-item-process"
+    class="rc-steps-item rc-steps-item-wait"
   >
     <div
       class="rc-steps-item-container"
@@ -1649,7 +1651,7 @@ exports[`Steps render renders with fasly children 1`] = `
     </div>
   </div>
   <div
-    class="rc-steps-item rc-steps-item-finish rc-steps-item-disabled"
+    class="rc-steps-item rc-steps-item-wait rc-steps-item-disabled"
   >
     <div
       class="rc-steps-item-container"
@@ -1661,8 +1663,10 @@ exports[`Steps render renders with fasly children 1`] = `
         class="rc-steps-item-icon"
       >
         <span
-          class="rc-steps-icon rcicon rcicon-check"
-        />
+          class="rc-steps-icon"
+        >
+          4
+        </span>
       </div>
       <div
         class="rc-steps-item-content"

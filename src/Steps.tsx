@@ -1,9 +1,9 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
-import React from 'react';
 import classNames from 'classnames';
-import type { Status, Icons } from './interface';
-import Step from './Step';
+import React from 'react';
+import type { Icons, Status } from './interface';
 import type { StepProps } from './Step';
+import Step from './Step';
 
 export type StepIconRender = (info: {
   index: number;
@@ -98,28 +98,26 @@ export default class Steps extends React.Component<StepsProps> {
 
     return (
       <div className={classString} style={style} {...restProps}>
-        {(items || [])
+        {items
           .filter((item) => item)
           .map((item, index) => {
+            const mergedItem = { ...item };
             const stepNumber = initial + index;
             // fix tail color
             if (status === 'error' && index === current - 1) {
-              item.className = `${prefixCls}-next-error`;
+              mergedItem.className = `${prefixCls}-next-error`;
             }
 
-            if (!item.status) {
-              if (stepNumber === current) {
-                item.status = status;
-              } else if (stepNumber < current) {
-                item.status = 'finish';
-              } else {
-                item.status = 'wait';
-              }
+            if (stepNumber === current) {
+              mergedItem.status = status;
+            } else if (stepNumber < current) {
+              mergedItem.status = 'finish';
+            } else {
+              mergedItem.status = 'wait';
             }
 
             return (
               <Step
-                {...item}
                 active={stepNumber === current}
                 stepNumber={stepNumber + 1}
                 stepIndex={stepNumber}
@@ -131,6 +129,7 @@ export default class Steps extends React.Component<StepsProps> {
                 stepIcon={stepIcon}
                 icons={icons}
                 onStepClick={onChange && this.onStepClick}
+                {...mergedItem}
               />
             );
           })}
