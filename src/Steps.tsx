@@ -108,16 +108,19 @@ export default class Steps extends React.Component<StepsProps> {
               mergedItem.className = `${prefixCls}-next-error`;
             }
 
-            if (stepNumber === current) {
-              mergedItem.status = status;
-            } else if (stepNumber < current) {
-              mergedItem.status = 'finish';
-            } else {
-              mergedItem.status = 'wait';
+            if (!mergedItem.status) {
+              if (stepNumber === current) {
+                mergedItem.status = status;
+              } else if (stepNumber < current) {
+                mergedItem.status = 'finish';
+              } else {
+                mergedItem.status = 'wait';
+              }
             }
 
             return (
               <Step
+                {...mergedItem}
                 active={stepNumber === current}
                 stepNumber={stepNumber + 1}
                 stepIndex={stepNumber}
@@ -129,7 +132,6 @@ export default class Steps extends React.Component<StepsProps> {
                 stepIcon={stepIcon}
                 icons={icons}
                 onStepClick={onChange && this.onStepClick}
-                {...mergedItem}
               />
             );
           })}
