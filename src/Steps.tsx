@@ -1,9 +1,9 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
-import classNames from 'classnames';
 import React from 'react';
-import type { Icons, Status } from './interface';
-import type { StepProps } from './Step';
+import classNames from 'classnames';
+import type { Status, Icons } from './interface';
 import Step from './Step';
+import type { StepProps } from './Step';
 
 export type StepIconRender = (info: {
   index: number;
@@ -98,7 +98,7 @@ export default class Steps extends React.Component<StepsProps> {
 
     return (
       <div className={classString} style={style} {...restProps}>
-        {items
+        {(items || [])
           .filter((item) => item)
           .map((item, index) => {
             const mergedItem = { ...item };
@@ -108,16 +108,19 @@ export default class Steps extends React.Component<StepsProps> {
               mergedItem.className = `${prefixCls}-next-error`;
             }
 
-            if (stepNumber === current) {
-              mergedItem.status = status;
-            } else if (stepNumber < current) {
-              mergedItem.status = 'finish';
-            } else if (!mergedItem.status) {
-              mergedItem.status = 'wait';
+            if (!mergedItem.status) {
+              if (stepNumber === current) {
+                mergedItem.status = status;
+              } else if (stepNumber < current) {
+                mergedItem.status = 'finish';
+              } else {
+                mergedItem.status = 'wait';
+              }
             }
 
             return (
               <Step
+                {...mergedItem}
                 active={stepNumber === current}
                 stepNumber={stepNumber + 1}
                 stepIndex={stepNumber}
@@ -129,7 +132,6 @@ export default class Steps extends React.Component<StepsProps> {
                 stepIcon={stepIcon}
                 icons={icons}
                 onStepClick={onChange && this.onStepClick}
-                {...mergedItem}
               />
             );
           })}
