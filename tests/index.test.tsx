@@ -140,7 +140,7 @@ describe('Steps', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('renders with fasly children', () => {
+    it('renders with falsy children', () => {
       const wrapper = render(
         <Steps
           items={[
@@ -161,6 +161,7 @@ describe('Steps', () => {
               description: 'xx',
               status: 'process',
             },
+            // @ts-ignore
             false,
             {
               title: '待运行',
@@ -367,6 +368,29 @@ describe('Steps', () => {
 
     wrapper.find('.rc-steps-item-container').at(1).simulate('click');
     expect(onChange).toBeCalledWith(1);
+  });
+
+  it('items out of render function', () => {
+    const items = [
+      {
+        title: '已完成',
+      },
+      {
+        title: '进行中',
+      },
+    ];
+
+    let current = 0;
+    const onChange = (val) => {
+      current = val;
+    };
+    const wrapper = mount(
+      <Steps current={current} onChange={onChange} items={items} key={current} />,
+    );
+
+    wrapper.find('.rc-steps-item-container').at(1).simulate('click');
+    wrapper.setProps({ current: current });
+    expect(wrapper.find('.rc-steps-item').at(1).hasClass('rc-steps-item-process')).toBeTruthy();
   });
 
   it('onClick', () => {
