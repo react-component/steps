@@ -1,0 +1,81 @@
+@import 'variables';
+
+.@{stepsPrefixClass}-inline {
+  width: auto;
+  display: inline-flex;
+
+  .@{stepsPrefixClass}-item {
+    flex: none;
+
+    &-container {
+      padding: 9px 4px 0;
+      margin: 0 2px;
+      border-radius: 4px;
+      cursor: pointer;
+      &:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
+      &[role='button']:hover {
+        opacity: 1;
+      }
+    }
+
+    &-icon {
+      width: 6px;
+      height: 6px;
+      margin-left: calc(50% - 3px);
+      > .@{stepsPrefixClass}-icon {
+        top: 0;
+      }
+      .@{stepsPrefixClass}-icon-dot {
+        border-radius: 3px;
+      }
+    }
+    
+    &-content {
+      width: auto;
+      margin-top: 7px;
+    }
+    &-title {
+      color: rgba(0, 0, 0, 0.25);
+      font-size: 12px;
+      line-height: 20px;
+      font-weight: normal;
+      margin-bottom: 2px;
+    }
+    &-description {
+      display: none;
+    }
+
+    &-tail {
+      margin-left: 0;
+      top: 11px;
+      &:after {
+        height: 1px;
+      }
+    }
+    &:first-child .@{stepsPrefixClass}-item-tail{
+      width: 50%;
+      margin-left: 50%;
+    }
+    &:last-child .@{stepsPrefixClass}-item-tail{
+      display: block;
+      width: 50%;
+    }
+
+    &-finish {
+      .@{stepsPrefixClass}-item-tail:after {
+        background-color: @process-tail-color;
+      }
+      .@{stepsPrefixClass}-item-icon .@{stepsPrefixClass}-icon .@{stepsPrefixClass}-icon-dot {
+        background-color: @process-tail-color;
+      }
+    }
+    &-wait {
+      .@{stepsPrefixClass}-item-icon .@{stepsPrefixClass}-icon .@{stepsPrefixClass}-icon-dot {
+        background-color: #fff;
+        border: 1px solid @process-tail-color;
+      }
+    }
+  }
+}

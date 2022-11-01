@@ -29,6 +29,7 @@ export interface StepProps {
   onStepClick?: (index: number) => void;
   progressDot?: ProgressDotRender | boolean;
   stepIcon?: StepIconRender;
+  render?: (stepItem: React.ReactNode) => React.ReactNode;
 }
 
 export default class Step extends React.Component<StepProps> {
@@ -126,6 +127,7 @@ export default class Step extends React.Component<StepProps> {
       stepIndex,
       onStepClick,
       onClick,
+      render,
       ...restProps
     } = this.props;
 
@@ -147,7 +149,7 @@ export default class Step extends React.Component<StepProps> {
       accessibilityProps.onClick = this.onClick;
     }
 
-    return (
+    let stepNode: React.ReactNode = (
       <div {...restProps} className={classString} style={stepItemStyle}>
         <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
           <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
@@ -169,5 +171,11 @@ export default class Step extends React.Component<StepProps> {
         </div>
       </div>
     );
+
+    if (render) {
+      stepNode = render(stepNode) || null;
+    }
+
+    return stepNode;
   }
 }
