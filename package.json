@@ -47,8 +47,7 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,md,json}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "dependencies": {
@@ -71,6 +70,7 @@
     "enzyme-to-json": "^3.1.2",
     "eslint": "^7.1.0",
     "father": "^4",
+    "gh-pages": "^4.0.0",
     "husky": "^8.0.1",
     "less": "^3.11.2",
     "lint-staged": "^13.0.3",
