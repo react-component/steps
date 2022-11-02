@@ -176,6 +176,6 @@ export default class Step extends React.Component<StepProps> {
       stepNode = render(stepNode) || null;
     }
 
-    return stepNode;
+    return stepNode as React.ReactElement;
   }
 }
