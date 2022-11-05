@@ -32,9 +32,33 @@ export interface StepProps {
   render?: (stepItem: React.ReactNode) => React.ReactNode;
 }
 
-export default class Step extends React.Component<StepProps> {
-  onClick: React.MouseEventHandler<HTMLDivElement> = (...args) => {
-    const { onClick, onStepClick, stepIndex } = this.props;
+function Step(props: StepProps) {
+  const {
+    className,
+    prefixCls,
+    style,
+    active,
+    status,
+    iconPrefix,
+    icon,
+    wrapperStyle,
+    stepNumber,
+    disabled,
+    description,
+    title,
+    subTitle,
+    progressDot,
+    stepIcon,
+    tailContent,
+    icons,
+    stepIndex,
+    onStepClick,
+    onClick,
+    render,
+    ...restProps
+  } = props;
+
+  const onInternalClick: React.MouseEventHandler<HTMLDivElement> = (...args) => {
     if (onClick) {
       onClick(...args);
     }
@@ -42,19 +66,7 @@ export default class Step extends React.Component<StepProps> {
     onStepClick(stepIndex);
   };
 
-  renderIconNode() {
-    const {
-      prefixCls,
-      progressDot,
-      stepIcon,
-      stepNumber,
-      status,
-      title,
-      description,
-      icon,
-      iconPrefix,
-      icons,
-    } = this.props;
+  const renderIconNode = () => {
     let iconNode;
     const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
       [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
@@ -103,79 +115,57 @@ export default class Step extends React.Component<StepProps> {
     }
 
     return iconNode;
+  };
+
+  const mergedStatus = status || 'wait';
+
+  const classString = classNames(`${prefixCls}-item`, `${prefixCls}-item-${mergedStatus}`, className, {
+    [`${prefixCls}-item-custom`]: icon,
+    [`${prefixCls}-item-active`]: active,
+    [`${prefixCls}-item-disabled`]: disabled === true,
+  });
+  const stepItemStyle = { ...style };
+
+  const accessibilityProps: {
+    role?: string;
+    tabIndex?: number;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
+  } = {};
+  if (onStepClick && !disabled) {
+    accessibilityProps.role = 'button';
+    accessibilityProps.tabIndex = 0;
+    accessibilityProps.onClick = onInternalClick;
   }
 
-  render() {
-    const {
-      className,
-      prefixCls,
-      style,
-      active,
-      status = 'wait',
-      iconPrefix,
-      icon,
-      wrapperStyle,
-      stepNumber,
-      disabled,
-      description,
-      title,
-      subTitle,
-      progressDot,
-      stepIcon,
-      tailContent,
-      icons,
-      stepIndex,
-      onStepClick,
-      onClick,
-      render,
-      ...restProps
-    } = this.props;
-
-    const classString = classNames(`${prefixCls}-item`, `${prefixCls}-item-${status}`, className, {
-      [`${prefixCls}-item-custom`]: icon,
-      [`${prefixCls}-item-active`]: active,
-      [`${prefixCls}-item-disabled`]: disabled === true,
-    });
-    const stepItemStyle = { ...style };
-
-    const accessibilityProps: {
-      role?: string;
-      tabIndex?: number;
-      onClick?: React.MouseEventHandler<HTMLDivElement>;
-    } = {};
-    if (onStepClick && !disabled) {
-      accessibilityProps.role = 'button';
-      accessibilityProps.tabIndex = 0;
-      accessibilityProps.onClick = this.onClick;
-    }
-
-    let stepNode: React.ReactNode = (
-      <div {...restProps} className={classString} style={stepItemStyle}>
-        <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
-          <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
-          <div className={`${prefixCls}-item-icon`}>{this.renderIconNode()}</div>
-          <div className={`${prefixCls}-item-content`}>
-            <div className={`${prefixCls}-item-title`}>
-              {title}
-              {subTitle && (
-                <div
-                  title={typeof subTitle === 'string' ? subTitle : undefined}
-                  className={`${prefixCls}-item-subtitle`}
-                >
-                  {subTitle}
-                </div>
-              )}
-            </div>
-            {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
+  let stepNode: React.ReactNode = (
+    <div {...restProps} className={classString} style={stepItemStyle}>
+      <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
+        <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
+        <div className={`${prefixCls}-item-icon`}>{renderIconNode()}</div>
+        <div className={`${prefixCls}-item-content`}>
+          <div className={`${prefixCls}-item-title`}>
+            {title}
+            {subTitle && (
+              <div
+                title={typeof subTitle === 'string' ? subTitle : undefined}
+                className={`${prefixCls}-item-subtitle`}
+              >
+                {subTitle}
+              </div>
+            )}
           </div>
+          {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
         </div>
       </div>
-    );
+    </div>
+  );
 
-    if (render) {
-      stepNode = render(stepNode) || null;
-    }
 
-    return stepNode as React.ReactElement;
+  if (render) {
+    stepNode = render(stepNode) || null;
   }
+
+  return stepNode as React.ReactElement;
 }
+
+export default Step;

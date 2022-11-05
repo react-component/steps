@@ -44,117 +44,104 @@ export interface StepsProps {
   onChange?: (current: number) => void;
 }
 
-export default class Steps extends React.Component<StepsProps> {
-  static Step = Step;
+function Steps(props: StepsProps) {
+  const {
+    prefixCls = 'rc-steps',
+    style = {},
+    className,
+    children,
+    direction = 'horizontal',
+    type = 'default',
+    labelPlacement = 'horizontal',
+    iconPrefix = 'rc',
+    status = 'process',
+    size,
+    current = 0,
+    progressDot = false,
+    stepIcon,
+    initial = 0,
+    icons,
+    onChange,
+    itemRender,
+    items = [],
+    ...restProps
+  } = props;
 
-  static defaultProps = {
-    type: 'default',
-    prefixCls: 'rc-steps',
-    iconPrefix: 'rc',
-    direction: 'horizontal',
-    labelPlacement: 'horizontal',
-    initial: 0,
-    current: 0,
-    status: 'process',
-    size: '',
-    progressDot: false,
-  };
+  const isNav = type === 'navigation';
+  const isInline = type === 'inline';
 
-  onStepClick = (next: number) => {
-    const { onChange, current } = this.props;
+  // inline type requires fixed progressDot direction size.
+  const mergedProgressDot = isInline || progressDot;
+  const mergedDirection = isInline ? 'horizontal' : direction;
+  const mergedSize = isInline ? undefined : size;
+
+  const adjustedLabelPlacement = mergedProgressDot ? 'vertical' : labelPlacement;
+  const classString = classNames(prefixCls, `${prefixCls}-${mergedDirection}`, className, {
+    [`${prefixCls}-${mergedSize}`]: mergedSize,
+    [`${prefixCls}-label-${adjustedLabelPlacement}`]: mergedDirection === 'horizontal',
+    [`${prefixCls}-dot`]: !!mergedProgressDot,
+    [`${prefixCls}-navigation`]: isNav,
+    [`${prefixCls}-inline`]: isInline,
+  });
+
+  const onStepClick = (next: number) => {
     if (onChange && current !== next) {
       onChange(next);
     }
   };
 
-  render() {
-    const {
-      prefixCls,
-      style = {},
-      className,
-      children,
-      direction,
-      type,
-      labelPlacement,
-      iconPrefix,
-      status,
-      size,
-      current,
-      progressDot,
-      stepIcon,
-      initial,
-      icons,
-      onChange,
-      itemRender,
-      items = [],
-      ...restProps
-    } = this.props;
-    const isNav = type === 'navigation';
-    const isInline = type === 'inline';
+  const renderStep = (item: StepProps, index: number) => {
+    const mergedItem = { ...item };
+    const stepNumber = initial + index;
+    // fix tail color
+    if (status === 'error' && index === current - 1) {
+      mergedItem.className = `${prefixCls}-next-error`;
+    }
 
-    // inline type requires fixed progressDot direction size.
-    const mergedProgressDot = isInline || progressDot;
-    const mergedDirection = isInline ? 'horizontal' : direction;
-    const mergedSize = isInline ? undefined : size;
+    if (!mergedItem.status) {
+      if (stepNumber === current) {
+        mergedItem.status = status;
+      } else if (stepNumber < current) {
+        mergedItem.status = 'finish';
+      } else {
+        mergedItem.status = 'wait';
+      }
+    }
 
-    const adjustedLabelPlacement = mergedProgressDot ? 'vertical' : labelPlacement;
-    const classString = classNames(prefixCls, `${prefixCls}-${mergedDirection}`, className, {
-      [`${prefixCls}-${mergedSize}`]: mergedSize,
-      [`${prefixCls}-label-${adjustedLabelPlacement}`]: mergedDirection === 'horizontal',
-      [`${prefixCls}-dot`]: !!mergedProgressDot,
-      [`${prefixCls}-navigation`]: isNav,
-      [`${prefixCls}-inline`]: isInline,
-    });
+    if (isInline) {
+      mergedItem.icon = undefined;
+      mergedItem.subTitle = undefined;
+    }
+
+    if (!mergedItem.render && itemRender) {
+      mergedItem.render = (stepItem) => itemRender(mergedItem, stepItem);
+    }
 
     return (
-      <div className={classString} style={style} {...restProps}>
-        {items
-          .filter((item) => item)
-          .map((item, index) => {
-            const mergedItem = { ...item };
-            const stepNumber = initial + index;
-            // fix tail color
-            if (status === 'error' && index === current - 1) {
-              mergedItem.className = `${prefixCls}-next-error`;
-            }
-
-            if (!mergedItem.status) {
-              if (stepNumber === current) {
-                mergedItem.status = status;
-              } else if (stepNumber < current) {
-                mergedItem.status = 'finish';
-              } else {
-                mergedItem.status = 'wait';
-              }
-            }
-
-            if (isInline) {
-              mergedItem.icon = undefined;
-              mergedItem.subTitle = undefined;
-            }
-
-            if (!mergedItem.render && itemRender) {
-              mergedItem.render = (stepItem) => itemRender(mergedItem, stepItem);
-            }
-
-            return (
-              <Step
-                {...mergedItem}
-                active={stepNumber === current}
-                stepNumber={stepNumber + 1}
-                stepIndex={stepNumber}
-                key={stepNumber}
-                prefixCls={prefixCls}
-                iconPrefix={iconPrefix}
-                wrapperStyle={style}
-                progressDot={mergedProgressDot}
-                stepIcon={stepIcon}
-                icons={icons}
-                onStepClick={onChange && this.onStepClick}
-              />
-            );
-          })}
-      </div>
+      <Step
+        {...mergedItem}
+        active={stepNumber === current}
+        stepNumber={stepNumber + 1}
+        stepIndex={stepNumber}
+        key={stepNumber}
+        prefixCls={prefixCls}
+        iconPrefix={iconPrefix}
+        wrapperStyle={style}
+        progressDot={mergedProgressDot}
+        stepIcon={stepIcon}
+        icons={icons}
+        onStepClick={onChange && onStepClick}
+      />
     );
-  }
+  };
+
+  return (
+    <div className={classString} style={style} {...restProps}>
+      {items.filter((item) => item).map(renderStep)}
+    </div>
+  );
 }
+
+Steps.Step = Step;
+
+export default Steps;
