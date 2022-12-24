@@ -137,7 +137,7 @@ function Steps(props: StepsProps) {
 
   return (
     <div className={classString} style={style} {...restProps}>
-      {items.filter((item) => item).map(renderStep)}
+      {children ?? items.filter((item) => item).map(renderStep)}
     </div>
   );
 }
