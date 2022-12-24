@@ -4,13 +4,7 @@
 
 React steps component.
 
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][codecov-image]][codecov-url]
-[![Dependencies][david-image]][david-url]
-[![DevDependencies][david-dev-image]][david-dev-url]
-[![npm download][download-image]][download-url]
-[![bundle size][bundlephobia-image]][bundlephobia-url]
+[![NPM version][npm-image]][npm-url] [![build status][travis-image]][travis-url] [![Test coverage][codecov-image]][codecov-url] [![Dependencies][david-image]][david-url] [![DevDependencies][david-dev-image]][david-dev-url] [![npm download][download-image]][download-url] [![bundle size][bundlephobia-image]][bundlephobia-url]
 
 [npm-image]: http://img.shields.io/npm/v/rc-steps.svg?style=flat-square
 [npm-url]: http://npmjs.org/package/rc-steps
@@ -29,9 +23,15 @@ React steps component.
 
 ## Usage
 
+First install the rc-steps
+
 ```bash
 npm install rc-steps
 ```
+
+You have two ways to use this plugin (Don't use both item and passing `Step` as child in same time!):
+
+Using `Step` as child:
 
 ```jsx | pure
 <Steps current={1}>
@@ -39,6 +39,24 @@ npm install rc-steps
   <Steps.Step title="second" />
   <Steps.Step title="third" />
 </Steps>
+```
+
+Using `items`:
+
+```jsx | pure
+<Steps
+  items={[
+    {
+      title: 'first',
+    },
+    {
+      title: 'second',
+    },
+    {
+      title: 'third',
+    },
+  ]}
+/>
 ```
 
 ## Example
