@@ -35,7 +35,7 @@ export interface StepProps {
 function Step(props: StepProps) {
   const {
     className,
-    prefixCls,
+    prefixCls = 'rc-steps',
     style,
     active,
     status,
@@ -119,11 +119,16 @@ function Step(props: StepProps) {
 
   const mergedStatus = status || 'wait';
 
-  const classString = classNames(`${prefixCls}-item`, `${prefixCls}-item-${mergedStatus}`, className, {
-    [`${prefixCls}-item-custom`]: icon,
-    [`${prefixCls}-item-active`]: active,
-    [`${prefixCls}-item-disabled`]: disabled === true,
-  });
+  const classString = classNames(
+    `${prefixCls}-item`,
+    `${prefixCls}-item-${mergedStatus}`,
+    className,
+    {
+      [`${prefixCls}-item-custom`]: icon,
+      [`${prefixCls}-item-active`]: active,
+      [`${prefixCls}-item-disabled`]: disabled === true,
+    },
+  );
   const stepItemStyle = { ...style };
 
   const accessibilityProps: {
@@ -159,7 +164,6 @@ function Step(props: StepProps) {
       </div>
     </div>
   );
-
 
   if (render) {
     stepNode = render(stepNode) || null;
