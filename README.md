@@ -7,8 +7,6 @@ React steps component.
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 [![Test coverage][codecov-image]][codecov-url]
-[![Dependencies][david-image]][david-url]
-[![DevDependencies][david-dev-image]][david-dev-url]
 [![npm download][download-image]][download-url]
 [![bundle size][bundlephobia-image]][bundlephobia-url]
 
@@ -18,10 +16,6 @@ React steps component.
 [travis-url]: https://travis-ci.org/react-component/steps
 [codecov-image]: https://img.shields.io/codecov/c/github/react-component/steps/master.svg?style=flat-square
 [codecov-url]: https://codecov.io/gh/react-component/steps/branch/master
-[david-url]: https://david-dm.org/react-component/steps
-[david-image]: https://david-dm.org/react-component/steps/status.svg?style=flat-square
-[david-dev-url]: https://david-dm.org/react-component/steps?type=dev
-[david-dev-image]: https://david-dm.org/react-component/steps/dev-status.svg?style=flat-square
 [download-image]: https://img.shields.io/npm/dm/rc-steps.svg?style=flat-square
 [download-url]: https://npmjs.org/package/rc-steps
 [bundlephobia-url]: https://bundlephobia.com/result?p=rc-steps
