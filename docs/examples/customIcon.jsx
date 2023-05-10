@@ -6,13 +6,14 @@ import Steps from 'rc-steps';
 // eslint-disable-next-line react/prop-types
 const Icon = ({ type }) => <i className={`rcicon rcicon-${type}`} />;
 
+const {Step} = Steps
+
 export default () => (
   <Steps
     current={1}
-    items={[
-      { title: '步骤1', icon: <Icon type="cloud" /> },
-      { title: '步骤2', icon: 'apple' },
-      { title: '步骤1', icon: 'github' },
-    ]}
-  />
+  >
+    <Step title='步骤1' icon={<Icon type="cloud" />} />
+    <Step title='步骤2' icon={<Icon type="apple" />} />
+    <Step title='步骤1' icon={<Icon type="github" />} />
+  </Steps>
 );

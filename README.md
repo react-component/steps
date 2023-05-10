@@ -23,9 +23,15 @@ React steps component.
 
 ## Usage
 
+First install the rc-steps
+
 ```bash
 npm install rc-steps
 ```
+
+You have two ways to use this plugin (Don't use both item and passing `Step` as child in same time!):
+
+Using `Step` as child:
 
 ```jsx | pure
 <Steps current={1}>
@@ -33,6 +39,24 @@ npm install rc-steps
   <Steps.Step title="second" />
   <Steps.Step title="third" />
 </Steps>
+```
+
+Using `items`:
+
+```jsx | pure
+<Steps
+  items={[
+    {
+      title: 'first',
+    },
+    {
+      title: 'second',
+    },
+    {
+      title: 'third',
+    },
+  ]}
+/>
 ```
 
 ## Example
