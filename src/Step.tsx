@@ -30,7 +30,7 @@ export interface StepProps {
   onStepClick?: (index: number) => void;
   progressDot?: ProgressDotRender | boolean;
   stepIcon?: StepIconRender;
-  render?: (stepItem: React.ReactNode) => React.ReactNode;
+  render?: (stepItem: React.ReactElement) => React.ReactNode;
 }
 
 function Step(props: StepProps) {
@@ -149,7 +149,7 @@ function Step(props: StepProps) {
   );
   const stepItemStyle = { ...style };
 
-  let stepNode: React.ReactNode = (
+  let stepNode: React.ReactElement = (
     <div {...restProps} className={classString} style={stepItemStyle}>
       <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
         <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
@@ -173,10 +173,10 @@ function Step(props: StepProps) {
   );
 
   if (render) {
-    stepNode = render(stepNode) || null;
+    stepNode = (render(stepNode) || null) as React.ReactElement;
   }
 
-  return stepNode as React.ReactElement;
+  return stepNode;
 }
 
 export default Step;

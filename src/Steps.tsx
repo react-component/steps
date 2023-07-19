@@ -40,7 +40,7 @@ export interface StepsProps {
   initial?: number;
   icons?: Icons;
   items?: StepProps[];
-  itemRender?: (item: StepProps, stepItem: React.ReactNode) => React.ReactNode;
+  itemRender?: (item: StepProps, stepItem: React.ReactElement) => React.ReactNode;
   onChange?: (current: number) => void;
 }
 
