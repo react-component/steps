@@ -1,2 +1,8 @@
-## nav-base
-<code src="../examples/nav-base.jsx">
+---
+title: nav-base
+nav:
+  title: Demo
+  path: /demo
+---
+
+<code src="../examples/nav-base.jsx"></code>
