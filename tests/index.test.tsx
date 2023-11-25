@@ -257,9 +257,7 @@ describe('Steps', () => {
               disabled: true,
             },
           ]}
-          itemRender={(item, stepItem) => (
-            React.cloneElement(stepItem, { title: item.description })
-          )}
+          itemRender={(item, stepItem) => React.cloneElement(stepItem, { title: item.description })}
         />,
       );
       expect(wrapper).toMatchSnapshot();
@@ -469,5 +467,29 @@ describe('Steps', () => {
 
     wrapper.find('.rc-steps-item-container').at(2).simulate('click');
     expect(onChange).not.toBeCalled();
+  });
+
+  it('key board support', () => {
+    const onChange = jest.fn();
+    const wrapper = mount(
+      <Steps
+        current={0}
+        onChange={onChange}
+        items={[
+          {
+            title: 'Finished',
+            description: 'This is a description',
+          },
+          {
+            title: 'Waiting',
+            description: 'This is a description',
+          },
+        ]}
+      />,
+    );
+
+    wrapper.find('[role="button"]').at(1).simulate('keydown', { which: 13 });
+
+    expect(onChange).toBeCalledWith(1);
   });
 });

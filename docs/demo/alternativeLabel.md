@@ -1,2 +1,8 @@
-## alternativeLabel
-<code src="../examples/alternativeLabel.jsx">
+---
+title: alternativeLabel
+nav:
+  title: Demo
+  path: /demo
+---
+
+<code src="../examples/alternativeLabel.jsx"></code>
