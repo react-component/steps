@@ -27,6 +27,8 @@ React steps component.
 npm install rc-steps
 ```
 
+<br>
+
 ```jsx | pure
 <Steps current={1}>
   <Steps.Step title="first" />
@@ -179,7 +181,7 @@ https://react-component.github.io/steps/
 
 ## Development
 
-```
+```bash
 npm install
 npm start
 ```
