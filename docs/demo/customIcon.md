@@ -1,2 +1,8 @@
-## customIcon
-<code src="../examples/customIcon.jsx">
+---
+title: customIcon
+nav:
+  title: Demo
+  path: /demo
+---
+
+<code src="../examples/customIcon.jsx"></code>

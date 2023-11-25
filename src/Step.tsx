@@ -1,6 +1,7 @@
 /* eslint react/prop-types: 0 */
 import * as React from 'react';
 import classNames from 'classnames';
+import KeyCode from 'rc-util/lib/KeyCode';
 import type { Status, Icons } from './interface';
 import type { StepIconRender, ProgressDotRender } from './Steps';
 
@@ -29,7 +30,7 @@ export interface StepProps {
   onStepClick?: (index: number) => void;
   progressDot?: ProgressDotRender | boolean;
   stepIcon?: StepIconRender;
-  render?: (stepItem: React.ReactNode) => React.ReactNode;
+  render?: (stepItem: React.ReactElement) => React.ReactNode;
 }
 
 function Step(props: StepProps) {
@@ -58,14 +59,31 @@ function Step(props: StepProps) {
     ...restProps
   } = props;
 
-  const onInternalClick: React.MouseEventHandler<HTMLDivElement> = (...args) => {
-    if (onClick) {
-      onClick(...args);
-    }
+  // ========================= Click ==========================
+  const clickable = !!onStepClick && !disabled;
 
-    onStepClick(stepIndex);
-  };
+  const accessibilityProps: {
+    role?: string;
+    tabIndex?: number;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
+    onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+  } = {};
+  if (clickable) {
+    accessibilityProps.role = 'button';
+    accessibilityProps.tabIndex = 0;
+    accessibilityProps.onClick = (e) => {
+      onClick?.(e);
+      onStepClick(stepIndex);
+    };
+    accessibilityProps.onKeyDown = (e) => {
+      const { which } = e;
+      if (which === KeyCode.ENTER || which === KeyCode.SPACE) {
+        onStepClick(stepIndex);
+      }
+    };
+  }
 
+  // ========================= Render =========================
   const renderIconNode = () => {
     let iconNode;
     const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
@@ -119,25 +137,19 @@ function Step(props: StepProps) {
 
   const mergedStatus = status || 'wait';
 
-  const classString = classNames(`${prefixCls}-item`, `${prefixCls}-item-${mergedStatus}`, className, {
-    [`${prefixCls}-item-custom`]: icon,
-    [`${prefixCls}-item-active`]: active,
-    [`${prefixCls}-item-disabled`]: disabled === true,
-  });
+  const classString = classNames(
+    `${prefixCls}-item`,
+    `${prefixCls}-item-${mergedStatus}`,
+    className,
+    {
+      [`${prefixCls}-item-custom`]: icon,
+      [`${prefixCls}-item-active`]: active,
+      [`${prefixCls}-item-disabled`]: disabled === true,
+    },
+  );
   const stepItemStyle = { ...style };
 
-  const accessibilityProps: {
-    role?: string;
-    tabIndex?: number;
-    onClick?: React.MouseEventHandler<HTMLDivElement>;
-  } = {};
-  if (onStepClick && !disabled) {
-    accessibilityProps.role = 'button';
-    accessibilityProps.tabIndex = 0;
-    accessibilityProps.onClick = onInternalClick;
-  }
-
-  let stepNode: React.ReactNode = (
+  let stepNode: React.ReactElement = (
     <div {...restProps} className={classString} style={stepItemStyle}>
       <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
         <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
@@ -160,12 +172,11 @@ function Step(props: StepProps) {
     </div>
   );
 
-
   if (render) {
-    stepNode = render(stepNode) || null;
+    stepNode = (render(stepNode) || null) as React.ReactElement;
   }
 
-  return stepNode as React.ReactElement;
+  return stepNode;
 }
 
 export default Step;

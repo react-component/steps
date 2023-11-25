@@ -1,2 +1,8 @@
-## smallSize
-<code src="../examples/smallSize.jsx">
+---
+title: smallSize
+nav:
+  title: Demo
+  path: /demo
+---
+
+<code src="../examples/smallSize.jsx"></code>
