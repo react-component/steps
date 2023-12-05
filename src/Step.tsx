@@ -33,7 +33,7 @@ export interface StepProps {
   render?: (stepItem: React.ReactElement) => React.ReactNode;
 }
 
-function Step(props: StepProps) {
+const Step: React.FC<StepProps> = (props) => {
   const {
     className,
     prefixCls,
@@ -85,7 +85,7 @@ function Step(props: StepProps) {
 
   // ========================= Render =========================
   const renderIconNode = () => {
-    let iconNode;
+    let iconNode: React.ReactNode;
     const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
       [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
       [`${iconPrefix}icon-check`]:
@@ -147,9 +147,10 @@ function Step(props: StepProps) {
       [`${prefixCls}-item-disabled`]: disabled === true,
     },
   );
-  const stepItemStyle = { ...style };
 
-  let stepNode: React.ReactElement = (
+  const stepItemStyle: React.CSSProperties = { ...style };
+
+  let stepNode: React.ReactNode = (
     <div {...restProps} className={classString} style={stepItemStyle}>
       <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
         <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
@@ -173,10 +174,14 @@ function Step(props: StepProps) {
   );
 
   if (render) {
-    stepNode = (render(stepNode) || null) as React.ReactElement;
+    stepNode = render(stepNode) || null;
   }
 
   return stepNode;
+};
+
+if (process.env.NODE_ENV !== 'production') {
+  Step.displayName = 'rc-step';
 }
 
 export default Step;

@@ -14,7 +14,7 @@ export type StepIconRender = (info: {
 }) => React.ReactNode;
 
 export type ProgressDotRender = (
-  iconDot,
+  iconDot: React.ReactNode,
   info: {
     index: number;
     status: Status;
@@ -44,7 +44,9 @@ export interface StepsProps {
   onChange?: (current: number) => void;
 }
 
-function Steps(props: StepsProps) {
+const Steps: React.FC<StepsProps> & {
+  Step: typeof Step;
+} = (props) => {
   const {
     prefixCls = 'rc-steps',
     style = {},
@@ -91,7 +93,7 @@ function Steps(props: StepsProps) {
   };
 
   const renderStep = (item: StepProps, index: number) => {
-    const mergedItem = { ...item };
+    const mergedItem: StepProps = { ...item };
     const stepNumber = initial + index;
     // fix tail color
     if (status === 'error' && index === current - 1) {
@@ -137,11 +139,15 @@ function Steps(props: StepsProps) {
 
   return (
     <div className={classString} style={style} {...restProps}>
-      {items.filter((item) => item).map(renderStep)}
+      {items.filter(Boolean).map<React.ReactNode>(renderStep)}
     </div>
   );
-}
+};
 
 Steps.Step = Step;
+
+if (process.env.NODE_ENV !== 'production') {
+  Steps.displayName = 'rc-steps';
+}
 
 export default Steps;
