@@ -174,7 +174,7 @@ const Step: React.FC<StepProps> = (props) => {
   );
 
   if (render) {
-    stepNode = render(stepNode) || null;
+    stepNode = (render(stepNode) || null) as React.ReactElement;
   }
 
   return stepNode;
