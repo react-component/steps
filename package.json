@@ -31,7 +31,7 @@
     "es",
     "lib"
   ],
-  "scripts": { 
+  "scripts": {
     "compile": "father build && lessc assets/index.less assets/index.css",
     "coverage": "umi-test --coverage",
     "docs:build": "dumi build",
