@@ -43,7 +43,8 @@
     "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "postpublish": "npm run gh-pages",
     "start": "dumi dev",
-    "test": "umi-test"
+    "test": "umi-test",
+    "now-build": "npm run docs:build"
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,md,json}": [
