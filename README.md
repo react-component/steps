@@ -39,7 +39,7 @@ npm install rc-steps
 
 ## Example
 
-https://react-component.github.io/steps/
+https://steps.vercel.app/
 
 ## API
 
