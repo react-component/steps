@@ -1,6 +1,6 @@
 ---
 hero:
-  title: rc-steps
+  title: "@rc-component/steps"
   description: React Steps Component
 ---
 

@@ -2,7 +2,7 @@ import '../../assets/index.less';
 import '../../assets/iconfont.less';
 import './nextStep.css';
 import React from 'react';
-import Steps from 'rc-steps';
+import Steps from '@rc-component/steps';
 
 function generateRandomSteps() {
   const n = Math.floor(Math.random() * 3) + 3;

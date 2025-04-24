@@ -1827,7 +1827,7 @@ exports[`Steps render should render svg finishIcon and errorIcon correctly 1`] =
           <svg
             fill="currentColor"
             height="1em"
-            style="vertical-align:-.125em"
+            style="vertical-align: -.125em;"
             viewBox="0 0 1024 1024"
             width="1em"
           >
@@ -1871,7 +1871,7 @@ exports[`Steps render should render svg finishIcon and errorIcon correctly 1`] =
           <svg
             fill="currentColor"
             height="1em"
-            style="vertical-align:-.125em"
+            style="vertical-align: -.125em;"
             viewBox="0 0 1024 1024"
             width="1em"
           >

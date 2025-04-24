@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { render, fireEvent, createEvent } from '@testing-library/react';
 import Steps from '../src';
 
 describe('Steps', () => {
@@ -26,8 +26,8 @@ describe('Steps', () => {
     );
 
     it('renders correctly', () => {
-      const wrapper = render(setSteps({}));
-      expect(wrapper).toMatchSnapshot();
+      const { container } = render(setSteps({}));
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders without items', () => {
@@ -36,57 +36,43 @@ describe('Steps', () => {
       }).not.toThrow();
     });
 
-    // it('render support Fragment', () => {
-    //   const wrapper = mount(
-    //     <Steps items={[]}>
-    //       <Step title="已完成" />
-    //       <Step title="进行中" />
-    //       <>
-    //         <Step title="待运行" />
-    //         <Step title="待运行" />
-    //       </>
-    //     </Steps>,
-    //   );
-    //   expect(wrapper.find('div.rc-steps-item')).toHaveLength(4);
-    // });
-
     it('renders current correctly', () => {
-      const wrapper = render(setSteps({ current: 2 }));
-      expect(wrapper).toMatchSnapshot();
+      const { container } = render(setSteps({ current: 2 }));
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders status correctly', () => {
-      const wrapper = render(setSteps({ current: 2, status: 'error' }));
-      expect(wrapper).toMatchSnapshot();
+      const { container } = render(setSteps({ current: 2, status: 'error' }));
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders vertical correctly', () => {
-      const wrapper = render(setSteps({ direction: 'vertical' }));
-      expect(wrapper).toMatchSnapshot();
+      const { container } = render(setSteps({ direction: 'vertical' }));
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders labelPlacement correctly', () => {
-      const wrapper = render(setSteps({ labelPlacement: 'vertical' }));
-      expect(wrapper).toMatchSnapshot();
+      const { container } = render(setSteps({ labelPlacement: 'vertical' }));
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders progressDot correctly', () => {
-      const wrapper = render(setSteps({ progressDot: true }));
-      expect(wrapper).toMatchSnapshot();
+      const { container } = render(setSteps({ progressDot: true }));
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders progressDot function correctly', () => {
-      const wrapper = render(setSteps({ progressDot: () => <span>a</span> }));
-      expect(wrapper).toMatchSnapshot();
+      const { container } = render(setSteps({ progressDot: () => <span>a</span> }));
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders stepIcon function correctly', () => {
-      const wrapper = render(setSteps({ stepIcon: () => <span>a</span> }));
-      expect(wrapper).toMatchSnapshot();
+      const { container } = render(setSteps({ stepIcon: () => <span>a</span> }));
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders step with description', () => {
-      const wrapper = render(
+      const { container } = render(
         <Steps
           items={[
             {
@@ -108,11 +94,11 @@ describe('Steps', () => {
           ]}
         />,
       );
-      expect(wrapper).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders step with description and status', () => {
-      const wrapper = render(
+      const { container } = render(
         <Steps
           items={[
             {
@@ -138,11 +124,11 @@ describe('Steps', () => {
           ]}
         />,
       );
-      expect(wrapper).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders with falsy children', () => {
-      const wrapper = render(
+      const { container } = render(
         <Steps
           items={[
             {
@@ -174,11 +160,11 @@ describe('Steps', () => {
           ]}
         />,
       );
-      expect(wrapper).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders step with tailContent', () => {
-      const wrapper = render(
+      const { container } = render(
         <Steps
           items={[
             {
@@ -204,12 +190,12 @@ describe('Steps', () => {
           ]}
         />,
       );
-      expect(wrapper).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders step with type navigation', () => {
       description = 'This is a description.';
-      const wrapper = render(
+      const { container } = render(
         <Steps
           type="navigation"
           current={1}
@@ -232,12 +218,12 @@ describe('Steps', () => {
           ]}
         />,
       );
-      expect(wrapper).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders step with type inline', () => {
       description = 'This is a description.';
-      const wrapper = render(
+      const { container } = render(
         <Steps
           type="inline"
           current={1}
@@ -260,7 +246,7 @@ describe('Steps', () => {
           itemRender={(item, stepItem) => React.cloneElement(stepItem, { title: item.description })}
         />,
       );
-      expect(wrapper).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     function getFinishIcon() {
@@ -323,7 +309,7 @@ describe('Steps', () => {
         finish: getFinishIcon(),
         error: getErrorIcon(),
       };
-      const wrapper = render(
+      const { container } = render(
         <Steps
           current={1}
           status="error"
@@ -345,13 +331,13 @@ describe('Steps', () => {
           ]}
         />,
       );
-      expect(wrapper).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   it('should render customIcon correctly', () => {
     const Icon = ({ type }) => <i className={`rcicon rcicon-${type}`} />;
-    const wrapper = render(
+    const { container } = render(
       <Steps
         current={1}
         items={[
@@ -370,12 +356,12 @@ describe('Steps', () => {
         ]}
       />,
     );
-    expect(wrapper).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('onChange', () => {
     const onChange = jest.fn();
-    const wrapper = mount(
+    const { container } = render(
       <Steps
         onChange={onChange}
         items={[
@@ -394,8 +380,8 @@ describe('Steps', () => {
         ]}
       />,
     );
-
-    wrapper.find('.rc-steps-item-container').at(1).simulate('click');
+    const items = container.querySelectorAll('.rc-steps-item-container');
+    fireEvent.click(items[1]);
     expect(onChange).toBeCalledWith(1);
   });
 
@@ -413,19 +399,22 @@ describe('Steps', () => {
     const onChange = (val) => {
       current = val;
     };
-    const wrapper = mount(
+    const { container, rerender } = render(
       <Steps current={current} onChange={onChange} items={items} key={current} />,
     );
 
-    wrapper.find('.rc-steps-item-container').at(1).simulate('click');
-    wrapper.setProps({ current: current });
-    expect(wrapper.find('.rc-steps-item').at(1).hasClass('rc-steps-item-process')).toBeTruthy();
+    const step = container.querySelectorAll('.rc-steps-item-container')[1];
+    fireEvent.click(step);
+    rerender(<Steps current={current} onChange={onChange} items={items} key={current} />);
+    expect(container.querySelectorAll('.rc-steps-item')[1].classList).toContain(
+      'rc-steps-item-process',
+    );
   });
 
   it('onClick', () => {
     const onClick = jest.fn();
     const onChange = jest.fn();
-    const wrapper = mount(
+    const { container } = render(
       <Steps
         onChange={onChange}
         items={[
@@ -446,32 +435,25 @@ describe('Steps', () => {
       />,
     );
 
-    wrapper.find('.rc-steps-item-container').at(0).simulate('click');
+    const btn = container.querySelectorAll('.rc-steps-item-container')[0];
+    fireEvent.click(btn);
     expect(onClick).toHaveBeenCalled();
   });
 
   it('disabled', () => {
     const onChange = jest.fn();
-    const wrapper = mount(
-      <Steps
-        onChange={onChange}
-        items={[
-          {},
-          {},
-          {
-            disabled: true,
-          },
-        ]}
-      />,
+    const { container } = render(
+      <Steps onChange={onChange} items={[{}, {}, { disabled: true }]} />,
     );
 
-    wrapper.find('.rc-steps-item-container').at(2).simulate('click');
+    const items = container.querySelectorAll('.rc-steps-item-container');
+    fireEvent.click(items[2]);
     expect(onChange).not.toBeCalled();
   });
 
   it('key board support', () => {
     const onChange = jest.fn();
-    const wrapper = mount(
+    const { container } = render(
       <Steps
         current={0}
         onChange={onChange}
@@ -488,8 +470,9 @@ describe('Steps', () => {
       />,
     );
 
-    wrapper.find('[role="button"]').at(1).simulate('keydown', { which: 13 });
+    const button = container.querySelectorAll('[role="button"]')[1];
+    fireEvent.keyDown(button, { key: 'Enter', keyCode: 13, which: 13 });
 
-    expect(onChange).toBeCalledWith(1);
+    expect(onChange).toHaveBeenCalledWith(1);
   });
 });

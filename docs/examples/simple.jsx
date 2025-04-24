@@ -1,7 +1,7 @@
 import '../../assets/index.less';
 import '../../assets/iconfont.less';
 import React from 'react';
-import Steps from 'rc-steps';
+import Steps from '@rc-component/steps';
 
 const description =
   '这里是多信息的描述啊描述啊描述啊描述啊哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶哦耶';

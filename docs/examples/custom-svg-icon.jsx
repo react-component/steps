@@ -1,7 +1,7 @@
 import '../../assets/index.less';
 import '../../assets/iconfont.less';
 import React from 'react';
-import Steps from 'rc-steps';
+import Steps from '@rc-component/steps';
 
 function getFinishIcon() {
   const path =
