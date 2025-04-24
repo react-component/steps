@@ -1,4 +1,4 @@
-# rc-steps
+# @rc-component/steps
 
 ---
 
@@ -10,21 +10,21 @@ React steps component.
 [![npm download][download-image]][download-url]
 [![bundle size][bundlephobia-image]][bundlephobia-url]
 
-[npm-image]: http://img.shields.io/npm/v/rc-steps.svg?style=flat-square
-[npm-url]: http://npmjs.org/package/rc-steps
+[npm-image]: http://img.shields.io/npm/v/@rc-component/steps.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/@rc-component/steps
 [travis-image]: https://img.shields.io/travis/react-component/steps.svg?style=flat-square
 [travis-url]: https://travis-ci.org/react-component/steps
 [codecov-image]: https://img.shields.io/codecov/c/github/react-component/steps/master.svg?style=flat-square
 [codecov-url]: https://codecov.io/gh/react-component/steps/branch/master
-[download-image]: https://img.shields.io/npm/dm/rc-steps.svg?style=flat-square
-[download-url]: https://npmjs.org/package/rc-steps
-[bundlephobia-url]: https://bundlephobia.com/result?p=rc-steps
-[bundlephobia-image]: https://badgen.net/bundlephobia/minzip/rc-steps
+[download-image]: https://img.shields.io/npm/dm/@rc-component/steps.svg?style=flat-square
+[download-url]: https://npmjs.org/package/@rc-component/steps
+[bundlephobia-url]: https://bundlephobia.com/result?p=@rc-component/steps
+[bundlephobia-image]: https://badgen.net/bundlephobia/minzip/@rc-component/steps
 
 ## Usage
 
 ```bash
-npm install rc-steps
+npm install @rc-component/steps
 ```
 
 <br>
@@ -188,4 +188,4 @@ npm start
 
 ## License
 
-rc-steps is released under the MIT license.
+@rc-component/steps is released under the MIT license.

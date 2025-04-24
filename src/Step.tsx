@@ -1,7 +1,7 @@
 /* eslint react/prop-types: 0 */
 import * as React from 'react';
 import classNames from 'classnames';
-import KeyCode from 'rc-util/lib/KeyCode';
+import KeyCode from '@rc-component/util/lib/KeyCode';
 import type { Status, Icons } from './interface';
 import type { StepIconRender, ProgressDotRender } from './Steps';
 

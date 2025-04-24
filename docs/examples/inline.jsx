@@ -1,6 +1,6 @@
 import '../../assets/index.less';
 import React, { useState } from 'react';
-import Steps from 'rc-steps';
+import Steps from '@rc-component/steps';
 
 export default () => {
   const [current, setCurrent] = useState(0);
