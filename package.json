@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "compile": "father build && lessc assets/index.less assets/index.css",
-    "coverage": "umi-test --coverage",
+    "coverage": "rc-test --coverage",
     "docs:build": "dumi build",
     "docs:deploy": "gh-pages -d .doc",
     "gh-pages": "npm run docs:build && npm run docs:deploy",
@@ -43,7 +43,7 @@
     "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "postpublish": "npm run gh-pages",
     "start": "dumi dev",
-    "test": "umi-test",
+    "test": "rc-test",
     "now-build": "npm run docs:build"
   },
   "lint-staged": {
@@ -79,12 +79,10 @@
     "prettier": "^3.1.0",
     "querystring": "^0.2.0",
     "rc-dialog": "8.x",
-    "rc-tools": "^9.6.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "typescript": "^5.0.0",
-    "cheerio": "1.0.0-rc.12",
-    "umi-test": "^1.9.7"
+    "rc-test": "^7.0.9",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.0.0"
   },
   "peerDependencies": {
     "react": ">=16.9.0",
