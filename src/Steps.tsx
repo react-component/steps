@@ -1,15 +1,30 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
-import classNames from 'classnames';
+import cls from 'classnames';
 import React from 'react';
 import type { Icons, Status } from './interface';
 import type { StepProps } from './Step';
 import Step from './Step';
 
+export type SemanticName = 'root';
+
+export type StepItem = {
+  /** @deprecated Please use `content` instead. */
+  description?: React.ReactNode;
+  content?: React.ReactNode;
+  disabled?: boolean;
+  icon?: React.ReactNode;
+  status?: Status;
+  subTitle?: React.ReactNode;
+  title?: React.ReactNode;
+};
+
 export type StepIconRender = (info: {
   index: number;
   status: Status;
   title: React.ReactNode;
+  // @deprecated Please use `content` instead.
   description: React.ReactNode;
+  content: React.ReactNode;
   node: React.ReactNode;
 }) => React.ReactNode;
 
@@ -19,119 +34,129 @@ export type ProgressDotRender = (
     index: number;
     status: Status;
     title: React.ReactNode;
+    // @deprecated Please use `content` instead.
     description: React.ReactNode;
+    content: React.ReactNode;
   },
 ) => React.ReactNode;
 
 export interface StepsProps {
+  // style
   prefixCls?: string;
   style?: React.CSSProperties;
   className?: string;
-  children?: React.ReactNode;
-  direction?: 'horizontal' | 'vertical';
-  type?: 'default' | 'navigation' | 'inline';
+  classNames?: Partial<Record<SemanticName, string>>;
+  styles?: Partial<Record<SemanticName, React.CSSProperties>>;
+
+  // layout
+  orientation?: 'horizontal' | 'vertical';
   labelPlacement?: 'horizontal' | 'vertical';
-  iconPrefix?: string;
-  status?: Status;
-  size?: 'default' | 'small';
-  current?: number;
   progressDot?: ProgressDotRender | boolean;
-  stepIcon?: StepIconRender;
+
+  // data
+  status?: Status;
+  current?: number;
   initial?: number;
-  icons?: Icons;
-  items?: StepProps[];
-  itemRender?: (item: StepProps, stepItem: React.ReactElement) => React.ReactNode;
+  items?: StepItem[];
   onChange?: (current: number) => void;
+
+  // render
+  iconRender?: (
+    item: StepItem,
+    info: {
+      status: Status;
+    },
+  ) => React.ReactNode;
+  itemRender?: (item: StepItem, stepItem: React.ReactElement) => React.ReactNode;
 }
 
-const Steps: React.FC<StepsProps> & {
-  Step: typeof Step;
-} = (props) => {
+export default function Steps(props: StepsProps) {
   const {
+    // style
     prefixCls = 'rc-steps',
-    style = {},
+    style,
     className,
-    children,
-    direction = 'horizontal',
-    type = 'default',
+    classNames,
+    styles,
+
+    // layout
+    orientation = 'horizontal',
     labelPlacement = 'horizontal',
-    iconPrefix = 'rc',
+    progressDot,
+
+    // data
     status = 'process',
-    size,
     current = 0,
-    progressDot = false,
-    stepIcon,
     initial = 0,
-    icons,
     onChange,
+    items,
+
+    // render
+    iconRender,
     itemRender,
-    items = [],
+
     ...restProps
   } = props;
 
-  const isNav = type === 'navigation';
-  const isInline = type === 'inline';
+  // ============================= layout =============================
+  const [mergedOrientation, mergeLabelPlacement] = React.useMemo(() => {
+    const nextOrientation = orientation === 'vertical' ? 'vertical' : 'horizontal';
+    const nextLabelPlacement = progressDot ? 'vertical' : labelPlacement;
 
-  // inline type requires fixed progressDot direction size.
-  const mergedProgressDot = isInline || progressDot;
-  const mergedDirection = isInline ? 'horizontal' : direction;
-  const mergedSize = isInline ? undefined : size;
+    return [nextOrientation, nextLabelPlacement] as const;
+  }, [orientation, progressDot, labelPlacement]);
 
-  const adjustedLabelPlacement = mergedProgressDot ? 'vertical' : labelPlacement;
-  const classString = classNames(prefixCls, `${prefixCls}-${mergedDirection}`, className, {
-    [`${prefixCls}-${mergedSize}`]: mergedSize,
-    [`${prefixCls}-label-${adjustedLabelPlacement}`]: mergedDirection === 'horizontal',
-    [`${prefixCls}-dot`]: !!mergedProgressDot,
-    [`${prefixCls}-navigation`]: isNav,
-    [`${prefixCls}-inline`]: isInline,
+  // ============================= styles =============================
+  const classString = cls(prefixCls, `${prefixCls}-${mergedOrientation}`, className, {
+    [`${prefixCls}-label-${mergeLabelPlacement}`]: mergedOrientation === 'horizontal',
+    [`${prefixCls}-dot`]: !!progressDot,
   });
 
+  // ============================== Data ==============================
+  const mergedItems = React.useMemo(() => (items || []).filter(Boolean), [items]);
+
+  // ============================= events =============================
   const onStepClick = (next: number) => {
     if (onChange && current !== next) {
       onChange(next);
     }
   };
 
+  // ============================= render =============================
   const renderStep = (item: StepProps, index: number) => {
-    const mergedItem: StepProps = { ...item };
+    const prevItem = mergedItems[index - 1];
+
+    const data: StepProps = { ...item };
     const stepNumber = initial + index;
     // fix tail color
     if (status === 'error' && index === current - 1) {
-      mergedItem.className = `${prefixCls}-next-error`;
+      data.className = `${prefixCls}-next-error`;
     }
 
-    if (!mergedItem.status) {
+    if (!data.status) {
       if (stepNumber === current) {
-        mergedItem.status = status;
+        data.status = status;
       } else if (stepNumber < current) {
-        mergedItem.status = 'finish';
+        data.status = 'finish';
       } else {
-        mergedItem.status = 'wait';
+        data.status = 'wait';
       }
     }
 
-    if (isInline) {
-      mergedItem.icon = undefined;
-      mergedItem.subTitle = undefined;
-    }
-
-    if (!mergedItem.render && itemRender) {
-      mergedItem.render = (stepItem) => itemRender(mergedItem, stepItem);
+    if (!data.render && itemRender) {
+      data.render = (stepItem) => itemRender(data, stepItem);
     }
 
     return (
       <Step
-        {...mergedItem}
+        data={data}
         active={stepNumber === current}
         stepNumber={stepNumber + 1}
         stepIndex={stepNumber}
         key={stepNumber}
         prefixCls={prefixCls}
-        iconPrefix={iconPrefix}
-        wrapperStyle={style}
-        progressDot={mergedProgressDot}
-        stepIcon={stepIcon}
-        icons={icons}
+        progressDot={progressDot}
+        iconRender={iconRender}
         onStepClick={onChange && onStepClick}
       />
     );
@@ -139,15 +164,7 @@ const Steps: React.FC<StepsProps> & {
 
   return (
     <div className={classString} style={style} {...restProps}>
-      {items.filter(Boolean).map<React.ReactNode>(renderStep)}
+      {mergedItems.map<React.ReactNode>(renderStep)}
     </div>
   );
-};
-
-Steps.Step = Step;
-
-if (process.env.NODE_ENV !== 'production') {
-  Steps.displayName = 'rc-steps';
 }
-
-export default Steps;

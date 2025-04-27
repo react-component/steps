@@ -3,18 +3,22 @@ import * as React from 'react';
 import classNames from 'classnames';
 import KeyCode from '@rc-component/util/lib/KeyCode';
 import type { Status, Icons } from './interface';
-import type { StepIconRender, ProgressDotRender } from './Steps';
+import type { ProgressDotRender, StepItem, StepsProps } from './Steps';
 
 function isString(str: any): str is string {
   return typeof str === 'string';
 }
 
 export interface StepProps {
+  // style
   prefixCls?: string;
   className?: string;
   style?: React.CSSProperties;
-  wrapperStyle?: React.CSSProperties;
-  iconPrefix?: string;
+  classNames: StepsProps['classNames'];
+  styles: StepsProps['styles'];
+
+  // data
+  data: StepItem;
   active?: boolean;
   disabled?: boolean;
   stepIndex?: number;
@@ -23,39 +27,36 @@ export interface StepProps {
   title?: React.ReactNode;
   subTitle?: React.ReactNode;
   description?: React.ReactNode;
-  tailContent?: React.ReactNode;
+
+  // render
+  iconRender?: StepsProps['iconRender'];
+
   icon?: React.ReactNode;
-  icons?: Icons;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   onStepClick?: (index: number) => void;
   progressDot?: ProgressDotRender | boolean;
-  stepIcon?: StepIconRender;
   render?: (stepItem: React.ReactElement) => React.ReactNode;
 }
 
-const Step: React.FC<StepProps> = (props) => {
+export default function Step(props: StepProps) {
   const {
     className,
     prefixCls,
     style,
     active,
     status,
-    iconPrefix,
     icon,
-    wrapperStyle,
     stepNumber,
     disabled,
     description,
     title,
     subTitle,
     progressDot,
-    stepIcon,
-    tailContent,
-    icons,
     stepIndex,
     onStepClick,
     onClick,
     render,
+    data,
     ...restProps
   } = props;
 
@@ -153,7 +154,7 @@ const Step: React.FC<StepProps> = (props) => {
   let stepNode: React.ReactNode = (
     <div {...restProps} className={classString} style={stepItemStyle}>
       <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
-        <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
+        <div className={`${prefixCls}-item-tail`} />
         <div className={`${prefixCls}-item-icon`}>{renderIconNode()}</div>
         <div className={`${prefixCls}-item-content`}>
           <div className={`${prefixCls}-item-title`}>
@@ -178,10 +179,4 @@ const Step: React.FC<StepProps> = (props) => {
   }
 
   return stepNode;
-};
-
-if (process.env.NODE_ENV !== 'production') {
-  Step.displayName = 'rc-step';
 }
-
-export default Step;
