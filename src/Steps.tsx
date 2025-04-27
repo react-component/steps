@@ -5,7 +5,7 @@ import type { Icons, Status } from './interface';
 import type { StepProps } from './Step';
 import Step from './Step';
 
-export type SemanticName = 'root';
+export type SemanticName = 'root' | 'item' | 'itemTitle' | 'itemContent' | 'itemIcon';
 
 export type StepItem = {
   /** @deprecated Please use `content` instead. */
@@ -16,9 +16,7 @@ export type StepItem = {
   status?: Status;
   subTitle?: React.ReactNode;
   title?: React.ReactNode;
-
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-};
+} & Pick<React.HtmlHTMLAttributes<HTMLDivElement>, 'onClick' | 'className' | 'style'>;
 
 export type StepIconRender = (info: {
   index: number;
@@ -67,7 +65,8 @@ export interface StepsProps {
   iconRender?: (
     item: StepItem,
     info: {
-      status: Status;
+      index: number;
+      active: boolean;
     },
   ) => React.ReactNode;
   itemRender?: (item: StepItem, stepItem: React.ReactElement) => React.ReactNode;
@@ -176,6 +175,11 @@ export default function Steps(props: StepsProps) {
     const prevStatus = statuses[index - 1];
     const itemStatus = statuses[index];
 
+    const data = {
+      ...item,
+      status: itemStatus,
+    };
+
     // if (!data.render && itemRender) {
     //   data.render = (stepItem) => itemRender(data, stepItem);
     // }
@@ -187,17 +191,16 @@ export default function Steps(props: StepsProps) {
         classNames={classNames}
         styles={styles}
         // Data
-        data={item}
+        data={data}
         status={itemStatus}
         prevStatus={prevStatus}
         active={stepIndex === current}
         index={stepIndex}
-        // stepNumber={stepNumber + 1}
-        // stepIndex={stepNumber}
         // Render
         key={stepIndex}
         progressDot={progressDot}
         iconRender={iconRender}
+        itemRender={itemRender}
         onClick={onChange && onStepClick}
       />
     );
