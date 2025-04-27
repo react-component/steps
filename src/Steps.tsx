@@ -16,6 +16,8 @@ export type StepItem = {
   status?: Status;
   subTitle?: React.ReactNode;
   title?: React.ReactNode;
+
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
 export type StepIconRender = (info: {
@@ -47,6 +49,7 @@ export interface StepsProps {
   className?: string;
   classNames?: Partial<Record<SemanticName, string>>;
   styles?: Partial<Record<SemanticName, React.CSSProperties>>;
+  rootClassName?: string;
 
   // layout
   orientation?: 'horizontal' | 'vertical';
@@ -78,6 +81,7 @@ export default function Steps(props: StepsProps) {
     className,
     classNames,
     styles,
+    rootClassName,
 
     // layout
     orientation = 'horizontal',
@@ -107,13 +111,38 @@ export default function Steps(props: StepsProps) {
   }, [orientation, progressDot, labelPlacement]);
 
   // ============================= styles =============================
-  const classString = cls(prefixCls, `${prefixCls}-${mergedOrientation}`, className, {
-    [`${prefixCls}-label-${mergeLabelPlacement}`]: mergedOrientation === 'horizontal',
-    [`${prefixCls}-dot`]: !!progressDot,
-  });
+  const classString = cls(
+    prefixCls,
+    `${prefixCls}-${mergedOrientation}`,
+    {
+      [`${prefixCls}-label-${mergeLabelPlacement}`]: mergedOrientation === 'horizontal',
+      [`${prefixCls}-dot`]: !!progressDot,
+    },
+    rootClassName,
+    className,
+    classNames.root,
+  );
 
   // ============================== Data ==============================
   const mergedItems = React.useMemo(() => (items || []).filter(Boolean), [items]);
+  const statuses = React.useMemo(
+    () =>
+      mergedItems.map(({ status: itemStatus }, index) => {
+        const stepNumber = initial + index;
+
+        if (!itemStatus) {
+          if (stepNumber === current) {
+            return status;
+          } else if (stepNumber < current) {
+            return 'finish';
+          }
+          return 'wait';
+        }
+
+        return itemStatus;
+      }),
+    [mergedItems, status, current, initial],
+  );
 
   // ============================= events =============================
   const onStepClick = (next: number) => {
@@ -123,47 +152,66 @@ export default function Steps(props: StepsProps) {
   };
 
   // ============================= render =============================
-  const renderStep = (item: StepProps, index: number) => {
-    const prevItem = mergedItems[index - 1];
+  const renderStep = (item: StepItem, index: number) => {
+    const stepIndex = initial + index;
 
-    const data: StepProps = { ...item };
-    const stepNumber = initial + index;
     // fix tail color
-    if (status === 'error' && index === current - 1) {
-      data.className = `${prefixCls}-next-error`;
-    }
+    // if (status === 'error' && index === current - 1) {
+    //   data.className = `${prefixCls}-next-error`;
+    // }
 
-    if (!data.status) {
-      if (stepNumber === current) {
-        data.status = status;
-      } else if (stepNumber < current) {
-        data.status = 'finish';
-      } else {
-        data.status = 'wait';
-      }
-    }
+    // const { status: currentStatus = status } = item;
+    // const { status: prevStatus = currentStatus } = prevItem || {};
 
-    if (!data.render && itemRender) {
-      data.render = (stepItem) => itemRender(data, stepItem);
-    }
+    // if (!data.status) {
+    //   if (stepNumber === current) {
+    //     data.status = status;
+    //   } else if (stepNumber < current) {
+    //     data.status = 'finish';
+    //   } else {
+    //     data.status = 'wait';
+    //   }
+    // }
+
+    const prevStatus = statuses[index - 1];
+    const itemStatus = statuses[index];
+
+    // if (!data.render && itemRender) {
+    //   data.render = (stepItem) => itemRender(data, stepItem);
+    // }
 
     return (
       <Step
-        data={data}
-        active={stepNumber === current}
-        stepNumber={stepNumber + 1}
-        stepIndex={stepNumber}
-        key={stepNumber}
+        // Style
         prefixCls={prefixCls}
+        classNames={classNames}
+        styles={styles}
+        // Data
+        data={item}
+        status={itemStatus}
+        prevStatus={prevStatus}
+        active={stepIndex === current}
+        index={stepIndex}
+        // stepNumber={stepNumber + 1}
+        // stepIndex={stepNumber}
+        // Render
+        key={stepIndex}
         progressDot={progressDot}
         iconRender={iconRender}
-        onStepClick={onChange && onStepClick}
+        onClick={onChange && onStepClick}
       />
     );
   };
 
   return (
-    <div className={classString} style={style} {...restProps}>
+    <div
+      className={classString}
+      style={{
+        ...style,
+        ...styles?.root,
+      }}
+      {...restProps}
+    >
       {mergedItems.map<React.ReactNode>(renderStep)}
     </div>
   );

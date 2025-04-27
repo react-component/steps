@@ -1,6 +1,6 @@
 /* eslint react/prop-types: 0 */
 import * as React from 'react';
-import classNames from 'classnames';
+import cls from 'classnames';
 import KeyCode from '@rc-component/util/lib/KeyCode';
 import type { Status, Icons } from './interface';
 import type { ProgressDotRender, StepItem, StepsProps } from './Steps';
@@ -19,49 +19,64 @@ export interface StepProps {
 
   // data
   data: StepItem;
+  status: Status;
+  prevStatus?: Status;
+
   active?: boolean;
   disabled?: boolean;
-  stepIndex?: number;
-  stepNumber?: number;
-  status?: Status;
-  title?: React.ReactNode;
-  subTitle?: React.ReactNode;
-  description?: React.ReactNode;
+  index: number;
+
+  // stepIndex?: number;
+  // stepNumber?: number;
+  // title?: React.ReactNode;
+  // subTitle?: React.ReactNode;
+  // description?: React.ReactNode;
 
   // render
   iconRender?: StepsProps['iconRender'];
-
   icon?: React.ReactNode;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-  onStepClick?: (index: number) => void;
   progressDot?: ProgressDotRender | boolean;
   render?: (stepItem: React.ReactElement) => React.ReactNode;
+
+  // Event
+  onClick?: (index: number) => void;
 }
 
 export default function Step(props: StepProps) {
   const {
-    className,
+    // style
     prefixCls,
+    className,
     style,
-    active,
-    status,
-    icon,
-    stepNumber,
-    disabled,
-    description,
-    title,
-    subTitle,
-    progressDot,
-    stepIndex,
-    onStepClick,
-    onClick,
-    render,
+    classNames,
+    styles,
+
+    // data
     data,
+    status,
+    prevStatus,
+
+    active,
+    disabled,
+    index,
+
+    // render
+    icon,
+    progressDot,
+    render,
+
+    // events
+    onClick,
+
     ...restProps
   } = props;
 
+  // ========================== Data ==========================
+  const { onClick: onItemClick, title, subTitle, content, description } = data;
+  const mergedContent = content ?? description;
+
   // ========================= Click ==========================
-  const clickable = !!onStepClick && !disabled;
+  const clickable = !!(onItemClick || onItemClick) && !disabled;
 
   const accessibilityProps: {
     role?: string;
@@ -69,17 +84,19 @@ export default function Step(props: StepProps) {
     onClick?: React.MouseEventHandler<HTMLDivElement>;
     onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   } = {};
+
   if (clickable) {
     accessibilityProps.role = 'button';
     accessibilityProps.tabIndex = 0;
     accessibilityProps.onClick = (e) => {
-      onClick?.(e);
-      onStepClick(stepIndex);
+      onItemClick?.(e);
+      onClick(index);
     };
+
     accessibilityProps.onKeyDown = (e) => {
       const { which } = e;
       if (which === KeyCode.ENTER || which === KeyCode.SPACE) {
-        onStepClick(stepIndex);
+        onClick(index);
       }
     };
   }
@@ -87,7 +104,7 @@ export default function Step(props: StepProps) {
   // ========================= Render =========================
   const renderIconNode = () => {
     let iconNode: React.ReactNode;
-    const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
+    const iconClassName = cls(`${prefixCls}-icon`, `${iconPrefix}icon`, {
       [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
       [`${iconPrefix}icon-check`]:
         !icon && status === 'finish' && ((icons && !icons.finish) || !icons),
@@ -105,6 +122,7 @@ export default function Step(props: StepProps) {
               status,
               title,
               description,
+              content: mergedContent,
             })}
           </span>
         );
@@ -125,10 +143,11 @@ export default function Step(props: StepProps) {
 
     if (stepIcon) {
       iconNode = stepIcon({
-        index: stepNumber - 1,
+        index,
         status,
         title,
         description,
+        content: mergedContent,
         node: iconNode,
       });
     }
@@ -138,16 +157,11 @@ export default function Step(props: StepProps) {
 
   const mergedStatus = status || 'wait';
 
-  const classString = classNames(
-    `${prefixCls}-item`,
-    `${prefixCls}-item-${mergedStatus}`,
-    className,
-    {
-      [`${prefixCls}-item-custom`]: icon,
-      [`${prefixCls}-item-active`]: active,
-      [`${prefixCls}-item-disabled`]: disabled === true,
-    },
-  );
+  const classString = cls(`${prefixCls}-item`, `${prefixCls}-item-${mergedStatus}`, className, {
+    [`${prefixCls}-item-custom`]: icon,
+    [`${prefixCls}-item-active`]: active,
+    [`${prefixCls}-item-disabled`]: disabled === true,
+  });
 
   const stepItemStyle: React.CSSProperties = { ...style };
 
