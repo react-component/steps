@@ -150,7 +150,7 @@ export default function Step(props: StepProps) {
               prefixCls={itemCls}
               classNames={classNames}
               styles={styles}
-              status={mergedStatus}
+              status={nextStatus}
             />
           )}
         </div>

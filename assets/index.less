@@ -34,6 +34,7 @@
   }
 
   &-icon {
+    flex: none;
     border: 1px solid @wait-icon-color;
     width: 26px;
     height: 26px;
@@ -96,10 +97,6 @@
 
 .@{stepsPrefixClass}-horizontal:not(.@{stepsPrefixClass}-label-vertical) {
   .@{stepsPrefixClass}-item {
-    margin-right: 10px;
-    &:last-child {
-      margin-right: 0;
-    }
     &-description {
       max-width: @stepDescriptionMaxWidth;
     }
@@ -146,10 +143,23 @@
 
 .@{stepsPrefixClass} {
   .@{stepsPrefixClass}-item {
+    &-section {
+      min-width: 0;
+    }
+
     &-header {
       display: flex;
       gap: 8px;
       align-items: center;
+    }
+
+    // Ellipsis
+    &-title,
+    &-subtitle,
+    &-description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }
@@ -158,6 +168,7 @@
   .@{stepsPrefixClass}-item {
     flex: 1;
     position: relative;
+    min-width: 0;
 
     &-rail {
       height: 1px;
@@ -180,6 +191,26 @@
         top: 13px;
         left: calc(50% + 13px);
         width: 100%;
+      }
+    }
+  }
+
+  // Label Horizontal
+  &.@{stepsPrefixClass}-label-horizontal {
+    .@{stepsPrefixClass}-item {
+      display: flex;
+
+      &:last-child {
+        flex: none;
+      }
+
+      &-section {
+        flex: 1;
+      }
+
+      &-rail {
+        flex: 1;
+        min-width: 0;
       }
     }
   }

@@ -2,7 +2,6 @@
 import cls from 'classnames';
 import React from 'react';
 import Step from './Step';
-import Rail from './Rail';
 
 export type Status = 'error' | 'process' | 'finish' | 'wait';
 
@@ -145,27 +144,23 @@ export default function Steps(props: StepsProps) {
     };
 
     return (
-      <React.Fragment key={stepIndex}>
-        {/* {index !== 0 && (
-          <Rail prefixCls={prefixCls} classNames={classNames} styles={styles} status={itemStatus} />
-        )} */}
-        <Step
-          // Style
-          prefixCls={prefixCls}
-          classNames={classNames}
-          styles={styles}
-          // Data
-          data={data}
-          nextStatus={nextStatus}
-          active={stepIndex === current}
-          index={stepIndex}
-          last={mergedItems.length - 1 === index}
-          // Render
-          iconRender={iconRender}
-          itemRender={itemRender}
-          onClick={onChange && onStepClick}
-        />
-      </React.Fragment>
+      <Step
+        key={stepIndex}
+        // Style
+        prefixCls={prefixCls}
+        classNames={classNames}
+        styles={styles}
+        // Data
+        data={data}
+        nextStatus={nextStatus}
+        active={stepIndex === current}
+        index={stepIndex}
+        last={mergedItems.length - 1 === index}
+        // Render
+        iconRender={iconRender}
+        itemRender={itemRender}
+        onClick={onChange && onStepClick}
+      />
     );
   };
 
