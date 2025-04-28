@@ -1,9 +1,10 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
 import cls from 'classnames';
 import React from 'react';
-import type { Icons, Status } from './interface';
-import type { StepProps } from './Step';
 import Step from './Step';
+import Rail from './Rail';
+
+export type Status = 'error' | 'process' | 'finish' | 'wait';
 
 export type SemanticName = 'root' | 'item' | 'itemTitle' | 'itemContent' | 'itemIcon' | 'itemRail';
 
@@ -28,18 +29,6 @@ export type StepIconRender = (info: {
   node: React.ReactNode;
 }) => React.ReactNode;
 
-export type ProgressDotRender = (
-  iconDot: React.ReactNode,
-  info: {
-    index: number;
-    status: Status;
-    title: React.ReactNode;
-    // @deprecated Please use `content` instead.
-    description: React.ReactNode;
-    content: React.ReactNode;
-  },
-) => React.ReactNode;
-
 export type RenderInfo = {
   index: number;
   active: boolean;
@@ -58,7 +47,6 @@ export interface StepsProps {
   // layout
   orientation?: 'horizontal' | 'vertical';
   labelPlacement?: 'horizontal' | 'vertical';
-  progressDot?: ProgressDotRender | boolean;
 
   // data
   status?: Status;
@@ -78,14 +66,13 @@ export default function Steps(props: StepsProps) {
     prefixCls = 'rc-steps',
     style,
     className,
-    classNames,
-    styles,
+    classNames = {},
+    styles = {},
     rootClassName,
 
     // layout
     orientation = 'horizontal',
     labelPlacement = 'horizontal',
-    progressDot,
 
     // data
     status = 'process',
@@ -102,21 +89,14 @@ export default function Steps(props: StepsProps) {
   } = props;
 
   // ============================= layout =============================
-  const [mergedOrientation, mergeLabelPlacement] = React.useMemo(() => {
-    const nextOrientation = orientation === 'vertical' ? 'vertical' : 'horizontal';
-    const nextLabelPlacement = progressDot ? 'vertical' : labelPlacement;
-
-    return [nextOrientation, nextLabelPlacement] as const;
-  }, [orientation, progressDot, labelPlacement]);
+  const mergedOrientation = orientation === 'vertical' ? 'vertical' : 'horizontal';
+  const mergeLabelPlacement = labelPlacement === 'vertical' ? 'vertical' : 'horizontal';
 
   // ============================= styles =============================
   const classString = cls(
     prefixCls,
     `${prefixCls}-${mergedOrientation}`,
-    {
-      [`${prefixCls}-label-${mergeLabelPlacement}`]: mergedOrientation === 'horizontal',
-      [`${prefixCls}-dot`]: !!progressDot,
-    },
+    `${prefixCls}-label-${mergeLabelPlacement}`,
     rootClassName,
     className,
     classNames.root,
@@ -159,49 +139,33 @@ export default function Steps(props: StepsProps) {
     //   data.className = `${prefixCls}-next-error`;
     // }
 
-    // const { status: currentStatus = status } = item;
-    // const { status: prevStatus = currentStatus } = prevItem || {};
-
-    // if (!data.status) {
-    //   if (stepNumber === current) {
-    //     data.status = status;
-    //   } else if (stepNumber < current) {
-    //     data.status = 'finish';
-    //   } else {
-    //     data.status = 'wait';
-    //   }
-    // }
-
     const itemStatus = statuses[index];
-    const nextStatus = statuses[index + 1];
 
     const data = {
       ...item,
       status: itemStatus,
     };
 
-    // if (!data.render && itemRender) {
-    //   data.render = (stepItem) => itemRender(data, stepItem);
-    // }
-
     return (
-      <Step
-        // Style
-        prefixCls={prefixCls}
-        classNames={classNames}
-        styles={styles}
-        // Data
-        data={data}
-        nextStatus={nextStatus}
-        active={stepIndex === current}
-        index={stepIndex}
-        // Render
-        key={stepIndex}
-        progressDot={progressDot}
-        iconRender={iconRender}
-        itemRender={itemRender}
-        onClick={onChange && onStepClick}
-      />
+      <React.Fragment key={stepIndex}>
+        {index !== 0 && (
+          <Rail prefixCls={prefixCls} classNames={classNames} styles={styles} status={itemStatus} />
+        )}
+        <Step
+          // Style
+          prefixCls={prefixCls}
+          classNames={classNames}
+          styles={styles}
+          // Data
+          data={data}
+          active={stepIndex === current}
+          index={stepIndex}
+          // Render
+          iconRender={iconRender}
+          itemRender={itemRender}
+          onClick={onChange && onStepClick}
+        />
+      </React.Fragment>
     );
   };
 

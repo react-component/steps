@@ -2,12 +2,7 @@
 import * as React from 'react';
 import cls from 'classnames';
 import KeyCode from '@rc-component/util/lib/KeyCode';
-import type { Status, Icons } from './interface';
-import type { ProgressDotRender, StepItem, StepsProps } from './Steps';
-
-function isString(str: any): str is string {
-  return typeof str === 'string';
-}
+import type { StepItem, StepsProps } from './Steps';
 
 export interface StepProps {
   // style
@@ -17,7 +12,6 @@ export interface StepProps {
 
   // data
   data: StepItem;
-  nextStatus?: Status;
 
   active?: boolean;
   index: number;
@@ -31,7 +25,6 @@ export interface StepProps {
   // render
   iconRender?: StepsProps['iconRender'];
   icon?: React.ReactNode;
-  progressDot?: ProgressDotRender | boolean;
   itemRender?: StepsProps['itemRender'];
 
   // Event
@@ -47,13 +40,11 @@ export default function Step(props: StepProps) {
 
     // data
     data,
-    nextStatus,
 
     active,
     index,
 
     // render
-    progressDot,
     itemRender,
     iconRender,
 
@@ -139,22 +130,20 @@ export default function Step(props: StepProps) {
     >
       <div {...accessibilityProps} className={`${itemCls}-container`}>
         <div className={`${itemCls}-tail`} />
-        <div className={cls(`{itemCls}-icon`, progressDot && `{itemCls}-icon-dot`)}>
-          {iconRender(renderInfo)}
-        </div>
-        <div className={`{itemCls}-content`}>
-          <div className={`{itemCls}-title`}>
+        <div className={`${itemCls}-icon`}>{iconRender?.(renderInfo)}</div>
+        <div className={`${itemCls}-content`}>
+          <div className={`${itemCls}-title`}>
             {title}
             {subTitle && (
               <div
                 title={typeof subTitle === 'string' ? subTitle : undefined}
-                className={`{itemCls}-subtitle`}
+                className={`${itemCls}-subtitle`}
               >
                 {subTitle}
               </div>
             )}
           </div>
-          {mergedContent && <div className={`{itemCls}-description`}>{mergedContent}</div>}
+          {mergedContent && <div className={`${itemCls}-description`}>{mergedContent}</div>}
         </div>
       </div>
     </div>
