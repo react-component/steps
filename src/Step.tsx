@@ -17,7 +17,7 @@ export interface StepProps {
 
   // data
   data: StepItem;
-  prevStatus?: Status;
+  nextStatus?: Status;
 
   active?: boolean;
   index: number;
@@ -32,7 +32,7 @@ export interface StepProps {
   iconRender?: StepsProps['iconRender'];
   icon?: React.ReactNode;
   progressDot?: ProgressDotRender | boolean;
-  itemRender?: (stepItem: React.ReactElement) => React.ReactNode;
+  itemRender?: StepsProps['itemRender'];
 
   // Event
   onClick?: (index: number) => void;
@@ -47,7 +47,7 @@ export default function Step(props: StepProps) {
 
     // data
     data,
-    prevStatus,
+    nextStatus,
 
     active,
     index,
@@ -60,6 +60,8 @@ export default function Step(props: StepProps) {
     // events
     onClick,
   } = props;
+
+  const itemCls = `${prefixCls}-item`;
 
   // ========================== Data ==========================
   const {
@@ -76,7 +78,14 @@ export default function Step(props: StepProps) {
     style,
     ...restItemProps
   } = data;
+
   const mergedContent = content ?? description;
+
+  const renderInfo = {
+    item: data,
+    index,
+    active,
+  };
 
   // ========================= Click ==========================
   const clickable = !!(onItemClick || onItemClick) && !disabled;
@@ -108,12 +117,12 @@ export default function Step(props: StepProps) {
   const mergedStatus = status || 'wait';
 
   const classString = cls(
-    `${prefixCls}-item`,
-    `${prefixCls}-item-${mergedStatus}`,
+    itemCls,
+    `${itemCls}-${mergedStatus}`,
     {
-      [`${prefixCls}-item-custom`]: icon,
-      [`${prefixCls}-item-active`]: active,
-      [`${prefixCls}-item-disabled`]: disabled === true,
+      [`${itemCls}-custom`]: icon,
+      [`${itemCls}-active`]: active,
+      [`${itemCls}-disabled`]: disabled === true,
     },
     className,
     classNames.item,
@@ -128,34 +137,31 @@ export default function Step(props: StepProps) {
         ...style,
       }}
     >
-      <div {...accessibilityProps} className={`${prefixCls}-item-container`}>
-        <div className={`${prefixCls}-item-tail`} />
-        <div className={`${prefixCls}-item-icon`}>
-          {iconRender(data, {
-            index,
-            active,
-          })}
+      <div {...accessibilityProps} className={`${itemCls}-container`}>
+        <div className={`${itemCls}-tail`} />
+        <div className={cls(`{itemCls}-icon`, progressDot && `{itemCls}-icon-dot`)}>
+          {iconRender(renderInfo)}
         </div>
-        <div className={`${prefixCls}-item-content`}>
-          <div className={`${prefixCls}-item-title`}>
+        <div className={`{itemCls}-content`}>
+          <div className={`{itemCls}-title`}>
             {title}
             {subTitle && (
               <div
                 title={typeof subTitle === 'string' ? subTitle : undefined}
-                className={`${prefixCls}-item-subtitle`}
+                className={`{itemCls}-subtitle`}
               >
                 {subTitle}
               </div>
             )}
           </div>
-          {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
+          {mergedContent && <div className={`{itemCls}-description`}>{mergedContent}</div>}
         </div>
       </div>
     </div>
   );
 
   if (itemRender) {
-    stepNode = (itemRender(stepNode) || null) as React.ReactElement;
+    stepNode = (itemRender(stepNode, renderInfo) || null) as React.ReactElement;
   }
 
   return stepNode;

@@ -5,7 +5,7 @@ import type { Icons, Status } from './interface';
 import type { StepProps } from './Step';
 import Step from './Step';
 
-export type SemanticName = 'root' | 'item' | 'itemTitle' | 'itemContent' | 'itemIcon';
+export type SemanticName = 'root' | 'item' | 'itemTitle' | 'itemContent' | 'itemIcon' | 'itemRail';
 
 export type StepItem = {
   /** @deprecated Please use `content` instead. */
@@ -40,6 +40,12 @@ export type ProgressDotRender = (
   },
 ) => React.ReactNode;
 
+export type RenderInfo = {
+  index: number;
+  active: boolean;
+  item: StepItem;
+};
+
 export interface StepsProps {
   // style
   prefixCls?: string;
@@ -62,14 +68,8 @@ export interface StepsProps {
   onChange?: (current: number) => void;
 
   // render
-  iconRender?: (
-    item: StepItem,
-    info: {
-      index: number;
-      active: boolean;
-    },
-  ) => React.ReactNode;
-  itemRender?: (item: StepItem, stepItem: React.ReactElement) => React.ReactNode;
+  iconRender?: (info: RenderInfo) => React.ReactNode;
+  itemRender?: (originNode: React.ReactElement, info: RenderInfo) => React.ReactNode;
 }
 
 export default function Steps(props: StepsProps) {
@@ -172,8 +172,8 @@ export default function Steps(props: StepsProps) {
     //   }
     // }
 
-    const prevStatus = statuses[index - 1];
     const itemStatus = statuses[index];
+    const nextStatus = statuses[index + 1];
 
     const data = {
       ...item,
@@ -192,8 +192,7 @@ export default function Steps(props: StepsProps) {
         styles={styles}
         // Data
         data={data}
-        status={itemStatus}
-        prevStatus={prevStatus}
+        nextStatus={nextStatus}
         active={stepIndex === current}
         index={stepIndex}
         // Render
