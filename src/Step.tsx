@@ -2,7 +2,8 @@
 import * as React from 'react';
 import cls from 'classnames';
 import KeyCode from '@rc-component/util/lib/KeyCode';
-import type { StepItem, StepsProps } from './Steps';
+import type { Status, StepItem, StepsProps } from './Steps';
+import Rail from './Rail';
 
 export interface StepProps {
   // style
@@ -12,9 +13,10 @@ export interface StepProps {
 
   // data
   data: StepItem;
-
+  nextStatus?: Status;
   active?: boolean;
   index: number;
+  last: boolean;
 
   // stepIndex?: number;
   // stepNumber?: number;
@@ -40,7 +42,8 @@ export default function Step(props: StepProps) {
 
     // data
     data,
-
+    last,
+    nextStatus,
     active,
     index,
 
@@ -122,29 +125,36 @@ export default function Step(props: StepProps) {
   let stepNode: React.ReactNode = (
     <div
       {...restItemProps}
+      {...accessibilityProps}
       className={classString}
       style={{
         ...styles.item,
         ...style,
       }}
     >
-      <div {...accessibilityProps} className={`${itemCls}-container`}>
-        <div className={`${itemCls}-tail`} />
-        <div className={`${itemCls}-icon`}>{iconRender?.(renderInfo)}</div>
-        <div className={`${itemCls}-content`}>
-          <div className={`${itemCls}-title`}>
-            {title}
-            {subTitle && (
-              <div
-                title={typeof subTitle === 'string' ? subTitle : undefined}
-                className={`${itemCls}-subtitle`}
-              >
-                {subTitle}
-              </div>
-            )}
-          </div>
-          {mergedContent && <div className={`${itemCls}-description`}>{mergedContent}</div>}
+      <div className={`${itemCls}-icon`}>{iconRender?.(renderInfo)}</div>
+      <div className={`${itemCls}-section`}>
+        <div className={`${itemCls}-header`}>
+          <div className={`${itemCls}-title`}>{title}</div>
+          {subTitle && (
+            <div
+              title={typeof subTitle === 'string' ? subTitle : undefined}
+              className={`${itemCls}-subtitle`}
+            >
+              {subTitle}
+            </div>
+          )}
+
+          {!last && (
+            <Rail
+              prefixCls={itemCls}
+              classNames={classNames}
+              styles={styles}
+              status={mergedStatus}
+            />
+          )}
         </div>
+        {mergedContent && <div className={`${itemCls}-description`}>{mergedContent}</div>}
       </div>
     </div>
   );

@@ -89,8 +89,10 @@ export default function Steps(props: StepsProps) {
   } = props;
 
   // ============================= layout =============================
-  const mergedOrientation = orientation === 'vertical' ? 'vertical' : 'horizontal';
-  const mergeLabelPlacement = labelPlacement === 'vertical' ? 'vertical' : 'horizontal';
+  const isVertical = orientation === 'vertical';
+  const mergedOrientation = isVertical ? 'vertical' : 'horizontal';
+  const mergeLabelPlacement =
+    !isVertical && labelPlacement === 'vertical' ? 'vertical' : 'horizontal';
 
   // ============================= styles =============================
   const classString = cls(
@@ -134,12 +136,8 @@ export default function Steps(props: StepsProps) {
   const renderStep = (item: StepItem, index: number) => {
     const stepIndex = initial + index;
 
-    // fix tail color
-    // if (status === 'error' && index === current - 1) {
-    //   data.className = `${prefixCls}-next-error`;
-    // }
-
     const itemStatus = statuses[index];
+    const nextStatus = statuses[index + 1];
 
     const data = {
       ...item,
@@ -148,9 +146,9 @@ export default function Steps(props: StepsProps) {
 
     return (
       <React.Fragment key={stepIndex}>
-        {index !== 0 && (
+        {/* {index !== 0 && (
           <Rail prefixCls={prefixCls} classNames={classNames} styles={styles} status={itemStatus} />
-        )}
+        )} */}
         <Step
           // Style
           prefixCls={prefixCls}
@@ -158,8 +156,10 @@ export default function Steps(props: StepsProps) {
           styles={styles}
           // Data
           data={data}
+          nextStatus={nextStatus}
           active={stepIndex === current}
           index={stepIndex}
+          last={mergedItems.length - 1 === index}
           // Render
           iconRender={iconRender}
           itemRender={itemRender}
