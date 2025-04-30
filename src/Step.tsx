@@ -82,7 +82,7 @@ export default function Step(props: StepProps) {
   };
 
   // ========================= Click ==========================
-  const clickable = !!(onItemClick || onItemClick) && !disabled;
+  const clickable = !!(onClick || onItemClick) && !disabled;
 
   const accessibilityProps: {
     role?: string;
