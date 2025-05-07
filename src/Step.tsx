@@ -125,36 +125,37 @@ export default function Step(props: StepProps) {
   let stepNode: React.ReactNode = (
     <div
       {...restItemProps}
-      {...accessibilityProps}
       className={classString}
       style={{
         ...styles.item,
         ...style,
       }}
     >
-      <div className={`${itemCls}-icon`}>{iconRender?.(renderInfo)}</div>
-      <div className={`${itemCls}-section`}>
-        <div className={`${itemCls}-header`}>
-          <div className={`${itemCls}-title`}>{title}</div>
-          {subTitle && (
-            <div
-              title={typeof subTitle === 'string' ? subTitle : undefined}
-              className={`${itemCls}-subtitle`}
-            >
-              {subTitle}
-            </div>
-          )}
+      <div className={`${itemCls}-wrapper`} {...accessibilityProps}>
+        <div className={`${itemCls}-icon`}>{iconRender?.(renderInfo)}</div>
+        <div className={`${itemCls}-section`}>
+          <div className={`${itemCls}-header`}>
+            <div className={`${itemCls}-title`}>{title}</div>
+            {subTitle && (
+              <div
+                title={typeof subTitle === 'string' ? subTitle : undefined}
+                className={`${itemCls}-subtitle`}
+              >
+                {subTitle}
+              </div>
+            )}
 
-          {!last && (
-            <Rail
-              prefixCls={itemCls}
-              classNames={classNames}
-              styles={styles}
-              status={nextStatus}
-            />
-          )}
+            {!last && (
+              <Rail
+                prefixCls={itemCls}
+                classNames={classNames}
+                styles={styles}
+                status={nextStatus}
+              />
+            )}
+          </div>
+          {mergedContent && <div className={`${itemCls}-description`}>{mergedContent}</div>}
         </div>
-        {mergedContent && <div className={`${itemCls}-description`}>{mergedContent}</div>}
       </div>
     </div>
   );
