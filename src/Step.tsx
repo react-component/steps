@@ -28,6 +28,7 @@ export interface StepProps {
   iconRender?: StepsProps['iconRender'];
   icon?: React.ReactNode;
   itemRender?: StepsProps['itemRender'];
+  itemWrapperRender?: StepsProps['itemWrapperRender'];
 
   // Event
   onClick?: (index: number) => void;
@@ -50,6 +51,7 @@ export default function Step(props: StepProps) {
     // render
     itemRender,
     iconRender,
+    itemWrapperRender,
 
     // events
     onClick,
@@ -122,6 +124,30 @@ export default function Step(props: StepProps) {
     classNames.item,
   );
 
+  const wrapperNode = (
+    <div className={`${itemCls}-wrapper`} {...accessibilityProps}>
+      <div className={`${itemCls}-icon`}>{iconRender?.(renderInfo)}</div>
+      <div className={`${itemCls}-section`}>
+        <div className={`${itemCls}-header`}>
+          <div className={`${itemCls}-title`}>{title}</div>
+          {subTitle && (
+            <div
+              title={typeof subTitle === 'string' ? subTitle : undefined}
+              className={`${itemCls}-subtitle`}
+            >
+              {subTitle}
+            </div>
+          )}
+
+          {!last && (
+            <Rail prefixCls={itemCls} classNames={classNames} styles={styles} status={nextStatus} />
+          )}
+        </div>
+        {mergedContent && <div className={`${itemCls}-description`}>{mergedContent}</div>}
+      </div>
+    </div>
+  );
+
   let stepNode: React.ReactNode = (
     <div
       {...restItemProps}
@@ -131,32 +157,7 @@ export default function Step(props: StepProps) {
         ...style,
       }}
     >
-      <div className={`${itemCls}-wrapper`} {...accessibilityProps}>
-        <div className={`${itemCls}-icon`}>{iconRender?.(renderInfo)}</div>
-        <div className={`${itemCls}-section`}>
-          <div className={`${itemCls}-header`}>
-            <div className={`${itemCls}-title`}>{title}</div>
-            {subTitle && (
-              <div
-                title={typeof subTitle === 'string' ? subTitle : undefined}
-                className={`${itemCls}-subtitle`}
-              >
-                {subTitle}
-              </div>
-            )}
-
-            {!last && (
-              <Rail
-                prefixCls={itemCls}
-                classNames={classNames}
-                styles={styles}
-                status={nextStatus}
-              />
-            )}
-          </div>
-          {mergedContent && <div className={`${itemCls}-description`}>{mergedContent}</div>}
-        </div>
-      </div>
+      {itemWrapperRender ? itemWrapperRender(wrapperNode) : wrapperNode}
     </div>
   );
 

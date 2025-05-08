@@ -57,6 +57,7 @@ export interface StepsProps {
   // render
   iconRender?: (info: RenderInfo) => React.ReactNode;
   itemRender?: (originNode: React.ReactElement, info: RenderInfo) => React.ReactNode;
+  itemWrapperRender?: (originNode: React.ReactElement) => React.ReactNode;
 }
 
 export default function Steps(props: StepsProps) {
@@ -83,6 +84,7 @@ export default function Steps(props: StepsProps) {
     // render
     iconRender,
     itemRender,
+    itemWrapperRender,
 
     ...restProps
   } = props;
@@ -159,6 +161,7 @@ export default function Steps(props: StepsProps) {
         // Render
         iconRender={iconRender}
         itemRender={itemRender}
+        itemWrapperRender={itemWrapperRender}
         onClick={onChange && onStepClick}
       />
     );
