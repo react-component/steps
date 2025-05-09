@@ -157,7 +157,7 @@ export default function Step(props: StepProps) {
         </div>
         {mergedContent && (
           <div
-            className={cls(`${itemCls}-description`, classNames.itemContent)}
+            className={cls(`${itemCls}-content`, classNames.itemContent)}
             style={styles.itemContent}
           >
             {mergedContent}
