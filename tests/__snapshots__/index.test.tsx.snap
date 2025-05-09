@@ -701,7 +701,7 @@ exports[`Steps render renders step with description 1`] = `
           />
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -733,7 +733,7 @@ exports[`Steps render renders step with description 1`] = `
           />
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -765,7 +765,7 @@ exports[`Steps render renders step with description 1`] = `
           />
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -794,7 +794,7 @@ exports[`Steps render renders step with description 1`] = `
           </div>
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -833,7 +833,7 @@ exports[`Steps render renders step with description and status 1`] = `
           />
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -865,7 +865,7 @@ exports[`Steps render renders step with description and status 1`] = `
           />
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -897,7 +897,7 @@ exports[`Steps render renders step with description and status 1`] = `
           />
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -926,7 +926,7 @@ exports[`Steps render renders step with description and status 1`] = `
           </div>
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -1190,7 +1190,7 @@ exports[`Steps render renders with falsy children 1`] = `
           />
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -1228,7 +1228,7 @@ exports[`Steps render renders with falsy children 1`] = `
           />
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -1260,7 +1260,7 @@ exports[`Steps render renders with falsy children 1`] = `
           />
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>
@@ -1289,7 +1289,7 @@ exports[`Steps render renders with falsy children 1`] = `
           </div>
         </div>
         <div
-          class="rc-steps-item-description"
+          class="rc-steps-item-content"
         >
           xx
         </div>

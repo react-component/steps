@@ -305,4 +305,43 @@ describe('Steps', () => {
 
     expect(onChange).toHaveBeenCalledWith(1);
   });
+
+  it('itemRender', () => {
+    const { container } = render(
+      <Steps
+        items={[
+          {
+            title: 'test',
+          },
+        ]}
+        itemRender={(oriNode) => {
+          return <div className="bamboo">{oriNode}</div>;
+        }}
+      />,
+    );
+
+    expect(container.querySelector('.bamboo')).toBeTruthy();
+    expect(container.querySelectorAll('.bamboo')).toHaveLength(1);
+    expect(container.querySelector('.rc-steps-item')).toBeTruthy();
+  });
+
+  it('itemWrapperRender', () => {
+    const { container } = render(
+      <Steps
+        items={[
+          {
+            title: 'test',
+          },
+        ]}
+        itemWrapperRender={(oriNode) => {
+          return <div className="bamboo">{oriNode}</div>;
+        }}
+      />,
+    );
+
+    expect(container.querySelector('.bamboo')).toBeTruthy();
+    expect(container.querySelectorAll('.bamboo')).toHaveLength(1);
+    expect(container.querySelector('.rc-steps-item')).toBeTruthy();
+    expect(container.querySelector('.rc-steps-item > .bamboo')).toBeTruthy();
+  });
 });
