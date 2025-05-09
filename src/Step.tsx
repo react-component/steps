@@ -1,66 +1,93 @@
 /* eslint react/prop-types: 0 */
 import * as React from 'react';
-import classNames from 'classnames';
+import cls from 'classnames';
 import KeyCode from '@rc-component/util/lib/KeyCode';
-import type { Status, Icons } from './interface';
-import type { StepIconRender, ProgressDotRender } from './Steps';
-
-function isString(str: any): str is string {
-  return typeof str === 'string';
-}
+import type { Status, StepItem, StepsProps } from './Steps';
+import Rail from './Rail';
 
 export interface StepProps {
+  // style
   prefixCls?: string;
-  className?: string;
-  style?: React.CSSProperties;
-  wrapperStyle?: React.CSSProperties;
-  iconPrefix?: string;
+  classNames: StepsProps['classNames'];
+  styles: StepsProps['styles'];
+
+  // data
+  data: StepItem;
+  nextStatus?: Status;
   active?: boolean;
-  disabled?: boolean;
-  stepIndex?: number;
-  stepNumber?: number;
-  status?: Status;
-  title?: React.ReactNode;
-  subTitle?: React.ReactNode;
-  description?: React.ReactNode;
-  tailContent?: React.ReactNode;
+  index: number;
+  last: boolean;
+
+  // stepIndex?: number;
+  // stepNumber?: number;
+  // title?: React.ReactNode;
+  // subTitle?: React.ReactNode;
+  // description?: React.ReactNode;
+
+  // render
+  iconRender?: StepsProps['iconRender'];
   icon?: React.ReactNode;
-  icons?: Icons;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-  onStepClick?: (index: number) => void;
-  progressDot?: ProgressDotRender | boolean;
-  stepIcon?: StepIconRender;
-  render?: (stepItem: React.ReactElement) => React.ReactNode;
+  itemRender?: StepsProps['itemRender'];
+  itemWrapperRender?: StepsProps['itemWrapperRender'];
+
+  // Event
+  onClick: (index: number) => void;
 }
 
-const Step: React.FC<StepProps> = (props) => {
+export default function Step(props: StepProps) {
   const {
-    className,
+    // style
     prefixCls,
-    style,
+    classNames,
+    styles,
+
+    // data
+    data,
+    last,
+    nextStatus,
     active,
-    status,
-    iconPrefix,
-    icon,
-    wrapperStyle,
-    stepNumber,
-    disabled,
-    description,
-    title,
-    subTitle,
-    progressDot,
-    stepIcon,
-    tailContent,
-    icons,
-    stepIndex,
-    onStepClick,
+    index,
+
+    // render
+    itemRender,
+    iconRender,
+    itemWrapperRender,
+
+    // events
     onClick,
-    render,
-    ...restProps
   } = props;
 
+  const itemCls = `${prefixCls}-item`;
+
+  // ========================== Data ==========================
+  const {
+    onClick: onItemClick,
+    title,
+    subTitle,
+    content,
+    description,
+    disabled,
+    icon,
+    status,
+
+    className,
+    style,
+    ...restItemProps
+  } = data;
+
+  const mergedContent = content ?? description;
+
+  const renderInfo = {
+    item: {
+      ...data,
+      content: mergedContent,
+    },
+    index,
+    active,
+  };
+
   // ========================= Click ==========================
-  const clickable = !!onStepClick && !disabled;
+  const clickable = !!(onClick || onItemClick) && !disabled;
 
   const accessibilityProps: {
     role?: string;
@@ -68,120 +95,94 @@ const Step: React.FC<StepProps> = (props) => {
     onClick?: React.MouseEventHandler<HTMLDivElement>;
     onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   } = {};
+
   if (clickable) {
     accessibilityProps.role = 'button';
     accessibilityProps.tabIndex = 0;
     accessibilityProps.onClick = (e) => {
-      onClick?.(e);
-      onStepClick(stepIndex);
+      onItemClick?.(e);
+      onClick(index);
     };
+
     accessibilityProps.onKeyDown = (e) => {
       const { which } = e;
       if (which === KeyCode.ENTER || which === KeyCode.SPACE) {
-        onStepClick(stepIndex);
+        onClick(index);
       }
     };
   }
 
   // ========================= Render =========================
-  const renderIconNode = () => {
-    let iconNode: React.ReactNode;
-    const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
-      [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
-      [`${iconPrefix}icon-check`]:
-        !icon && status === 'finish' && ((icons && !icons.finish) || !icons),
-      [`${iconPrefix}icon-cross`]:
-        !icon && status === 'error' && ((icons && !icons.error) || !icons),
-    });
-    const iconDot = <span className={`${prefixCls}-icon-dot`} />;
-    // `progressDot` enjoy the highest priority
-    if (progressDot) {
-      if (typeof progressDot === 'function') {
-        iconNode = (
-          <span className={`${prefixCls}-icon`}>
-            {progressDot(iconDot, {
-              index: stepNumber - 1,
-              status,
-              title,
-              description,
-            })}
-          </span>
-        );
-      } else {
-        iconNode = <span className={`${prefixCls}-icon`}>{iconDot}</span>;
-      }
-    } else if (icon && !isString(icon)) {
-      iconNode = <span className={`${prefixCls}-icon`}>{icon}</span>;
-    } else if (icons && icons.finish && status === 'finish') {
-      iconNode = <span className={`${prefixCls}-icon`}>{icons.finish}</span>;
-    } else if (icons && icons.error && status === 'error') {
-      iconNode = <span className={`${prefixCls}-icon`}>{icons.error}</span>;
-    } else if (icon || status === 'finish' || status === 'error') {
-      iconNode = <span className={iconClassName} />;
-    } else {
-      iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
-    }
-
-    if (stepIcon) {
-      iconNode = stepIcon({
-        index: stepNumber - 1,
-        status,
-        title,
-        description,
-        node: iconNode,
-      });
-    }
-
-    return iconNode;
-  };
-
   const mergedStatus = status || 'wait';
 
-  const classString = classNames(
-    `${prefixCls}-item`,
-    `${prefixCls}-item-${mergedStatus}`,
-    className,
+  const classString = cls(
+    itemCls,
+    `${itemCls}-${mergedStatus}`,
     {
-      [`${prefixCls}-item-custom`]: icon,
-      [`${prefixCls}-item-active`]: active,
-      [`${prefixCls}-item-disabled`]: disabled === true,
+      [`${itemCls}-custom`]: icon,
+      [`${itemCls}-active`]: active,
+      [`${itemCls}-disabled`]: disabled === true,
     },
+    className,
+    classNames.item,
   );
 
-  const stepItemStyle: React.CSSProperties = { ...style };
-
-  let stepNode: React.ReactNode = (
-    <div {...restProps} className={classString} style={stepItemStyle}>
-      <div onClick={onClick} {...accessibilityProps} className={`${prefixCls}-item-container`}>
-        <div className={`${prefixCls}-item-tail`}>{tailContent}</div>
-        <div className={`${prefixCls}-item-icon`}>{renderIconNode()}</div>
-        <div className={`${prefixCls}-item-content`}>
-          <div className={`${prefixCls}-item-title`}>
+  const wrapperNode = (
+    <div
+      className={cls(`${itemCls}-wrapper`, classNames.itemWrapper)}
+      style={styles.itemWrapper}
+      {...accessibilityProps}
+    >
+      <div className={cls(`${itemCls}-icon`, classNames.itemIcon)} style={styles.itemIcon}>
+        {iconRender?.(renderInfo)}
+      </div>
+      <div className={cls(`${itemCls}-section`, classNames.itemSection)} style={styles.itemSection}>
+        <div className={cls(`${itemCls}-header`, classNames.itemHeader)} style={styles.itemHeader}>
+          <div className={cls(`${itemCls}-title`, classNames.itemTitle)} style={styles.itemTitle}>
             {title}
-            {subTitle && (
-              <div
-                title={typeof subTitle === 'string' ? subTitle : undefined}
-                className={`${prefixCls}-item-subtitle`}
-              >
-                {subTitle}
-              </div>
-            )}
           </div>
-          {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
+          {subTitle && (
+            <div
+              title={typeof subTitle === 'string' ? subTitle : undefined}
+              className={cls(`${itemCls}-subtitle`, classNames.itemSubtitle)}
+              style={styles.itemSubtitle}
+            >
+              {subTitle}
+            </div>
+          )}
+
+          {!last && (
+            <Rail prefixCls={itemCls} classNames={classNames} styles={styles} status={nextStatus} />
+          )}
         </div>
+        {mergedContent && (
+          <div
+            className={cls(`${itemCls}-content`, classNames.itemContent)}
+            style={styles.itemContent}
+          >
+            {mergedContent}
+          </div>
+        )}
       </div>
     </div>
   );
 
-  if (render) {
-    stepNode = (render(stepNode) || null) as React.ReactElement;
+  let stepNode: React.ReactNode = (
+    <div
+      {...restItemProps}
+      className={classString}
+      style={{
+        ...styles.item,
+        ...style,
+      }}
+    >
+      {itemWrapperRender ? itemWrapperRender(wrapperNode) : wrapperNode}
+    </div>
+  );
+
+  if (itemRender) {
+    stepNode = (itemRender(stepNode, renderInfo) || null) as React.ReactElement;
   }
 
   return stepNode;
-};
-
-if (process.env.NODE_ENV !== 'production') {
-  Step.displayName = 'rc-step';
 }
-
-export default Step;

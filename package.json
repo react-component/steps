@@ -1,6 +1,6 @@
 {
   "name": "@rc-component/steps",
-  "version": "0.0.0",
+  "version": "0.0.0-alpha.5",
   "description": "steps ui component for react",
   "keywords": [
     "react",
@@ -80,8 +80,8 @@
     "querystring": "^0.2.0",
     "rc-dialog": "8.x",
     "rc-test": "^7.0.9",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
