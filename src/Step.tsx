@@ -128,15 +128,24 @@ export default function Step(props: StepProps) {
   );
 
   const wrapperNode = (
-    <div className={`${itemCls}-wrapper`} {...accessibilityProps}>
-      <div className={`${itemCls}-icon`}>{iconRender?.(renderInfo)}</div>
-      <div className={`${itemCls}-section`}>
-        <div className={`${itemCls}-header`}>
-          <div className={`${itemCls}-title`}>{title}</div>
+    <div
+      className={cls(`${itemCls}-wrapper`, classNames.itemWrapper)}
+      style={styles.itemWrapper}
+      {...accessibilityProps}
+    >
+      <div className={cls(`${itemCls}-icon`, classNames.itemIcon)} style={styles.itemIcon}>
+        {iconRender?.(renderInfo)}
+      </div>
+      <div className={cls(`${itemCls}-section`, classNames.itemSection)} style={styles.itemSection}>
+        <div className={cls(`${itemCls}-header`, classNames.itemHeader)} style={styles.itemHeader}>
+          <div className={cls(`${itemCls}-title`, classNames.itemTitle)} style={styles.itemTitle}>
+            {title}
+          </div>
           {subTitle && (
             <div
               title={typeof subTitle === 'string' ? subTitle : undefined}
-              className={`${itemCls}-subtitle`}
+              className={cls(`${itemCls}-subtitle`, classNames.itemSubtitle)}
+              style={styles.itemSubtitle}
             >
               {subTitle}
             </div>
@@ -146,7 +155,14 @@ export default function Step(props: StepProps) {
             <Rail prefixCls={itemCls} classNames={classNames} styles={styles} status={nextStatus} />
           )}
         </div>
-        {mergedContent && <div className={`${itemCls}-description`}>{mergedContent}</div>}
+        {mergedContent && (
+          <div
+            className={cls(`${itemCls}-description`, classNames.itemContent)}
+            style={styles.itemContent}
+          >
+            {mergedContent}
+          </div>
+        )}
       </div>
     </div>
   );

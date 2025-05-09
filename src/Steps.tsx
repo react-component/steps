@@ -5,7 +5,17 @@ import Step from './Step';
 
 export type Status = 'error' | 'process' | 'finish' | 'wait';
 
-export type SemanticName = 'root' | 'item' | 'itemTitle' | 'itemContent' | 'itemIcon' | 'itemRail';
+export type SemanticName =
+  | 'root'
+  | 'item'
+  | 'itemWrapper'
+  | 'itemHeader'
+  | 'itemTitle'
+  | 'itemSubtitle'
+  | 'itemSection'
+  | 'itemContent'
+  | 'itemIcon'
+  | 'itemRail';
 
 export type StepItem = {
   /** @deprecated Please use `content` instead. */
