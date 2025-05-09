@@ -31,7 +31,7 @@ export interface StepProps {
   itemWrapperRender?: StepsProps['itemWrapperRender'];
 
   // Event
-  onClick?: (index: number) => void;
+  onClick: (index: number) => void;
 }
 
 export default function Step(props: StepProps) {
