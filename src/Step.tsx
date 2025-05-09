@@ -78,7 +78,10 @@ export default function Step(props: StepProps) {
   const mergedContent = content ?? description;
 
   const renderInfo = {
-    item: data,
+    item: {
+      ...data,
+      content: mergedContent,
+    },
     index,
     active,
   };
