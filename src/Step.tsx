@@ -128,11 +128,7 @@ export default function Step(props: StepProps) {
   );
 
   const wrapperNode = (
-    <div
-      className={cls(`${itemCls}-wrapper`, classNames.itemWrapper)}
-      style={styles.itemWrapper}
-      {...accessibilityProps}
-    >
+    <div className={cls(`${itemCls}-wrapper`, classNames.itemWrapper)} style={styles.itemWrapper}>
       <div className={cls(`${itemCls}-icon`, classNames.itemIcon)} style={styles.itemIcon}>
         {iconRender?.(renderInfo)}
       </div>
@@ -170,6 +166,7 @@ export default function Step(props: StepProps) {
   let stepNode: React.ReactNode = (
     <div
       {...restItemProps}
+      {...accessibilityProps}
       className={classString}
       style={{
         ...styles.item,
