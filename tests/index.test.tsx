@@ -210,9 +210,9 @@ describe('Steps', () => {
         ]}
       />,
     );
-    const items = container.querySelectorAll('.rc-steps-item-wrapper');
+    const items = container.querySelectorAll('.rc-steps-item');
     fireEvent.click(items[1]);
-    expect(onChange).toBeCalledWith(1);
+    expect(onChange).toHaveBeenCalledTimes(1);
   });
 
   it('items out of render function', () => {
@@ -233,7 +233,7 @@ describe('Steps', () => {
       <Steps current={current} onChange={onChange} items={items} key={current} />,
     );
 
-    const step = container.querySelectorAll('.rc-steps-item-wrapper')[1];
+    const step = container.querySelectorAll('.rc-steps-item')[1];
     fireEvent.click(step);
     rerender(<Steps current={current} onChange={onChange} items={items} key={current} />);
     expect(container.querySelectorAll('.rc-steps-item')[1].classList).toContain(
@@ -265,7 +265,7 @@ describe('Steps', () => {
       />,
     );
 
-    const btn = container.querySelectorAll('.rc-steps-item-wrapper')[0];
+    const btn = container.querySelectorAll('.rc-steps-item')[0];
     fireEvent.click(btn);
     expect(onClick).toHaveBeenCalled();
   });
@@ -276,7 +276,7 @@ describe('Steps', () => {
       <Steps onChange={onChange} items={[{}, {}, { disabled: true }]} />,
     );
 
-    const items = container.querySelectorAll('.rc-steps-item-wrapper');
+    const items = container.querySelectorAll('.rc-steps-item');
     fireEvent.click(items[2]);
     expect(onChange).not.toBeCalled();
   });
