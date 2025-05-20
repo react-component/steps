@@ -84,7 +84,7 @@ https://steps.vercel.app/
       <td>size of Steps, could be `small`</td>
     </tr>
     <tr>
-      <td>labelPlacement</td>
+      <td>titlePlacement</td>
       <td>string</td>
       <td></td>
       <td>placement of step title, could be `vertical`</td>
