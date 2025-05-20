@@ -52,8 +52,8 @@ describe('Steps', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    it('renders labelPlacement correctly', () => {
-      const { container } = render(setSteps({ labelPlacement: 'vertical' }));
+    it('renders titlePlacement correctly', () => {
+      const { container } = render(setSteps({ titlePlacement: 'vertical' }));
       expect(container.firstChild).toMatchSnapshot();
     });
 

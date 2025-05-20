@@ -8,7 +8,7 @@ const description =
 
 export default () => (
   <Steps
-    labelPlacement="vertical"
+    titlePlacement="vertical"
     current={1}
     items={[
       {

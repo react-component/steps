@@ -55,7 +55,7 @@ export interface StepsProps {
 
   // layout
   orientation?: 'horizontal' | 'vertical';
-  labelPlacement?: 'horizontal' | 'vertical';
+  titlePlacement?: 'horizontal' | 'vertical';
 
   // data
   status?: Status;
@@ -82,7 +82,7 @@ export default function Steps(props: StepsProps) {
 
     // layout
     orientation = 'horizontal',
-    labelPlacement = 'horizontal',
+    titlePlacement = 'horizontal',
 
     // data
     status = 'process',
@@ -102,14 +102,14 @@ export default function Steps(props: StepsProps) {
   // ============================= layout =============================
   const isVertical = orientation === 'vertical';
   const mergedOrientation = isVertical ? 'vertical' : 'horizontal';
-  const mergeLabelPlacement =
-    !isVertical && labelPlacement === 'vertical' ? 'vertical' : 'horizontal';
+  const mergeTitlePlacement =
+    !isVertical && titlePlacement === 'vertical' ? 'vertical' : 'horizontal';
 
   // ============================= styles =============================
   const classString = cls(
     prefixCls,
     `${prefixCls}-${mergedOrientation}`,
-    `${prefixCls}-label-${mergeLabelPlacement}`,
+    `${prefixCls}-title-${mergeTitlePlacement}`,
     rootClassName,
     className,
     classNames.root,
