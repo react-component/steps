@@ -9,7 +9,7 @@ describe('Steps.alternate', () => {
     expect(container.querySelector('.rc-steps-item')).toHaveClass('rc-steps-item-empty-header');
   });
 
-  it('', () => {
+  it('horizontal-alternate orientation support', () => {
     const { container } = render(
       <Steps orientation="vertical" titlePlacement="horizontal-alternate" />,
     );
