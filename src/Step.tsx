@@ -4,6 +4,11 @@ import cls from 'classnames';
 import KeyCode from '@rc-component/util/lib/KeyCode';
 import type { Status, StepItem, StepsProps } from './Steps';
 import Rail from './Rail';
+import { UnstableContext } from './UnstableContext';
+
+function hasContent<T>(value: T) {
+  return value !== undefined && value !== null;
+}
 
 export interface StepProps {
   // style
@@ -17,12 +22,6 @@ export interface StepProps {
   active?: boolean;
   index: number;
   last: boolean;
-
-  // stepIndex?: number;
-  // stepNumber?: number;
-  // title?: React.ReactNode;
-  // subTitle?: React.ReactNode;
-  // description?: React.ReactNode;
 
   // render
   iconRender?: StepsProps['iconRender'];
@@ -58,6 +57,9 @@ export default function Step(props: StepProps) {
   } = props;
 
   const itemCls = `${prefixCls}-item`;
+
+  // ==================== Internal Context ====================
+  const { railFollowPrevStatus } = React.useContext(UnstableContext);
 
   // ========================== Data ==========================
   const {
@@ -115,6 +117,9 @@ export default function Step(props: StepProps) {
   // ========================= Render =========================
   const mergedStatus = status || 'wait';
 
+  const hasTitle = hasContent(title);
+  const hasSubTitle = hasContent(subTitle);
+
   const classString = cls(
     itemCls,
     `${itemCls}-${mergedStatus}`,
@@ -122,6 +127,7 @@ export default function Step(props: StepProps) {
       [`${itemCls}-custom`]: icon,
       [`${itemCls}-active`]: active,
       [`${itemCls}-disabled`]: disabled === true,
+      [`${itemCls}-empty-header`]: !hasTitle && !hasSubTitle,
     },
     className,
     classNames.item,
@@ -134,10 +140,12 @@ export default function Step(props: StepProps) {
       </div>
       <div className={cls(`${itemCls}-section`, classNames.itemSection)} style={styles.itemSection}>
         <div className={cls(`${itemCls}-header`, classNames.itemHeader)} style={styles.itemHeader}>
-          <div className={cls(`${itemCls}-title`, classNames.itemTitle)} style={styles.itemTitle}>
-            {title}
-          </div>
-          {subTitle && (
+          {hasTitle && (
+            <div className={cls(`${itemCls}-title`, classNames.itemTitle)} style={styles.itemTitle}>
+              {title}
+            </div>
+          )}
+          {hasSubTitle && (
             <div
               title={typeof subTitle === 'string' ? subTitle : undefined}
               className={cls(`${itemCls}-subtitle`, classNames.itemSubtitle)}
@@ -148,10 +156,15 @@ export default function Step(props: StepProps) {
           )}
 
           {!last && (
-            <Rail prefixCls={itemCls} classNames={classNames} styles={styles} status={nextStatus} />
+            <Rail
+              prefixCls={itemCls}
+              classNames={classNames}
+              styles={styles}
+              status={railFollowPrevStatus ? status : nextStatus}
+            />
           )}
         </div>
-        {mergedContent && (
+        {hasContent(mergedContent) && (
           <div
             className={cls(`${itemCls}-content`, classNames.itemContent)}
             style={styles.itemContent}
