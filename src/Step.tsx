@@ -4,6 +4,7 @@ import cls from 'classnames';
 import KeyCode from '@rc-component/util/lib/KeyCode';
 import type { Status, StepItem, StepsProps } from './Steps';
 import Rail from './Rail';
+import { UnstableContext } from './UnstableContext';
 
 function hasContent<T>(value: T) {
   return value !== undefined && value !== null;
@@ -56,6 +57,9 @@ export default function Step(props: StepProps) {
   } = props;
 
   const itemCls = `${prefixCls}-item`;
+
+  // ==================== Internal Context ====================
+  const { railFollowPrevStatus } = React.useContext(UnstableContext);
 
   // ========================== Data ==========================
   const {
@@ -129,8 +133,6 @@ export default function Step(props: StepProps) {
     classNames.item,
   );
 
-  // !hasContent(title) && !hasContent(subTitle) && `${itemCls}-header-empty`
-
   const wrapperNode = (
     <div className={cls(`${itemCls}-wrapper`, classNames.itemWrapper)} style={styles.itemWrapper}>
       <div className={cls(`${itemCls}-icon`, classNames.itemIcon)} style={styles.itemIcon}>
@@ -154,7 +156,12 @@ export default function Step(props: StepProps) {
           )}
 
           {!last && (
-            <Rail prefixCls={itemCls} classNames={classNames} styles={styles} status={nextStatus} />
+            <Rail
+              prefixCls={itemCls}
+              classNames={classNames}
+              styles={styles}
+              status={railFollowPrevStatus ? status : nextStatus}
+            />
           )}
         </div>
         {hasContent(mergedContent) && (
