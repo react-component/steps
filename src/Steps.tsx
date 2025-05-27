@@ -55,7 +55,7 @@ export interface StepsProps {
 
   // layout
   orientation?: 'horizontal' | 'vertical';
-  titlePlacement?: 'horizontal' | 'vertical' | 'horizontal-alternate';
+  titlePlacement?: 'horizontal' | 'vertical';
 
   // data
   status?: Status;
@@ -102,17 +102,8 @@ export default function Steps(props: StepsProps) {
   // ============================= layout =============================
   const isVertical = orientation === 'vertical';
   const mergedOrientation = isVertical ? 'vertical' : 'horizontal';
-  const mergeTitlePlacement = React.useMemo(() => {
-    if (isVertical) {
-      return titlePlacement === 'horizontal' || titlePlacement === 'horizontal-alternate'
-        ? titlePlacement
-        : 'horizontal';
-    }
-
-    return titlePlacement === 'vertical' || titlePlacement === 'horizontal'
-      ? titlePlacement
-      : 'horizontal';
-  }, [isVertical, titlePlacement]);
+  const mergeTitlePlacement =
+    !isVertical && titlePlacement === 'vertical' ? 'vertical' : 'horizontal';
 
   // ============================= styles =============================
   const classString = cls(
