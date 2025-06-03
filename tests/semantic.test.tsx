@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Steps, { type StepsProps } from '../src';
-import type { SemanticName } from '../src/Steps';
+import type { ItemSemanticName, SemanticName } from '../src/Steps';
 
 describe('Steps.Semantic', () => {
   const renderSteps = (props: Partial<StepsProps>) => (
@@ -9,7 +9,7 @@ describe('Steps.Semantic', () => {
       items={Array.from({ length: 3 }, (_, index) => ({
         title: `Step ${index + 1}`,
         subTitle: `SubTitle ${index + 1}`,
-        description: `Description ${index + 1}`,
+        content: `Content ${index + 1}`,
       }))}
       {...props}
     />
@@ -59,6 +59,67 @@ describe('Steps.Semantic', () => {
       renderSteps({
         classNames,
         styles,
+      }),
+    );
+
+    Object.keys(classNames).forEach((key) => {
+      const className = classNames[key as SemanticName];
+      const oriClassName = classNamesTargets[key as SemanticName];
+      const style = styles[key as SemanticName];
+
+      const element = container.querySelector<HTMLElement>(`.${className}`);
+      expect(element).toBeTruthy();
+      expect(element).toHaveClass(oriClassName);
+      expect(element).toHaveStyle(style);
+    });
+  });
+
+  it('item semantic structure', () => {
+    const classNames: Record<ItemSemanticName, string> = {
+      root: 'custom-root',
+      wrapper: 'custom-wrapper',
+      header: 'custom-header',
+      title: 'custom-title',
+      subtitle: 'custom-subtitle',
+      section: 'custom-section',
+      content: 'custom-content',
+      icon: 'custom-icon',
+      rail: 'custom-rail',
+    };
+
+    const classNamesTargets: Record<ItemSemanticName, string> = {
+      root: 'rc-steps-item',
+      wrapper: 'rc-steps-item-wrapper',
+      header: 'rc-steps-item-header',
+      title: 'rc-steps-item-title',
+      subtitle: 'rc-steps-item-subtitle',
+      section: 'rc-steps-item-section',
+      content: 'rc-steps-item-content',
+      icon: 'rc-steps-item-icon',
+      rail: 'rc-steps-item-rail',
+    };
+
+    const styles: Record<ItemSemanticName, Record<string, any>> = {
+      root: { color: 'red' },
+      wrapper: { color: 'green' },
+      header: { color: 'orange' },
+      title: { color: 'pink' },
+      subtitle: { color: 'cyan' },
+      section: { color: 'purple' },
+      content: { color: 'magenta' },
+      icon: { color: 'yellow' },
+      rail: { color: 'lime' },
+    };
+
+    const { container } = render(
+      renderSteps({
+        items: Array.from({ length: 2 }, (_, index) => ({
+          title: `Title ${index + 1}`,
+          subTitle: `SubTitle ${index + 1}`,
+          content: `Content ${index + 1}`,
+          classNames,
+          styles,
+        })),
       }),
     );
 

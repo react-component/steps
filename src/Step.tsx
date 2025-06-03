@@ -5,7 +5,7 @@ import KeyCode from '@rc-component/util/lib/KeyCode';
 import type { Status, StepItem, StepsProps } from './Steps';
 import Rail from './Rail';
 import { UnstableContext } from './UnstableContext';
-import StepIcon from './StepIcon';
+import StepIcon, { StepIconSemanticContext } from './StepIcon';
 
 function hasContent<T>(value: T) {
   return value !== undefined && value !== null;
@@ -75,6 +75,9 @@ export default function Step(props: StepProps) {
 
     className,
     style,
+    classNames: itemClassNames = {},
+    styles: itemStyles = {},
+
     ...restItemProps
   } = data;
 
@@ -132,6 +135,7 @@ export default function Step(props: StepProps) {
     },
     className,
     classNames.item,
+    itemClassNames.root,
   );
 
   let iconNode = <StepIcon />;
@@ -145,22 +149,60 @@ export default function Step(props: StepProps) {
   }
 
   const wrapperNode = (
-    <div className={cls(`${itemCls}-wrapper`, classNames.itemWrapper)} style={styles.itemWrapper}>
+    <div
+      className={cls(`${itemCls}-wrapper`, classNames.itemWrapper, itemClassNames.wrapper)}
+      style={{
+        ...styles.itemWrapper,
+        ...itemStyles.wrapper,
+      }}
+    >
       {/* Icon */}
-      {iconNode}
+      <StepIconSemanticContext.Provider
+        value={{
+          className: itemClassNames.icon,
+          style: itemStyles.icon,
+        }}
+      >
+        {iconNode}
+      </StepIconSemanticContext.Provider>
 
-      <div className={cls(`${itemCls}-section`, classNames.itemSection)} style={styles.itemSection}>
-        <div className={cls(`${itemCls}-header`, classNames.itemHeader)} style={styles.itemHeader}>
+      <div
+        className={cls(`${itemCls}-section`, classNames.itemSection, itemClassNames.section)}
+        style={{
+          ...styles.itemSection,
+          ...itemStyles.section,
+        }}
+      >
+        <div
+          className={cls(`${itemCls}-header`, classNames.itemHeader, itemClassNames.header)}
+          style={{
+            ...styles.itemHeader,
+            ...itemStyles.header,
+          }}
+        >
           {hasTitle && (
-            <div className={cls(`${itemCls}-title`, classNames.itemTitle)} style={styles.itemTitle}>
+            <div
+              className={cls(`${itemCls}-title`, classNames.itemTitle, itemClassNames.title)}
+              style={{
+                ...styles.itemTitle,
+                ...itemStyles.title,
+              }}
+            >
               {title}
             </div>
           )}
           {hasSubTitle && (
             <div
               title={typeof subTitle === 'string' ? subTitle : undefined}
-              className={cls(`${itemCls}-subtitle`, classNames.itemSubtitle)}
-              style={styles.itemSubtitle}
+              className={cls(
+                `${itemCls}-subtitle`,
+                classNames.itemSubtitle,
+                itemClassNames.subtitle,
+              )}
+              style={{
+                ...styles.itemSubtitle,
+                ...itemStyles.subtitle,
+              }}
             >
               {subTitle}
             </div>
@@ -169,16 +211,19 @@ export default function Step(props: StepProps) {
           {!last && (
             <Rail
               prefixCls={itemCls}
-              classNames={classNames}
-              styles={styles}
+              className={cls(classNames.itemRail, itemClassNames.rail)}
+              style={{
+                ...styles.itemRail,
+                ...itemStyles.rail,
+              }}
               status={railFollowPrevStatus ? status : nextStatus}
             />
           )}
         </div>
         {hasContent(mergedContent) && (
           <div
-            className={cls(`${itemCls}-content`, classNames.itemContent)}
-            style={styles.itemContent}
+            className={cls(`${itemCls}-content`, classNames.itemContent, itemClassNames.content)}
+            style={{ ...styles.itemContent, ...itemStyles.content }}
           >
             {mergedContent}
           </div>
@@ -194,6 +239,7 @@ export default function Step(props: StepProps) {
       className={classString}
       style={{
         ...styles.item,
+        ...itemStyles.root,
         ...style,
       }}
     >

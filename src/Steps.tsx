@@ -21,6 +21,17 @@ export type SemanticName =
   | 'itemIcon'
   | 'itemRail';
 
+export type ItemSemanticName =
+  | 'root'
+  | 'wrapper'
+  | 'header'
+  | 'title'
+  | 'subtitle'
+  | 'section'
+  | 'content'
+  | 'icon'
+  | 'rail';
+
 export type StepItem = {
   /** @deprecated Please use `content` instead. */
   description?: React.ReactNode;
@@ -30,6 +41,8 @@ export type StepItem = {
   status?: Status;
   subTitle?: React.ReactNode;
   title?: React.ReactNode;
+  classNames?: Partial<Record<ItemSemanticName, string>>;
+  styles?: Partial<Record<ItemSemanticName, React.CSSProperties>>;
 } & Pick<React.HtmlHTMLAttributes<HTMLDivElement>, 'onClick' | 'className' | 'style'>;
 
 export type StepIconRender = (info: {
