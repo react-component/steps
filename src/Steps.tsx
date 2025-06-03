@@ -43,7 +43,7 @@ export type StepItem = {
   title?: React.ReactNode;
   classNames?: Partial<Record<ItemSemanticName, string>>;
   styles?: Partial<Record<ItemSemanticName, React.CSSProperties>>;
-} & Pick<React.HtmlHTMLAttributes<HTMLDivElement>, 'onClick' | 'className' | 'style'>;
+} & Pick<React.HtmlHTMLAttributes<HTMLLIElement>, 'onClick' | 'className' | 'style'>;
 
 export type StepIconRender = (info: {
   index: number;
@@ -212,7 +212,7 @@ export default function Steps(props: StepsProps) {
   };
 
   return (
-    <div
+    <ol
       className={classString}
       style={{
         ...style,
@@ -223,6 +223,6 @@ export default function Steps(props: StepsProps) {
       <StepsContext.Provider value={stepIconContext}>
         {mergedItems.map<React.ReactNode>(renderStep)}
       </StepsContext.Provider>
-    </div>
+    </ol>
   );
 }

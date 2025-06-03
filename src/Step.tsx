@@ -98,8 +98,8 @@ export default function Step(props: StepProps) {
   const accessibilityProps: {
     role?: string;
     tabIndex?: number;
-    onClick?: React.MouseEventHandler<HTMLDivElement>;
-    onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+    onClick?: React.MouseEventHandler<HTMLLIElement>;
+    onKeyDown?: React.KeyboardEventHandler<HTMLLIElement>;
   } = {};
 
   if (clickable) {
@@ -233,7 +233,7 @@ export default function Step(props: StepProps) {
   );
 
   let stepNode: React.ReactNode = (
-    <div
+    <li
       {...restItemProps}
       {...accessibilityProps}
       className={classString}
@@ -244,7 +244,7 @@ export default function Step(props: StepProps) {
       }}
     >
       {itemWrapperRender ? itemWrapperRender(wrapperNode) : wrapperNode}
-    </div>
+    </li>
   );
 
   if (itemRender) {
