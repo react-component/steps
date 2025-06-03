@@ -6,7 +6,7 @@ import pickAttrs from '@rc-component/util/lib/pickAttrs';
 export type StepIconProps = React.HTMLAttributes<HTMLDivElement>;
 
 const StepIcon = React.forwardRef<HTMLDivElement, StepIconProps>((props, ref) => {
-  const { className, style, ...restProps } = props;
+  const { className, style, children, ...restProps } = props;
   const { prefixCls, classNames, styles } = React.useContext(StepsContext);
 
   const itemCls = `${prefixCls}-item`;
@@ -20,7 +20,9 @@ const StepIcon = React.forwardRef<HTMLDivElement, StepIconProps>((props, ref) =>
         ...styles.itemIcon,
         ...style,
       }}
-    />
+    >
+      {children}
+    </div>
   );
 });
 

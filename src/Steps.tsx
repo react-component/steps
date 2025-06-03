@@ -73,7 +73,7 @@ export interface StepsProps {
     originNode: React.ReactElement,
     info: RenderInfo & {
       components: {
-        icon: typeof StepIcon;
+        Icon: typeof StepIcon;
       };
     },
   ) => React.ReactNode;

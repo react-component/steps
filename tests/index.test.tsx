@@ -344,4 +344,23 @@ describe('Steps', () => {
     expect(container.querySelector('.rc-steps-item')).toBeTruthy();
     expect(container.querySelector('.rc-steps-item > .bamboo')).toBeTruthy();
   });
+
+  it('iconRender', () => {
+    const { container } = render(
+      <Steps
+        items={[
+          {
+            title: 'test',
+          },
+        ]}
+        iconRender={(_, { components: { Icon } }) => {
+          return <Icon className="bamboo">little</Icon>;
+        }}
+      />,
+    );
+
+    const iconEle = container.querySelector('.rc-steps-item-icon')!;
+    expect(iconEle).toHaveClass('bamboo');
+    expect(iconEle.textContent).toBe('little');
+  });
 });

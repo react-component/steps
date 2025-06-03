@@ -139,7 +139,7 @@ export default function Step(props: StepProps) {
     iconNode = iconRender(iconNode, {
       ...renderInfo,
       components: {
-        icon: StepIcon,
+        Icon: StepIcon,
       },
     }) as React.ReactElement;
   }
