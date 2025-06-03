@@ -5,6 +5,7 @@ import KeyCode from '@rc-component/util/lib/KeyCode';
 import type { Status, StepItem, StepsProps } from './Steps';
 import Rail from './Rail';
 import { UnstableContext } from './UnstableContext';
+import StepIcon from './StepIcon';
 
 function hasContent<T>(value: T) {
   return value !== undefined && value !== null;
@@ -133,11 +134,21 @@ export default function Step(props: StepProps) {
     classNames.item,
   );
 
+  let iconNode = <StepIcon />;
+  if (iconRender) {
+    iconNode = iconRender(iconNode, {
+      ...renderInfo,
+      components: {
+        icon: StepIcon,
+      },
+    }) as React.ReactElement;
+  }
+
   const wrapperNode = (
     <div className={cls(`${itemCls}-wrapper`, classNames.itemWrapper)} style={styles.itemWrapper}>
-      <div className={cls(`${itemCls}-icon`, classNames.itemIcon)} style={styles.itemIcon}>
-        {iconRender?.(renderInfo)}
-      </div>
+      {/* Icon */}
+      {iconNode}
+
       <div className={cls(`${itemCls}-section`, classNames.itemSection)} style={styles.itemSection}>
         <div className={cls(`${itemCls}-header`, classNames.itemHeader)} style={styles.itemHeader}>
           {hasTitle && (

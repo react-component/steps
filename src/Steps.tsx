@@ -2,8 +2,12 @@
 import cls from 'classnames';
 import React from 'react';
 import Step from './Step';
+import { StepsContext, type StepsContextProps } from './Context';
+import type StepIcon from './StepIcon';
 
 export type Status = 'error' | 'process' | 'finish' | 'wait';
+
+const EmptyObject = {};
 
 export type SemanticName =
   | 'root'
@@ -65,7 +69,14 @@ export interface StepsProps {
   onChange?: (current: number) => void;
 
   // render
-  iconRender?: (info: RenderInfo) => React.ReactNode;
+  iconRender?: (
+    originNode: React.ReactElement,
+    info: RenderInfo & {
+      components: {
+        icon: typeof StepIcon;
+      };
+    },
+  ) => React.ReactNode;
   itemRender?: (originNode: React.ReactElement, info: RenderInfo) => React.ReactNode;
   itemWrapperRender?: (originNode: React.ReactElement) => React.ReactNode;
 }
@@ -76,8 +87,8 @@ export default function Steps(props: StepsProps) {
     prefixCls = 'rc-steps',
     style,
     className,
-    classNames = {},
-    styles = {},
+    classNames = EmptyObject as NonNullable<StepsProps['classNames']>,
+    styles = EmptyObject as NonNullable<StepsProps['styles']>,
     rootClassName,
 
     // layout
@@ -143,6 +154,16 @@ export default function Steps(props: StepsProps) {
     }
   };
 
+  // ============================ contexts ============================
+  const stepIconContext = React.useMemo<StepsContextProps>(
+    () => ({
+      prefixCls,
+      classNames,
+      styles,
+    }),
+    [prefixCls, classNames, styles],
+  );
+
   // ============================= render =============================
   const renderStep = (item: StepItem, index: number) => {
     const stepIndex = initial + index;
@@ -186,7 +207,9 @@ export default function Steps(props: StepsProps) {
       }}
       {...restProps}
     >
-      {mergedItems.map<React.ReactNode>(renderStep)}
+      <StepsContext.Provider value={stepIconContext}>
+        {mergedItems.map<React.ReactNode>(renderStep)}
+      </StepsContext.Provider>
     </div>
   );
 }
