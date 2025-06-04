@@ -32,6 +32,8 @@ export type ItemSemanticName =
   | 'icon'
   | 'rail';
 
+export type ComponentType = React.ComponentType<any> | string;
+
 export type StepItem = {
   /** @deprecated Please use `content` instead. */
   description?: React.ReactNode;
@@ -74,6 +76,13 @@ export interface StepsProps {
   orientation?: 'horizontal' | 'vertical';
   titlePlacement?: 'horizontal' | 'vertical';
 
+  // a11y
+  /** Internal usage of antd. Do not deps on this. */
+  components?: {
+    root?: ComponentType;
+    item?: ComponentType;
+  };
+
   // data
   status?: Status;
   current?: number;
@@ -107,6 +116,7 @@ export default function Steps(props: StepsProps) {
     // layout
     orientation,
     titlePlacement,
+    components,
 
     // data
     status = 'process',
@@ -167,14 +177,18 @@ export default function Steps(props: StepsProps) {
     }
   };
 
+  // =========================== components ===========================
+  const { root: RootComponent = 'div', item: ItemComponent = 'div' } = components || {};
+
   // ============================ contexts ============================
   const stepIconContext = React.useMemo<StepsContextProps>(
     () => ({
       prefixCls,
       classNames,
       styles,
+      ItemComponent,
     }),
-    [prefixCls, classNames, styles],
+    [prefixCls, classNames, styles, ItemComponent],
   );
 
   // ============================= render =============================
@@ -212,7 +226,7 @@ export default function Steps(props: StepsProps) {
   };
 
   return (
-    <ol
+    <RootComponent
       className={classString}
       style={{
         ...style,
@@ -223,6 +237,6 @@ export default function Steps(props: StepsProps) {
       <StepsContext.Provider value={stepIconContext}>
         {mergedItems.map<React.ReactNode>(renderStep)}
       </StepsContext.Provider>
-    </ol>
+    </RootComponent>
   );
 }
