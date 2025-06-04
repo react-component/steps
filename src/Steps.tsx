@@ -2,8 +2,12 @@
 import cls from 'classnames';
 import React from 'react';
 import Step from './Step';
+import { StepsContext, type StepsContextProps } from './Context';
+import type StepIcon from './StepIcon';
 
 export type Status = 'error' | 'process' | 'finish' | 'wait';
+
+const EmptyObject = {};
 
 export type SemanticName =
   | 'root'
@@ -17,6 +21,17 @@ export type SemanticName =
   | 'itemIcon'
   | 'itemRail';
 
+export type ItemSemanticName =
+  | 'root'
+  | 'wrapper'
+  | 'header'
+  | 'title'
+  | 'subtitle'
+  | 'section'
+  | 'content'
+  | 'icon'
+  | 'rail';
+
 export type StepItem = {
   /** @deprecated Please use `content` instead. */
   description?: React.ReactNode;
@@ -26,7 +41,9 @@ export type StepItem = {
   status?: Status;
   subTitle?: React.ReactNode;
   title?: React.ReactNode;
-} & Pick<React.HtmlHTMLAttributes<HTMLDivElement>, 'onClick' | 'className' | 'style'>;
+  classNames?: Partial<Record<ItemSemanticName, string>>;
+  styles?: Partial<Record<ItemSemanticName, React.CSSProperties>>;
+} & Pick<React.HtmlHTMLAttributes<HTMLLIElement>, 'onClick' | 'className' | 'style'>;
 
 export type StepIconRender = (info: {
   index: number;
@@ -65,7 +82,14 @@ export interface StepsProps {
   onChange?: (current: number) => void;
 
   // render
-  iconRender?: (info: RenderInfo) => React.ReactNode;
+  iconRender?: (
+    originNode: React.ReactElement,
+    info: RenderInfo & {
+      components: {
+        Icon: typeof StepIcon;
+      };
+    },
+  ) => React.ReactNode;
   itemRender?: (originNode: React.ReactElement, info: RenderInfo) => React.ReactNode;
   itemWrapperRender?: (originNode: React.ReactElement) => React.ReactNode;
 }
@@ -76,13 +100,13 @@ export default function Steps(props: StepsProps) {
     prefixCls = 'rc-steps',
     style,
     className,
-    classNames = {},
-    styles = {},
+    classNames = EmptyObject as NonNullable<StepsProps['classNames']>,
+    styles = EmptyObject as NonNullable<StepsProps['styles']>,
     rootClassName,
 
     // layout
-    orientation = 'horizontal',
-    titlePlacement = 'horizontal',
+    orientation,
+    titlePlacement,
 
     // data
     status = 'process',
@@ -143,6 +167,16 @@ export default function Steps(props: StepsProps) {
     }
   };
 
+  // ============================ contexts ============================
+  const stepIconContext = React.useMemo<StepsContextProps>(
+    () => ({
+      prefixCls,
+      classNames,
+      styles,
+    }),
+    [prefixCls, classNames, styles],
+  );
+
   // ============================= render =============================
   const renderStep = (item: StepItem, index: number) => {
     const stepIndex = initial + index;
@@ -178,7 +212,7 @@ export default function Steps(props: StepsProps) {
   };
 
   return (
-    <div
+    <ol
       className={classString}
       style={{
         ...style,
@@ -186,7 +220,9 @@ export default function Steps(props: StepsProps) {
       }}
       {...restProps}
     >
-      {mergedItems.map<React.ReactNode>(renderStep)}
-    </div>
+      <StepsContext.Provider value={stepIconContext}>
+        {mergedItems.map<React.ReactNode>(renderStep)}
+      </StepsContext.Provider>
+    </ol>
   );
 }
