@@ -6,6 +6,7 @@ import type { Status, StepItem, StepsProps } from './Steps';
 import Rail from './Rail';
 import { UnstableContext } from './UnstableContext';
 import StepIcon, { StepIconSemanticContext } from './StepIcon';
+import { StepsContext } from './Context';
 
 function hasContent<T>(value: T) {
   return value !== undefined && value !== null;
@@ -59,8 +60,9 @@ export default function Step(props: StepProps) {
 
   const itemCls = `${prefixCls}-item`;
 
-  // ==================== Internal Context ====================
+  // ======================== Contexts ========================
   const { railFollowPrevStatus } = React.useContext(UnstableContext);
+  const { ItemComponent } = React.useContext(StepsContext);
 
   // ========================== Data ==========================
   const {
@@ -233,7 +235,7 @@ export default function Step(props: StepProps) {
   );
 
   let stepNode: React.ReactNode = (
-    <li
+    <ItemComponent
       {...restItemProps}
       {...accessibilityProps}
       className={classString}
@@ -244,7 +246,7 @@ export default function Step(props: StepProps) {
       }}
     >
       {itemWrapperRender ? itemWrapperRender(wrapperNode) : wrapperNode}
-    </li>
+    </ItemComponent>
   );
 
   if (itemRender) {

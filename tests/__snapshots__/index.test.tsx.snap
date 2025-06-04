@@ -1,10 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Steps render renders correctly 1`] = `
+exports[`Steps components 1`] = `
 <ol
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
 >
   <li
+    class="rc-steps-item rc-steps-item-process rc-steps-item-active"
+  >
+    <div
+      class="rc-steps-item-wrapper"
+    >
+      <div
+        class="rc-steps-item-icon"
+      />
+      <div
+        class="rc-steps-item-section"
+      >
+        <div
+          class="rc-steps-item-header"
+        >
+          <div
+            class="rc-steps-item-title"
+          >
+            test
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ol>
+`;
+
+exports[`Steps render renders correctly 1`] = `
+<div
+  class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
+>
+  <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
     <div
@@ -30,8 +61,8 @@ exports[`Steps render renders correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -57,8 +88,8 @@ exports[`Steps render renders correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -84,8 +115,8 @@ exports[`Steps render renders correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -108,15 +139,15 @@ exports[`Steps render renders correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps render renders current correctly 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-finish"
   >
     <div
@@ -142,8 +173,8 @@ exports[`Steps render renders current correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-finish"
   >
     <div
@@ -169,8 +200,8 @@ exports[`Steps render renders current correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
     <div
@@ -196,8 +227,8 @@ exports[`Steps render renders current correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -220,15 +251,15 @@ exports[`Steps render renders current correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps render renders progressDot correctly 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
     <div
@@ -254,8 +285,8 @@ exports[`Steps render renders progressDot correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -281,8 +312,8 @@ exports[`Steps render renders progressDot correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -308,8 +339,8 @@ exports[`Steps render renders progressDot correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -332,15 +363,15 @@ exports[`Steps render renders progressDot correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps render renders progressDot function correctly 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
     <div
@@ -366,8 +397,8 @@ exports[`Steps render renders progressDot function correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -393,8 +424,8 @@ exports[`Steps render renders progressDot function correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -420,8 +451,8 @@ exports[`Steps render renders progressDot function correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -444,15 +475,15 @@ exports[`Steps render renders progressDot function correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps render renders status correctly 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-finish"
   >
     <div
@@ -478,8 +509,8 @@ exports[`Steps render renders status correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-finish"
   >
     <div
@@ -505,8 +536,8 @@ exports[`Steps render renders status correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-error rc-steps-item-active"
   >
     <div
@@ -532,8 +563,8 @@ exports[`Steps render renders status correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -556,15 +587,15 @@ exports[`Steps render renders status correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps render renders step with description 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
     <div
@@ -595,8 +626,8 @@ exports[`Steps render renders step with description 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -627,8 +658,8 @@ exports[`Steps render renders step with description 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -659,8 +690,8 @@ exports[`Steps render renders step with description 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -688,15 +719,15 @@ exports[`Steps render renders step with description 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps render renders step with description and status 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-wait rc-steps-item-active"
   >
     <div
@@ -727,8 +758,8 @@ exports[`Steps render renders step with description and status 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -759,8 +790,8 @@ exports[`Steps render renders step with description and status 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-process"
   >
     <div
@@ -791,8 +822,8 @@ exports[`Steps render renders step with description and status 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-finish"
   >
     <div
@@ -820,15 +851,15 @@ exports[`Steps render renders step with description and status 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps render renders stepIcon function correctly 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
     <div
@@ -854,8 +885,8 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -881,8 +912,8 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -908,8 +939,8 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -932,15 +963,15 @@ exports[`Steps render renders stepIcon function correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps render renders titlePlacement correctly 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-vertical"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
     <div
@@ -966,8 +997,8 @@ exports[`Steps render renders titlePlacement correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -993,8 +1024,8 @@ exports[`Steps render renders titlePlacement correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -1020,8 +1051,8 @@ exports[`Steps render renders titlePlacement correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -1044,16 +1075,16 @@ exports[`Steps render renders titlePlacement correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps render renders vertical correctly 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
   direction="vertical"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-active"
   >
     <div
@@ -1079,8 +1110,8 @@ exports[`Steps render renders vertical correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -1106,8 +1137,8 @@ exports[`Steps render renders vertical correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -1133,8 +1164,8 @@ exports[`Steps render renders vertical correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -1157,15 +1188,15 @@ exports[`Steps render renders vertical correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps render renders with falsy children 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-wait rc-steps-item-active"
   >
     <div
@@ -1196,8 +1227,8 @@ exports[`Steps render renders with falsy children 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait"
   >
     <div
@@ -1234,8 +1265,8 @@ exports[`Steps render renders with falsy children 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-process"
   >
     <div
@@ -1266,8 +1297,8 @@ exports[`Steps render renders with falsy children 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-finish rc-steps-item-disabled"
   >
     <div
@@ -1295,15 +1326,15 @@ exports[`Steps render renders with falsy children 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;
 
 exports[`Steps should render customIcon correctly 1`] = `
-<ol
+<div
   class="rc-steps rc-steps-horizontal rc-steps-title-horizontal"
 >
-  <li
+  <div
     class="rc-steps-item rc-steps-item-finish rc-steps-item-custom"
   >
     <div
@@ -1329,8 +1360,8 @@ exports[`Steps should render customIcon correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-process rc-steps-item-custom rc-steps-item-active"
   >
     <div
@@ -1356,8 +1387,8 @@ exports[`Steps should render customIcon correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-  <li
+  </div>
+  <div
     class="rc-steps-item rc-steps-item-wait rc-steps-item-custom"
   >
     <div
@@ -1380,6 +1411,6 @@ exports[`Steps should render customIcon correctly 1`] = `
         </div>
       </div>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
 `;

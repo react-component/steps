@@ -363,4 +363,22 @@ describe('Steps', () => {
     expect(iconEle).toHaveClass('bamboo');
     expect(iconEle.textContent).toBe('little');
   });
+
+  it('components', () => {
+    const { container } = render(
+      <Steps
+        components={{
+          root: 'ol',
+          item: 'li',
+        }}
+        items={[
+          {
+            title: 'test',
+          },
+        ]}
+      />,
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });
