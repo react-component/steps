@@ -1,6 +1,6 @@
 /* eslint react/prop-types: 0 */
 import * as React from 'react';
-import cls from 'classnames';
+import { clsx } from 'clsx';
 import KeyCode from '@rc-component/util/lib/KeyCode';
 import type { Status, StepItem, StepsProps } from './Steps';
 import Rail from './Rail';
@@ -126,7 +126,7 @@ export default function Step(props: StepProps) {
   const hasTitle = hasContent(title);
   const hasSubTitle = hasContent(subTitle);
 
-  const classString = cls(
+  const classString = clsx(
     itemCls,
     `${itemCls}-${mergedStatus}`,
     {
@@ -152,11 +152,8 @@ export default function Step(props: StepProps) {
 
   const wrapperNode = (
     <div
-      className={cls(`${itemCls}-wrapper`, classNames.itemWrapper, itemClassNames.wrapper)}
-      style={{
-        ...styles.itemWrapper,
-        ...itemStyles.wrapper,
-      }}
+      className={clsx(`${itemCls}-wrapper`, classNames.itemWrapper, itemClassNames.wrapper)}
+      style={{ ...styles.itemWrapper, ...itemStyles.wrapper }}
     >
       {/* Icon */}
       <StepIconSemanticContext.Provider
@@ -169,26 +166,17 @@ export default function Step(props: StepProps) {
       </StepIconSemanticContext.Provider>
 
       <div
-        className={cls(`${itemCls}-section`, classNames.itemSection, itemClassNames.section)}
-        style={{
-          ...styles.itemSection,
-          ...itemStyles.section,
-        }}
+        className={clsx(`${itemCls}-section`, classNames.itemSection, itemClassNames.section)}
+        style={{ ...styles.itemSection, ...itemStyles.section }}
       >
         <div
-          className={cls(`${itemCls}-header`, classNames.itemHeader, itemClassNames.header)}
-          style={{
-            ...styles.itemHeader,
-            ...itemStyles.header,
-          }}
+          className={clsx(`${itemCls}-header`, classNames.itemHeader, itemClassNames.header)}
+          style={{ ...styles.itemHeader, ...itemStyles.header }}
         >
           {hasTitle && (
             <div
-              className={cls(`${itemCls}-title`, classNames.itemTitle, itemClassNames.title)}
-              style={{
-                ...styles.itemTitle,
-                ...itemStyles.title,
-              }}
+              className={clsx(`${itemCls}-title`, classNames.itemTitle, itemClassNames.title)}
+              style={{ ...styles.itemTitle, ...itemStyles.title }}
             >
               {title}
             </div>
@@ -196,15 +184,12 @@ export default function Step(props: StepProps) {
           {hasSubTitle && (
             <div
               title={typeof subTitle === 'string' ? subTitle : undefined}
-              className={cls(
+              className={clsx(
                 `${itemCls}-subtitle`,
                 classNames.itemSubtitle,
                 itemClassNames.subtitle,
               )}
-              style={{
-                ...styles.itemSubtitle,
-                ...itemStyles.subtitle,
-              }}
+              style={{ ...styles.itemSubtitle, ...itemStyles.subtitle }}
             >
               {subTitle}
             </div>
@@ -213,18 +198,15 @@ export default function Step(props: StepProps) {
           {!last && (
             <Rail
               prefixCls={itemCls}
-              className={cls(classNames.itemRail, itemClassNames.rail)}
-              style={{
-                ...styles.itemRail,
-                ...itemStyles.rail,
-              }}
+              className={clsx(classNames.itemRail, itemClassNames.rail)}
+              style={{ ...styles.itemRail, ...itemStyles.rail }}
               status={railFollowPrevStatus ? status : nextStatus}
             />
           )}
         </div>
         {hasContent(mergedContent) && (
           <div
-            className={cls(`${itemCls}-content`, classNames.itemContent, itemClassNames.content)}
+            className={clsx(`${itemCls}-content`, classNames.itemContent, itemClassNames.content)}
             style={{ ...styles.itemContent, ...itemStyles.content }}
           >
             {mergedContent}
