@@ -1,5 +1,5 @@
 /* eslint react/no-did-mount-set-state: 0, react/prop-types: 0 */
-import cls from 'classnames';
+import { clsx } from 'clsx';
 import React from 'react';
 import Step from './Step';
 import { StepsContext, type StepsContextProps } from './Context';
@@ -140,7 +140,7 @@ export default function Steps(props: StepsProps) {
     !isVertical && titlePlacement === 'vertical' ? 'vertical' : 'horizontal';
 
   // ============================= styles =============================
-  const classString = cls(
+  const classString = clsx(
     prefixCls,
     `${prefixCls}-${mergedOrientation}`,
     `${prefixCls}-title-${mergeTitlePlacement}`,

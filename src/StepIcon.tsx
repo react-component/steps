@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cls from 'classnames';
+import { clsx } from 'clsx';
 import { StepsContext } from './Context';
 import pickAttrs from '@rc-component/util/lib/pickAttrs';
 
@@ -24,12 +24,8 @@ const StepIcon = React.forwardRef<HTMLDivElement, StepIconProps>((props, ref) =>
     <div
       {...pickAttrs(restProps, false)}
       ref={ref}
-      className={cls(`${itemCls}-icon`, classNames.itemIcon, itemClassName, className)}
-      style={{
-        ...styles.itemIcon,
-        ...itemStyle,
-        ...style,
-      }}
+      className={clsx(`${itemCls}-icon`, classNames.itemIcon, itemClassName, className)}
+      style={{ ...styles.itemIcon, ...itemStyle, ...style }}
     >
       {children}
     </div>
