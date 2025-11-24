@@ -27,7 +27,6 @@
   "types": "./lib/index.d.ts",
   "files": [
     "assets/*.css",
-    "dist",
     "es",
     "lib"
   ],
