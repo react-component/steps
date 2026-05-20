@@ -1,7 +1,7 @@
 /* eslint react/prop-types: 0 */
 import * as React from 'react';
 import { clsx } from 'clsx';
-import KeyCode from '@rc-component/util/lib/KeyCode';
+import { KeyCode } from '@rc-component/util';
 import type { Status, StepItem, StepsProps } from './Steps';
 import Rail from './Rail';
 import { UnstableContext } from './UnstableContext';
