@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { clsx } from 'clsx';
-import { StepsContext } from './Context';
 import { pickAttrs } from '@rc-component/util';
+import { StepsContext } from './Context';
 
 export interface StepIconSemanticContextProps {
   className?: string;
