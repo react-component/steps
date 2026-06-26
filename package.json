@@ -1,19 +1,19 @@
 {
   "name": "@rc-component/steps",
   "version": "1.2.2",
-  "description": "steps ui component for react",
+  "description": "Step workflow component for React",
   "keywords": [
     "react",
     "react-component",
     "react-steps"
   ],
-  "homepage": "http://github.com/react-component/steps",
+  "homepage": "https://react-component.github.io/steps",
   "bugs": {
     "url": "http://github.com/react-component/steps/issues"
   },
   "repository": {
     "type": "git",
-    "url": " git+ssh://git@github.com/react-component/steps.git"
+    "url": "git@github.com:react-component/steps.git"
   },
   "license": "MIT",
   "maintainers": [
@@ -27,28 +27,22 @@
   "types": "./lib/index.d.ts",
   "files": [
     "assets/*.css",
-    "es",
-    "lib"
+    "lib",
+    "es"
   ],
   "scripts": {
+    "build": "npm run compile && npm run docs:build",
     "compile": "father build && lessc assets/index.less assets/index.css",
     "coverage": "rc-test --coverage",
     "docs:build": "dumi build",
-    "docs:deploy": "gh-pages -d .doc",
-    "gh-pages": "npm run docs:build && npm run docs:deploy",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "gh-pages": "cross-env GH_PAGES=1 npm run compile && npm run docs:build && npm run docs:deploy",
     "lint": "eslint src/ --ext .ts,.tsx,.jsx,.js,.md",
-    "prepare": "husky install && dumi setup",
     "prepublishOnly": "npm run compile && rc-np",
-    "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
-    "postpublish": "npm run gh-pages",
+    "prettier": "prettier --write --ignore-unknown .",
     "start": "dumi dev",
     "test": "rc-test",
-    "now-build": "npm run docs:build"
-  },
-  "lint-staged": {
-    "**/*.{js,jsx,tsx,ts,md,json}": [
-      "prettier --write"
-    ]
+    "tsc": "tsc --noEmit"
   },
   "dependencies": {
     "@rc-component/util": "^1.11.1",
@@ -78,7 +72,8 @@
     "rc-test": "^7.0.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "cross-env": "^7.0.0"
   },
   "peerDependencies": {
     "react": ">=16.9.0",
@@ -86,5 +81,6 @@
   },
   "engines": {
     "node": ">=8.x"
-  }
+  },
+  "style": "./assets/index.css"
 }

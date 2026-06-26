@@ -1,5 +1,6 @@
-.iml
+*.iml
 *.log
+*.log.*
 .idea/
 .ipr
 .iws
@@ -25,18 +26,21 @@ assets/**/*.css
 build
 lib
 es
-coverage
+/coverage
+yarn.lock
 package-lock.json
 pnpm-lock.yaml
-yarn.lock
 .doc
-.umi
-.npmrc
+docs-dist
+.vercel
+.storybook
 
-# dumi
-.dumi/tmp
-.dumi/tmp-test
-.dumi/tmp-production
+# umi
+.umi
+.umi-production
+.umi-test
 .env.local
+.dumi/
 
 bun.lockb
+bun.lock
