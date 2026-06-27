@@ -1,8 +1,7 @@
 <div align="center">
   <h1>@rc-component/steps</h1>
-  <p><sub>Ant Design 生态的一部分。</sub></p>
-  <img alt="Ant Design" height="32" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" />
-  <p>👣 React 步骤条组件，支持状态、图标、进度和多种布局。</p>
+  <p><sub><img alt="Ant Design" height="14" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" style="vertical-align: -0.125em;" /> Ant Design 生态的一部分。</sub></p>
+  <p>🚶 React 步骤条组件，支持状态、图标、进度和多种布局。</p>
 
   <p>
     <a href="https://www.npmjs.com/package/@rc-component/steps"><img src="https://img.shields.io/npm/v/@rc-component/steps.svg?style=flat-square" alt="npm version" /></a>
@@ -19,10 +18,10 @@
 
 ## 特性
 
-- Renders progress and navigation steps from a simple `items` array.
-- 支持 horizontal and vertical layouts, inline mode, custom icons, and status control.
-- 提供 semantic `classNames` and `styles` slots for stable theming.
-- 保留 keyboard-accessible step changes when `onChange` is provided.
+- 从简单的 `items` 数组渲染进度和导航步骤。
+- 支持水平和垂直布局、内联模式、自定义图标和状态控制。
+- 提供语义 `classNames` 和 `styles` 插槽以实现稳定的主题。
+- 当提供 `onChange` 时，保留键盘可访问的步骤更改。
 
 ## 安装
 
@@ -48,7 +47,7 @@ export default () => (
 );
 ```
 
-Online preview: https://steps.react-component.vercel.app/
+在线预览：https://steps.react-component.vercel.app/
 
 ## API
 
@@ -56,38 +55,38 @@ Online preview: https://steps.react-component.vercel.app/
 
 | 名称 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
-| `className` | string | - | Additional class name. |
-| `classNames` | `Partial<Record<SemanticName, string>>` | - | Semantic class names for internal slots. |
-| `components` | `{ root?: ComponentType; item?: ComponentType }` | - | Override root and item elements. |
-| `current` | number | 0 | Current step index. |
-| `iconRender` | `(originNode, info) => ReactNode` | - | Custom step icon renderer. |
-| `initial` | number | 0 | Initial step index offset. |
-| `itemRender` | `(originNode, info) => ReactNode` | - | Custom step item renderer. |
-| `itemWrapperRender` | `(originNode) => ReactNode` | - | Custom step item wrapper renderer. |
-| `items` | StepItem[] | [] | Step data. |
-| `onChange` | `(current: number) => void` | - | Triggered when a clickable step changes. |
+| `className` | string | - | 附加className。 |
+| `classNames` | `Partial<Record<SemanticName, string>>` | - | 内部插槽的语义化 className。 |
+| `components` | `{ root?: ComponentType; item?: ComponentType }` | - | 覆盖根元素和项目元素。 |
+| `current` | number | 0 | 当前步骤索引。 |
+| `iconRender` | `(originNode, info) => ReactNode` | - | 自定义步骤图标渲染器。 |
+| `initial` | number | 0 | 初始步索引偏移。 |
+| `itemRender` | `(originNode, info) => ReactNode` | - | 自定义步骤项渲染器。 |
+| `itemWrapperRender` | `(originNode) => ReactNode` | - | 自定义步骤项包装渲染器。 |
+| `items` | StepItem[] | [] | 步骤数据。 |
+| `onChange` | `(current: number) => void` | - | 当可单击步骤发生更改时触发。 |
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout orientation. |
-| `prefixCls` | string | `'rc-steps'` | Prefix class name. |
-| `rootClassName` | string | - | Root class name. |
-| `status` | `'error' \| 'process' \| 'finish' \| 'wait'` | `'process'` | Current step status. |
-| `style` | React.CSSProperties | - | Root style. |
-| `styles` | `Partial<Record<SemanticName, React.CSSProperties>>` | - | Semantic styles for internal slots. |
-| `titlePlacement` | `'horizontal' \| 'vertical'` | `'horizontal'` | Title placement for horizontal steps. |
+| `prefixCls` | string | `'rc-steps'` | 前缀className。 |
+| `rootClassName` | string | - | 根className。 |
+| `status` | `'error' \| 'process' \| 'finish' \| 'wait'` | `'process'` | 当前步骤状态。 |
+| `style` | React.CSSProperties | - | 根样式。 |
+| `styles` | `Partial<Record<SemanticName, React.CSSProperties>>` | - | 内部插槽的语义化样式。 |
+| `titlePlacement` | `'horizontal' \| 'vertical'` | `'horizontal'` | 水平步骤的标题位置。 |
 
 ### StepItem
 
 | 名称 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
-| `className` | string | - | Item class name. |
-| `classNames` | `Partial<Record<ItemSemanticName, string>>` | - | Semantic class names for this item. |
-| `content` | React.ReactNode | - | Step content. |
-| `description` | React.ReactNode | - | Deprecated. Use `content` instead. |
-| `disabled` | boolean | false | Disable step click behavior. |
-| `icon` | React.ReactNode | - | Custom step icon. |
-| `onClick` | React.MouseEventHandler | - | Item click handler. |
-| `status` | Status | - | Item status. |
-| `style` | React.CSSProperties | - | Item style. |
-| `styles` | `Partial<Record<ItemSemanticName, React.CSSProperties>>` | - | Semantic styles for this item. |
+| `className` | string | - | 项目类别名称。 |
+| `classNames` | `Partial<Record<ItemSemanticName, string>>` | - | 该项目的语义className称。 |
+| `content` | React.ReactNode | - | 步骤内容。 |
+| `description` | React.ReactNode | - | 已弃用。请改用 `content`。 |
+| `disabled` | boolean | false | 禁用步骤单击行为。 |
+| `icon` | React.ReactNode | - | 自定义步骤图标。 |
+| `onClick` | React.MouseEventHandler | - | 项目单击处理程序。 |
+| `status` | Status | - | 条目状态。 |
+| `style` | React.CSSProperties | - | 项目样式。 |
+| `styles` | `Partial<Record<ItemSemanticName, React.CSSProperties>>` | - | 该项目的语义样式。 |
 | `subTitle` | React.ReactNode | - | Subtitle. |
 | `title` | React.ReactNode | - | Title. |
 
@@ -108,8 +107,8 @@ npm run build
 npm run prepublishOnly
 ```
 
-The release flow is handled by `@rc-component/np` through the `rc-np` command after the package build.
+包构建完成后，发布流程由 `@rc-component/np` 通过 `rc-np` 命令处理。
 
 ## 许可证
 
-@rc-component/steps is released under the [MIT](./LICENSE.md) license.
+@rc-component/steps 基于 [MIT](./LICENSE.md) 许可证发布。
