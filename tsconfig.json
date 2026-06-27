@@ -3,20 +3,45 @@
     "target": "esnext",
     "moduleResolution": "node",
     "baseUrl": "./",
-    "lib": ["dom", "es2017"],
+    "lib": [
+      "dom",
+      "es2017"
+    ],
     "jsx": "preserve",
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@@/*": [".dumi/tmp/*"],
-      "@rc-component/steps": ["src/index.ts"],
-      "@rc-component/steps/es": ["src"],
-      "@rc-component/steps/es/*": ["src/*"],
-      "@rc-component/steps/assets/*": ["assets/*"]
-    }
+      "@/*": [
+        "src/*"
+      ],
+      "@@/*": [
+        ".dumi/tmp/*"
+      ],
+      "@rc-component/steps": [
+        "src/index.ts"
+      ],
+      "@rc-component/steps/es": [
+        "src"
+      ],
+      "@rc-component/steps/es/*": [
+        "src/*"
+      ],
+      "@rc-component/steps/assets/*": [
+        "assets/*"
+      ]
+    },
+    "ignoreDeprecations": "5.0"
   },
-  "include": [".dumirc.ts", "src", "tests", "docs/examples"],
-  "exclude": ["docs-dist", "lib", "es"]
+  "include": [
+    ".dumirc.ts",
+    "src",
+    "tests",
+    "docs/examples"
+  ],
+  "exclude": [
+    "docs-dist",
+    "lib",
+    "es"
+  ]
 }
