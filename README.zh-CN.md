@@ -1,7 +1,7 @@
 <div align="center">
   <h1>@rc-component/steps</h1>
-  <p><sub>Part of the Ant Design ecosystem.</sub></p>
-  <p>🚶 Structured React steps for progress, navigation, and multi-step workflows.</p>
+  <p><sub>Ant Design 生态的一部分。</sub></p>
+  <p>👣 React 步骤条组件，支持状态、图标、进度和多种布局。</p>
 
   <p>
     <a href="https://www.npmjs.com/package/@rc-component/steps"><img src="https://img.shields.io/npm/v/@rc-component/steps.svg?style=flat-square" alt="npm version" /></a>
@@ -13,23 +13,23 @@
   </p>
 </div>
 
-<p align="center">English | <a href="./README.zh-CN.md">简体中文</a></p>
+<p align="center"><a href="./README.md">English</a> | 简体中文</p>
 
 
-## Highlights
+## 特性
 
 - Renders progress and navigation steps from a simple `items` array.
-- Supports horizontal and vertical layouts, inline mode, custom icons, and status control.
-- Provides semantic `classNames` and `styles` slots for stable theming.
-- Keeps keyboard-accessible step changes when `onChange` is provided.
+- 支持 horizontal and vertical layouts, inline mode, custom icons, and status control.
+- 提供 semantic `classNames` and `styles` slots for stable theming.
+- 保留 keyboard-accessible step changes when `onChange` is provided.
 
-## Install
+## 安装
 
 ```bash
 npm install @rc-component/steps
 ```
 
-## Usage
+## 使用
 
 ```tsx pure
 import Steps from '@rc-component/steps';
@@ -53,7 +53,7 @@ Online preview: https://steps.react-component.vercel.app/
 
 ### Steps
 
-| Name | Type | Default | Description |
+| 名称 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
 | `className` | string | - | Additional class name. |
 | `classNames` | `Partial<Record<SemanticName, string>>` | - | Semantic class names for internal slots. |
@@ -75,7 +75,7 @@ Online preview: https://steps.react-component.vercel.app/
 
 ### StepItem
 
-| Name | Type | Default | Description |
+| 名称 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
 | `className` | string | - | Item class name. |
 | `classNames` | `Partial<Record<ItemSemanticName, string>>` | - | Semantic class names for this item. |
@@ -90,7 +90,7 @@ Online preview: https://steps.react-component.vercel.app/
 | `subTitle` | React.ReactNode | - | Subtitle. |
 | `title` | React.ReactNode | - | Title. |
 
-## Development
+## 本地开发
 
 ```bash
 npm install
@@ -101,7 +101,7 @@ npm run compile
 npm run build
 ```
 
-## Release
+## 发布
 
 ```bash
 npm run prepublishOnly
@@ -109,6 +109,6 @@ npm run prepublishOnly
 
 The release flow is handled by `@rc-component/np` through the `rc-np` command after the package build.
 
-## License
+## 许可证
 
 @rc-component/steps is released under the [MIT](./LICENSE.md) license.
