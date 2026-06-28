@@ -42,7 +42,8 @@
     "prettier": "prettier --write --ignore-unknown .",
     "start": "dumi dev",
     "test": "rc-test",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@rc-component/util": "^1.11.1",
@@ -85,5 +86,8 @@
   "style": "./assets/index.css",
   "publishConfig": {
     "access": "public"
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
   }
 }
