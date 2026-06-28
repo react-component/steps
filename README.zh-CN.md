@@ -76,7 +76,7 @@ npm start
 | `itemWrapperRender` | `(originNode) => ReactNode` | - | 自定义步骤项包装渲染器。 |
 | `items` | StepItem[] | [] | 步骤数据。 |
 | `onChange` | `(current: number) => void` | - | 当可单击步骤发生更改时触发。 |
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout orientation. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | 布局方向。 |
 | `prefixCls` | string | `'rc-steps'` | 前缀className。 |
 | `rootClassName` | string | - | 根className。 |
 | `status` | `'error' \| 'process' \| 'finish' \| 'wait'` | `'process'` | 当前步骤状态。 |
