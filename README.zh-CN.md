@@ -66,7 +66,7 @@ npm start
 
 | 名称 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
-| `className` | string | - | 附加className。 |
+| `className` | string | - | 附加 className。 |
 | `classNames` | `Partial<Record<SemanticName, string>>` | - | 内部插槽的语义化 className。 |
 | `components` | `{ root?: ComponentType; item?: ComponentType }` | - | 覆盖根元素和项目元素。 |
 | `current` | number | 0 | 当前步骤索引。 |
@@ -77,8 +77,8 @@ npm start
 | `items` | StepItem[] | [] | 步骤数据。 |
 | `onChange` | `(current: number) => void` | - | 当可单击步骤发生更改时触发。 |
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | 布局方向。 |
-| `prefixCls` | string | `'rc-steps'` | 前缀className。 |
-| `rootClassName` | string | - | 根className。 |
+| `prefixCls` | string | `'rc-steps'` | className 前缀。 |
+| `rootClassName` | string | - | 根 className。 |
 | `status` | `'error' \| 'process' \| 'finish' \| 'wait'` | `'process'` | 当前步骤状态。 |
 | `style` | React.CSSProperties | - | 根样式。 |
 | `styles` | `Partial<Record<SemanticName, React.CSSProperties>>` | - | 内部插槽的语义化样式。 |
@@ -89,7 +89,7 @@ npm start
 | 名称 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
 | `className` | string | - | 项目类别名称。 |
-| `classNames` | `Partial<Record<ItemSemanticName, string>>` | - | 该项目的语义className称。 |
+| `classNames` | `Partial<Record<ItemSemanticName, string>>` | - | 该条目的语义 className。 |
 | `content` | React.ReactNode | - | 步骤内容。 |
 | `description` | React.ReactNode | - | 已弃用。请改用 `content`。 |
 | `disabled` | boolean | false | 禁用步骤单击行为。 |
