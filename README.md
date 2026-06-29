@@ -1,191 +1,127 @@
-# @rc-component/steps
+<div align="center">
+  <h1>@rc-component/steps</h1>
+  <p><sub><img alt="Ant Design" height="14" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" style="vertical-align: -0.125em;" /> Part of the Ant Design ecosystem.</sub></p>
+  <p>🚶 Structured React steps for progress, navigation, and multi-step workflows.</p>
 
----
+  <p>
+    <a href="https://npmjs.org/package/@rc-component/steps"><img alt="NPM version" src="https://img.shields.io/npm/v/@rc-component/steps.svg?style=flat-square"></a>
+    <a href="https://npmjs.org/package/@rc-component/steps"><img alt="npm downloads" src="https://img.shields.io/npm/dm/@rc-component/steps.svg?style=flat-square"></a>
+    <a href="https://github.com/react-component/steps/actions/workflows/react-component-ci.yml"><img alt="build status" src="https://github.com/react-component/steps/actions/workflows/react-component-ci.yml/badge.svg"></a>
+    <a href="https://app.codecov.io/gh/react-component/steps"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/react-component/steps/master.svg?style=flat-square"></a>
+    <a href="https://bundlephobia.com/package/@rc-component/steps"><img alt="bundle size" src="https://img.shields.io/bundlephobia/minzip/@rc-component/steps?style=flat-square"></a>
+    <a href="https://github.com/umijs/dumi"><img alt="dumi" src="https://img.shields.io/badge/docs%20by-dumi-blue?style=flat-square"></a>
+  </p>
+</div>
 
-React steps component.
+<p align="center">English | <a href="./README.zh-CN.md">简体中文</a></p>
 
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][codecov-image]][codecov-url]
-[![npm download][download-image]][download-url]
-[![bundle size][bundlephobia-image]][bundlephobia-url]
 
-[npm-image]: http://img.shields.io/npm/v/@rc-component/steps.svg?style=flat-square
-[npm-url]: http://npmjs.org/package/@rc-component/steps
-[travis-image]: https://img.shields.io/travis/react-component/steps.svg?style=flat-square
-[travis-url]: https://travis-ci.org/react-component/steps
-[codecov-image]: https://img.shields.io/codecov/c/github/react-component/steps/master.svg?style=flat-square
-[codecov-url]: https://codecov.io/gh/react-component/steps/branch/master
-[download-image]: https://img.shields.io/npm/dm/@rc-component/steps.svg?style=flat-square
-[download-url]: https://npmjs.org/package/@rc-component/steps
-[bundlephobia-url]: https://bundlephobia.com/result?p=@rc-component/steps
-[bundlephobia-image]: https://badgen.net/bundlephobia/minzip/@rc-component/steps
+## Highlights
 
-## Usage
+- Renders progress and navigation steps from a simple `items` array.
+- Supports horizontal and vertical layouts, inline mode, custom icons, and status control.
+- Provides semantic `classNames` and `styles` slots for stable theming.
+- Keeps keyboard-accessible step changes when `onChange` is provided.
+
+## Install
 
 ```bash
 npm install @rc-component/steps
 ```
 
-<br>
+## Usage
 
-```jsx | pure
-<Steps current={1}>
-  <Steps.Step title="first" />
-  <Steps.Step title="second" />
-  <Steps.Step title="third" />
-</Steps>
+```tsx pure
+import Steps from '@rc-component/steps';
+import '@rc-component/steps/assets/index.css';
+
+export default () => (
+  <Steps
+    current={1}
+    items={[
+      { title: 'Create', content: 'Create an account' },
+      { title: 'Verify', content: 'Verify email' },
+      { title: 'Done', content: 'Start using the app' },
+    ]}
+  />
+);
 ```
 
-## Example
+Online preview: https://steps.react-component.vercel.app/
 
-https://steps.vercel.app/
+## Examples
 
-## API
-
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th style="width: 100px;">name</th>
-      <th style="width: 50px;">type</th>
-      <th style="width: 50px;">default</th>
-      <th>description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>type</td>
-      <td>string</td>
-      <td>default</td>
-      <td>diretypetion of Steps, could be `default` `navigation` `inline`</td>
-    </tr>
-    <tr>
-      <td>direction</td>
-      <td>string</td>
-      <td>horizontal</td>
-      <td>direction of Steps, enum: `horizontal` or `vertical`</td>
-    </tr>
-    <tr>
-      <td>current</td>
-      <td>number</td>
-      <td>0</td>
-      <td>index of current step</td>
-    </tr>
-    <tr>
-      <td>initial</td>
-      <td>number</td>
-      <td>0</td>
-      <td>index initial</td>
-    </tr>
-    <tr>
-      <td>size</td>
-      <td>string</td>
-      <td></td>
-      <td>size of Steps, could be `small`</td>
-    </tr>
-    <tr>
-      <td>titlePlacement</td>
-      <td>string</td>
-      <td></td>
-      <td>placement of step title, could be `vertical`</td>
-    </tr>
-    <tr>
-      <td>status</td>
-      <td>string</td>
-      <td>wait</td>
-      <td>status of current Steps, could be `error` `process` `finish` `wait`</td>
-    </tr>
-    <tr>
-      <td>icons</td>
-      <td>{ finish: ReactNode, error: ReactNode }</td>
-      <td></td>
-      <td>specify the default finish icon and error icon</td>
-    </tr>
-    <tr>
-      <td>itemRender</td>
-      <td>(item: StepProps, stepItem: React.ReactNode) => React.ReactNode</td>
-      <td></td>
-      <td>custom step item renderer</td>
-    </tr>
-    <tr>
-      <td>onChange</td>
-      <td>(current: number) => void</td>
-      <td></td>
-      <td>Trigger when Step changed</td>
-    </tr>
-  </tbody>
-</table>
-
-### Steps.Step
-
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th style="width: 100px;">name</th>
-      <th style="width: 50px;">type</th>
-      <th style="width: 50px;">default</th>
-      <th>description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>title</td>
-      <td>ReactNode</td>
-      <td></td>
-      <td>title of step item</td>
-    </tr>
-    <tr>
-      <td>subTitle</td>
-      <td>ReactNode</td>
-      <td></td>
-      <td>subTitle of step item</td>
-    </tr>
-    <tr>
-      <td>description</td>
-      <td>ReactNode</td>
-      <td></td>
-      <td>description of step item</td>
-    </tr>
-    <tr>
-      <td>icon</td>
-      <td>ReactNode</td>
-      <td></td>
-      <td>set icon of step item</td>
-    </tr>
-    <tr>
-      <td>status</td>
-      <td>string</td>
-      <td></td>
-      <td>status of current Steps, could be `error` `process` `finish` `wait`</td>
-    </tr>
-    <tr>
-      <td>tailContent</td>
-      <td>ReactNode</td>
-      <td></td>
-      <td>content above tail</td>
-    </tr>
-    <tr>
-      <td>disabled</td>
-      <td>bool</td>
-      <td>false</td>
-      <td>disabled step when onChange exist</td>
-    </tr>
-    <tr>
-      <td>render</td>
-      <td>(stepItem: React.ReactNode) => React.ReactNode</td>
-      <td></td>
-      <td>custom step item renderer</td>
-    </tr>
-  </tbody>
-</table>
-
-## Development
+Run the local dumi site:
 
 ```bash
 npm install
 npm start
 ```
 
+Then open `http://localhost:8000`.
+
+## API
+
+### Steps
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `className` | string | - | Additional class name. |
+| `classNames` | `Partial<Record<SemanticName, string>>` | - | Semantic class names for internal slots. |
+| `components` | `{ root?: ComponentType; item?: ComponentType }` | - | Override root and item elements. |
+| `current` | number | 0 | Current step index. |
+| `iconRender` | `(originNode, info) => ReactNode` | - | Custom step icon renderer. |
+| `initial` | number | 0 | Initial step index offset. |
+| `itemRender` | `(originNode, info) => ReactNode` | - | Custom step item renderer. |
+| `itemWrapperRender` | `(originNode) => ReactNode` | - | Custom step item wrapper renderer. |
+| `items` | StepItem[] | [] | Step data. |
+| `onChange` | `(current: number) => void` | - | Triggered when a clickable step changes. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout orientation. |
+| `prefixCls` | string | `'rc-steps'` | Prefix class name. |
+| `rootClassName` | string | - | Root class name. |
+| `status` | `'error' \| 'process' \| 'finish' \| 'wait'` | `'process'` | Current step status. |
+| `style` | React.CSSProperties | - | Root style. |
+| `styles` | `Partial<Record<SemanticName, React.CSSProperties>>` | - | Semantic styles for internal slots. |
+| `titlePlacement` | `'horizontal' \| 'vertical'` | `'horizontal'` | Title placement for horizontal steps. |
+
+### StepItem
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `className` | string | - | Item class name. |
+| `classNames` | `Partial<Record<ItemSemanticName, string>>` | - | Semantic class names for this item. |
+| `content` | React.ReactNode | - | Step content. |
+| `description` | React.ReactNode | - | Deprecated. Use `content` instead. |
+| `disabled` | boolean | false | Disable step click behavior. |
+| `icon` | React.ReactNode | - | Custom step icon. |
+| `onClick` | React.MouseEventHandler | - | Item click handler. |
+| `status` | Status | - | Item status. |
+| `style` | React.CSSProperties | - | Item style. |
+| `styles` | `Partial<Record<ItemSemanticName, React.CSSProperties>>` | - | Semantic styles for this item. |
+| `subTitle` | React.ReactNode | - | Subtitle. |
+| `title` | React.ReactNode | - | Title. |
+
+## Development
+
+```bash
+npm install
+npm start
+npm test
+npm run tsc
+npm run compile
+npm run build
+```
+
+The dumi site runs at `http://localhost:8000` by default.
+
+## Release
+
+```bash
+npm run prepublishOnly
+```
+
+The release flow is handled by `@rc-component/np` through the `rc-np` command after the package build.
+
 ## License
 
-@rc-component/steps is released under the MIT license.
+@rc-component/steps is released under the [MIT](./LICENSE) license.
