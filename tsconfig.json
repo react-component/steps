@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "moduleResolution": "node",
-    "baseUrl": "./",
+    "moduleResolution": "bundler",
     "lib": [
       "dom",
       "es2017"
@@ -13,27 +12,29 @@
     "esModuleInterop": true,
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ],
       "@@/*": [
-        ".dumi/tmp/*"
+        "./.dumi/tmp/*"
       ],
       "@rc-component/steps": [
-        "src/index.ts"
+        "./src/index.ts"
       ],
       "@rc-component/steps/es": [
-        "src"
+        "./src"
       ],
       "@rc-component/steps/es/*": [
-        "src/*"
+        "./src/*"
       ],
       "@rc-component/steps/assets/*": [
-        "assets/*"
+        "./assets/*"
       ]
     },
-    "ignoreDeprecations": "5.0"
+    "strict": false,
+    "module": "ESNext"
   },
   "include": [
+    "global.d.ts",
     ".fatherrc.ts",
     ".dumirc.ts",
     "src",
