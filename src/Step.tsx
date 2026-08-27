@@ -1,7 +1,6 @@
 /* eslint react/prop-types: 0 */
 import * as React from 'react';
 import { clsx } from 'clsx';
-import { KeyCode } from '@rc-component/util';
 import type { Status, StepItem, StepsProps } from './Steps';
 import Rail from './Rail';
 import { UnstableContext } from './UnstableContext';
@@ -113,9 +112,9 @@ export default function Step(props: StepProps) {
     };
 
     accessibilityProps.onKeyDown = (e) => {
-      const { which } = e;
-      if (which === KeyCode.ENTER || which === KeyCode.SPACE) {
-        onClick(index);
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.currentTarget.click();
       }
     };
   }

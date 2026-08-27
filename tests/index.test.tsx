@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { createEvent, render, fireEvent } from '@testing-library/react';
 import Steps from '../src';
 
 describe('Steps', () => {
@@ -283,6 +283,7 @@ describe('Steps', () => {
 
   it('key board support', () => {
     const onChange = jest.fn();
+    const onItemClick = jest.fn();
     const { container } = render(
       <Steps
         current={0}
@@ -295,15 +296,23 @@ describe('Steps', () => {
           {
             title: 'Waiting',
             description: 'This is a description',
+            onClick: onItemClick,
           },
         ]}
       />,
     );
 
     const button = container.querySelectorAll('[role="button"]')[1];
-    fireEvent.keyDown(button, { key: 'Enter', keyCode: 13, which: 13 });
+    const enterEvent = createEvent.keyDown(button, { key: 'Enter' });
+    const spaceEvent = createEvent.keyDown(button, { key: ' ' });
+    fireEvent(button, enterEvent);
+    fireEvent(button, spaceEvent);
 
-    expect(onChange).toHaveBeenCalledWith(1);
+    expect(onChange).toHaveBeenNthCalledWith(1, 1);
+    expect(onChange).toHaveBeenNthCalledWith(2, 1);
+    expect(onItemClick).toHaveBeenCalledTimes(2);
+    expect(enterEvent.defaultPrevented).toBe(true);
+    expect(spaceEvent.defaultPrevented).toBe(true);
   });
 
   it('itemRender', () => {
