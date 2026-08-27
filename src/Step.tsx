@@ -139,7 +139,7 @@ export default function Step(props: StepProps) {
     itemClassNames.root,
   );
 
-  let iconNode = <StepIcon />;
+  let iconNode = <StepIcon>{icon}</StepIcon>;
   if (iconRender) {
     iconNode = iconRender(iconNode, {
       ...renderInfo,
