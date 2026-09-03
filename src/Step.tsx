@@ -1,15 +1,12 @@
 /* eslint react/prop-types: 0 */
 import * as React from 'react';
+import { isNonNullable } from '@rc-component/util';
 import { clsx } from 'clsx';
 import type { Status, StepItem, StepsProps } from './Steps';
 import Rail from './Rail';
 import { UnstableContext } from './UnstableContext';
 import StepIcon, { StepIconSemanticContext } from './StepIcon';
 import { StepsContext } from './Context';
-
-function hasContent<T>(value: T) {
-  return value !== undefined && value !== null;
-}
 
 export interface StepProps {
   // style
@@ -122,8 +119,8 @@ export default function Step(props: StepProps) {
   // ========================= Render =========================
   const mergedStatus = status || 'wait';
 
-  const hasTitle = hasContent(title);
-  const hasSubTitle = hasContent(subTitle);
+  const hasTitle = isNonNullable(title);
+  const hasSubTitle = isNonNullable(subTitle);
 
   const classString = clsx(
     itemCls,
@@ -203,7 +200,7 @@ export default function Step(props: StepProps) {
             />
           )}
         </div>
-        {hasContent(mergedContent) && (
+        {isNonNullable(mergedContent) && (
           <div
             className={clsx(`${itemCls}-content`, classNames.itemContent, itemClassNames.content)}
             style={{ ...styles.itemContent, ...itemStyles.content }}
