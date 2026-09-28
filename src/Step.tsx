@@ -1,6 +1,6 @@
 /* eslint react/prop-types: 0 */
 import * as React from 'react';
-import { isNonNullable } from '@rc-component/util';
+import { isNonNullable, isReactRenderable } from '@rc-component/util';
 import { clsx } from 'clsx';
 import type { Status, StepItem, StepsProps } from './Steps';
 import Rail from './Rail';
@@ -126,7 +126,7 @@ export default function Step(props: StepProps) {
     itemCls,
     `${itemCls}-${mergedStatus}`,
     {
-      [`${itemCls}-custom`]: icon,
+      [`${itemCls}-custom`]: isReactRenderable(icon),
       [`${itemCls}-active`]: active,
       [`${itemCls}-disabled`]: disabled === true,
       [`${itemCls}-empty-header`]: !hasTitle && !hasSubTitle,
@@ -228,7 +228,8 @@ export default function Step(props: StepProps) {
   );
 
   if (itemRender) {
-    stepNode = (itemRender(stepNode, renderInfo) || null) as React.ReactElement;
+    const renderedNode = itemRender(stepNode, renderInfo);
+    stepNode = isReactRenderable(renderedNode) ? renderedNode : null;
   }
 
   return stepNode;
