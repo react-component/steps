@@ -28,7 +28,7 @@ export interface StepProps {
   itemWrapperRender?: StepsProps['itemWrapperRender'];
 
   // Event
-  onClick: (index: number) => void;
+  onClick?: (index: number) => void;
 }
 
 export default function Step(props: StepProps) {
@@ -105,7 +105,7 @@ export default function Step(props: StepProps) {
     accessibilityProps.tabIndex = 0;
     accessibilityProps.onClick = (e) => {
       onItemClick?.(e);
-      onClick(index);
+      onClick?.(index);
     };
 
     accessibilityProps.onKeyDown = (e) => {
