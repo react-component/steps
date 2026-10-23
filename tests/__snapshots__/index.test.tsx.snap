@@ -1342,7 +1342,11 @@ exports[`Steps should render customIcon correctly 1`] = `
     >
       <div
         class="rc-steps-item-icon"
-      />
+      >
+        <i
+          class="rcicon rcicon-cloud"
+        />
+      </div>
       <div
         class="rc-steps-item-section"
       >
@@ -1369,7 +1373,9 @@ exports[`Steps should render customIcon correctly 1`] = `
     >
       <div
         class="rc-steps-item-icon"
-      />
+      >
+        apple
+      </div>
       <div
         class="rc-steps-item-section"
       >
@@ -1396,7 +1402,9 @@ exports[`Steps should render customIcon correctly 1`] = `
     >
       <div
         class="rc-steps-item-icon"
-      />
+      >
+        github
+      </div>
       <div
         class="rc-steps-item-section"
       >
