@@ -345,6 +345,9 @@ describe('Steps', () => {
         onChange={onChange}
         items={[
           {
+            title: 'Finished',
+          },
+          {
             title: 'Waiting',
             content: <input />,
             onClick: onItemClick,
