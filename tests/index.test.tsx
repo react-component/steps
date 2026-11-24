@@ -186,6 +186,10 @@ describe('Steps', () => {
         ]}
       />,
     );
+    const iconNodes = container.querySelectorAll('.rc-steps-item-icon');
+    expect(iconNodes[0].querySelector('.rcicon-cloud')).toBeInTheDocument();
+    expect(iconNodes[1]).toHaveTextContent('apple');
+    expect(iconNodes[2]).toHaveTextContent('github');
     expect(container.firstChild).toMatchSnapshot();
   });
 
