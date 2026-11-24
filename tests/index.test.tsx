@@ -270,6 +270,27 @@ describe('Steps', () => {
     expect(onClick).toHaveBeenCalled();
   });
 
+  it('should not crash when item has onClick but Steps has no onChange', () => {
+    const onItemClick = jest.fn();
+    const { container } = render(
+      <Steps
+        items={[
+          {
+            title: 'Step 1',
+            onClick: onItemClick,
+          },
+          {
+            title: 'Step 2',
+          },
+        ]}
+      />,
+    );
+
+    const btn = container.querySelectorAll('.rc-steps-item')[0];
+    fireEvent.click(btn);
+    expect(onItemClick).toHaveBeenCalledTimes(1);
+  });
+
   it('disabled', () => {
     const onChange = jest.fn();
     const { container } = render(
@@ -278,7 +299,7 @@ describe('Steps', () => {
 
     const items = container.querySelectorAll('.rc-steps-item');
     fireEvent.click(items[2]);
-    expect(onChange).not.toBeCalled();
+    expect(onChange).not.toHaveBeenCalled();
   });
 
   it('key board support', () => {
