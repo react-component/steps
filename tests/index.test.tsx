@@ -336,6 +336,39 @@ describe('Steps', () => {
     expect(spaceEvent.defaultPrevented).toBe(true);
   });
 
+  it('should leave Enter/Space untouched when they bubble up from a nested input', () => {
+    const onChange = jest.fn();
+    const onItemClick = jest.fn();
+    const { container } = render(
+      <Steps
+        current={0}
+        onChange={onChange}
+        items={[
+          {
+            title: 'Finished',
+          },
+          {
+            title: 'Waiting',
+            content: <input />,
+            onClick: onItemClick,
+          },
+        ]}
+      />,
+    );
+
+    const input = container.querySelector('input');
+    const enterEvent = createEvent.keyDown(input, { key: 'Enter' });
+    const spaceEvent = createEvent.keyDown(input, { key: ' ' });
+
+    fireEvent(input, enterEvent);
+    fireEvent(input, spaceEvent);
+
+    expect(enterEvent.defaultPrevented).toBe(false);
+    expect(spaceEvent.defaultPrevented).toBe(false);
+    expect(onChange).not.toHaveBeenCalled();
+    expect(onItemClick).not.toHaveBeenCalled();
+  });
+
   it('itemRender', () => {
     const { container } = render(
       <Steps
